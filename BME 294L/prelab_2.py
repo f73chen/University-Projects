@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 x = [100 * i for i in range(1, 11)]
 x += [2000, 4000, 10000]
 x = np.array(x)
+
+xn = np.linspace(1, 1000000, 1000001)
+
 r = 4700
 c = 0.000000033
 
@@ -41,8 +44,8 @@ def highpass_potential_divider(vin, r, c, f):
 
 '''
 # Bode plot for linear gain in dB vs log freq
-gain_db = highpass_gain_db(r, c, x)
-plt.plot(x, gain_db)
+gain_db = highpass_gain_db(r, c, xn)
+plt.plot(xn, gain_db)
 plt.xscale("log")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Gain (dB)")
@@ -52,8 +55,8 @@ plt.show()
 
 # '''
 # Bode plot for linear phase vs log freq
-phase_shift = highpass_phase_shift(r, c, x)
-plt.plot(x, phase_shift)
+phase_shift = highpass_phase_shift(r, c, xn)
+plt.plot(xn, phase_shift)
 plt.xscale("log")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Phase Shift (degrees)")
@@ -94,8 +97,8 @@ def lowpass_phase_shift(r, c, f):
 
 '''
 # Bode plot for linear gain in dB vs log freq
-gain_db = lowpass_gain_db(r, c, x)
-plt.plot(x, gain_db)
+gain_db = lowpass_gain_db(r, c, xn)
+plt.plot(xn, gain_db)
 plt.xscale("log")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Gain (dB)")
@@ -105,8 +108,8 @@ plt.show()
 
 '''
 # Bode plot for linear phase vs log freq
-phase_shift = lowpass_phase_shift(r, c, x)
-plt.plot(x, phase_shift)
+phase_shift = lowpass_phase_shift(r, c, xn)
+plt.plot(xn, phase_shift)
 plt.xscale("log")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Phase Shift (degrees)")
