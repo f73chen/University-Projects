@@ -33,11 +33,10 @@ def highpass_gain_db(r, c, f):
 
 def highpass_potential_divider(vin, r, c, f):
     gain = highpass_gain(r, c, f)
-    rms = vin / (np.sqrt(2))
-    return rms * gain
+    return vin * gain
 
 # for f in x:
-    # print(f"Vo p-p: {f} - {highpass_potential_divider(1, r, c, f)*1000} mV")
+#     print(f"Vo p-p: {f} - {highpass_potential_divider(1, r, c, f)*1000} mV")
     # print(f"Gain dB: {f} - {highpass_gain_db(r, c, f)}")
     # print(f"Phase shift: {f} - {highpass_phase_shift(r, c, f)}")
     # print(f"Cut-off frequency: {f} - {highpass_cutoff(r, c)}")
@@ -53,7 +52,7 @@ plt.title("Linear Gain vs. Log Frequency")
 plt.show()
 '''
 
-# '''
+'''
 # Bode plot for linear phase vs log freq
 phase_shift = highpass_phase_shift(r, c, xn)
 plt.plot(xn, phase_shift)
@@ -62,7 +61,7 @@ plt.xlabel("Frequency (Hz)")
 plt.ylabel("Phase Shift (degrees)")
 plt.title("Linear Phase Shift vs. Log Frequency")
 plt.show()
-# '''
+'''
 
 ###########################################
 
@@ -76,8 +75,7 @@ def lowpass_gain(r, c, f):
 
 def lowpass_potential_divider(vin, r, c, f):
     gain = lowpass_gain(r, c, f)
-    rms = vin / (np.sqrt(2))
-    return rms * gain
+    return vin * gain
 
 def lowpass_gain_db(r, c, f):
     gain = lowpass_gain(r, c, f)
@@ -89,8 +87,8 @@ def lowpass_phase_shift(r, c, f):
     shift_degrees = shift * 180 / np.pi
     return shift_degrees
 
-# for f in x:
-    # print(f"Vo p-p: {f} - {lowpass_potential_divider(1, r, c, f)}")
+for f in x:
+    print(f"Vo p-p: {f} - {lowpass_potential_divider(1, r, c, f)*1000} mV")
     # print(f"Gain dB: {f} - {lowpass_gain_db(r, c, f)}")
     # print(f"Phase shift: {f} - {lowpass_phase_shift(r, c, f)}")
     # print(f"Cut-off frequency: {f} - {lowpass_cutoff(r, c)}")
