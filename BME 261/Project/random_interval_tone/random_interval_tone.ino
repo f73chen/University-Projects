@@ -3,6 +3,7 @@ int chance = 360;   // 10 times in 1 hour; each time is 1 second
 
 void setup() {
   Serial.begin(9600);
+  randomSeed(analogRead(0));      // Get seed as noise on an unconnected pin
 }
 
 void loop() {
