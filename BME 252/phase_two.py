@@ -5,7 +5,7 @@ from scipy.io.wavfile import read, write
 from scipy import signal
 from scipy.signal import resample, sosfilt, butter
 
-basePath = "C:/Users/16479/Downloads/phase_one/"
+basePath = "C:/Users/User/Desktop/School/2B/BME 252/Project Phase 1/"
 fileNames = ["Single Female.wav",
              "Single Male.wav",
              "Dual Male Female.wav",
