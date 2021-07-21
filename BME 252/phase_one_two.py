@@ -32,8 +32,18 @@ def bandpass(signal, fs, fLow, fHigh, order):
     return sosfilt(sos, signal)
     
 # Task 5 - Function to filter the sounds 
-def filter(signal, fs, fLow, fHigh, order):
-    return bandpass(signal, fs, fLow, fHigh, order)
+def filter(signal, fs, fLow, fHigh, order, nChannels):
+    freq_list = [int(fLow + (fHigh-fLow)/nChannels*i) for i in range(nChannels+1)]
+    bandpass_split = [bandpass(signal, fs, fLow = freq_list[i], fHigh = freq_list[i+1], order=order) for i in range(nChannels)]
+    return bandpass_split
+
+# Task 8 - Envelope extraction: detect envelopes using lowpass filter with 400Hz cutoff
+def lowpass(signal, fs, order):
+    nyq = fs * 0.5
+    fLow = 400
+    low = fLow / nyq
+    sos = butter(order, low, 'lowpass', analog=False, output = 'sos')
+    return sosfilt(sos, signal)
 
 
 
@@ -112,12 +122,40 @@ def analyze (path, fileName):
 
 
     # Task 6 - Function to plot the filtered signal
+    nChannels = 100
+    bandpass_split = filter(arr, samplingRate, 100.0, 7999.9, 5, nChannels)
+
+    ''' # Temporarily disabled
     time = np.linspace(0, len(arr)-1, len(arr))
-    plt.plot(time, filter(arr, samplingRate, 100.0, 8000.0, 5))
+    plt.plot(time, bandpass_split[0])
+    # plt.plot(time, bandpass_split[nChannels - 1])
     plt.title('Signal for: ' + fileName)
     plt.xlabel('Time (ms)')
     plt.ylabel('Amplitude')
     plt.show()
+    '''
+    
+    # Task 7 - Envelope extraction: rectify output signals
+    processed = []
+    for filtered in bandpass_split:
+        rectified = np.abs(filtered)
+        # print(np.min(rectified), np.max(rectified))
+
+    # Task 8 - Envelope extraction: detect envelopes using lowpass filter with 400Hz cutoff
+        enveloped = lowpass(rectified, samplingRate, order=5)
+        processed.append(enveloped)
+
+    # ''' # Temporarily disabled
+    # Task 9 - Plot the extracted envelope of the lowest and highest frequency channels
+    time = np.linspace(0, len(arr)-1, len(arr))
+    # plt.plot(time, processed[0])
+    plt.plot(time, processed[nChannels - 1])
+    plt.title('Signal for: ' + fileName)
+    plt.xlabel('Time (ms)')
+    plt.ylabel('Amplitude')
+    plt.show()
+    # '''
+
 
 
 
