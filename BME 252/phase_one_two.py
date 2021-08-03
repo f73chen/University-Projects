@@ -5,14 +5,11 @@ from scipy.io.wavfile import read, write
 from scipy import signal
 from scipy.signal import resample, sosfilt, butter
 
-basePath = "C:/Users/User/Desktop/School/2B/BME 252/Project Phase 1/"
+basePath = "C:/Users/User/Desktop/School/2B/BME 252/Project/"
 fileNames = ["Single Female.wav",
              "Single Male.wav",
              "Dual Male Female.wav",
              "Coffee Shop.wav"]
-
-
-
 
 # Task 4 - Function for designing a bandpass filter
 def bandpass(signal, fs, fLow, fHigh, order):
@@ -34,8 +31,9 @@ def bandpass(signal, fs, fLow, fHigh, order):
 # Task 5 - Function to filter the sounds 
 def filter(signal, fs, fLow, fHigh, order, nChannels):
     freq_list = [int(fLow + (fHigh-fLow)/nChannels*i) for i in range(nChannels+1)]
-    bandpass_split = [bandpass(signal, fs, fLow = freq_list[i], fHigh = freq_list[i+1], order=order) for i in range(nChannels)]
-    return bandpass_split
+    freq_pairs = [(freq_list[i], freq_list[i+1]) for i in range(nChannels)]         # Make pairs so it's easier to change how channels are split
+    bandpass_split = [bandpass(signal, fs, fLow = freq_pairs[i][0], fHigh = freq_pairs[i][1], order=order) for i in range(nChannels)]
+    return bandpass_split, freq_pairs
 
 # Task 8 - Envelope extraction: detect envelopes using lowpass filter with 400Hz cutoff
 def lowpass(signal, fs, order):
@@ -44,9 +42,6 @@ def lowpass(signal, fs, order):
     low = fLow / nyq
     sos = butter(order, low, 'lowpass', analog=False, output = 'sos')
     return sosfilt(sos, signal)
-
-
-
 
 def analyze (path, fileName):
     # Read the file as an array
@@ -118,12 +113,9 @@ def analyze (path, fileName):
     plt.show()
     '''
 
-
-
-
     # Task 6 - Function to plot the filtered signal
-    nChannels = 100
-    bandpass_split = filter(arr, samplingRate, 100.0, 7999.9, 5, nChannels)
+    nChannels = 20
+    bandpass_split, freq_pairs = filter(arr, samplingRate, 100.0, 7999.9, 5, nChannels)
 
     ''' # Temporarily disabled
     time = np.linspace(0, len(arr)-1, len(arr))
@@ -148,15 +140,32 @@ def analyze (path, fileName):
     # ''' # Temporarily disabled
     # Task 9 - Plot the extracted envelope of the lowest and highest frequency channels
     time = np.linspace(0, len(arr)-1, len(arr))
-    # plt.plot(time, processed[0])
-    plt.plot(time, processed[nChannels - 1])
-    plt.title('Signal for: ' + fileName)
+    plt.plot(time, processed[0], label="Lowest Channel")
+    plt.plot(time, processed[nChannels - 1], label="Highest Channel")
+    plt.title('Extracted Envelopes for: ' + fileName)
     plt.xlabel('Time (ms)')
     plt.ylabel('Amplitude')
+    plt.legend()
     plt.show()
     # '''
 
 
+
+
+    # Task 10 - Cosine function for each channel
+    for i in range(nChannels):
+        center = (freq_pairs[i][0] * freq_pairs[i][1])**0.5           # Center frequency is the geometric mean of the corner frequencies
+        t = np.linspace(0, len(arr)-1, len(arr))    # Same length as the rectified signals
+        y = np.cos(np.pi / 8000 * center * t)       # 16000 sampling rate * pi / 8000 = 2pi = 1Hz
+
+        # ''' # Temporarily disabled
+        # Task 11 - Amplitude modulate the cosine signal using the rectified signal
+        mod = np.multiply(y, processed[i])
+        plt.plot(t, mod)
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Amplitude")
+        plt.show()
+        # '''
 
 
 # analyze(basePath, fileNames[0])
