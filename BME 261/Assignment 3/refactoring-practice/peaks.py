@@ -1,14 +1,5 @@
 import numpy as np
 
-
-def get_nan_mean(vector):
-    return np.nanmean(vector)
-
-
-def increment_by_one(value):
-    return value + 1
-
-
 class PeakTracker:
     """
     Detects peaks in a signal online (as new samples are received), and reports
@@ -34,22 +25,27 @@ class PeakTracker:
         self.last_smoothed_sample = 0
         self.last_change = -1
 
-    def add_sample(self, sample):
-        self.sample_number = increment_by_one(self.sample_number)
-
-        # update rolling window
+    def update_rolling_window(self, sample):
         self.window[:-1] = self.window[1:]
         self.window[-1] = sample
 
-        smoothed_sample = get_nan_mean(self.window)
-        change = smoothed_sample - self.last_smoothed_sample
-
+    def peak_detection(self, smoothed_sample, change):
         if smoothed_sample > self.peak_min and self.last_change >= 0 and change < 0:
             print('peak detected at {}'.format(self.sample_number))
             self.peak_amplitudes[:-1] = self.peak_amplitudes[1:]
             self.peak_amplitudes[-1] = smoothed_sample
             self.peak_times[:-1] = self.peak_times[1:]
             self.peak_times[-1] = self.sample_number
+
+    def add_sample(self, sample):
+        self.sample_number = self.sample_number + 1     # Inline
+
+        self.update_rolling_window(sample)              # Extract 
+
+        smoothed_sample = np.nanmean(self.window)       # Inline
+        change = smoothed_sample - self.last_smoothed_sample
+
+        self.peak_detection(smoothed_sample, change)    # Extract
 
         self.last_smoothed_sample = smoothed_sample
         self.last_change = change
@@ -58,5 +54,4 @@ class PeakTracker:
         return np.nanmean(self.peak_amplitudes)
 
     def get_mean_interval(self):
-        return get_nan_mean(np.diff(self.peak_times))
-
+        return np.nanmean(np.diff(self.peak_times))     # Inline
