@@ -150,7 +150,7 @@ def analyze (path, fileName):
     # '''
 
 
-
+    output_signal = []
 
     # Task 10 - Cosine function for each channel
     for i in range(nChannels):
@@ -161,12 +161,25 @@ def analyze (path, fileName):
         # ''' # Temporarily disabled
         # Task 11 - Amplitude modulate the cosine signal using the rectified signal
         mod = np.multiply(y, processed[i])
+        output_signal.append(mod)
         plt.plot(t, mod)
         plt.xlabel("Time (ms)")
         plt.ylabel("Amplitude")
         plt.show()
         # '''
+        
+    # ''' # Temporarily disabled
+    # Task 12 - add signals and normalize
+    mod = mod / max(mod.min(), mod.max(), key=abs)
+    play = sa.play_buffer(mod, 1, 2, samplingRate)
+    play.wait_done()
+    # '''
 
+    # ''' # Temporarily disabled
+    # Task 13 - Write the output waveform to file
+    write(f'{fileName}_output.wav', samplingRate, arr)
+    # '''
+            
 
 # analyze(basePath, fileNames[0])
 for fileName in fileNames:
