@@ -90,6 +90,7 @@ def analyze (path, fileName):
         raise ValueError("Sampling rate too low (< 16 kHz)")
     elif samplingRate > 16000:
         arr = resample(arr, int(len(arr) / samplingRate * 16000))
+    samplingRate = 16000
     # print(f"Downsampled length: {len(arr)}")
 
     ''' # Temporarily disabled
@@ -162,7 +163,6 @@ def analyze (path, fileName):
 
         # Task 11 - Amplitude modulate the cosine signal using the rectified signal
         mod = np.multiply(y, processed[i])
-        output = output + mod
         ''' # Temporarily disabled
         plt.plot(t, mod)
         plt.xlabel("Time (ms)")
@@ -170,8 +170,15 @@ def analyze (path, fileName):
         plt.show()
         '''
 
-    # Task 12 - Add all signals from Task 11 together and normalize
+        # Task 12 - Add all signals from Task 11 together
+        output = output + mod
+
+    # Normalize the output signal
     output = np.int16(output/np.max(np.abs(output)) * 32767)
+
+    # Task 13 - Play the sound and write it to a new file
+    # play = sa.play_buffer(arr, 1, 2, samplingRate)
+    # play.wait_done()
     write(f'{fileName}_mono.wav', samplingRate, output)
 
 
