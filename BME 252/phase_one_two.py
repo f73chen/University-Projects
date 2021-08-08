@@ -137,7 +137,7 @@ def analyze (path, fileName):
         enveloped = lowpass(rectified, samplingRate, order=5)
         processed.append(enveloped)
 
-    # ''' # Temporarily disabled
+    ''' # Temporarily disabled
     # Task 9 - Plot the extracted envelope of the lowest and highest frequency channels
     time = np.linspace(0, len(arr)-1, len(arr))
     plt.plot(time, processed[0], label="Lowest Channel")
@@ -147,25 +147,32 @@ def analyze (path, fileName):
     plt.ylabel('Amplitude')
     plt.legend()
     plt.show()
-    # '''
+    '''
 
 
 
+
+    output = np.zeros(len(arr))
 
     # Task 10 - Cosine function for each channel
     for i in range(nChannels):
-        center = (freq_pairs[i][0] * freq_pairs[i][1])**0.5           # Center frequency is the geometric mean of the corner frequencies
-        t = np.linspace(0, len(arr)-1, len(arr))    # Same length as the rectified signals
-        y = np.cos(np.pi / 8000 * center * t)       # 16000 sampling rate * pi / 8000 = 2pi = 1Hz
+        center = (freq_pairs[i][0] * freq_pairs[i][1])**0.5 # Center frequency is the geometric mean of the corner frequencies
+        t = np.linspace(0, len(arr)-1, len(arr))            # Same length as the rectified signals
+        y = np.cos(np.pi / 8000 * center * t)               # 16000 sampling rate * pi / 8000 = 2pi = 1Hz
 
-        # ''' # Temporarily disabled
         # Task 11 - Amplitude modulate the cosine signal using the rectified signal
         mod = np.multiply(y, processed[i])
+        output = output + mod
+        ''' # Temporarily disabled
         plt.plot(t, mod)
         plt.xlabel("Time (ms)")
         plt.ylabel("Amplitude")
         plt.show()
-        # '''
+        '''
+
+    # Task 12 - Add all signals from Task 11 together and normalize
+    output = np.int16(output/np.max(np.abs(output)) * 32767)
+    write(f'{fileName}_mono.wav', samplingRate, output)
 
 
 # analyze(basePath, fileNames[0])
