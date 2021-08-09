@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import simpleaudio as sa
 from scipy.io.wavfile import read, write
 from scipy import signal
-from scipy.signal import resample, sosfilt, butter
+from scipy.signal import resample, sosfilt, butter, firwin, lfilter
 
 basePath = "C:/Users/User/Desktop/School/2B/BME 252/Project/"
 fileNames = ["Single Female.wav",
@@ -27,12 +27,18 @@ def bandpass(signal, fs, fLow, fHigh, order):
     #b, a = butter(order, [low, high], 'bandpass', analog=False)
     sos = butter(order, [low, high], 'bandpass', analog=False, output='sos')
     return sosfilt(sos, signal)
+  
+# Task 15 - Bandpass using FIR 
+def bandpassFIR(signal, fs, fLow, fHigh, length):
+    b = firwin(length, [fLow, fHigh], fs=fs, pass_zero=False)
+    return lfilter(b, 1, signal)
     
 # Task 5 - Function to filter the sounds 
 def filter(signal, fs, fLow, fHigh, order, nChannels):
     freq_list = [int(fLow + (fHigh-fLow)/nChannels*i) for i in range(nChannels+1)]
     freq_pairs = [(freq_list[i], freq_list[i+1]) for i in range(nChannels)]         # Make pairs so it's easier to change how channels are split
     bandpass_split = [bandpass(signal, fs, fLow = freq_pairs[i][0], fHigh = freq_pairs[i][1], order=order) for i in range(nChannels)]
+    # bandpass_split = [bandpassFIR(signal, fs, fLow = freq_pairs[i][0], fHigh = freq_pairs[i][1], length=int((fHigh-fLow)/nChannels)) for i in range(nChannels)]
     return bandpass_split, freq_pairs
 
 # Task 8 - Envelope extraction: detect envelopes using lowpass filter with 400Hz cutoff
