@@ -1,0 +1,167 @@
+Name,Type,Move,HP,ATK,SPD,DEF,RES,Total
+Abel,Blue Lance,Cavalry,39,33,32,25,25,154
+Alfonse,Red Sword,Infantry,43,35,25,32,22,157
+Alm,Red Sword,Infantry,45,33,30,28,22,158
+Amelia,Green Axe,Armored,47,34,34,35,23,173
+Anna,Green Axe,Infantry,41,29,38,22,28,158
+Arthur,Green Axe,Infantry,43,32,29,30,24,158
+Athena,Red Sword,Infantry,36,31,38,27,24,156
+Azama,Neutral Staff,Infantry,43,21,26,32,25,147
+Azura,Blue Lance,Infantry,36,31,33,21,28,149
+Barst,Green Axe,Infantry,46,33,32,30,17,158
+Bartre,Green Axe,Infantry,49,36,25,33,13,156
+Berkut,Blue Lance,Cavalry,43,34,22,31,24,154
+Beruka,Green Axe,Flying,46,29,23,37,22,157
+Boey,Green Tome,Infantry,43,29,27,32,18,149
+Caeda,Red Sword,Flying,36,25,37,24,34,156
+Caeda (Bridal Blessings),Blue Tome,Infantry,33,29,37,19,30,148
+Cain,Red Sword,Cavalry,42,32,32,27,21,154
+Camilla,Green Axe,Flying,37,30,32,28,31,158
+Camilla (Spring Festival),Green Tome,Flying,39,35,25,30,19,148
+Camus,Blue Lance,Cavalry,42,32,33,31,17,155
+Catria,Blue Lance,Flying,39,31,34,29,25,158
+Cecilia,Green Tome,Cavalry,36,32,25,22,29,144
+Celica,Red Tome,Infantry,39,32,33,22,22,148
+Charlotte (Bridal Blessings),Blue Lance,Infantry,46,36,32,24,19,157
+Cherche,Green Axe,Flying,46,38,25,32,16,157
+Chrom,Red Sword,Infantry,47,37,25,31,17,157
+Chrom (Spring Festival),Green Axe,Infantry,43,35,32,28,20,158
+Clair,Blue Lance,Flying,37,26,36,24,33,156
+Clarine,Neutral Staff,Cavalry,35,25,33,22,29,144
+Clarisse,Neutral Bow,Infantry,37,31,34,25,20,147
+Clive,Blue Lance,Cavalry,45,33,25,32,19,154
+Cordelia,Blue Lance,Flying,40,35,35,22,25,157
+Cordelia (Bridal Blessings),Neutral Bow,Infantry,36,35,35,19,22,147
+Corrin (F),Blue Beast,Infantry,41,27,34,34,21,157
+Corrin (F) (Nohrian Summer),Blue Tome,Flying,34,31,34,22,26,147
+Corrin (M),Red Sword,Infantry,42,32,32,28,24,158
+Delthea,Blue Tome,Infantry,33,36,34,13,31,147
+Donnel,Blue Lance,Infantry,43,35,29,32,23,162
+Draug,Red Sword,Armored,50,30,32,39,18,169
+Effie,Blue Lance,Armored,50,40,22,33,23,168
+Eirika,Red Sword,Infantry,42,26,35,26,28,157
+Eldigan,Red Sword,Cavalry,45,32,24,34,19,154
+Elise,Neutral Staff,Cavalry,30,32,32,19,32,145
+Elise (Nohrian Summer),Green Tome,Infantry,34,36,34,18,25,147
+Eliwood,Red Sword,Cavalry,39,31,30,23,32,155
+Ephraim,Blue Lance,Infantry,45,35,25,32,20,157
+Est,Blue Lance,Flying,36,35,30,24,32,157
+Fae,Green Beast,Infantry,46,33,28,25,30,162
+Faye,Neutral Bow,Infantry,42,30,25,26,31,154
+Felicia,Neutral Shuriken,Infantry,34,23,37,18,35,147
+Fir,Red Sword,Infantry,41,25,36,24,31,157
+Florina,Blue Lance,Flying,42,29,27,25,34,157
+Frederick,Green Axe,Cavalry,43,35,25,36,14,153
+Frederick (Ylissean Summer),Neutral Shuriken,Infantry,40,32,31,28,18,149
+Gaius,Neutral Shuriken,Infantry,42,29,36,22,19,148
+Gaius (Ylissean Summer),Neutral Bow,Infantry,34,30,37,19,28,148
+Genny,Neutral Staff,Infantry,32,35,25,21,34,147
+Gordin,Neutral Bow,Infantry,43,31,25,32,17,148
+Gray,Red Sword,Infantry,43,35,32,30,22,162
+Gunter,Green Axe,Cavalry,43,32,24,33,18,150
+Gwendolyn,Blue Lance,Armored,49,30,24,38,28,169
+Hana,Red Sword,Infantry,37,35,36,23,26,157
+Hawkeye,Green Axe,Infantry,45,33,22,28,30,158
+Hector,Green Axe,Armored,52,36,24,37,19,168
+Henry,Red Tome,Infantry,45,23,22,32,25,147
+Hinata,Red Sword,Infantry,47,32,24,36,18,157
+Hinoka,Blue Lance,Flying,41,35,32,25,24,157
+Ike,Red Sword,Infantry,42,35,31,32,18,158
+Ike (Brave Heroes),Green Axe,Infantry,43,36,27,35,16,157
+Innes,Neutral Bow,Infantry,35,33,34,14,31,147
+Jaffar,Neutral Shuriken,Infantry,41,26,33,25,22,147
+Jagen,Blue Lance,Cavalry,37,27,24,25,35,148
+Jakob,Neutral Shuriken,Infantry,39,29,31,25,24,148
+Jeorge,Neutral Bow,Infantry,37,32,32,24,22,147
+Julia,Green Tome,Infantry,38,35,26,17,32,148
+Kagero,Neutral Shuriken,Infantry,31,35,32,22,28,148
+Karel,Red Sword,Infantry,47,30,35,25,20,157
+Katarina,Red Tome,Infantry,34,32,34,15,32,147
+Klein,Neutral Bow,Infantry,40,31,33,20,24,148
+Lachesis,Neutral Staff,Infantry,39,32,25,22,30,148
+Laslow,Red Sword,Infantry,44,35,26,30,22,157
+Legion,Green Axe,Infantry,46,36,35,22,18,157
+Leo,Red Tome,Cavalry,39,29,22,25,30,145
+Leo (Nohrian Summer),Red Tome,Infantry,37,32,27,16,35,147
+Leon,Neutral Bow,Infantry,39,34,30,30,15,148
+Lilina,Red Tome,Infantry,35,37,25,19,31,147
+Linde,Blue Tome,Infantry,35,35,36,14,27,147
+Lissa,Neutral Staff,Infantry,39,26,25,28,30,148
+Lloyd,Red Sword,Infantry,41,32,35,20,30,158
+Lon'qu,Red Sword,Infantry,45,29,39,22,22,157
+Lucina,Red Sword,Infantry,43,34,36,25,19,157
+Lucina (Spring Festival),Blue Tome,Infantry,35,29,36,22,25,147
+Lucius,Neutral Staff,Infantry,37,32,30,13,35,147
+Lukas,Blue Lance,Infantry,45,35,22,38,17,157
+Luke,Red Sword,Cavalry,43,34,28,30,20,155
+Lyn,Red Sword,Infantry,37,28,37,26,29,157
+Lyn (Brave Heroes),Neutral Bow,Cavalry,35,30,35,17,27,144
+Lyn (Bridal Blessings),Neutral Staff,Infantry,39,28,34,23,24,148
+Mae,Blue Tome,Infantry,35,36,31,16,30,148
+Maria,Neutral Staff,Infantry,36,27,34,19,32,148
+Marth,Red Sword,Infantry,41,31,34,29,23,158
+Marth (Masked),Red Sword,Infantry,43,34,36,25,19,157
+Mathilda,Blue Lance,Cavalry,35,29,32,24,34,154
+Matthew,Neutral Shuriken,Infantry,41,25,34,30,18,148
+Merric,Green Tome,Infantry,43,26,32,28,19,148
+Michalis,Green Axe,Flying,43,34,26,35,19,157
+Minerva,Green Axe,Flying,40,31,33,32,22,158
+Mist,Neutral Staff,Infantry,39,27,28,20,34,148
+Narcian,Green Axe,Flying,42,29,29,32,26,158
+Navarre,Red Sword,Infantry,42,31,37,23,24,157
+Niles,Neutral Bow,Infantry,37,25,34,17,34,147
+Ninian,Blue Beast,Infantry,42,24,33,23,27,149
+Nino,Green Tome,Infantry,33,33,36,19,26,147
+Nowi,Blue Beast,Infantry,45,34,27,30,27,163
+Oboro,Blue Lance,Infantry,40,32,26,35,24,157
+Odin,Blue Tome,Infantry,43,22,32,25,25,147
+Ogma,Red Sword,Infantry,47,35,34,28,13,157
+Olivia,Red Sword,Infantry,36,28,33,27,26,150
+Olwen,Blue Tome,Cavalry,34,26,34,20,30,144
+Palla,Red Sword,Flying,42,31,31,28,26,158
+Peri,Blue Lance,Cavalry,35,33,33,23,30,154
+Priscilla,Neutral Staff,Cavalry,36,29,29,19,32,145
+Raigh,Red Tome,Infantry,36,32,29,22,29,148
+Raven,Green Axe,Infantry,41,34,35,25,22,157
+Rebecca,Neutral Bow,Infantry,37,29,34,21,27,148
+Reinhardt,Blue Tome,Cavalry,38,32,23,27,25,145
+Robin (F),Green Tome,Infantry,40,29,29,29,22,149
+Robin (F) (Ylissean Summer),Blue Lance,Infantry,35,32,34,28,29,158
+Robin (M),Blue Tome,Infantry,40,29,29,29,22,149
+Roderick,Blue Lance,Cavalry,40,31,34,25,24,154
+Roy,Red Sword,Infantry,44,30,31,25,28,158
+Ryoma,Red Sword,Infantry,41,34,35,27,21,158
+Saber,Red Sword,Infantry,40,31,33,32,22,158
+Saizo,Neutral Shuriken,Infantry,36,29,34,33,16,148
+Sakura,Neutral Staff,Infantry,36,28,30,24,30,148
+Sanaki,Red Tome,Infantry,33,37,26,17,34,147
+Selena,Red Sword,Infantry,37,25,35,32,28,157
+Seliph,Red Sword,Infantry,47,34,24,30,22,157
+Serra,Neutral Staff,Infantry,33,30,31,21,33,148
+Seth,Red Sword,Cavalry,37,32,31,32,22,154
+Setsuna,Neutral Bow,Infantry,37,28,37,22,23,147
+Shanna,Blue Lance,Flying,39,30,35,25,29,158
+Sharena,Blue Lance,Infantry,43,32,32,29,22,158
+Sheena,Green Axe,Armored,45,30,25,36,33,169
+Sonya,Green Tome,Infantry,36,33,31,15,32,147
+Sophia,Red Tome,Infantry,40,33,19,28,29,149
+Soren,Green Tome,Infantry,36,33,33,17,29,148
+Stahl,Red Sword,Cavalry,45,31,26,30,22,154
+Subaki,Blue Lance,Flying,40,25,35,35,22,157
+Sully,Blue Lance,Cavalry,42,26,34,24,28,154
+Takumi,Neutral Bow,Infantry,40,32,33,25,18,148
+Tana,Blue Lance,Flying,36,34,36,25,25,156
+Tharja,Red Tome,Infantry,39,32,34,23,20,148
+Tiki (Adult),Red Beast,Infantry,40,35,23,35,24,157
+Tiki (Adult) (Ylissean Summer),Green Axe,Infantry,35,36,30,32,24,157
+Tiki (Young),Red Beast,Infantry,41,31,30,32,29,163
+Titania,Green Axe,Cavalry,37,28,34,25,30,154
+Tobin,Red Sword,Infantry,46,31,27,33,26,163
+Ursula,Blue Tome,Cavalry,35,29,32,19,30,145
+Valter,Blue Lance,Flying,42,32,31,34,19,158
+Virion,Neutral Bow,Infantry,46,31,31,26,13,147
+Wrys,Neutral Staff,Infantry,42,24,23,22,36,147
+Xander,Red Sword,Cavalry,44,32,24,37,17,154
+Xander (Nohrian Summer),Green Axe,Infantry,43,32,30,36,16,157
+Xander (Spring Festival),Blue Lance,Cavalry,40,25,28,35,26,154
+Zephiel,Red Sword,Armored,55,35,16,38,24,168
