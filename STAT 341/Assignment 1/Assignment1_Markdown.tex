@@ -82,6 +82,16 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -110,41 +120,530 @@
 \begin{document}
 \maketitle
 
-\hypertarget{r-markdown}{%
-\subsection{R Markdown}\label{r-markdown}}
+\hypertarget{question-1-a}{%
+\subsubsection{Question 1 a)}\label{question-1-a}}
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see \url{http://rmarkdown.rstudio.com}.
+\(\alpha(\mathcal{P})\) is location invariant if
+\(\alpha(\mathcal{P}+b) = \alpha(\mathcal{P})\).
 
-When you click the \textbf{Knit} button a document will be generated
-that includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+First, substitute \(\sigma^4\) into the equation. \[
+\alpha(\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\]
+
+Then, add a constant \(b\) to all elements. Since the population mean is
+location equivariant, it also gains \(b\). \$\$ \begin{align*}
+\begin{split}
+\alpha(\mathcal{P}+b) &= \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u + b -(\overline{y} + b) \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u + b-(\overline y + b))^2]^2 }-3\\
+
+&= \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u + b -\overline{y} - b \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u + b-\overline y - b)^2]^2 }-3\\
+
+&= \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u -\overline y)^2]^2 }-3 \\
+
+&= \alpha(\mathcal{P})\\
+
+\end{split}
+\end{align*} \$\$ Therefore, excess kurtosis is location invariant.
+
+\newpage
+
+\hypertarget{question-1-b}{%
+\subsubsection{Question 1 b)}\label{question-1-b}}
+
+\(\alpha(\mathcal{P})\) is scale invariant if
+\(\alpha(m*\mathcal{P}) = \alpha(\mathcal{P})\).
+
+Similar to part a), begin by substituting \(\sigma^4\) into the
+equation. \[
+\alpha(\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] Then, multiply all elements by \(m\). Since the population mean is
+scale equivariant, it is also multiplied by \(m\). \[
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( m*y_u - m*\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(m*y_u-m*\overline y)^2]^2 }-3
+\] Factor out the multiplier \(m\) in both the numerator and
+denominator. \[
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}(m\left(y_u - \overline{y} \right))^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(m(y_u-\overline y))^2]^2 }-3
+\] \[
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}m^4\left( y_u - \overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}m^2(y_u-\overline y)^2]^2 }-3
+\] \(m\) is a constant, so it can be factored out of the sum and
+cancelled. \[
+\alpha(m*\mathcal{P}) = \frac{m^4\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ m^4[\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] \[
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+\] Therefore, excess kurtosis is scale invariant.
+
+\newpage
+
+\hypertarget{question-1-c}{%
+\subsubsection{Question 1 c)}\label{question-1-c}}
+
+Since excess kurtosis is both location invariant (part a) and scale
+invariant (part b), then by definition, it is location-scale invariant.
+
+\newpage
+
+\hypertarget{question-1-d}{%
+\subsubsection{Question 1 d)}\label{question-1-d}}
+
+\(\alpha(\mathcal{P})\) is scale invariant if
+\(\alpha(\mathcal{P}^k) = \alpha(\mathcal{P})\). Population
+\(\mathcal{P}\) is duplicated \(k-1\) times, and the new population size
+is \(kN\). \[
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{kN} \sum_{u \in \mathcal{P}^k}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{kN}\sum_{u \in \mathcal{P}^k}(y_u-\overline y)^2]^2 }-3
+\] \[
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{kN} k\sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{kN}k\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] The summing operation is applied \(k\) times, but the population is
+\(k\) times larger, so the factors cancel out. \[
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+\] Therefore, excess kurtosis is replication invariant.
+
+\newpage
+
+\hypertarget{question-1-e}{%
+\subsubsection{Question 1 e)}\label{question-1-e}}
+
+In this case, the equation for \(\sigma^4\) is changed. \[
+\sigma_*^4 = [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2
+\]
+
+For part b), the equation becomes: \[
+\alpha(m*\mathcal{P}) = \frac{m^4\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ m^4[\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] \[
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{[\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+\] Since the multiplier \(m\) does not relate to the size of the
+population \(N\), the attribute is still scale invariant (no change).
+However, for part d), the equation becomes: \[
+\alpha(\mathcal{P}^k) = \frac{\frac{k}{kN} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{k}{kN-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] \[
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-\frac{1}{k}}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 \ne \alpha(\mathcal{P})
+\] Therefore, \(\alpha(\mathcal{P})\) is no longer replication
+invariant, but rather neither invariant nor equivariant.
+
+\newpage
+
+\hypertarget{question-1-f}{%
+\subsubsection{Question 1 f)}\label{question-1-f}}
+
+The sensitivity curve is defined as:
+\(SC(y) = N(\alpha(\mathcal{P}^*) - \alpha(\mathcal{P}))\) \[
+\alpha(\mathcal{P}^*) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 }-3
+\] \[
+\alpha(\mathcal{P}) = \frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+\] Combined, the equation becomes: \[
+SC(y) = N[(\frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 }-3) - (\frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3)]
+\] \[
+SC(y) = N(\frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 } - \frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 })
+\]
+
+\newpage
+
+\hypertarget{question-1-g}{%
+\subsubsection{Question 1 g)}\label{question-1-g}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(cars)}
+\FunctionTok{library}\NormalTok{(e1071)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{341}\NormalTok{)}
+\NormalTok{pop }\OtherTok{\textless{}{-}} \FunctionTok{rt}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{length.out=}\DecValTok{1001}\NormalTok{)}
+
+\NormalTok{sc }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y.pop, y, attr, ...) \{}
+\NormalTok{  N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(y.pop) }\SpecialCharTok{+} \DecValTok{1}
+  \FunctionTok{sapply}\NormalTok{(y, }\ControlFlowTok{function}\NormalTok{(y.new) \{}
+\NormalTok{    N }\SpecialCharTok{*}\NormalTok{ (}\FunctionTok{attr}\NormalTok{(}\FunctionTok{c}\NormalTok{(y.new, y.pop), ...) }\SpecialCharTok{{-}} \FunctionTok{attr}\NormalTok{(y.pop, ...))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\FunctionTok{plot}\NormalTok{(y, }\FunctionTok{sc}\NormalTok{(pop, y, kurtosis), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Sensitivity Curve for Excess Kurtosis"}\NormalTok{,}
+     \AttributeTok{ylab=}\StringTok{"sensitivity"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+Based on this plot, kurtosis is robust to additions because its
+sensitivity curve is relative flat within {[}-5, 5{]}. However, it is
+unbounded because the two ends go to infinity, so it can be easily
+influenced by extreme outliers in the population.
+
+\newpage
+
+\hypertarget{question-1-h}{%
+\subsubsection{Question 1 h)}\label{question-1-h}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\gamma(\mathcal P)\) measures how close values lie in relation to
+  each other, not in relation to some constant like 0, so it should be
+  location invariant. A cluster of points are just as spread out at
+  \(\overline{y}=0\) as \(\overline{y}=b\).
+\item
+  \(\gamma(\mathcal P)\) should be scale equivariant. When a population
+  of points are each multiplied by \(m\), the distance/spread between
+  any two points are also multiplied by \(m\), so \(\gamma(\mathcal P)\)
+  should reflect this change linearly.
+\item
+  \(\gamma(\mathcal P)\) should not be location-scale invariant nor
+  equivariant, because location and scale have different ideal
+  properties as seen in points 1 and 2. Choosing either would compromise
+  location invariance or scale equivariance.
+\end{enumerate}
+
+\newpage
+
+\hypertarget{question-2-a}{%
+\subsubsection{Question 2 a)}\label{question-2-a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filename }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\StringTok{"data/iris.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{"/"}\NormalTok{)}
+\NormalTok{iris }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(filename, }\AttributeTok{header=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{nrow}\NormalTok{(iris)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
+## [1] 150
 \end{verbatim}
 
-\hypertarget{including-plots}{%
-\subsection{Including Plots}\label{including-plots}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
 
-You can also embed plots, for example:
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
 
-\includegraphics{Assignment1_Markdown_files/figure-latex/pressure-1.pdf}
+\newpage
 
-Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
-chunk to prevent printing of the R code that generated the plot.
+\hypertarget{question-2-b}{%
+\subsubsection{Question 2 b)}\label{question-2-b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pander)}
+\NormalTok{iris.freq }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species)}
+\FunctionTok{pander}\NormalTok{(iris.freq, }\AttributeTok{type =} \StringTok{\textquotesingle{}grid\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.19}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.25}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.25}}@{}}
+\toprule
+Iris-setosa & Iris-versicolor & Iris-virginica \\
+\midrule
+\endhead
+50 & 50 & 50 \\
+\bottomrule
+\end{longtable}
+
+\newpage
+
+\hypertarget{question-2-c}{%
+\subsubsection{Question 2 c)}\label{question-2-c}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Species with the largest sepal widths: "}\NormalTok{, iris}\SpecialCharTok{$}\NormalTok{Species[iris}\SpecialCharTok{$}\NormalTok{SepalWidth }\SpecialCharTok{==} \FunctionTok{max}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalWidth)][}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Species with the largest sepal widths: Iris-setosa"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Species with the smallest sepal widths: "}\NormalTok{, iris}\SpecialCharTok{$}\NormalTok{Species[iris}\SpecialCharTok{$}\NormalTok{SepalWidth }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalWidth)][}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Species with the smallest sepal widths: Iris-versicolor"
+\end{verbatim}
+
+\newpage
+
+\hypertarget{question-2-d}{%
+\subsubsection{Question 2 d)}\label{question-2-d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (s }\ControlFlowTok{in} \FunctionTok{unique}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species))\{}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Average sepal length for "}\NormalTok{, s, }\StringTok{": "}\NormalTok{, }\FunctionTok{mean}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength[iris}\SpecialCharTok{$}\NormalTok{Species }\SpecialCharTok{==}\NormalTok{ s])))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Average sepal length for Iris-setosa: 5.006"
+## [1] "Average sepal length for Iris-versicolor: 5.936"
+## [1] "Average sepal length for Iris-virginica: 6.588"
+\end{verbatim}
+
+\newpage
+
+\hypertarget{question-2-e}{%
+\subsubsection{Question 2 e)}\label{question-2-e}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris}\SpecialCharTok{$}\NormalTok{PetalRatio }\OtherTok{\textless{}{-}}\NormalTok{ iris}\SpecialCharTok{$}\NormalTok{PetalWidth}\SpecialCharTok{/}\NormalTok{iris}\SpecialCharTok{$}\NormalTok{PetalLength}
+
+\CommentTok{\# Iris species with largest and smallest PetalRatios}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Species with the largest petal ratio: "}\NormalTok{, iris}\SpecialCharTok{$}\NormalTok{Species[iris}\SpecialCharTok{$}\NormalTok{PetalRatio }\SpecialCharTok{==} \FunctionTok{max}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio)][}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Species with the largest petal ratio: Iris-virginica"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Species with the smallest petal ratio: "}\NormalTok{, iris}\SpecialCharTok{$}\NormalTok{Species[iris}\SpecialCharTok{$}\NormalTok{PetalRatio }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio)][}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Species with the smallest petal ratio: Iris-setosa"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Proportion of samples with PetalRatio \textgreater{} 0.3}
+\ControlFlowTok{for}\NormalTok{ (s }\ControlFlowTok{in} \FunctionTok{unique}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species))\{}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Proportion of samples in "}\NormalTok{, s, }\StringTok{" with PetalRatio \textgreater{} 0.3: "}\NormalTok{, }\FunctionTok{mean}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio[iris}\SpecialCharTok{$}\NormalTok{Species }\SpecialCharTok{==}\NormalTok{ s] }\SpecialCharTok{\textgreater{}} \FloatTok{0.3}\NormalTok{)))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Proportion of samples in Iris-setosa with PetalRatio > 0.3: 0.04"
+## [1] "Proportion of samples in Iris-versicolor with PetalRatio > 0.3: 0.66"
+## [1] "Proportion of samples in Iris-virginica with PetalRatio > 0.3: 0.86"
+\end{verbatim}
+
+\newpage
+
+\hypertarget{question-2-f}{%
+\subsubsection{Question 2 f)}\label{question-2-f}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Match each species name to a colour}
+\NormalTok{species }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species)}
+\NormalTok{iris}\SpecialCharTok{$}\NormalTok{SpeciesNum }\OtherTok{\textless{}{-}} \FunctionTok{match}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species, species)}
+\NormalTok{colours }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{)}
+
+\CommentTok{\# Plot the points and add a legend}
+\FunctionTok{plot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalLength, iris}\SpecialCharTok{$}\NormalTok{SepalLength, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{,}
+     \AttributeTok{col=}\NormalTok{colours[}\FunctionTok{as.numeric}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SpeciesNum)], }
+     \AttributeTok{xlab=}\StringTok{"petal length"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"sepal length"}\NormalTok{, }
+     \AttributeTok{main=}\StringTok{"Petal Length vs. Sepal Length"}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{7.75}\NormalTok{, }\AttributeTok{legend=}\NormalTok{species, }\AttributeTok{col=}\NormalTok{colours, }\AttributeTok{lty=}\DecValTok{1}\NormalTok{, }\AttributeTok{cex=}\FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+From the plot, it is clear that Iris-setosas can be distinguished from
+Iris-versicolor and Iris-virginica by petal length alone, as there is a
+clear separation between the groups.
+
+In addition, there is a positive linear trend between petal length and
+sepal length in Iris-versicolor and Iris-virginica.
+
+\newpage
+
+\hypertarget{question-2-g}{%
+\subsubsection{Question 2 g)}\label{question-2-g}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{oma=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (s }\ControlFlowTok{in}\NormalTok{ species) \{}
+  \FunctionTok{plot}\NormalTok{(}\FunctionTok{jitter}\NormalTok{(PetalWidth, }\AttributeTok{factor=}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \FunctionTok{jitter}\NormalTok{(PetalLength, }\AttributeTok{factor=}\FloatTok{0.5}\NormalTok{), }
+       \AttributeTok{data=}\NormalTok{iris[iris}\SpecialCharTok{$}\NormalTok{Species }\SpecialCharTok{==}\NormalTok{ s, ],}
+       \AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\FloatTok{0.3}\NormalTok{), }\AttributeTok{pch=}\DecValTok{19}\NormalTok{, }\AttributeTok{main=}\NormalTok{s)}
+  \FunctionTok{points}\NormalTok{(}\FunctionTok{mean}\NormalTok{(PetalWidth) }\SpecialCharTok{\textasciitilde{}} \FunctionTok{mean}\NormalTok{(PetalLength), }\AttributeTok{pch=}\DecValTok{19}\NormalTok{,}
+         \AttributeTok{data=}\NormalTok{iris[iris}\SpecialCharTok{$}\NormalTok{Species }\SpecialCharTok{==}\NormalTok{ s, ], }
+         \AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\FloatTok{0.5}\NormalTok{))}
+\NormalTok{\}}
+\FunctionTok{mtext}\NormalTok{(}\StringTok{\textquotesingle{}petal width\textquotesingle{}}\NormalTok{, }\AttributeTok{side=}\DecValTok{1}\NormalTok{, }\AttributeTok{outer=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{line=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{mtext}\NormalTok{(}\StringTok{\textquotesingle{}petal length\textquotesingle{}}\NormalTok{, }\AttributeTok{side=}\DecValTok{2}\NormalTok{, }\AttributeTok{outer=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{line=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+The plots show that there is a slight positive linear relationship
+between petal width and petal length, especially in the plot of
+Iris-versicolor. The relationship might be clearer if the values were
+not discrete/overlapping.
+
+\newpage
+
+\hypertarget{question-2-h}{%
+\subsubsection{Question 2 h)}\label{question-2-h}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the base points}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SpeciesNum, iris}\SpecialCharTok{$}\NormalTok{SepalLength, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{, }
+     \AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\FloatTok{0.3}\NormalTok{), }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{, }
+     \AttributeTok{xlab=}\StringTok{"species"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"sepal length"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Sepal Length by Species"}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\AttributeTok{side=}\DecValTok{1}\NormalTok{, }\AttributeTok{at=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{2.0}\NormalTok{, }\FloatTok{3.0}\NormalTok{), }\AttributeTok{labels=}\NormalTok{species)}
+
+\CommentTok{\# Calculate, plot, and connect the medians}
+\NormalTok{medians }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{median}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength[iris}\SpecialCharTok{$}\NormalTok{SpeciesNum }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]),}
+             \FunctionTok{median}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength[iris}\SpecialCharTok{$}\NormalTok{SpeciesNum }\SpecialCharTok{==} \DecValTok{2}\NormalTok{]),}
+             \FunctionTok{median}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength[iris}\SpecialCharTok{$}\NormalTok{SpeciesNum }\SpecialCharTok{==} \DecValTok{3}\NormalTok{]))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, medians, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, medians, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\newpage
+
+\hypertarget{question-2-i}{%
+\subsubsection{Question 2 i)}\label{question-2-i}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{powerfun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, alpha) \{}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\textless{}=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{) }\FunctionTok{stop}\NormalTok{(}\StringTok{"x must be positive"}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{ (alpha }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
+    \FunctionTok{log}\NormalTok{(x)}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (alpha }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{    x}\SpecialCharTok{\^{}}\NormalTok{alpha}
+\NormalTok{  \} }\ControlFlowTok{else} \SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{\^{}}\NormalTok{alpha}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Part i: Histogram and scatterplots of SepalLength and PetalRatio}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\FloatTok{0.2}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength, }\AttributeTok{breaks=}\DecValTok{15}\NormalTok{, }\AttributeTok{main=}\StringTok{"Sepal Length"}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio, }\AttributeTok{breaks=}\DecValTok{15}\NormalTok{, }\AttributeTok{main=}\StringTok{"Petal Ratio"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(SepalLength }\SpecialCharTok{\textasciitilde{}}\NormalTok{ PetalRatio, }\AttributeTok{data=}\NormalTok{iris, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{,}
+     \AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+     \AttributeTok{main=}\StringTok{"Sepal Length vs. Petal Ratio"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Part ii: Find alpha to make SepalLength symmetric}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{)) \{}
+  \FunctionTok{hist}\NormalTok{(}\FunctionTok{powerfun}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength, i), }\AttributeTok{breaks=}\DecValTok{8}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{powerfun}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{SepalLength, }\DecValTok{0}\NormalTok{), }\AttributeTok{breaks=}\DecValTok{8}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"log(Sepal Length)"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Frequency"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+After testing, the power 0 (log) makes sepal length most symmetric.
+
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Part iii: Find alpha to make PetalRatio symmetric}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{c}\NormalTok{(}\FloatTok{1.25}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\FloatTok{1.75}\NormalTok{, }\DecValTok{2}\NormalTok{, }\FloatTok{2.25}\NormalTok{)) \{}
+  \FunctionTok{hist}\NormalTok{(}\FunctionTok{powerfun}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio, i), }\AttributeTok{breaks=}\DecValTok{30}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{powerfun}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{PetalRatio, }\FloatTok{1.75}\NormalTok{), }\AttributeTok{breaks=}\DecValTok{15}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"Petal Ratio \^{} 1.75"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Frequency"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+A power of 1.75 makes the histogram of petal ratio most symmetric,
+though it is harder to judge than sepal length due to the second peak on
+the left.
+
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Part iv: Find the pair of alphas to make the scatterplot approximately linear}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{powerfun}\NormalTok{(SepalLength, }\DecValTok{0}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \FunctionTok{powerfun}\NormalTok{(PetalRatio, }\FloatTok{1.75}\NormalTok{), }\AttributeTok{data=}\NormalTok{iris, }
+     \AttributeTok{pch=}\DecValTok{19}\NormalTok{, }\AttributeTok{col=}\FunctionTok{adjustcolor}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+     \AttributeTok{main=}\StringTok{"Power{-}Transformed Scatterplot"}\NormalTok{, }
+     \AttributeTok{xlab=}\StringTok{"log(Sepal Length)"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Petal Ratio \^{} 1.75"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+The new scatterplot uses the best alphas for sepal length (0) and petal
+ratio (1.75), respectively, resulting in a more linear graph than the
+one in part i).
+
+\newpage
+
+\hypertarget{question-3}{%
+\subsubsection{Question 3}\label{question-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{drawBoxPlot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(df) \{}
+  \FunctionTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{type=}\StringTok{"n"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{,}
+       \AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FunctionTok{ncol}\NormalTok{(df)}\SpecialCharTok{+}\FloatTok{0.5}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(df), }\FunctionTok{max}\NormalTok{(df)))}
+  
+\NormalTok{  w1 }\OtherTok{=} \FloatTok{0.25}
+\NormalTok{  w2 }\OtherTok{=} \FloatTok{0.4}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(df))\{}
+\NormalTok{    bstats }\OtherTok{=} \FunctionTok{boxplot.stats}\NormalTok{(df[,i])}
+\NormalTok{    stats }\OtherTok{=}\NormalTok{ bstats}\SpecialCharTok{$}\NormalTok{stats}
+    
+    \FunctionTok{segments}\NormalTok{(i, stats[}\DecValTok{1}\NormalTok{], i, stats[}\DecValTok{5}\NormalTok{], }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+    \FunctionTok{segments}\NormalTok{(i}\SpecialCharTok{{-}}\NormalTok{w1, stats[}\DecValTok{1}\NormalTok{], i}\SpecialCharTok{+}\NormalTok{w1, stats[}\DecValTok{1}\NormalTok{], }\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+    \FunctionTok{segments}\NormalTok{(i}\SpecialCharTok{{-}}\NormalTok{w1, stats[}\DecValTok{5}\NormalTok{], i}\SpecialCharTok{+}\NormalTok{w1, stats[}\DecValTok{5}\NormalTok{], }\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+    \FunctionTok{rect}\NormalTok{(i}\SpecialCharTok{{-}}\NormalTok{w2, stats[}\DecValTok{2}\NormalTok{], i}\SpecialCharTok{+}\NormalTok{w2, stats[}\DecValTok{4}\NormalTok{], }\AttributeTok{col=}\StringTok{"gray"}\NormalTok{)}
+    \FunctionTok{segments}\NormalTok{(i}\SpecialCharTok{{-}}\NormalTok{w2, stats[}\DecValTok{3}\NormalTok{], i}\SpecialCharTok{+}\NormalTok{w2, stats[}\DecValTok{3}\NormalTok{], }\AttributeTok{lty=}\DecValTok{1}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{3}\NormalTok{)}
+
+    \FunctionTok{points}\NormalTok{(}\AttributeTok{x=}\FunctionTok{rep}\NormalTok{(i, }\FunctionTok{length}\NormalTok{(bstats}\SpecialCharTok{$}\NormalTok{out)), }\AttributeTok{y=}\NormalTok{bstats}\SpecialCharTok{$}\NormalTok{out)}
+\NormalTok{  \}}
+  \FunctionTok{axis}\NormalTok{(}\AttributeTok{side=}\DecValTok{1}\NormalTok{, }\AttributeTok{at=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(df), }\AttributeTok{labels=}\FunctionTok{names}\NormalTok{(df), }\AttributeTok{cex.axis=}\FloatTok{0.8}\NormalTok{)}
+\NormalTok{\}}
+
+\FunctionTok{drawBoxPlot}\NormalTok{(iris[}\FunctionTok{c}\NormalTok{(}\StringTok{"SepalLength"}\NormalTok{, }\StringTok{"SepalWidth"}\NormalTok{, }\StringTok{"PetalLength"}\NormalTok{, }\StringTok{"PetalWidth"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1_Markdown_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\newpage
+
+\hypertarget{question-4}{%
+\subsubsection{Question 4}\label{question-4}}
 
 \end{document}

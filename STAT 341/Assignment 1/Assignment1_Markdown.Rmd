@@ -322,28 +322,72 @@ The new scatterplot uses the best alphas for sepal length (0) and petal ratio (1
 
 ```{r}
 drawBoxPlot <- function(df) {
-  width = 0.5
+  plot(1, type="n", xlab="", ylab="", xaxt="n",
+       xlim=c(0.5, ncol(df)+0.5), ylim=c(min(df), max(df)))
+  
+  w1 = 0.25
+  w2 = 0.4
   for (i in 1:ncol(df)){
     bstats = boxplot.stats(df[,i])
     stats = bstats$stats
     
-    # Plot the box and whiskers
-    for ()
-    
-    # Plot the outliers (if they exist)
-    out = bstats$out
-    if (length(out) > 0){
-      for (k in 1:length(out)){
-        print(c(i, out[k]))
-      }
-    }
+    segments(i, stats[1], i, stats[5], lty=2)
+    segments(i-w1, stats[1], i+w1, stats[1], lty=1)
+    segments(i-w1, stats[5], i+w1, stats[5], lty=1)
+    rect(i-w2, stats[2], i+w2, stats[4], col="gray")
+    segments(i-w2, stats[3], i+w2, stats[3], lty=1, lwd=3)
+
+    points(x=rep(i, length(bstats$out)), y=bstats$out)
   }
+  axis(side=1, at=1:ncol(df), labels=names(df), cex.axis=0.8)
 }
 
-# Demonstrate the function with the iris dataset
 drawBoxPlot(iris[c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth")])
 ```
 
+
+\newpage
+### Question 4
+    
+#### Description of the data:
+This dataset contains the New York State math test results from 2006 to 2011 for students in grades 3-8. Samples are categorized by ethnicity and proficiency level. 
+    
+This is a population because it contains all math test results during the specified time and location, instead of randomly sampling from the pool of tests that were taken.
+
+#### Description of a unit and two variates:
+Each unit is a test that was taken. It is not each student who took the test, because the dataset spans multiple years, so the same student could have taken another test in another grade.
+    
+Variates include the test taker's grade, ethnicity, proficiency level, and year.
+
+#### URL:
+The dataset can be accessed at https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity
+
+\newpage
+#### Graphic visualizations (1/2):
+
 ```{r}
-boxplot(iris[c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth")])
+filename <- paste("data/NYS Math Results.csv", sep="/")
+res <- read.csv(filename, header=TRUE)
+
+colours <- c("firebrick", "blue", "green", "gold")
+res$EthNum <- match(res$Category, unique(res$Category))
+plot(jitter(res$Year, 0.75), res$Level.3.4...1,
+     pch=19, col=colours[res$EthNum],
+     xlab="Year", ylab="% of Level 3+4",
+     main="Proficiency by Year")
+legend(2008.255, 51, legend=unique(res$Category), col=colours, lty=1, cex=0.65)
 ```
+    
+In this figure, the percent of test-takers in the highest proficiency category (level 3 & 4) are plotted by year and coloured by ethnicity. There is a clear trend that Asian and White students consistently score higher than Black and Hispanic students, though this gap was further widened in 2010.
+    
+Jitter was added to the points horizontally to aid visualization.
+
+\newpage
+#### Graphic visualizations (2/2):
+```{r}
+boxplot(res$Mean.Scale.Score ~ res$Grade, cex.axis=0.8,
+        xlab="Grade", ylab="Mean Score", main="Mean Test Score vs. Grades")
+```
+
+    
+In the second figure, there is a consistent downward trend of the median score as students go up in grades, and an increasing variation in results. It could be an indication that tests get harder as students advance through the grades, and it is harder for students scoring near the bottom to recover.
