@@ -6,7 +6,8 @@ powerfun <- function(x, alpha) {
 }
 
 # Apply power function to the number of farms in 1987
-filename <- paste("../source/repos/Uni-Projects/STAT 341/Data", "agpop_data.csv", sep="/")
+# /source/repos/Uni-Projects/STAT 341
+filename <- paste("../Data", "agpop_data.csv", sep="/")
 agpop <- read.csv(filename, header=TRUE)
 agpop[agpop == -99] = NA
 x = agpop$farms87
