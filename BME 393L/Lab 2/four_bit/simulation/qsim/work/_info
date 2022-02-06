@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/simulation/qsim
+Efour_bit
+Z1 w1643494647
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z8 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+R0
+Z9 8four_bit.vho
+Z10 Ffour_bit.vho
+l0
+L36
+VP>Gc>Z]n9DW?iac7l>eX_1
+!s100 HlZ4FgkYGeVA2:okdD8TU0
+Z11 OV;C;10.5b;63
+32
+Z12 !s110 1643494648
+!i10b 1
+Z13 !s108 1643494648.000000
+Z14 !s90 -work|work|four_bit.vho|
+Z15 !s107 four_bit.vho|
+!i113 1
+Z16 o-work work
+Z17 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+DEx4 work 8 four_bit 0 22 P>Gc>Z]n9DW?iac7l>eX_1
+l102
+L61
+VNhIAF?R;oo526LOaZLlL<0
+!s100 C7mz5X<6>8RP]Z0CMFb:52
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 1
+R16
+R17
+Efour_bit_vhd_vec_tst
+Z18 w1643494645
+R6
+R7
+R0
+Z19 8Waveform.vwf.vht
+Z20 FWaveform.vwf.vht
+l0
+L31
+V@dR<VB^0?FJz9;V1VL8_<0
+!s100 QcYbP0>g]e@C0`czK6=;:1
+R11
+32
+Z21 !s110 1643494649
+!i10b 1
+R13
+Z22 !s90 -work|work|Waveform.vwf.vht|
+Z23 !s107 Waveform.vwf.vht|
+!i113 1
+R16
+R17
+Afour_bit_arch
+R6
+R7
+Z24 DEx4 work 20 four_bit_vhd_vec_tst 0 22 @dR<VB^0?FJz9;V1VL8_<0
+l44
+L33
+V@zfYNFQXEX3[IA[?IbOPi0
+!s100 C=44=0TXmT?GEFi2dIV>13
+R11
+32
+R21
+!i10b 1
+R13
+R22
+R23
+!i113 1
+R16
+R17

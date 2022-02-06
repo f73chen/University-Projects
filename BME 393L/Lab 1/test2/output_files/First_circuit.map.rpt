@@ -1,0 +1,651 @@
+Analysis & Synthesis report for First_circuit
+Tue Jan 18 12:41:02 2022
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Post-Synthesis Netlist Statistics for Top Partition
+ 10. Elapsed Time Per Partition
+ 11. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Jan 18 12:41:02 2022       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; First_circuit                               ;
+; Top-level Entity Name           ; First_circuit                               ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 0                                           ;
+; Total pins                      ; 7                                           ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC5C6F27C7     ;                    ;
+; Top-level entity name                                                           ; First_circuit      ; First_circuit      ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                  ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                           ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
+; First_circuit.vhd                ; yes             ; User VHDL File  ; C:/Users/User/Desktop/School/3A/BME 393L/Lab 1/test2/First_circuit.vhd ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimate of Logic utilization (ALMs needed) ; 2           ;
+;                                             ;             ;
+; Combinational ALUT usage for logic          ; 3           ;
+;     -- 7 input functions                    ; 0           ;
+;     -- 6 input functions                    ; 0           ;
+;     -- 5 input functions                    ; 0           ;
+;     -- 4 input functions                    ; 2           ;
+;     -- <=3 input functions                  ; 1           ;
+;                                             ;             ;
+; Dedicated logic registers                   ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 7           ;
+;                                             ;             ;
+; Total DSP Blocks                            ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; SW[0]~input ;
+; Maximum fan-out                             ; 3           ;
+; Total fan-out                               ; 20          ;
+; Average fan-out                             ; 1.18        ;
++---------------------------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                      ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name   ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
+; |First_circuit             ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 7    ; 0            ; |First_circuit      ; First_circuit ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_lcell_comb     ; 3                           ;
+;     normal            ; 3                           ;
+;         2 data inputs ; 1                           ;
+;         4 data inputs ; 2                           ;
+; boundary_port         ; 7                           ;
+;                       ;                             ;
+; Max LUT depth         ; 1.00                        ;
+; Average LUT depth     ; 1.00                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Tue Jan 18 12:40:51 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off First_circuit -c First_circuit
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file first_circuit.vhd
+    Info (12022): Found design unit 1: First_circuit-main File: C:/Users/User/Desktop/School/3A/BME 393L/Lab 1/test2/First_circuit.vhd Line: 14
+    Info (12023): Found entity 1: First_circuit File: C:/Users/User/Desktop/School/3A/BME 393L/Lab 1/test2/First_circuit.vhd Line: 8
+Info (12127): Elaborating entity "First_circuit" for the top level hierarchy
+Info (286030): Timing-Driven Synthesis is running
+Warning (20013): Ignored 369 assignments for entity "C5G_Default" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to ADC_CONVST -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to ADC_SCK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to ADC_SDI -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to ADC_SDO -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_ADCDAT -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_ADCLRCK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_BCLK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_DACDAT -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_DACLRCK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to AUD_XCK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD LVDS -to CLOCK_125_p -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50_B5B -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50_B6A -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to CLOCK_50_B7A -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to CLOCK_50_B8A -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CPU_RESET_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CA[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CKE[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CKE[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_CK_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_CK_p -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CS_n[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_CS_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DM[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DM[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DM[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DM[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_n[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_n[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_n[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_p[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V HSUL" -to DDR2LP_DQS_p[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[17] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[18] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[19] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[20] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[21] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[22] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[23] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[24] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[25] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[26] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[27] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[28] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[29] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[30] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[31] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2-V HSUL" -to DDR2LP_DQ[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to DDR2LP_OCT_RZQ -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[17] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[18] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[19] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[20] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[21] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[22] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[23] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[24] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[25] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[26] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[27] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[28] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[29] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[30] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[31] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[32] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[33] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[34] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[35] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_CLK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_DE -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[17] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[18] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[19] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[20] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[21] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[22] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[23] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_D[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_HS -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HDMI_TX_INT -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HDMI_TX_VS -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX0[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to HEX1[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKIN0 -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKIN_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKIN_n[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKIN_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKIN_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKOUT0 -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKOUT_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKOUT_n[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKOUT_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_CLKOUT_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_D[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_D[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_D[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_D[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_RX_p[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_RX_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_RX_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_RX_p[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_TX_p[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_TX_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_TX_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to HSMC_GXB_TX_p[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_n[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_RX_p[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_n[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to HSMC_TX_p[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to I2C_SCL -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to I2C_SDA -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to KEY[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to KEY[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to KEY[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to KEY[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to REFCLK_p0 -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to REFCLK_p1 -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CLK -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CMD -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to SMA_GXB_RX_p -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to SMA_GXB_TX_p -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[16] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[17] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_A[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_CE_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[10] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[11] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[12] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[13] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[14] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[15] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_D[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_LB_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_OE_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_UB_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_WE_n -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[0] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[1] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[2] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[3] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[4] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[5] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[6] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[7] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[8] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.2 V" -to SW[9] -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to UART_RX -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "2.5 V" -to UART_TX -entity C5G_Default was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity C5G_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity C5G_Default -section_id Top was ignored
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 10 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 3 output pins
+    Info (21061): Implemented 3 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 371 warnings
+    Info: Peak virtual memory: 4855 megabytes
+    Info: Processing ended: Tue Jan 18 12:41:02 2022
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:20
+
+
