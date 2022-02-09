@@ -31,20 +31,20 @@ float totalR;
 
 // Use the following section to change the x coordinate of the sensors. Initialize sensor chosen as origin to 0. 
 // Current values are in cm. Make values negative if to the left of the origin.
-float A0x = 0;
+float A0x = 0;    // Green
 float A1x = -4;
-float A2x = -3;
+float A2x = -1;    // White
 float A3x = -3;
-float A6x = -3;
+float A6x = 4;    // Yellow
 float A7x = 3.5;
 
 // Use the following section to change the y coordinate of the sensors. Initialize sensor chosen as origin to 0. 
 // Values should not be negative, as the origin is the bottom most point.
-float A0y = 0;
+float A0y = 5;    // Green
 float A1y = 23.5;
-float A2y = 22;
+float A2y = 19;    // White
 float A3y = 17;
-float A6y = 15;
+float A6y = 18;    // Yellow
 float A7y = 0;
 
 //Coefficient
@@ -70,7 +70,7 @@ int dataPrinted = 200; // Variable is used to count how many times data was writ
  */
 void setup ( ) {
   
-  myPort  =  new Serial (this, "COM8",  9600); // Set the com port and the baud rate according to the Arduino IDE. Change the COM to match each time!
+  myPort  =  new Serial (this, "COM5",  9600); // Set the com port and the baud rate according to the Arduino IDE. Change the COM to match each time!
   
   //output = createWriter("sensordata.csv"); // Sets the printwriter up to write to a file titled "sensordata.csv"
 
