@@ -1,5 +1,5 @@
 Analysis & Synthesis report for four_bit
-Thu Feb 10 09:35:21 2022
+Thu Feb 10 09:51:14 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -14,11 +14,12 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Port Connectivity Checks: "seven_segment:hex2_inst"
- 10. Port Connectivity Checks: "seven_segment:hex3_inst"
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "seven_segment:hex0_inst"
+ 10. Port Connectivity Checks: "seven_segment:hex2_inst"
+ 11. Port Connectivity Checks: "seven_segment:hex3_inst"
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
 
 
 
@@ -44,7 +45,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Feb 10 09:35:21 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Feb 10 09:51:14 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; four_bit                                    ;
 ; Top-level Entity Name           ; four_bit                                    ;
@@ -176,31 +177,31 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 7           ;
-;                                             ;             ;
-; Combinational ALUT usage for logic          ; 14          ;
-;     -- 7 input functions                    ; 0           ;
-;     -- 6 input functions                    ; 0           ;
-;     -- 5 input functions                    ; 0           ;
-;     -- 4 input functions                    ; 14          ;
-;     -- <=3 input functions                  ; 0           ;
-;                                             ;             ;
-; Dedicated logic registers                   ; 0           ;
-;                                             ;             ;
-; I/O pins                                    ; 38          ;
-;                                             ;             ;
-; Total DSP Blocks                            ; 0           ;
-;                                             ;             ;
-; Maximum fan-out node                        ; SW[0]~input ;
-; Maximum fan-out                             ; 7           ;
-; Total fan-out                               ; 108         ;
-; Average fan-out                             ; 1.20        ;
-+---------------------------------------------+-------------+
++------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary          ;
++---------------------------------------------+--------+
+; Resource                                    ; Usage  ;
++---------------------------------------------+--------+
+; Estimate of Logic utilization (ALMs needed) ; 13     ;
+;                                             ;        ;
+; Combinational ALUT usage for logic          ; 25     ;
+;     -- 7 input functions                    ; 0      ;
+;     -- 6 input functions                    ; 0      ;
+;     -- 5 input functions                    ; 0      ;
+;     -- 4 input functions                    ; 21     ;
+;     -- <=3 input functions                  ; 4      ;
+;                                             ;        ;
+; Dedicated logic registers                   ; 0      ;
+;                                             ;        ;
+; I/O pins                                    ; 38     ;
+;                                             ;        ;
+; Total DSP Blocks                            ; 0      ;
+;                                             ;        ;
+; Maximum fan-out node                        ; Add0~1 ;
+; Maximum fan-out                             ; 8      ;
+; Total fan-out                               ; 154    ;
+; Average fan-out                             ; 1.52   ;
++---------------------------------------------+--------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -208,7 +209,8 @@ refer to the applicable agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name               ; Entity Name   ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------+---------------+--------------+
-; |four_bit                    ; 14 (0)              ; 0 (0)                     ; 0                 ; 0          ; 38   ; 0            ; |four_bit                         ; four_bit      ; work         ;
+; |four_bit                    ; 25 (4)              ; 0 (0)                     ; 0                 ; 0          ; 38   ; 0            ; |four_bit                         ; four_bit      ; work         ;
+;    |seven_segment:hex0_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex0_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex2_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex2_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex3_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex3_inst ; seven_segment ; work         ;
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------+---------------+--------------+
@@ -228,6 +230,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "seven_segment:hex0_inst" ;
++----------+-------+----------+-----------------------+
+; Port     ; Type  ; Severity ; Details               ;
++----------+-------+----------+-----------------------+
+; blanking ; Input ; Info     ; Stuck at GND          ;
++----------+-------+----------+-----------------------+
 
 
 +-----------------------------------------------------+
@@ -253,15 +264,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 17                          ;
-;     normal            ; 17                          ;
+; arriav_lcell_comb     ; 29                          ;
+;     arith             ; 4                           ;
+;         2 data inputs ; 4                           ;
+;     normal            ; 25                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 2                           ;
-;         4 data inputs ; 14                          ;
+;         1 data inputs ; 3                           ;
+;         4 data inputs ; 21                          ;
 ; boundary_port         ; 38                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 1.44                        ;
+; Max LUT depth         ; 3.30                        ;
+; Average LUT depth     ; 2.20                        ;
 +-----------------------+-----------------------------+
 
 
@@ -270,7 +283,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -280,7 +293,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Feb 10 09:35:00 2022
+    Info: Processing started: Thu Feb 10 09:50:54 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off four_bit -c four_bit
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -291,8 +304,7 @@ Info (12021): Found 4 design units, including 2 entities, in source file four_bi
     Info (12023): Found entity 2: four_bit File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 39
 Info (12127): Elaborating entity "four_bit" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at four_bit.vhd(43): used implicit default value for signal "hex1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
-Warning (10541): VHDL Signal Declaration warning at four_bit.vhd(44): used implicit default value for signal "hex0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex3_inst" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 64
+Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex3_inst" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 69
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "hex1[0]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
     Warning (13410): Pin "hex1[1]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
@@ -301,27 +313,20 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "hex1[4]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
     Warning (13410): Pin "hex1[5]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
     Warning (13410): Pin "hex1[6]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 43
-    Warning (13410): Pin "hex0[0]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[1]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[2]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[3]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[4]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[5]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
-    Warning (13410): Pin "hex0[6]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 44
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 40
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/four_bit.vhd Line: 40
-Info (21057): Implemented 52 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 63 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 14 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
-    Info: Peak virtual memory: 4848 megabytes
-    Info: Processing ended: Thu Feb 10 09:35:21 2022
-    Info: Elapsed time: 00:00:21
-    Info: Total CPU time (on all processors): 00:00:44
+    Info (21061): Implemented 25 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 13 warnings
+    Info: Peak virtual memory: 4849 megabytes
+    Info: Processing ended: Thu Feb 10 09:51:14 2022
+    Info: Elapsed time: 00:00:20
+    Info: Total CPU time (on all processors): 00:00:43
 
 
