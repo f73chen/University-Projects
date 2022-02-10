@@ -64,6 +64,6 @@ begin
 	out2 <= c(3 downto 0);
 	
 	LEDG(4 downto 0) <= std_logic_vector(c);
-	hex1_inst:	entity work.seven_segment(behavioral) port map(out1, '0', hex1);
+	hex1_inst: entity work.seven_segment(behavioral) port map(out1, not c(4), hex1);
 	hex0_inst: entity work.seven_segment(behavioral) port map(out2, '0', hex0);
 end architecture;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for heart_bit
-Thu Feb 10 10:15:15 2022
+Thu Feb 10 10:29:14 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -44,7 +44,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Feb 10 10:15:15 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Feb 10 10:29:14 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; heart_bit                                   ;
 ; Top-level Entity Name           ; heart_bit                                   ;
@@ -199,8 +199,8 @@ refer to the applicable agreement for further details.
 ;                                             ;       ;
 ; Maximum fan-out node                        ; c[0]  ;
 ; Maximum fan-out                             ; 13    ;
-; Total fan-out                               ; 102   ;
-; Average fan-out                             ; 1.23  ;
+; Total fan-out                               ; 100   ;
+; Average fan-out                             ; 1.20  ;
 +---------------------------------------------+-------+
 
 
@@ -245,7 +245,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Port          ; Type  ; Severity ; Details          ;
 +---------------+-------+----------+------------------+
 ; data_in[3..1] ; Input ; Info     ; Stuck at GND     ;
-; blanking      ; Input ; Info     ; Stuck at GND     ;
 +---------------+-------+----------+------------------+
 
 
@@ -258,8 +257,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;     plain             ; 5                           ;
 ; arriav_lcell_comb     ; 15                          ;
 ;     normal            ; 15                          ;
-;         0 data inputs ; 2                           ;
-;         1 data inputs ; 2                           ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 3                           ;
 ;         2 data inputs ; 1                           ;
 ;         3 data inputs ; 1                           ;
 ;         4 data inputs ; 8                           ;
@@ -267,7 +266,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; boundary_port         ; 33                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 1.14                        ;
+; Average LUT depth     ; 1.19                        ;
 +-----------------------+-----------------------------+
 
 
@@ -286,9 +285,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Feb 10 10:14:55 2022
+    Info: Processing started: Thu Feb 10 10:28:57 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off heart_bit -c heart_bit
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 4 design units, including 2 entities, in source file heart_bit.vhd
@@ -299,8 +297,10 @@ Info (12021): Found 4 design units, including 2 entities, in source file heart_b
 Info (12127): Elaborating entity "heart_bit" for the top level hierarchy
 Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex1_inst" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 67
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "hex1[1]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
-    Warning (13410): Pin "hex1[2]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
+    Warning (13410): Pin "hex1[0]" is stuck at VCC File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
+    Warning (13410): Pin "hex1[3]" is stuck at VCC File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
+    Warning (13410): Pin "hex1[4]" is stuck at VCC File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
+    Warning (13410): Pin "hex1[5]" is stuck at VCC File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
     Warning (13410): Pin "hex1[6]" is stuck at VCC File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/heart_bit.vhd Line: 44
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -323,10 +323,10 @@ Info (21057): Implemented 45 device resources after synthesis - the final resour
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 19 output pins
     Info (21061): Implemented 12 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 4856 megabytes
-    Info: Processing ended: Thu Feb 10 10:15:15 2022
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:43
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
+    Info: Peak virtual memory: 4849 megabytes
+    Info: Processing ended: Thu Feb 10 10:29:14 2022
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:37
 
 

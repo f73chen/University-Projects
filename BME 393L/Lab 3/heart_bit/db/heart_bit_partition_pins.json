@@ -24,19 +24,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "hex1[0]",
+					"name" : "hex1[1]",
 					"strict" : false
 				},
 				{
-					"name" : "hex1[3]",
-					"strict" : false
-				},
-				{
-					"name" : "hex1[4]",
-					"strict" : false
-				},
-				{
-					"name" : "hex1[5]",
+					"name" : "hex1[2]",
 					"strict" : false
 				},
 				{
