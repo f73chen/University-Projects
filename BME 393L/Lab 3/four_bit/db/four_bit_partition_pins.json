@@ -60,6 +60,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "hex1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hex1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "hex1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "hex1[5]",
+					"strict" : false
+				},
+				{
 					"name" : "hex0[0]",
 					"strict" : false
 				},

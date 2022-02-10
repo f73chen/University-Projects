@@ -1,5 +1,5 @@
 Fitter report for four_bit
-Thu Feb 10 09:51:56 2022
+Thu Feb 10 09:55:44 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -58,14 +58,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Thu Feb 10 09:51:56 2022       ;
+; Fitter Status                   ; Successful - Thu Feb 10 09:55:44 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; four_bit                                    ;
 ; Top-level Entity Name           ; four_bit                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC5C6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 13 / 29,080 ( < 1 % )                       ;
+; Logic utilization (in ALMs)     ; 14 / 29,080 ( < 1 % )                       ;
 ; Total registers                 ; 0                                           ;
 ; Total pins                      ; 38 / 364 ( 10 % )                           ;
 ; Total virtual pins              ; 0                                           ;
@@ -154,9 +154,9 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.3%      ;
-;     Processor 3            ;   0.3%      ;
-;     Processor 4            ;   0.3%      ;
+;     Processor 2            ;   0.2%      ;
+;     Processor 3            ;   0.2%      ;
+;     Processor 4            ;   0.2%      ;
 +----------------------------+-------------+
 
 
@@ -788,8 +788,8 @@ refer to the applicable agreement for further details.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 102 ) ; 0.00 % ( 0 / 102 )         ; 0.00 % ( 0 / 102 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 102 ) ; 0.00 % ( 0 / 102 )         ; 0.00 % ( 0 / 102 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 103 ) ; 0.00 % ( 0 / 103 )         ; 0.00 % ( 0 / 103 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 103 ) ; 0.00 % ( 0 / 103 )         ; 0.00 % ( 0 / 103 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -812,7 +812,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 102 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 103 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -828,11 +828,11 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 +-------------------------------------------------------------+--------------------+-------+
 ; Resource                                                    ; Usage              ; %     ;
 +-------------------------------------------------------------+--------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 13 / 29,080        ; < 1 % ;
-; ALMs needed [=A-B+C]                                        ; 13                 ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 13 / 29,080        ; < 1 % ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 14 / 29,080        ; < 1 % ;
+; ALMs needed [=A-B+C]                                        ; 14                 ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 14 / 29,080        ; < 1 % ;
 ;         [a] ALMs used for LUT logic and registers           ; 0                  ;       ;
-;         [b] ALMs used for LUT logic                         ; 13                 ;       ;
+;         [b] ALMs used for LUT logic                         ; 14                 ;       ;
 ;         [c] ALMs used for registers                         ; 0                  ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                  ;       ;
 ;     [B] Estimate of ALMs recoverable by dense packing       ; 0 / 29,080         ; 0 %   ;
@@ -848,12 +848,12 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ;     -- Logic LABs                                           ; 4                  ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 26                 ;       ;
+; Combinational ALUT usage for logic                          ; 27                 ;       ;
 ;     -- 7 input functions                                    ; 0                  ;       ;
 ;     -- 6 input functions                                    ; 0                  ;       ;
 ;     -- 5 input functions                                    ; 0                  ;       ;
 ;     -- 4 input functions                                    ; 21                 ;       ;
-;     -- <=3 input functions                                  ; 5                  ;       ;
+;     -- <=3 input functions                                  ; 6                  ;       ;
 ; Combinational ALUT usage for route-throughs                 ; 0                  ;       ;
 ;                                                             ;                    ;       ;
 ; Dedicated logic registers                                   ; 0                  ;       ;
@@ -897,11 +897,11 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ; Impedance control blocks                                    ; 0 / 3              ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2              ; 0 %   ;
 ; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.0% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 0.4% / 0.3% / 0.6% ;       ;
+; Peak interconnect usage (total/H/V)                         ; 0.5% / 0.3% / 0.9% ;       ;
 ; Maximum fan-out                                             ; 8                  ;       ;
 ; Highest non-global fan-out                                  ; 8                  ;       ;
-; Total fan-out                                               ; 154                ;       ;
-; Average fan-out                                             ; 1.51               ;       ;
+; Total fan-out                                               ; 159                ;       ;
+; Average fan-out                                             ; 1.54               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -910,11 +910,11 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 +-------------------------------------------------------------+----------------------+--------------------------------+
 ; Statistic                                                   ; Top                  ; hard_block:auto_generated_inst ;
 +-------------------------------------------------------------+----------------------+--------------------------------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 13 / 29080 ( < 1 % ) ; 0 / 29080 ( 0 % )              ;
-; ALMs needed [=A-B+C]                                        ; 13                   ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 13 / 29080 ( < 1 % ) ; 0 / 29080 ( 0 % )              ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 14 / 29080 ( < 1 % ) ; 0 / 29080 ( 0 % )              ;
+; ALMs needed [=A-B+C]                                        ; 14                   ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 14 / 29080 ( < 1 % ) ; 0 / 29080 ( 0 % )              ;
 ;         [a] ALMs used for LUT logic and registers           ; 0                    ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 13                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 14                   ; 0                              ;
 ;         [c] ALMs used for registers                         ; 0                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                    ; 0                              ;
 ;     [B] Estimate of ALMs recoverable by dense packing       ; 0 / 29080 ( 0 % )    ; 0 / 29080 ( 0 % )              ;
@@ -930,12 +930,12 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ;     -- Logic LABs                                           ; 4                    ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
-; Combinational ALUT usage for logic                          ; 26                   ; 0                              ;
+; Combinational ALUT usage for logic                          ; 27                   ; 0                              ;
 ;     -- 7 input functions                                    ; 0                    ; 0                              ;
 ;     -- 6 input functions                                    ; 0                    ; 0                              ;
 ;     -- 5 input functions                                    ; 0                    ; 0                              ;
 ;     -- 4 input functions                                    ; 21                   ; 0                              ;
-;     -- <=3 input functions                                  ; 5                    ; 0                              ;
+;     -- <=3 input functions                                  ; 6                    ; 0                              ;
 ; Combinational ALUT usage for route-throughs                 ; 0                    ; 0                              ;
 ; Memory ALUT usage                                           ; 0                    ; 0                              ;
 ;     -- 64-address deep                                      ; 0                    ; 0                              ;
@@ -963,7 +963,7 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ;     -- Registered Output Connections                        ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Internal Connections                                        ;                      ;                                ;
-;     -- Total Connections                                    ; 154                  ; 0                              ;
+;     -- Total Connections                                    ; 159                  ; 0                              ;
 ;     -- Registered Connections                               ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; External Connections                                        ;                      ;                                ;
@@ -1785,7 +1785,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name               ; Entity Name   ; Library Name ;
 +------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------+---------------+--------------+
-; |four_bit                    ; 13.0 (2.5)           ; 13.0 (2.5)                       ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 26 (5)              ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 38   ; 0            ; |four_bit                         ; four_bit      ; work         ;
+; |four_bit                    ; 13.5 (3.0)           ; 13.5 (3.0)                       ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 27 (6)              ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 38   ; 0            ; |four_bit                         ; four_bit      ; work         ;
 ;    |seven_segment:hex0_inst| ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex0_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex2_inst| ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex2_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex3_inst| ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |four_bit|seven_segment:hex3_inst ; seven_segment ; work         ;
@@ -1829,12 +1829,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; hex0[5] ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; hex0[6] ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; SW[6]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[7]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[7]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[8]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[9]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[0]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[1]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[2]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[2]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[3]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 +---------+----------+----+------+------+----+------+-------+--------+------------------------+--------------------------+
 
@@ -1847,7 +1847,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; SW[4]                                 ;                   ;         ;
 ; SW[5]                                 ;                   ;         ;
 ; SW[6]                                 ;                   ;         ;
-;      - Add0~1                         ; 0                 ; 0       ;
+;      - Add0~5                         ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux6~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux5~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux4~0 ; 0                 ; 0       ;
@@ -1856,16 +1856,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - seven_segment:hex3_inst|Mux1~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux0~0 ; 0                 ; 0       ;
 ; SW[7]                                 ;                   ;         ;
-;      - Add0~5                         ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux6~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux5~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux4~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux3~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux2~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux1~0 ; 1                 ; 0       ;
-;      - seven_segment:hex3_inst|Mux0~0 ; 1                 ; 0       ;
+;      - Add0~9                         ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux6~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux5~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux4~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux3~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux2~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux1~0 ; 0                 ; 0       ;
+;      - seven_segment:hex3_inst|Mux0~0 ; 0                 ; 0       ;
 ; SW[8]                                 ;                   ;         ;
-;      - Add0~9                         ; 1                 ; 0       ;
+;      - Add0~13                        ; 1                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux6~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux5~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux4~0 ; 1                 ; 0       ;
@@ -1874,7 +1874,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - seven_segment:hex3_inst|Mux1~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux0~0 ; 1                 ; 0       ;
 ; SW[9]                                 ;                   ;         ;
-;      - Add0~13                        ; 0                 ; 0       ;
+;      - Add0~17                        ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux6~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux5~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux4~0 ; 0                 ; 0       ;
@@ -1883,7 +1883,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - seven_segment:hex3_inst|Mux1~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex3_inst|Mux0~0 ; 0                 ; 0       ;
 ; SW[0]                                 ;                   ;         ;
-;      - Add0~1                         ; 0                 ; 0       ;
+;      - Add0~5                         ; 0                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux6~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux5~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux4~0 ; 0                 ; 0       ;
@@ -1892,7 +1892,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - seven_segment:hex2_inst|Mux1~0 ; 0                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux0~0 ; 0                 ; 0       ;
 ; SW[1]                                 ;                   ;         ;
-;      - Add0~5                         ; 1                 ; 0       ;
+;      - Add0~9                         ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux6~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux5~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux4~0 ; 1                 ; 0       ;
@@ -1901,16 +1901,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - seven_segment:hex2_inst|Mux1~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux0~0 ; 1                 ; 0       ;
 ; SW[2]                                 ;                   ;         ;
-;      - Add0~9                         ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux6~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux5~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux4~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux3~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux2~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux1~0 ; 0                 ; 0       ;
-;      - seven_segment:hex2_inst|Mux0~0 ; 0                 ; 0       ;
-; SW[3]                                 ;                   ;         ;
 ;      - Add0~13                        ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux6~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux5~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux4~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux3~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux2~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux1~0 ; 1                 ; 0       ;
+;      - seven_segment:hex2_inst|Mux0~0 ; 1                 ; 0       ;
+; SW[3]                                 ;                   ;         ;
+;      - Add0~17                        ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux6~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux5~0 ; 1                 ; 0       ;
 ;      - seven_segment:hex2_inst|Mux4~0 ; 1                 ; 0       ;
@@ -1926,22 +1926,22 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------+------------------------+
 ; Routing Resource Type        ; Usage                  ;
 +------------------------------+------------------------+
-; Block interconnects          ; 37 / 217,884 ( < 1 % ) ;
-; C12 interconnects            ; 9 / 10,080 ( < 1 % )   ;
-; C2 interconnects             ; 26 / 87,208 ( < 1 % )  ;
-; C4 interconnects             ; 17 / 41,360 ( < 1 % )  ;
+; Block interconnects          ; 42 / 217,884 ( < 1 % ) ;
+; C12 interconnects            ; 7 / 10,080 ( < 1 % )   ;
+; C2 interconnects             ; 18 / 87,208 ( < 1 % )  ;
+; C4 interconnects             ; 29 / 41,360 ( < 1 % )  ;
 ; DQS bus muxes                ; 0 / 21 ( 0 % )         ;
 ; DQS-18 I/O buses             ; 0 / 21 ( 0 % )         ;
 ; DQS-9 I/O buses              ; 0 / 21 ( 0 % )         ;
-; Direct links                 ; 0 / 217,884 ( 0 % )    ;
+; Direct links                 ; 4 / 217,884 ( < 1 % )  ;
 ; Global clocks                ; 0 / 16 ( 0 % )         ;
 ; Horizontal periphery clocks  ; 0 / 12 ( 0 % )         ;
-; Local interconnects          ; 0 / 58,160 ( 0 % )     ;
+; Local interconnects          ; 4 / 58,160 ( < 1 % )   ;
 ; Quadrant clocks              ; 0 / 88 ( 0 % )         ;
-; R14 interconnects            ; 25 / 9,228 ( < 1 % )   ;
-; R14/C12 interconnect drivers ; 25 / 15,096 ( < 1 % )  ;
-; R3 interconnects             ; 14 / 94,896 ( < 1 % )  ;
-; R6 interconnects             ; 25 / 194,640 ( < 1 % ) ;
+; R14 interconnects            ; 22 / 9,228 ( < 1 % )   ;
+; R14/C12 interconnect drivers ; 24 / 15,096 ( < 1 % )  ;
+; R3 interconnects             ; 19 / 94,896 ( < 1 % )  ;
+; R6 interconnects             ; 31 / 194,640 ( < 1 % ) ;
 ; Spine clocks                 ; 0 / 180 ( 0 % )        ;
 ; Wire stub REs                ; 0 / 11,606 ( 0 % )     ;
 +------------------------------+------------------------+
@@ -2435,19 +2435,19 @@ Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X57_Y0 to location X68_Y11
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.32 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.26 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:10
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:07
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/four_bit/output_files/four_bit.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 315 warnings
     Info: Peak virtual memory: 6343 megabytes
-    Info: Processing ended: Thu Feb 10 09:51:57 2022
-    Info: Elapsed time: 00:00:42
-    Info: Total CPU time (on all processors): 00:00:59
+    Info: Processing ended: Thu Feb 10 09:55:45 2022
+    Info: Elapsed time: 00:00:36
+    Info: Total CPU time (on all processors): 00:00:53
 
 
 +----------------------------+

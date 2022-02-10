@@ -55,7 +55,7 @@ architecture main of four_bit is
 signal a: std_logic_vector(3 downto 0);
 signal b: std_logic_vector(9 downto 6);
 signal c: std_logic_vector(4 downto 0);
---signal out1: std_logic_vector(3 downto 0);
+signal out1: std_logic_vector(3 downto 0);
 signal out2: std_logic_vector(3 downto 0);
 
 begin
@@ -63,11 +63,11 @@ begin
 	b <= SW(9 downto 6);
 	c <= ('0' & a) + ('0' & b);
 	
---	out1 <= ('000' & c(4));
+	out1 <= "000" & c(4);
 	out2 <= c(3 downto 0);
 	
 	hex3_inst:	entity work.seven_segment(behavioral) port map(b, '0', hex3);
 	hex2_inst: entity work.seven_segment(behavioral) port map(a, '0', hex2);
---	hex1_inst:	entity work.seven_segment(behavioral) port map(out1, '0', hex1);
+	hex1_inst:	entity work.seven_segment(behavioral) port map(out1, '0', hex1);
 	hex0_inst: entity work.seven_segment(behavioral) port map(out2, '0', hex0);
 end architecture;
