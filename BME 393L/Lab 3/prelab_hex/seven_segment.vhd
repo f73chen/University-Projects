@@ -1,4 +1,3 @@
--- This code is half-written. To be completed by students. 
 -- The goal is showing the value of data_in input on the segments_out output. 
 --   ┌---a---┐
 --   |       |
@@ -9,9 +8,8 @@
 --   e       c
 --   |       |
 --   └---d---┘
--- Each segment of a, b, c, d, e, f, and g can be turned ON or OFF independently. 
--- The following line is from page 32 of the C5G_User_Manual document available on FPGA_Datasheets folder on LEARN. 
--- "Applying a low logic level to a segment will light it up and applying a high logic level turns it off." 
+-- Each segment of a, b, c, d, e, f, and g can be turned ON or OFF independently.  
+-- Applying a low logic level to a segment will light it up and applying a high logic level turns it off.
 
 library ieee;
 use ieee.std_logic_1164.all;
