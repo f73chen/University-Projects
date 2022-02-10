@@ -1,0 +1,114 @@
+|multiplier
+SW[0] => four_bit:adder0.b
+SW[1] => four_bit:adder1.b
+SW[2] => four_bit:adder2.b
+SW[3] => four_bit:adder3.b
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => four_bit:adder0.a1[0]
+SW[6] => four_bit:adder1.a1[0]
+SW[6] => four_bit:adder2.a1[0]
+SW[6] => four_bit:adder3.a1[0]
+SW[6] => LEDG[0].DATAIN
+SW[7] => four_bit:adder0.a1[1]
+SW[7] => four_bit:adder1.a1[1]
+SW[7] => four_bit:adder2.a1[1]
+SW[7] => four_bit:adder3.a1[1]
+SW[8] => four_bit:adder0.a1[2]
+SW[8] => four_bit:adder1.a1[2]
+SW[8] => four_bit:adder2.a1[2]
+SW[8] => four_bit:adder3.a1[2]
+SW[9] => four_bit:adder0.a1[3]
+SW[9] => four_bit:adder1.a1[3]
+SW[9] => four_bit:adder2.a1[3]
+SW[9] => four_bit:adder3.a1[3]
+LEDG[0] <= SW[6].DB_MAX_OUTPUT_PORT_TYPE
+LEDG[1] <= four_bit:adder1.cout[0]
+LEDG[2] <= four_bit:adder2.cout[0]
+LEDG[3] <= four_bit:adder3.cout[0]
+LEDG[4] <= four_bit:adder3.cout[1]
+LEDG[5] <= four_bit:adder3.cout[2]
+LEDG[6] <= four_bit:adder3.cout[3]
+LEDG[7] <= four_bit:adder3.cout[4]
+
+
+|multiplier|four_bit:adder0
+a1[0] => new_a1[0].IN0
+a1[1] => new_a1[1].IN0
+a1[2] => new_a1[2].IN0
+a1[3] => new_a1[3].IN0
+a2[0] => Add0.IN4
+a2[1] => Add0.IN3
+a2[2] => Add0.IN2
+a2[3] => Add0.IN1
+b => new_a1[0].IN1
+b => new_a1[1].IN1
+b => new_a1[2].IN1
+b => new_a1[3].IN1
+cout[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[4] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|four_bit:adder1
+a1[0] => new_a1[0].IN0
+a1[1] => new_a1[1].IN0
+a1[2] => new_a1[2].IN0
+a1[3] => new_a1[3].IN0
+a2[0] => Add0.IN4
+a2[1] => Add0.IN3
+a2[2] => Add0.IN2
+a2[3] => Add0.IN1
+b => new_a1[0].IN1
+b => new_a1[1].IN1
+b => new_a1[2].IN1
+b => new_a1[3].IN1
+cout[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[4] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|four_bit:adder2
+a1[0] => new_a1[0].IN0
+a1[1] => new_a1[1].IN0
+a1[2] => new_a1[2].IN0
+a1[3] => new_a1[3].IN0
+a2[0] => Add0.IN4
+a2[1] => Add0.IN3
+a2[2] => Add0.IN2
+a2[3] => Add0.IN1
+b => new_a1[0].IN1
+b => new_a1[1].IN1
+b => new_a1[2].IN1
+b => new_a1[3].IN1
+cout[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[4] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|four_bit:adder3
+a1[0] => new_a1[0].IN0
+a1[1] => new_a1[1].IN0
+a1[2] => new_a1[2].IN0
+a1[3] => new_a1[3].IN0
+a2[0] => Add0.IN4
+a2[1] => Add0.IN3
+a2[2] => Add0.IN2
+a2[3] => Add0.IN1
+b => new_a1[0].IN1
+b => new_a1[1].IN1
+b => new_a1[2].IN1
+b => new_a1[3].IN1
+cout[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+cout[4] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
