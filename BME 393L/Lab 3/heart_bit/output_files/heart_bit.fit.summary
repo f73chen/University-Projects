@@ -1,4 +1,4 @@
-Fitter Status : Successful - Thu Feb 10 10:15:54 2022
+Fitter Status : Successful - Thu Feb 10 10:30:05 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : heart_bit
 Top-level Entity Name : heart_bit
@@ -6,7 +6,7 @@ Family : Cyclone V
 Device : 5CGXFC5C6F27C7
 Timing Models : Final
 Logic utilization (in ALMs) : 7 / 29,080 ( < 1 % )
-Total registers : 8
+Total registers : 6
 Total pins : 33 / 364 ( 9 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,567,040 ( 0 % )

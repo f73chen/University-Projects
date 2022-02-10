@@ -1,5 +1,5 @@
 Fitter report for heart_bit
-Thu Feb 10 10:15:54 2022
+Thu Feb 10 10:30:05 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -63,7 +63,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Thu Feb 10 10:15:54 2022       ;
+; Fitter Status                   ; Successful - Thu Feb 10 10:30:05 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; heart_bit                                   ;
 ; Top-level Entity Name           ; heart_bit                                   ;
@@ -71,7 +71,7 @@ refer to the applicable agreement for further details.
 ; Device                          ; 5CGXFC5C6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
 ; Logic utilization (in ALMs)     ; 7 / 29,080 ( < 1 % )                        ;
-; Total registers                 ; 8                                           ;
+; Total registers                 ; 6                                           ;
 ; Total pins                      ; 33 / 364 ( 9 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,567,040 ( 0 % )                       ;
@@ -159,7 +159,7 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.3%      ;
+;     Processor 2            ;   0.4%      ;
 ;     Processors 3-4         ;   0.3%      ;
 +----------------------------+-------------+
 
@@ -171,8 +171,6 @@ refer to the applicable agreement for further details.
 +---------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+------------------+------------------+-----------------------+
 ; KEY[0]~inputCLKENA0 ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                  ;                  ;                       ;
 ; c[0]                ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; c[0]~DUPLICATE   ;                  ;                       ;
-; c[1]                ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; c[1]~DUPLICATE   ;                  ;                       ;
-; c[2]                ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; c[2]~DUPLICATE   ;                  ;                       ;
 +---------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+------------------+------------------+-----------------------+
 
 
@@ -882,13 +880,13 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ;     -- <=3 input functions                                  ; 4                  ;       ;
 ; Combinational ALUT usage for route-throughs                 ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 8                  ;       ;
+; Dedicated logic registers                                   ; 6                  ;       ;
 ;     -- By type:                                             ;                    ;       ;
 ;         -- Primary logic registers                          ; 5 / 58,160         ; < 1 % ;
-;         -- Secondary logic registers                        ; 3 / 58,160         ; < 1 % ;
+;         -- Secondary logic registers                        ; 1 / 58,160         ; < 1 % ;
 ;     -- By function:                                         ;                    ;       ;
 ;         -- Design implementation registers                  ; 5                  ;       ;
-;         -- Routing optimization registers                   ; 3                  ;       ;
+;         -- Routing optimization registers                   ; 1                  ;       ;
 ;                                                             ;                    ;       ;
 ; Virtual pins                                                ; 0                  ;       ;
 ; I/O pins                                                    ; 33 / 364           ; 9 %   ;
@@ -923,11 +921,11 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ; Impedance control blocks                                    ; 0 / 3              ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2              ; 0 %   ;
 ; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.1% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 0.1% / 0.1% / 0.3% ;       ;
-; Maximum fan-out                                             ; 11                 ;       ;
-; Highest non-global fan-out                                  ; 11                 ;       ;
-; Total fan-out                                               ; 109                ;       ;
-; Average fan-out                                             ; 1.24               ;       ;
+; Peak interconnect usage (total/H/V)                         ; 0.2% / 0.2% / 0.2% ;       ;
+; Maximum fan-out                                             ; 12                 ;       ;
+; Highest non-global fan-out                                  ; 12                 ;       ;
+; Total fan-out                                               ; 103                ;       ;
+; Average fan-out                                             ; 1.20               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -970,10 +968,10 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ; Dedicated logic registers                                   ; 0                   ; 0                              ;
 ;     -- By type:                                             ;                     ;                                ;
 ;         -- Primary logic registers                          ; 5 / 58160 ( < 1 % ) ; 0 / 58160 ( 0 % )              ;
-;         -- Secondary logic registers                        ; 3 / 58160 ( < 1 % ) ; 0 / 58160 ( 0 % )              ;
+;         -- Secondary logic registers                        ; 1 / 58160 ( < 1 % ) ; 0 / 58160 ( 0 % )              ;
 ;     -- By function:                                         ;                     ;                                ;
 ;         -- Design implementation registers                  ; 5                   ; 0                              ;
-;         -- Routing optimization registers                   ; 3                   ; 0                              ;
+;         -- Routing optimization registers                   ; 1                   ; 0                              ;
 ;                                                             ;                     ;                                ;
 ;                                                             ;                     ;                                ;
 ; Virtual pins                                                ; 0                   ; 0                              ;
@@ -990,8 +988,8 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 ;     -- Registered Output Connections                        ; 0                   ; 0                              ;
 ;                                                             ;                     ;                                ;
 ; Internal Connections                                        ;                     ;                                ;
-;     -- Total Connections                                    ; 109                 ; 0                              ;
-;     -- Registered Connections                               ; 52                  ; 0                              ;
+;     -- Total Connections                                    ; 103                 ; 0                              ;
+;     -- Registered Connections                               ; 50                  ; 0                              ;
 ;                                                             ;                     ;                                ;
 ; External Connections                                        ;                     ;                                ;
 ;     -- Top                                                  ; 0                   ; 0                              ;
@@ -1023,7 +1021,7 @@ The pin-out file can be found in C:/Users/grace/source/repos/Uni-Projects/BME 39
 +--------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name   ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +--------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; KEY[0] ; P11   ; 3B       ; 21           ; 0            ; 0            ; 8                     ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 1.2 V        ; Off         ; --                        ; User                 ; no        ;
+; KEY[0] ; P11   ; 3B       ; 21           ; 0            ; 0            ; 6                     ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 1.2 V        ; Off         ; --                        ; User                 ; no        ;
 ; KEY[1] ; P12   ; 3B       ; 21           ; 0            ; 17           ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 1.2 V        ; Off         ; --                        ; User                 ; no        ;
 ; KEY[2] ; Y15   ; 4A       ; 46           ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 1.2 V        ; Off         ; --                        ; User                 ; no        ;
 ; KEY[3] ; Y16   ; 4A       ; 46           ; 0            ; 17           ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 1.2 V        ; Off         ; --                        ; User                 ; no        ;
@@ -1798,7 +1796,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                ; Entity Name   ; Library Name ;
 +------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+------------------------------------+---------------+--------------+
-; |heart_bit                   ; 6.5 (3.2)            ; 7.0 (3.9)                        ; 0.5 (0.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 13 (6)              ; 8 (8)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 33   ; 0            ; |heart_bit                         ; heart_bit     ; work         ;
+; |heart_bit                   ; 6.5 (3.2)            ; 7.0 (3.9)                        ; 0.5 (0.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 13 (6)              ; 6 (6)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 33   ; 0            ; |heart_bit                         ; heart_bit     ; work         ;
 ;    |seven_segment:hex0_inst| ; 3.1 (3.1)            ; 3.1 (3.1)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |heart_bit|seven_segment:hex0_inst ; seven_segment ; work         ;
 +------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -1872,7 +1870,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+----------+---------+-------+--------+----------------------+------------------+---------------------------+
 ; Name   ; Location ; Fan-Out ; Usage ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +--------+----------+---------+-------+--------+----------------------+------------------+---------------------------+
-; KEY[0] ; PIN_P11  ; 8       ; Clock ; yes    ; Global Clock         ; GCLK6            ; --                        ;
+; KEY[0] ; PIN_P11  ; 6       ; Clock ; yes    ; Global Clock         ; GCLK6            ; --                        ;
 +--------+----------+---------+-------+--------+----------------------+------------------+---------------------------+
 
 
@@ -1881,7 +1879,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+----------+---------+----------------------+------------------+---------------------------+
 ; Name   ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +--------+----------+---------+----------------------+------------------+---------------------------+
-; KEY[0] ; PIN_P11  ; 8       ; Global Clock         ; GCLK6            ; --                        ;
+; KEY[0] ; PIN_P11  ; 6       ; Global Clock         ; GCLK6            ; --                        ;
 +--------+----------+---------+----------------------+------------------+---------------------------+
 
 
@@ -1890,21 +1888,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------+------------------------+
 ; Routing Resource Type        ; Usage                  ;
 +------------------------------+------------------------+
-; Block interconnects          ; 21 / 217,884 ( < 1 % ) ;
-; C12 interconnects            ; 10 / 10,080 ( < 1 % )  ;
-; C2 interconnects             ; 10 / 87,208 ( < 1 % )  ;
-; C4 interconnects             ; 48 / 41,360 ( < 1 % )  ;
+; Block interconnects          ; 17 / 217,884 ( < 1 % ) ;
+; C12 interconnects            ; 15 / 10,080 ( < 1 % )  ;
+; C2 interconnects             ; 6 / 87,208 ( < 1 % )   ;
+; C4 interconnects             ; 38 / 41,360 ( < 1 % )  ;
 ; DQS bus muxes                ; 0 / 21 ( 0 % )         ;
 ; DQS-18 I/O buses             ; 0 / 21 ( 0 % )         ;
 ; DQS-9 I/O buses              ; 0 / 21 ( 0 % )         ;
-; Direct links                 ; 3 / 217,884 ( < 1 % )  ;
+; Direct links                 ; 1 / 217,884 ( < 1 % )  ;
 ; Global clocks                ; 1 / 16 ( 6 % )         ;
 ; Horizontal periphery clocks  ; 0 / 12 ( 0 % )         ;
 ; Local interconnects          ; 4 / 58,160 ( < 1 % )   ;
 ; Quadrant clocks              ; 0 / 88 ( 0 % )         ;
 ; R14 interconnects            ; 19 / 9,228 ( < 1 % )   ;
-; R14/C12 interconnect drivers ; 29 / 15,096 ( < 1 % )  ;
-; R3 interconnects             ; 12 / 94,896 ( < 1 % )  ;
+; R14/C12 interconnect drivers ; 34 / 15,096 ( < 1 % )  ;
+; R3 interconnects             ; 22 / 94,896 ( < 1 % )  ;
 ; R6 interconnects             ; 2 / 194,640 ( < 1 % )  ;
 ; Spine clocks                 ; 1 / 180 ( < 1 % )      ;
 ; Wire stub REs                ; 0 / 11,606 ( 0 % )     ;
@@ -2054,7 +2052,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; KEY[0]          ; KEY[0]               ; 2.1               ;
+; KEY[0]          ; KEY[0]               ; 2.2               ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
@@ -2065,10 +2063,10 @@ This will disable optimization of problematic paths and expose them for further 
 +-----------------+----------------------+-------------------+
 ; Source Register ; Destination Register ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; c[3]            ; c[4]                 ; 0.286             ;
-; c[2]            ; c[4]                 ; 0.239             ;
-; c[0]            ; c[4]                 ; 0.222             ;
-; c[1]            ; c[3]                 ; 0.152             ;
+; c[3]            ; c[4]                 ; 0.283             ;
+; c[0]            ; c[3]                 ; 0.222             ;
+; c[2]            ; c[4]                 ; 0.218             ;
+; c[1]            ; c[3]                 ; 0.204             ;
 +-----------------+----------------------+-------------------+
 Note: This table only shows the top 4 path(s) that have the largest delay added for hold.
 
@@ -2424,20 +2422,20 @@ Info (170192): Fitter placement operations ending: elapsed time is 00:00:02
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X57_Y0 to location X68_Y11
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
-Info (11888): Total time spent on timing analysis during the Fitter is 0.50 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:03
+Info (11888): Total time spent on timing analysis during the Fitter is 0.53 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:07
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:10
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 3/heart_bit/output_files/heart_bit.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 318 warnings
-    Info: Peak virtual memory: 6406 megabytes
-    Info: Processing ended: Thu Feb 10 10:15:55 2022
-    Info: Elapsed time: 00:00:39
-    Info: Total CPU time (on all processors): 00:00:57
+    Info: Peak virtual memory: 6471 megabytes
+    Info: Processing ended: Thu Feb 10 10:30:08 2022
+    Info: Elapsed time: 00:00:52
+    Info: Total CPU time (on all processors): 00:01:16
 
 
 +----------------------------+
