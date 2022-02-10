@@ -38,8 +38,10 @@ use ieee.std_logic_unsigned.all;
 
 entity four_bit is
 port(	SW: 	in std_logic_vector(9 downto 0);
---		LEDG: out std_logic_vector(4 downto 0);
-		-- Get port numbers of the HEX displays
+		hex3:	out std_logic_Vector(6 downto 0);
+		hex2:	out std_logic_Vector(6 downto 0);
+		hex1:	out std_logic_Vector(6 downto 0);
+		hex0:	out std_logic_Vector(6 downto 0)
 		);
 end entity four_bit;
 
@@ -67,4 +69,4 @@ begin
 	-- hex out...
 	
 --	LEDG(4 downto 0) <= std_logic_vector(c);
-end architecture main;
+end architecture;

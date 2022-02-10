@@ -1,5 +1,5 @@
 Flow report for four_bit
-Sat Jan 29 17:17:28 2022
+Thu Feb 10 09:36:46 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Sat Jan 29 17:17:28 2022       ;
+; Flow Status                     ; Successful - Thu Feb 10 09:36:35 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; four_bit                                    ;
 ; Top-level Entity Name           ; four_bit                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC5C6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 3 / 29,080 ( < 1 % )                        ;
+; Logic utilization (in ALMs)     ; 8 / 29,080 ( < 1 % )                        ;
 ; Total registers                 ; 0                                           ;
-; Total pins                      ; 15 / 364 ( 4 % )                            ;
+; Total pins                      ; 38 / 364 ( 10 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,567,040 ( 0 % )                       ;
 ; Total DSP Blocks                ; 0 / 150 ( 0 % )                             ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/29/2022 17:07:02 ;
+; Start date & time ; 02/10/2022 09:35:01 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; four_bit            ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 5334165309760.164349402120308          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 1096185595571.164450370114768          ; --            ; --          ; --         ;
 ; FITTER_EFFORT                       ; Standard Fit                           ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -100,15 +100,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4856 MB             ; 00:00:21                           ;
-; Fitter               ; 00:00:30     ; 1.0                     ; 7119 MB             ; 00:01:14                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4815 MB             ; 00:00:08                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.1                     ; 5167 MB             ; 00:00:06                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4707 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4712 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4706 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4712 MB             ; 00:00:02                           ;
-; Total                ; 00:01:02     ; --                      ; --                  ; 00:01:57                           ;
+; Analysis & Synthesis ; 00:00:20     ; 1.0                     ; 4848 MB             ; 00:00:43                           ;
+; Fitter               ; 00:00:48     ; 1.0                     ; 6447 MB             ; 00:00:56                           ;
+; Assembler            ; 00:00:21     ; 1.0                     ; 4821 MB             ; 00:00:14                           ;
+; Timing Analyzer      ; 00:00:10     ; 1.0                     ; 5123 MB             ; 00:00:09                           ;
+; Total                ; 00:01:39     ; --                      ; --                  ; 00:02:02                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -117,14 +113,10 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -135,10 +127,6 @@ quartus_map --read_settings_files=on --write_settings_files=off four_bit -c four
 quartus_fit --read_settings_files=off --write_settings_files=off four_bit -c four_bit
 quartus_asm --read_settings_files=off --write_settings_files=off four_bit -c four_bit
 quartus_sta four_bit -c four_bit
-quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off four_bit -c four_bit --vector_source="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/Waveform.vwf" --testbench_file="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/simulation/qsim/Waveform.vwf.vht"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/simulation/qsim/" four_bit -c four_bit
-quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off four_bit -c four_bit --vector_source="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/Waveform.vwf" --testbench_file="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/simulation/qsim/Waveform.vwf.vht"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/User/Desktop/School/3A/BME 393L/Lab 2/four_bit/simulation/qsim/" four_bit -c four_bit
 
 
 

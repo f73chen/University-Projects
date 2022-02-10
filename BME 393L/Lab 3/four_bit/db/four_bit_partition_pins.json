@@ -4,27 +4,59 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "LEDG[0]",
+					"name" : "hex3[0]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDG[1]",
+					"name" : "hex3[1]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDG[2]",
+					"name" : "hex3[2]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDG[3]",
+					"name" : "hex3[3]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDG[4]",
+					"name" : "hex3[4]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[6]",
+					"name" : "hex3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "hex2[6]",
 					"strict" : false
 				},
 				{
@@ -32,15 +64,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[7]",
-					"strict" : false
-				},
-				{
 					"name" : "SW[1]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[8]",
 					"strict" : false
 				},
 				{
@@ -48,11 +72,23 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "SW[3]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[3]",
+					"name" : "SW[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[8]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[9]",
 					"strict" : false
 				}
 			]
