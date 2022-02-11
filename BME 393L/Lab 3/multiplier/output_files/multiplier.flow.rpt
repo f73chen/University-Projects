@@ -1,5 +1,5 @@
 Flow report for multiplier
-Thu Feb 10 12:13:42 2022
+Fri Feb 11 10:01:37 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Feb 10 12:13:31 2022       ;
+; Flow Status                     ; Successful - Fri Feb 11 10:01:37 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; multiplier                                  ;
 ; Top-level Entity Name           ; multiplier                                  ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/10/2022 12:12:19 ;
+; Start date & time ; 02/11/2022 09:57:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; multiplier          ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 1096185595571.164451313815700          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 5334165309760.164459146400752          ; --            ; --          ; --         ;
 ; FITTER_EFFORT                       ; Standard Fit                           ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -100,11 +100,13 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 4851 MB             ; 00:00:42                           ;
-; Fitter               ; 00:00:35     ; 1.0                     ; 6384 MB             ; 00:00:53                           ;
-; Assembler            ; 00:00:15     ; 1.0                     ; 4824 MB             ; 00:00:14                           ;
-; Timing Analyzer      ; 00:00:09     ; 1.0                     ; 5120 MB             ; 00:00:09                           ;
-; Total                ; 00:01:18     ; --                      ; --                  ; 00:01:58                           ;
+; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4858 MB             ; 00:00:21                           ;
+; Fitter               ; 00:00:26     ; 1.0                     ; 7140 MB             ; 00:01:01                           ;
+; Assembler            ; 00:00:11     ; 1.0                     ; 4824 MB             ; 00:00:09                           ;
+; Timing Analyzer      ; 00:00:11     ; 1.0                     ; 5217 MB             ; 00:00:09                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4705 MB             ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4714 MB             ; 00:00:02                           ;
+; Total                ; 00:01:04     ; --                      ; --                  ; 00:01:44                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -113,10 +115,12 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; Grace-Main       ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -127,6 +131,8 @@ quartus_map --read_settings_files=on --write_settings_files=off multiplier -c mu
 quartus_fit --read_settings_files=off --write_settings_files=off multiplier -c multiplier
 quartus_asm --read_settings_files=off --write_settings_files=off multiplier -c multiplier
 quartus_sta multiplier -c multiplier
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off multiplier -c multiplier --vector_source="C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/Waveform.vwf" --testbench_file="C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/simulation/qsim/Waveform.vwf.vht"
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/simulation/qsim/" multiplier -c multiplier
 
 
 

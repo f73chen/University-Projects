@@ -51,7 +51,7 @@ begin
 	b <= SW(3 downto 0);
 	
 	adder0: entity work.four_bit(main) port map(a, "0000", b(0), c1);
-	least1 <= a(0);
+	least1 <= c1(0);
 	ap1 <= c1(4 downto 1);
 	
 	adder1: entity work.four_bit(main) port map(a, ap1, b(1), c2);
