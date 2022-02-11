@@ -1,5 +1,5 @@
 Analysis & Synthesis report for multiplier
-Fri Feb 11 09:57:57 2022
+Fri Feb 11 10:50:39 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -14,13 +14,10 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Port Connectivity Checks: "four_bit:adder3"
- 10. Port Connectivity Checks: "four_bit:adder2"
- 11. Port Connectivity Checks: "four_bit:adder1"
- 12. Port Connectivity Checks: "four_bit:adder0"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "four_bit:adder1"
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -46,7 +43,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Feb 11 09:57:57 2022       ;
+; Analysis & Synthesis Status     ; Successful - Fri Feb 11 10:50:39 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; multiplier                                  ;
 ; Top-level Entity Name           ; multiplier                                  ;
@@ -183,14 +180,14 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 8           ;
+; Estimate of Logic utilization (ALMs needed) ; 9           ;
 ;                                             ;             ;
-; Combinational ALUT usage for logic          ; 15          ;
+; Combinational ALUT usage for logic          ; 18          ;
 ;     -- 7 input functions                    ; 0           ;
 ;     -- 6 input functions                    ; 0           ;
 ;     -- 5 input functions                    ; 0           ;
-;     -- 4 input functions                    ; 4           ;
-;     -- <=3 input functions                  ; 11          ;
+;     -- 4 input functions                    ; 5           ;
+;     -- <=3 input functions                  ; 13          ;
 ;                                             ;             ;
 ; Dedicated logic registers                   ; 0           ;
 ;                                             ;             ;
@@ -200,8 +197,8 @@ refer to the applicable agreement for further details.
 ;                                             ;             ;
 ; Maximum fan-out node                        ; SW[0]~input ;
 ; Maximum fan-out                             ; 4           ;
-; Total fan-out                               ; 75          ;
-; Average fan-out                             ; 1.47        ;
+; Total fan-out                               ; 82          ;
+; Average fan-out                             ; 1.52        ;
 +---------------------------------------------+-------------+
 
 
@@ -210,9 +207,9 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name         ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
-; |multiplier                ; 15 (0)              ; 0 (0)                     ; 0                 ; 0          ; 18   ; 0            ; |multiplier                 ; multiplier  ; work         ;
-;    |four_bit:adder0|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |multiplier|four_bit:adder0 ; four_bit    ; work         ;
-;    |four_bit:adder2|       ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |multiplier|four_bit:adder2 ; four_bit    ; work         ;
+; |multiplier                ; 18 (1)              ; 0 (0)                     ; 0                 ; 0          ; 18   ; 0            ; |multiplier                 ; multiplier  ; work         ;
+;    |four_bit:adder1|       ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |multiplier|four_bit:adder1 ; four_bit    ; work         ;
+;    |four_bit:adder2|       ; 12 (12)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |multiplier|four_bit:adder2 ; four_bit    ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -233,39 +230,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 +---------------------------------------------+
-; Port Connectivity Checks: "four_bit:adder3" ;
-+-------+-------+----------+------------------+
-; Port  ; Type  ; Severity ; Details          ;
-+-------+-------+----------+------------------+
-; a2[3] ; Input ; Info     ; Stuck at GND     ;
-+-------+-------+----------+------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "four_bit:adder2"                                                                       ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; a2[3]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; cout[1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "four_bit:adder1"                                                                       ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; cout[1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "four_bit:adder0" ;
+; Port Connectivity Checks: "four_bit:adder1" ;
 +------+-------+----------+-------------------+
 ; Port ; Type  ; Severity ; Details           ;
 +------+-------+----------+-------------------+
-; a2   ; Input ; Info     ; Stuck at GND      ;
+; a[3] ; Input ; Info     ; Stuck at GND      ;
 +------+-------+----------+-------------------+
 
 
@@ -274,19 +243,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 15                          ;
-;     arith             ; 14                          ;
+; arriav_lcell_comb     ; 18                          ;
+;     arith             ; 17                          ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 3                           ;
-;         3 data inputs ; 4                           ;
-;         4 data inputs ; 4                           ;
+;         2 data inputs ; 8                           ;
+;         3 data inputs ; 1                           ;
+;         4 data inputs ; 5                           ;
 ;     normal            ; 1                           ;
 ;         2 data inputs ; 1                           ;
 ; boundary_port         ; 18                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.60                        ;
-; Average LUT depth     ; 2.34                        ;
+; Max LUT depth         ; 2.50                        ;
+; Average LUT depth     ; 2.33                        ;
 +-----------------------+-----------------------------+
 
 
@@ -305,31 +274,31 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Feb 11 09:57:43 2022
+    Info: Processing started: Fri Feb 11 10:50:29 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off multiplier -c multiplier
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 4 design units, including 2 entities, in source file multiplier.vhd
-    Info (12022): Found design unit 1: four_bit-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 12
-    Info (12022): Found design unit 2: multiplier-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 34
+    Info (12022): Found design unit 1: four_bit-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 11
+    Info (12022): Found design unit 2: multiplier-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 28
     Info (12023): Found entity 1: four_bit File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 5
-    Info (12023): Found entity 2: multiplier File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 28
+    Info (12023): Found entity 2: multiplier File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 22
 Info (12127): Elaborating entity "multiplier" for the top level hierarchy
-Info (12129): Elaborating entity "four_bit" using architecture "A:main" for hierarchy "four_bit:adder0" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 53
+Info (12129): Elaborating entity "four_bit" using architecture "A:main" for hierarchy "four_bit:adder1" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 48
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 29
-    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 29
-Info (21057): Implemented 33 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 23
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/multiplier.vhd Line: 23
+Info (21057): Implemented 36 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 15 logic cells
+    Info (21061): Implemented 18 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4858 megabytes
-    Info: Processing ended: Fri Feb 11 09:57:57 2022
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:21
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Fri Feb 11 10:50:39 2022
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:20
 
 
