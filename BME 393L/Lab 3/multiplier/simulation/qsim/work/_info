@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/User/source/repos/Uni-Projects/BME 393L/Lab 3/multiplier/simulation/qsim
 Emultiplier
-Z1 w1644594781
+Z1 w1644982335
 Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
 Z3 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
 Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
@@ -22,13 +22,13 @@ Z9 8multiplier.vho
 Z10 Fmultiplier.vho
 l0
 L36
-VI12nE]bob5]W@e8T]?oWR3
-!s100 >JnSJ<<^DQ<d:RnnMejLN3
+VS=d>6=^B@?zf@WEOSf:O[2
+!s100 6E9_[H1KRCgOc=Wii[<=Y3
 Z11 OV;C;10.5b;63
 32
-Z12 !s110 1644594782
+Z12 !s110 1644982336
 !i10b 1
-Z13 !s108 1644594781.000000
+Z13 !s108 1644982336.000000
 Z14 !s90 -work|work|multiplier.vho|
 Z15 !s107 multiplier.vho|
 !i113 1
@@ -42,11 +42,11 @@ R5
 R6
 R7
 R8
-DEx4 work 10 multiplier 0 22 I12nE]bob5]W@e8T]?oWR3
-l138
-L64
-VLH]9Uja4<FcRdj=QK5c^?0
-!s100 :co2J3cACckMkYYK8I7GK3
+DEx4 work 10 multiplier 0 22 S=d>6=^B@?zf@WEOSf:O[2
+l214
+L96
+VV[cB;K2JF;4PzKz8AeLd12
+!s100 ;Hczmndl?EYNo;nHlG5b]2
 R11
 32
 R12
@@ -58,12 +58,12 @@ R15
 R16
 R17
 Emultiplier_vhd_vec_tst
-Z18 w1644594779
+Z18 w1644982333
 R6
 R7
 R0
-Z19 8Waveform1.vwf.vht
-Z20 FWaveform1.vwf.vht
+Z19 8Waveform3.vwf.vht
+Z20 FWaveform3.vwf.vht
 l0
 L31
 VoL3JWXkZH694ihUQBhD]e2
@@ -72,27 +72,27 @@ R11
 32
 R12
 !i10b 1
-Z21 !s108 1644594782.000000
-Z22 !s90 -work|work|Waveform1.vwf.vht|
-Z23 !s107 Waveform1.vwf.vht|
+R13
+Z21 !s90 -work|work|Waveform3.vwf.vht|
+Z22 !s107 Waveform3.vwf.vht|
 !i113 1
 R16
 R17
 Amultiplier_arch
 R6
 R7
-Z24 DEx4 work 22 multiplier_vhd_vec_tst 0 22 oL3JWXkZH694ihUQBhD]e2
-l44
+Z23 DEx4 work 22 multiplier_vhd_vec_tst 0 22 oL3JWXkZH694ihUQBhD]e2
+l52
 L33
-Z25 VAdY3k^?LzFLEP@dQ9lHY:0
-Z26 !s100 ]`i758nZR<QLfmTgobl3e3
+Vo8f>1ES>b_1>IkciV6c9N0
+!s100 cQM?k4L@zL8eSgFzPPdTL2
 R11
 32
 R12
 !i10b 1
+R13
 R21
 R22
-R23
 !i113 1
 R16
 R17
