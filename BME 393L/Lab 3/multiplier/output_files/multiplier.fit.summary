@@ -1,13 +1,13 @@
-Fitter Status : Successful - Thu Feb 10 12:13:13 2022
+Fitter Status : Successful - Tue Feb 15 22:30:22 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : multiplier
 Top-level Entity Name : multiplier
 Family : Cyclone V
 Device : 5CGXFC5C6F27C7
 Timing Models : Final
-Logic utilization (in ALMs) : 8 / 29,080 ( < 1 % )
+Logic utilization (in ALMs) : 24 / 29,080 ( < 1 % )
 Total registers : 0
-Total pins : 18 / 364 ( 5 % )
+Total pins : 46 / 364 ( 13 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,567,040 ( 0 % )
 Total RAM Blocks : 0 / 446 ( 0 % )
