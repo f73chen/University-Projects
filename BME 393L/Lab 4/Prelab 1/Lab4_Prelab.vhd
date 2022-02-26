@@ -10,14 +10,14 @@ end entity Lab4_Prelab;
 
 architecture main of Lab4_Prelab is
 	signal clock_1_Hz: std_logic;
-	signal counter: integer := 0;
+	signal counter: unsigned(24 downto 0);
 
 begin
 	divider: process (CLOCK_50_B5B)
 	begin
 		if rising_edge(CLOCK_50_B5B) then
-			if counter = 24999999 then
-				counter <= 0;
+			if counter = to_unsigned(24999999, 25) then
+				counter <= to_unsigned(0, 25);
 				clock_1_Hz <= not clock_1_Hz;
 			else
 				counter <= counter + 1;

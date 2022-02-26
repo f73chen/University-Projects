@@ -1,5 +1,5 @@
 EDA Netlist Writer report for Lab4_Prelab
-Fri Feb 25 14:52:38 2022
+Fri Feb 25 23:24:50 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Fri Feb 25 14:52:38 2022 ;
+; EDA Netlist Writer Status ; Successful - Fri Feb 25 23:24:50 2022 ;
 ; Revision Name             ; Lab4_Prelab                           ;
 ; Top-level Entity Name     ; Lab4_Prelab                           ;
 ; Family                    ; Cyclone V                             ;
@@ -93,15 +93,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Fri Feb 25 14:52:35 2022
+    Info: Processing started: Fri Feb 25 23:24:49 2022
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/Prelab 1/simulation/qsim/" Lab4_Prelab -c Lab4_Prelab
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file Lab4_Prelab.vho in folder "C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/Prelab 1/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4715 megabytes
-    Info: Processing ended: Fri Feb 25 14:52:38 2022
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 4711 megabytes
+    Info: Processing ended: Fri Feb 25 23:24:50 2022
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 

@@ -1,5 +1,5 @@
 Timing Analyzer report for Lab4_Prelab
-Fri Feb 25 14:50:45 2022
+Fri Feb 25 23:24:00 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -97,14 +97,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.04        ;
+; Average used               ; 1.03        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.5%      ;
-;     Processor 3            ;   1.3%      ;
-;     Processor 4            ;   1.3%      ;
+;     Processor 2            ;   1.3%      ;
+;     Processor 3            ;   1.1%      ;
+;     Processor 4            ;   0.3%      ;
 +----------------------------+-------------+
 
 
@@ -117,13 +117,13 @@ refer to the applicable agreement for further details.
 +--------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------+
 
 
-+---------------------------------------------------+
-; Slow 1100mV 85C Model Fmax Summary                ;
-+-----------+-----------------+--------------+------+
-; Fmax      ; Restricted Fmax ; Clock Name   ; Note ;
-+-----------+-----------------+--------------+------+
-; 251.0 MHz ; 251.0 MHz       ; CLOCK_50_B5B ;      ;
-+-----------+-----------------+--------------+------+
++----------------------------------------------------+
+; Slow 1100mV 85C Model Fmax Summary                 ;
++------------+-----------------+--------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name   ; Note ;
++------------+-----------------+--------------+------+
+; 247.89 MHz ; 247.89 MHz      ; CLOCK_50_B5B ;      ;
++------------+-----------------+--------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -138,7 +138,7 @@ HTML report is unavailable in plain text report export.
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; CLOCK_50_B5B ; -2.984 ; -137.018      ;
+; CLOCK_50_B5B ; -3.034 ; -82.978       ;
 +--------------+--------+---------------+
 
 
@@ -147,7 +147,7 @@ HTML report is unavailable in plain text report export.
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; CLOCK_50_B5B ; 0.441 ; 0.000         ;
+; CLOCK_50_B5B ; 0.452 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -168,7 +168,7 @@ No paths to report.
 +--------------+--------+---------------------------+
 ; Clock        ; Slack  ; End Point TNS             ;
 +--------------+--------+---------------------------+
-; CLOCK_50_B5B ; -0.538 ; -37.376                   ;
+; CLOCK_50_B5B ; -0.538 ; -23.392                   ;
 +--------------+--------+---------------------------+
 
 
@@ -183,7 +183,7 @@ No synchronizer chains to report.
 +------------+-----------------+--------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name   ; Note ;
 +------------+-----------------+--------------+------+
-; 250.38 MHz ; 250.38 MHz      ; CLOCK_50_B5B ;      ;
+; 246.61 MHz ; 246.61 MHz      ; CLOCK_50_B5B ;      ;
 +------------+-----------------+--------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -193,7 +193,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; CLOCK_50_B5B ; -2.994 ; -138.038      ;
+; CLOCK_50_B5B ; -3.055 ; -84.482       ;
 +--------------+--------+---------------+
 
 
@@ -202,7 +202,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; CLOCK_50_B5B ; 0.448 ; 0.000         ;
+; CLOCK_50_B5B ; 0.457 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -223,7 +223,7 @@ No paths to report.
 +--------------+--------+--------------------------+
 ; Clock        ; Slack  ; End Point TNS            ;
 +--------------+--------+--------------------------+
-; CLOCK_50_B5B ; -0.538 ; -37.257                  ;
+; CLOCK_50_B5B ; -0.538 ; -23.291                  ;
 +--------------+--------+--------------------------+
 
 
@@ -238,7 +238,7 @@ No synchronizer chains to report.
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; CLOCK_50_B5B ; -0.914 ; -40.407       ;
+; CLOCK_50_B5B ; -0.963 ; -24.099       ;
 +--------------+--------+---------------+
 
 
@@ -247,7 +247,7 @@ No synchronizer chains to report.
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; CLOCK_50_B5B ; 0.200 ; 0.000         ;
+; CLOCK_50_B5B ; 0.181 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -268,7 +268,7 @@ No paths to report.
 +--------------+--------+---------------------------+
 ; Clock        ; Slack  ; End Point TNS             ;
 +--------------+--------+---------------------------+
-; CLOCK_50_B5B ; -0.371 ; -19.104                   ;
+; CLOCK_50_B5B ; -0.371 ; -12.112                   ;
 +--------------+--------+---------------------------+
 
 
@@ -283,7 +283,7 @@ No synchronizer chains to report.
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; CLOCK_50_B5B ; -0.768 ; -33.842       ;
+; CLOCK_50_B5B ; -0.811 ; -20.206       ;
 +--------------+--------+---------------+
 
 
@@ -292,7 +292,7 @@ No synchronizer chains to report.
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; CLOCK_50_B5B ; 0.190 ; 0.000         ;
+; CLOCK_50_B5B ; 0.172 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -313,7 +313,7 @@ No paths to report.
 +--------------+--------+--------------------------+
 ; Clock        ; Slack  ; End Point TNS            ;
 +--------------+--------+--------------------------+
-; CLOCK_50_B5B ; -0.412 ; -23.646                  ;
+; CLOCK_50_B5B ; -0.413 ; -15.042                  ;
 +--------------+--------+--------------------------+
 
 
@@ -323,16 +323,16 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                            ;
-+------------------+----------+-------+----------+---------+---------------------+
-; Clock            ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack ; -2.994   ; 0.190 ; N/A      ; N/A     ; -0.538              ;
-;  CLOCK_50_B5B    ; -2.994   ; 0.190 ; N/A      ; N/A     ; -0.538              ;
-; Design-wide TNS  ; -138.038 ; 0.0   ; 0.0      ; 0.0     ; -37.376             ;
-;  CLOCK_50_B5B    ; -138.038 ; 0.000 ; N/A      ; N/A     ; -37.376             ;
-+------------------+----------+-------+----------+---------+---------------------+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -3.055  ; 0.172 ; N/A      ; N/A     ; -0.538              ;
+;  CLOCK_50_B5B    ; -3.055  ; 0.172 ; N/A      ; N/A     ; -0.538              ;
+; Design-wide TNS  ; -84.482 ; 0.0   ; 0.0      ; 0.0     ; -23.392             ;
+;  CLOCK_50_B5B    ; -84.482 ; 0.000 ; N/A      ; N/A     ; -23.392             ;
++------------------+---------+-------+----------+---------+---------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -429,7 +429,7 @@ No synchronizer chains to report.
 +--------------+--------------+----------+----------+----------+----------+
 ; From Clock   ; To Clock     ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +--------------+--------------+----------+----------+----------+----------+
-; CLOCK_50_B5B ; CLOCK_50_B5B ; 2260     ; 0        ; 0        ; 0        ;
+; CLOCK_50_B5B ; CLOCK_50_B5B ; 1103     ; 0        ; 0        ; 0        ;
 +--------------+--------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -439,7 +439,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +--------------+--------------+----------+----------+----------+----------+
 ; From Clock   ; To Clock     ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +--------------+--------------+----------+----------+----------+----------+
-; CLOCK_50_B5B ; CLOCK_50_B5B ; 2260     ; 0        ; 0        ; 0        ;
+; CLOCK_50_B5B ; CLOCK_50_B5B ; 1103     ; 0        ; 0        ; 0        ;
 +--------------+--------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -503,7 +503,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Feb 25 14:50:31 2022
+    Info: Processing started: Fri Feb 25 23:23:54 2022
 Info: Command: quartus_sta Lab4_Prelab -c Lab4_Prelab
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -520,84 +520,84 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.984
+Info (332146): Worst-case setup slack is -3.034
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.984            -137.018 CLOCK_50_B5B 
-Info (332146): Worst-case hold slack is 0.441
+    Info (332119):    -3.034             -82.978 CLOCK_50_B5B 
+Info (332146): Worst-case hold slack is 0.452
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.441               0.000 CLOCK_50_B5B 
+    Info (332119):     0.452               0.000 CLOCK_50_B5B 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -0.538
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.538             -37.376 CLOCK_50_B5B 
+    Info (332119):    -0.538             -23.392 CLOCK_50_B5B 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.994
+Info (332146): Worst-case setup slack is -3.055
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.994            -138.038 CLOCK_50_B5B 
-Info (332146): Worst-case hold slack is 0.448
+    Info (332119):    -3.055             -84.482 CLOCK_50_B5B 
+Info (332146): Worst-case hold slack is 0.457
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.448               0.000 CLOCK_50_B5B 
+    Info (332119):     0.457               0.000 CLOCK_50_B5B 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -0.538
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.538             -37.257 CLOCK_50_B5B 
+    Info (332119):    -0.538             -23.291 CLOCK_50_B5B 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -0.914
+Info (332146): Worst-case setup slack is -0.963
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.914             -40.407 CLOCK_50_B5B 
-Info (332146): Worst-case hold slack is 0.200
+    Info (332119):    -0.963             -24.099 CLOCK_50_B5B 
+Info (332146): Worst-case hold slack is 0.181
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.200               0.000 CLOCK_50_B5B 
+    Info (332119):     0.181               0.000 CLOCK_50_B5B 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -0.371
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.371             -19.104 CLOCK_50_B5B 
+    Info (332119):    -0.371             -12.112 CLOCK_50_B5B 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -0.768
+Info (332146): Worst-case setup slack is -0.811
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.768             -33.842 CLOCK_50_B5B 
-Info (332146): Worst-case hold slack is 0.190
+    Info (332119):    -0.811             -20.206 CLOCK_50_B5B 
+Info (332146): Worst-case hold slack is 0.172
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.190               0.000 CLOCK_50_B5B 
+    Info (332119):     0.172               0.000 CLOCK_50_B5B 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.412
+Info (332146): Worst-case minimum pulse width slack is -0.413
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.412             -23.646 CLOCK_50_B5B 
+    Info (332119):    -0.413             -15.042 CLOCK_50_B5B 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
     Info: Peak virtual memory: 5126 megabytes
-    Info: Processing ended: Fri Feb 25 14:50:45 2022
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:14
+    Info: Processing ended: Fri Feb 25 23:24:00 2022
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 

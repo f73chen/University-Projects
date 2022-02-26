@@ -1,12 +1,12 @@
-Fitter Status : Successful - Fri Feb 25 14:50:07 2022
+Fitter Status : Successful - Fri Feb 25 23:23:40 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : Lab4_Prelab
 Top-level Entity Name : Lab4_Prelab
 Family : Cyclone V
 Device : 5CGXFC5C6F27C7
 Timing Models : Final
-Logic utilization (in ALMs) : 24 / 29,080 ( < 1 % )
-Total registers : 48
+Logic utilization (in ALMs) : 19 / 29,080 ( < 1 % )
+Total registers : 30
 Total pins : 9 / 364 ( 2 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,567,040 ( 0 % )

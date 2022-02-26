@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/Prelab 1/simulation/qsim
 Elab4_prelab
-Z1 w1645818758
+Z1 w1645849490
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
@@ -28,9 +28,9 @@ VV9;MPaSATQ7iJ5MJ8=TLQ0
 !s100 `So_LAV=hm0Lz:f2dO`Tb0
 Z13 OV;C;10.5b;63
 32
-Z14 !s110 1645818760
+Z14 !s110 1645849493
 !i10b 1
-Z15 !s108 1645818760.000000
+Z15 !s108 1645849492.000000
 Z16 !s90 -work|work|Lab4_Prelab.vho|
 Z17 !s107 Lab4_Prelab.vho|
 !i113 1
@@ -47,10 +47,10 @@ R8
 R9
 R10
 DEx4 work 11 lab4_prelab 0 22 V9;MPaSATQ7iJ5MJ8=TLQ0
-l185
+l146
 L57
-V`hdVazP2z5cYfMXoRZ`fX0
-!s100 8^7CG3`bW[66MjICXW3n>2
+V_WF0RJebGUA]bBP_<zJ:M2
+!s100 W97Wd;PIEcjfclXzEK`Pc1
 R13
 32
 R14
@@ -62,7 +62,7 @@ R17
 R18
 R19
 Elab4_prelab_vhd_vec_tst
-Z20 w1645818755
+Z20 w1645849488
 R8
 R9
 R0
@@ -76,27 +76,27 @@ R13
 32
 R14
 !i10b 1
-R15
-Z23 !s90 -work|work|Waveform1.vwf.vht|
-Z24 !s107 Waveform1.vwf.vht|
+Z23 !s108 1645849493.000000
+Z24 !s90 -work|work|Waveform1.vwf.vht|
+Z25 !s107 Waveform1.vwf.vht|
 !i113 1
 R18
 R19
 Alab4_prelab_arch
 R8
 R9
-Z25 DEx4 work 23 lab4_prelab_vhd_vec_tst 0 22 UT4k1P3Ei2HOBa<I[bn<C3
+Z26 DEx4 work 23 lab4_prelab_vhd_vec_tst 0 22 UT4k1P3Ei2HOBa<I[bn<C3
 l44
 L33
-VWJfIdg]c[WkDkK_bD]6[O1
-!s100 YY_zmRf@^>OS_e`[J5D]z3
+VHDUClbWQn`VmFA76>gNFP0
+!s100 Kc8oZgHbIgz1WK;51ob443
 R13
 32
 R14
 !i10b 1
-R15
 R23
 R24
+R25
 !i113 1
 R18
 R19
