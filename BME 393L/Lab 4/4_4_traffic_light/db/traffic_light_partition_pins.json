@@ -4,23 +4,83 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "output[0]",
+					"name" : "LEDG[4]",
 					"strict" : false
 				},
 				{
-					"name" : "output[1]",
+					"name" : "LEDG[7]",
 					"strict" : false
 				},
 				{
-					"name" : "clk",
+					"name" : "LEDR[0]",
 					"strict" : false
 				},
 				{
-					"name" : "reset",
+					"name" : "LEDR[4]",
 					"strict" : false
 				},
 				{
-					"name" : "input",
+					"name" : "hex3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "hex3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "hex0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50_B5B",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
 					"strict" : false
 				}
 			]

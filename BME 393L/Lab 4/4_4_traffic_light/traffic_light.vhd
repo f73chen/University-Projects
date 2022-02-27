@@ -52,10 +52,10 @@ architecture main of traffic_light is
 		segments_out: out std_logic_vector(6 downto 0) );
 	end component;
 	
-   signal state:              unsigned(3 downto 0);
-	signal counter:            unsigned(24 downto 0);
-	signal seconds_20:         unsigned(4 downto 0);
-	signal seconds:            unsigned(3 downto 0);
+   signal state:              integer range 0 to 7;
+	signal seconds:            integer range 0 to 15;
+	signal seconds_20:         integer range 0 to 20;
+	signal counter:            integer range 0 to 25000000;
 	signal NSG, NSR, EWG, EWR: std_logic;
 	
 begin
@@ -65,95 +65,103 @@ begin
       if KEY(0) = '1' then
          state <= 0;
 		
-		-- Increment 20ns, 1/20s, and 1s counters
+		-- Each primary tick is 1/20th of a second, so lights flash at 10Hz
       elsif (rising_edge(CLOCK_50_B5B)) then
 			if counter = to_unsigned(2499999, 25) then
-				counter <= to_unsigned(0, 25);
+				counter <= 0;
 				seconds_20 <= seconds_20 + 1;
+				
+				case state is
+					when 0 =>
+						if seconds = 2 then
+							seconds <= 0;
+							state <= 1;
+						else
+							NSG <= not NSG;
+							NSR <= '0';
+							EWG <= '0';
+							EWR <= '1';						
+						end if;
+					when 1 =>
+						if seconds = 5 then
+							seconds <= 0;
+							state <= 2;
+						else
+							NSG <= '1';
+							NSR <= '0';
+							EWG <= '0';
+							EWR <= '1';						
+						end if;
+					when 2 =>
+						if seconds = 3 then
+							seconds <= 0;
+							state <= 3;
+						else
+							NSG <= '0';
+							NSR <= not NSR;
+							EWG <= '0';
+							EWR <= '1';						
+						end if;
+					when 3 =>
+						if seconds = 1 then
+							seconds <= 0;
+							state <= 4;
+						else
+							NSG <= '0';
+							NSR <= '1';
+							EWG <= '0';
+							EWR <= '1';						
+						end if;
+					when 4 =>
+						if seconds = 2 then
+							seconds <= 0;
+							state <= 5;
+						else
+							NSG <= '0';
+							NSR <= '1';
+							EWG <= not EWG;
+							EWR <= '0';						
+						end if;
+					when 5 =>
+						if seconds = 5 then
+							seconds <= 0;
+							state <= 6;
+						else
+							NSG <= '0';
+							NSR <= '1';
+							EWG <= '1';
+							EWR <= '0';						
+						end if;
+					when 6 =>
+						if seconds = 3 then
+							seconds <= 0;
+							state <= 7;
+						else
+							NSG <= '0';
+							NSR <= '1';
+							EWG <= '0';
+							EWR <= not EWR;						
+						end if;
+					when 7 =>
+						if seconds = 1 then
+							seconds <= 0;
+							state <= 0;
+						else
+							NSG <= '0';
+							NSR <= '1';
+							EWG <= '0';
+							EWR <= '1';						
+						end if;
+				end case;
+				
 			else
 				counter <= counter + 1;
 			end if;
 			
-			if seconds_20 = to_unsigned(19, 5) then
-				seconds_20 <= to_unsigned(0, 5);
+			if seconds_20 = 19 then
+				seconds_20 <= 0;
 				seconds <= seconds + 1;
 			end if;
-		
-			-- @@@ FIX! Make everything operate on rising edge of s_20 instead
-         case state is
-            when '0000' =>
-               if seconds = '0010' then
-                  state <= '0001';
-               else
-                  NSG <= not NSG;
-						NSR <= '0';
-						EWG <= '0';
-						EWR <= '1';						
-               end if;
-            when '0001' =>
-               if seconds = '0101' then
-                  state <= '0010';
-               else
-                  NSG <= '1';
-						NSR <= '0';
-						EWG <= '0';
-						EWR <= '1';						
-               end if;
-            when '0010' =>
-               if seconds = '0011' then
-                  state <= '0011';
-               else
-                  NSG <= '0';
-						NSR <= not NSR;
-						EWG <= '0';
-						EWR <= '1';						
-               end if;
-            when '0011' =>
-               if seconds = '0001' then
-                  state <= '0100';
-               else
-                  NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= '1';						
-               end if;
-            when '0100' =>
-               if seconds = '0010' then
-                  state <= '0101';
-               else
-                  NSG <= '0';
-						NSR <= '1';
-						EWG <= not EWG;
-						EWR <= '0';						
-               end if;
-            when '0101' =>
-               if seconds = '0101' then
-                  state <= '0110';
-               else
-                  NSG <= '0';
-						NSR <= '1';
-						EWG <= '1';
-						EWR <= '0';						
-               end if;
-            when '0110' =>
-               if seconds = '0011' then
-                  state <= '0111';
-               else
-                  NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= not EWR;						
-               end if;
-            when '0111' =>
-               if seconds = '0001' then
-                  state <= '0000';
-               else
-                  NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= '1';						
-               end if;
-         end case;
       end if;
    end process;
    
@@ -162,7 +170,7 @@ begin
 	LEDG(4) <= EWG;
 	LEDR(4) <= EWR;
 	
-	hex3_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(state), '0', hex3);
-	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(seconds), '0', hex0);
+	hex3_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(to_unsigned(state, 4)), '0', hex3);
+	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(to_unsigned(seconds, 4)), '0', hex0);
 
 end architecture;
