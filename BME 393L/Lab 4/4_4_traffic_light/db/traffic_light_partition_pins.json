@@ -78,10 +78,6 @@
 				{
 					"name" : "CLOCK_50_B5B",
 					"strict" : false
-				},
-				{
-					"name" : "KEY[0]",
-					"strict" : false
 				}
 			]
 		}

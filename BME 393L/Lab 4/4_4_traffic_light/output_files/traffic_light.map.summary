@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Sun Feb 27 18:35:46 2022
+Analysis & Synthesis Status : Successful - Thu Mar 03 10:18:44 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : traffic_light
 Top-level Entity Name : traffic_light
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 41
-Total pins : 39
+Total registers : 58
+Total pins : 35
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0
