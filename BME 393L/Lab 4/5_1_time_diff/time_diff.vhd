@@ -52,10 +52,19 @@ architecture main of time_diff is
 		segments_out: 	out std_logic_vector(6 downto 0) );
 	end component;
 	
-	signal clock: unsigned(30 downto 0);
-	signal diff:  std_logic_vector(15 downto 0);
+	signal counter:	unsigned(15 downto 0);
+	signal hz1k:		std_logic;
+	signal diff:		std_logic_vector(15 downto 0);
 
 begin
+	-- Process to get 1 ms from clock
+	process (CLOCK_50_B5B) begin
+		if rising_edge(CLOCK_50_B5B) then
+			
+			
+		end if;
+	end process;
+
 	-- buttons high when up, low when pressed
 	-- Calculate the time between one high one low and both high or both low
 	-- aka start when xor(a, b) and end when xnor(a, b)

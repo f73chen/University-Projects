@@ -92,35 +92,35 @@ begin
 			seconds <= seconds + 1;			
 			case state is
 				when ns0 =>
-					if seconds = "0010" then
+					if seconds = "0001" then
 						seconds <= "0000";
 					end if;
 				when ns1 =>
-					if seconds = "0101" then
+					if seconds = "0100" then
 						seconds <= "0000";
 					end if;
 				when ns2 =>
-					if seconds = "0011" then
-						seconds <= "0000";
-					end if;
-				when ns3 =>
-					if seconds = "0001" then
-						seconds <= "0000";
-					end if;
-				when ew0 =>
 					if seconds = "0010" then
 						seconds <= "0000";
 					end if;
+				when ns3 =>
+					if seconds = "0000" then
+						seconds <= "0000";
+					end if;
+				when ew0 =>
+					if seconds = "0001" then
+						seconds <= "0000";
+					end if;
 				when ew1 =>
-					if seconds = "0101" then
+					if seconds = "0100" then
 						seconds <= "0000";
 					end if;
 				when ew2 =>
-					if seconds = "0011" then
+					if seconds = "0010" then
 						seconds <= "0000";
 					end if;
 				when ew3 =>
-					if seconds = "0001" then
+					if seconds = "0000" then
 						seconds <= "0000";
 					end if;
 			end case;
@@ -132,7 +132,7 @@ begin
 		if rising_edge(hz10) then
 			case state is
 				when ns0 =>
-					if seconds = "0010" then
+					if seconds = "0001" then
 						next_state <= ns1;
 						state_counter <= "0001";
 					else
@@ -142,7 +142,7 @@ begin
 						EWR <= '1';	
 					end if;
 				when ns1 =>
-					if seconds = "0101" then
+					if seconds = "0100" then
 						next_state <= ns2;
 						state_counter <= "0010";
 					else
@@ -152,7 +152,7 @@ begin
 						EWR <= '1';
 					end if;
 				when ns2 =>
-					if seconds = "0011" then
+					if seconds = "0010" then
 						next_state <= ns3;
 						state_counter <= "0011";
 					else
@@ -162,7 +162,7 @@ begin
 						EWR <= '1';	
 					end if;
 				when ns3 =>
-					if seconds = "0001" then
+					if seconds = "0000" then
 						next_state <= ew0;
 						state_counter <= "0100";
 					else
@@ -172,7 +172,7 @@ begin
 						EWR <= '1';	
 					end if;
 				when ew0 =>
-					if seconds = "0010" then
+					if seconds = "0001" then
 						next_state <= ew1;
 						state_counter <= "0101";
 					else
@@ -182,7 +182,7 @@ begin
 						EWR <= '0';	
 					end if;
 				when ew1 =>
-					if seconds = "0101" then
+					if seconds = "0100" then
 						next_state <= ew2;
 						state_counter <= "0110";
 					else
@@ -192,7 +192,7 @@ begin
 						EWR <= '0';	
 					end if;
 				when ew2 =>
-					if seconds = "0011" then
+					if seconds = "0010" then
 						next_state <= ew3;
 						state_counter <= "0111";
 					else
@@ -202,7 +202,7 @@ begin
 						EWR <= not EWR;	
 					end if;
 				when ew3 =>
-					if seconds = "0001" then
+					if seconds = "0000" then
 						next_state <= ns0;
 						state_counter <= "0000";
 					else
@@ -228,6 +228,6 @@ begin
 	LEDR(4) <= EWR;
 	
 	hex3_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(state_counter), '0', hex3);
-	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(seconds+1), '0', hex0);
+	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(seconds), '0', hex0);
 
 end architecture;
