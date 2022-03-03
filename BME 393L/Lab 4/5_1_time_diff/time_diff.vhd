@@ -61,21 +61,22 @@ begin
 	-- AKA start when xor(a, b) and end when xnor(a, b)
 	process (CLOCK_50_B5B) begin
 		if rising_edge(CLOCK_50_B5B) then
+		
 			-- Only one key is down
 			if (KEY(0) xor KEY(1)) = '1' then
 				clock <= clock + 1;
 				
 			-- Reset timer
-			elsif key(3) = '0' then
+			elsif KEY(3) = '0' then
 				diff <= to_unsigned(0, 16);
 				clock <= to_unsigned(0, 31);
 				
 			-- Clock(15) is closest to 1 ms --> 2^16 * 20 ns = 1.31 ms
 			else
---				diff <= clock(30 downto 15);
-				diff <= clock(15 downto 0);
+				diff <= clock(30 downto 15);
 				clock <= to_unsigned(0, 31);
 			end if;
+			
 		end if;
 	end process;
 	

@@ -1,7 +1,7 @@
 # do time_diff.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:59:33 on Mar 03,2022
+# Start time: 11:46:37 on Mar 03,2022
 # vcom -work work time_diff.vho 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -15,20 +15,20 @@
 # -- Loading package cyclonev_components
 # -- Compiling entity time_diff
 # -- Compiling architecture structure of time_diff
-# End time: 10:59:33 on Mar 03,2022, Elapsed time: 0:00:00
+# End time: 11:46:37 on Mar 03,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:59:33 on Mar 03,2022
-# vcom -work work Waveform.vwf.vht 
+# Start time: 11:46:37 on Mar 03,2022
+# vcom -work work Waveform1.vwf.vht 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity time_diff_vhd_vec_tst
 # -- Compiling architecture time_diff_arch of time_diff_vhd_vec_tst
-# End time: 10:59:33 on Mar 03,2022, Elapsed time: 0:00:00
+# End time: 11:46:38 on Mar 03,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -novopt -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.time_diff_vhd_vec_tst 
-# Start time: 10:59:33 on Mar 03,2022
+# Start time: 11:46:38 on Mar 03,2022
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -47,8 +47,8 @@
 # Loading cyclonev.cyclonev_clkena(behavior)
 # Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)
 # Loading altera.dffeas(vital_dffeas)
-# ** Warning: Design size of 19194 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# ** Warning: Design size of 28096 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
 # Expect performance to be adversely affected.
 # after#34
-# End time: 10:59:34 on Mar 03,2022, Elapsed time: 0:00:01
+# End time: 11:46:39 on Mar 03,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1

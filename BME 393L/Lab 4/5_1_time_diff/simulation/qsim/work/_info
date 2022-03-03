@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim
 Etime_diff
-Z1 w1646323172
+Z1 w1646325996
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
@@ -24,13 +24,13 @@ Z11 8time_diff.vho
 Z12 Ftime_diff.vho
 l0
 L38
-V?<5VlG2O^H5RGI7C2VV5<1
-!s100 8C]V[6XB^h0>JBVSGQH7Q2
+Vk`A]o_jBVhaZPdb>]BZ:C1
+!s100 QDFGVozllTeY@CoaCo75`0
 Z13 OV;C;10.5b;63
 32
-Z14 !s110 1646323173
+Z14 !s110 1646325997
 !i10b 1
-Z15 !s108 1646323173.000000
+Z15 !s108 1646325997.000000
 Z16 !s90 -work|work|time_diff.vho|
 Z17 !s107 time_diff.vho|
 !i113 1
@@ -46,11 +46,11 @@ R7
 R8
 R9
 R10
-DEx4 work 9 time_diff 0 22 ?<5VlG2O^H5RGI7C2VV5<1
-l182
-L85
-Vlh]kD2G8i^OJR^ck9bjmP2
-!s100 n:1zYPP7MSQ5Q`[Anl1@j1
+DEx4 work 9 time_diff 0 22 k`A]o_jBVhaZPdb>]BZ:C1
+l248
+L117
+V9gO=OaE^@na[5V47XXNM@3
+!s100 afB8PaWEd[>9Z`PkLIlVm0
 R13
 32
 R14
@@ -62,41 +62,41 @@ R17
 R18
 R19
 Etime_diff_vhd_vec_tst
-Z20 w1646323169
+Z20 w1646325992
 R8
 R9
 R0
-Z21 8Waveform.vwf.vht
-Z22 FWaveform.vwf.vht
+Z21 8Waveform1.vwf.vht
+Z22 FWaveform1.vwf.vht
 l0
 L31
 VVm:HQfW]VB;;beh7?e[z03
 !s100 ZbZUd235@;AI7RJbHji7H2
 R13
 32
-R14
+Z23 !s110 1646325998
 !i10b 1
 R15
-Z23 !s90 -work|work|Waveform.vwf.vht|
-Z24 !s107 Waveform.vwf.vht|
+Z24 !s90 -work|work|Waveform1.vwf.vht|
+Z25 !s107 Waveform1.vwf.vht|
 !i113 1
 R18
 R19
 Atime_diff_arch
 R8
 R9
-Z25 DEx4 work 21 time_diff_vhd_vec_tst 0 22 Vm:HQfW]VB;;beh7?e[z03
-l52
+Z26 DEx4 work 21 time_diff_vhd_vec_tst 0 22 Vm:HQfW]VB;;beh7?e[z03
+l54
 L33
-V@Rchh46U^m7`g<zAdHKAJ0
-!s100 9>S>iQVLNZ;TkTLSPdJ`30
+Z27 Vmo4K>m]bUzd4MFkffnkAS1
+Z28 !s100 0h^_8cm:6`oCJfSY:;2791
 R13
 32
-R14
+R23
 !i10b 1
 R15
-R23
 R24
+R25
 !i113 1
 R18
 R19

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for time_diff
-Thu Mar 03 10:56:25 2022
+Thu Mar 03 12:04:16 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,16 +13,14 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Port Connectivity Checks: "seven_segment:hex0_inst"
- 12. Port Connectivity Checks: "seven_segment:hex1_inst"
- 13. Port Connectivity Checks: "seven_segment:hex2_inst"
- 14. Port Connectivity Checks: "seven_segment:hex3_inst"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Port Connectivity Checks: "seven_segment:hex0_inst"
+ 10. Port Connectivity Checks: "seven_segment:hex1_inst"
+ 11. Port Connectivity Checks: "seven_segment:hex2_inst"
+ 12. Port Connectivity Checks: "seven_segment:hex3_inst"
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
 
 
 
@@ -48,13 +46,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Mar 03 10:56:25 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Mar 03 12:04:16 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; time_diff                                   ;
 ; Top-level Entity Name           ; time_diff                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 32                                          ;
+; Total registers                 ; 47                                          ;
 ; Total pins                      ; 33                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -186,25 +184,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 26          ;
+; Estimate of Logic utilization (ALMs needed) ; 33          ;
 ;                                             ;             ;
-; Combinational ALUT usage for logic          ; 45          ;
+; Combinational ALUT usage for logic          ; 60          ;
 ;     -- 7 input functions                    ; 0           ;
 ;     -- 6 input functions                    ; 0           ;
 ;     -- 5 input functions                    ; 0           ;
 ;     -- 4 input functions                    ; 28          ;
-;     -- <=3 input functions                  ; 17          ;
+;     -- <=3 input functions                  ; 32          ;
 ;                                             ;             ;
-; Dedicated logic registers                   ; 32          ;
+; Dedicated logic registers                   ; 47          ;
 ;                                             ;             ;
 ; I/O pins                                    ; 33          ;
 ;                                             ;             ;
 ; Total DSP Blocks                            ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; process_0~0 ;
-; Maximum fan-out                             ; 32          ;
-; Total fan-out                               ; 318         ;
-; Average fan-out                             ; 2.22        ;
+; Maximum fan-out                             ; 47          ;
+; Total fan-out                               ; 393         ;
+; Average fan-out                             ; 2.27        ;
 +---------------------------------------------+-------------+
 
 
@@ -213,7 +211,7 @@ refer to the applicable agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                ; Entity Name   ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------+---------------+--------------+
-; |time_diff                   ; 45 (17)             ; 32 (32)                   ; 0                 ; 0          ; 33   ; 0            ; |time_diff                         ; time_diff     ; work         ;
+; |time_diff                   ; 60 (32)             ; 47 (47)                   ; 0                 ; 0          ; 33   ; 0            ; |time_diff                         ; time_diff     ; work         ;
 ;    |seven_segment:hex0_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex0_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex1_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex1_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex2_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex2_inst ; seven_segment ; work         ;
@@ -222,33 +220,13 @@ refer to the applicable agreement for further details.
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------+
-; Registers Removed During Synthesis                          ;
-+----------------------------------------+--------------------+
-; Register name                          ; Reason for Removal ;
-+----------------------------------------+--------------------+
-; clock[16..30]                          ; Lost fanout        ;
-; Total Number of Removed Registers = 15 ;                    ;
-+----------------------------------------+--------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                  ;
-+---------------+--------------------+-----------------------------------------------------------------------------------------+
-; Register name ; Reason for Removal ; Registers Removed due to This Register                                                  ;
-+---------------+--------------------+-----------------------------------------------------------------------------------------+
-; clock[30]     ; Lost Fanouts       ; clock[29], clock[28], clock[27], clock[26], clock[25], clock[24], clock[23], clock[22], ;
-;               ;                    ; clock[21], clock[20], clock[19], clock[18], clock[17], clock[16]                        ;
-+---------------+--------------------+-----------------------------------------------------------------------------------------+
-
-
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 32    ;
-; Number of registers using Synchronous Clear  ; 32    ;
+; Total registers                              ; 47    ;
+; Number of registers using Synchronous Clear  ; 47    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -298,20 +276,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 32                          ;
+; arriav_ff             ; 47                          ;
 ;     ENA SCLR          ; 16                          ;
-;     SCLR              ; 16                          ;
-; arriav_lcell_comb     ; 49                          ;
-;     arith             ; 16                          ;
-;         1 data inputs ; 16                          ;
+;     SCLR              ; 31                          ;
+; arriav_lcell_comb     ; 64                          ;
+;     arith             ; 31                          ;
+;         1 data inputs ; 31                          ;
 ;     normal            ; 33                          ;
 ;         1 data inputs ; 4                           ;
 ;         2 data inputs ; 1                           ;
 ;         4 data inputs ; 28                          ;
 ; boundary_port         ; 33                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.50                        ;
-; Average LUT depth     ; 1.69                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.41                        ;
 +-----------------------+-----------------------------+
 
 
@@ -320,7 +298,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -330,7 +308,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Mar 03 10:56:06 2022
+    Info: Processing started: Thu Mar 03 12:03:54 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off time_diff -c time_diff
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -340,21 +318,20 @@ Info (12021): Found 4 design units, including 2 entities, in source file time_di
     Info (12023): Found entity 1: seven_segment File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 5
     Info (12023): Found entity 2: time_diff File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 39
 Info (12127): Elaborating entity "time_diff" for the top level hierarchy
-Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex3_inst" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 82
+Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex3_inst" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 83
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 15 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 41
-Info (21057): Implemented 94 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 109 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 61 logic cells
+    Info (21061): Implemented 76 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4852 megabytes
-    Info: Processing ended: Thu Mar 03 10:56:25 2022
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:41
+    Info: Peak virtual memory: 4855 megabytes
+    Info: Processing ended: Thu Mar 03 12:04:16 2022
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:46
 
 

@@ -1,5 +1,5 @@
 EDA Netlist Writer report for time_diff
-Thu Mar 03 10:59:32 2022
+Thu Mar 03 11:46:36 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Mar 03 10:59:32 2022 ;
+; EDA Netlist Writer Status ; Successful - Thu Mar 03 11:46:36 2022 ;
 ; Revision Name             ; time_diff                             ;
 ; Top-level Entity Name     ; time_diff                             ;
 ; Family                    ; Cyclone V                             ;
@@ -93,14 +93,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Thu Mar 03 10:59:30 2022
+    Info: Processing started: Thu Mar 03 11:46:33 2022
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim/" time_diff -c time_diff
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file time_diff.vho in folder "C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4715 megabytes
-    Info: Processing ended: Thu Mar 03 10:59:32 2022
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Processing ended: Thu Mar 03 11:46:36 2022
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 
