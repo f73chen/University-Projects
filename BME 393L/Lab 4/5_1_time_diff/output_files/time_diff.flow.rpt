@@ -1,5 +1,5 @@
 Flow report for time_diff
-Sat Feb 26 01:25:57 2022
+Thu Mar 03 09:08:32 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Sat Feb 26 01:25:57 2022       ;
+; Flow Status                     ; Successful - Thu Mar 03 09:08:21 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; time_diff                                   ;
 ; Top-level Entity Name           ; time_diff                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC5C6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 23 / 29,080 ( < 1 % )                       ;
-; Total registers                 ; 32                                          ;
-; Total pins                      ; 31 / 364 ( 9 % )                            ;
+; Logic utilization (in ALMs)     ; 31 / 29,080 ( < 1 % )                       ;
+; Total registers                 ; 47                                          ;
+; Total pins                      ; 33 / 364 ( 9 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,567,040 ( 0 % )                       ;
 ; Total DSP Blocks                ; 0 / 150 ( 0 % )                             ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/26/2022 01:23:15 ;
+; Start date & time ; 03/03/2022 09:06:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; time_diff           ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 1096185595571.164585659414648          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 1096185595571.164631641303564          ; --            ; --          ; --         ;
 ; FITTER_EFFORT                       ; Standard Fit                           ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -100,13 +100,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:20     ; 1.0                     ; 4852 MB             ; 00:00:49                           ;
-; Fitter               ; 00:00:31     ; 1.0                     ; 6412 MB             ; 00:00:51                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4820 MB             ; 00:00:09                           ;
-; Timing Analyzer      ; 00:00:08     ; 1.1                     ; 5131 MB             ; 00:00:08                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4706 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4714 MB             ; 00:00:02                           ;
-; Total                ; 00:01:12     ; --                      ; --                  ; 00:02:01                           ;
+; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 4848 MB             ; 00:00:40                           ;
+; Fitter               ; 00:00:47     ; 1.0                     ; 6488 MB             ; 00:00:58                           ;
+; Assembler            ; 00:00:17     ; 1.0                     ; 4819 MB             ; 00:00:12                           ;
+; Timing Analyzer      ; 00:00:09     ; 1.0                     ; 5131 MB             ; 00:00:09                           ;
+; Total                ; 00:01:32     ; --                      ; --                  ; 00:01:59                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -119,8 +117,6 @@ refer to the applicable agreement for further details.
 ; Fitter               ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Assembler            ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Timing Analyzer      ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-SGH0NUG  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -131,8 +127,6 @@ quartus_map --read_settings_files=on --write_settings_files=off time_diff -c tim
 quartus_fit --read_settings_files=off --write_settings_files=off time_diff -c time_diff
 quartus_asm --read_settings_files=off --write_settings_files=off time_diff -c time_diff
 quartus_sta time_diff -c time_diff
-quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off time_diff -c time_diff --vector_source="C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/Waveform.vwf" --testbench_file="C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim/Waveform.vwf.vht"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim/" time_diff -c time_diff
 
 
 

@@ -38,7 +38,7 @@ use ieee.numeric_std.all;
 
 entity time_diff is port(
 	CLOCK_50_B5B: in std_logic;
-	KEY:          in std_logic_vector(1 downto 0);
+	KEY:          in std_logic_vector(3 downto 0);
 	hex3:	out std_logic_Vector(6 downto 0);
 	hex2:	out std_logic_Vector(6 downto 0);
 	hex1:	out std_logic_Vector(6 downto 0);
@@ -53,7 +53,7 @@ architecture main of time_diff is
 	end component;
 	
 	signal clock: unsigned(30 downto 0);
-	signal diff: std_logic_vector(15 downto 0);
+	signal diff:  std_logic_vector(15 downto 0);
 
 begin
 	-- buttons high when up, low when pressed
@@ -65,10 +65,11 @@ begin
 		if rising_edge(CLOCK_50_B5B) then
 			if (KEY(0) xor KEY(1)) = '1' then
 				clock <= clock + 1;
+			elsif key(3) = '1' then
+				diff <= std_logic_vector(to_unsigned(0, 16));
 			else
 				-- clock(15) is closest to 1 ms --> 2^16 * 20 ns = 1.31 ms
---				diff <= std_logic_vector(clock(30 downto 15));
-				diff <= std_logic_vector(clock(15 downto 0));
+				diff <= std_logic_vector(clock(30 downto 15));
 				clock <= to_unsigned(0, 31);
 			end if;
 		end if;

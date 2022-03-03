@@ -735,8 +735,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : Y11       :        :                   :      
 GND                          : Y12       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y13       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y14       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y15       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y16       :        :                   :         : 4A        :                
+KEY[2]                       : Y15       : input  : 1.2 V             :         : 4A        : Y              
+KEY[3]                       : Y16       : input  : 1.2 V             :         : 4A        : Y              
 VCCIO4A                      : Y17       : power  :                   : 1.2V    : 4A        :                
 hex0[6]                      : Y18       : output : 1.2 V             :         : 4A        : Y              
 hex0[5]                      : Y19       : output : 1.2 V             :         : 4A        : Y              
