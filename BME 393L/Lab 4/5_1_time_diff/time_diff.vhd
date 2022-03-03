@@ -39,10 +39,10 @@ use ieee.numeric_std.all;
 entity time_diff is port(
 	CLOCK_50_B5B: in std_logic;
 	KEY:          in std_logic_vector(3 downto 0);
-	hex3:	out std_logic_Vector(6 downto 0);
-	hex2:	out std_logic_Vector(6 downto 0);
-	hex1:	out std_logic_Vector(6 downto 0);
-	hex0:	out std_logic_Vector(6 downto 0) );
+	hex3:			 out std_logic_Vector(6 downto 0);
+	hex2:	       out std_logic_Vector(6 downto 0);
+	hex1:	       out std_logic_Vector(6 downto 0);
+	hex0:	       out std_logic_Vector(6 downto 0) );
 end entity time_diff;
 
 architecture main of time_diff is
@@ -52,40 +52,35 @@ architecture main of time_diff is
 		segments_out: 	out std_logic_vector(6 downto 0) );
 	end component;
 	
-	signal counter:	unsigned(15 downto 0);
-	signal hz1k:		std_logic;
-	signal diff:		std_logic_vector(15 downto 0);
+	signal clock:	unsigned(30 downto 0);
+	signal diff:	unsigned(15 downto 0);
 
 begin
-	-- Process to get 1 ms from clock
+	-- Buttons are high when up, low when pressed
+	-- Calculate the time between one high one low and both high or both low
+	-- AKA start when xor(a, b) and end when xnor(a, b)
 	process (CLOCK_50_B5B) begin
 		if rising_edge(CLOCK_50_B5B) then
-			
-			
-		end if;
-	end process;
-
-	-- buttons high when up, low when pressed
-	-- Calculate the time between one high one low and both high or both low
-	-- aka start when xor(a, b) and end when xnor(a, b)
-
-	divider: process (CLOCK_50_B5B)
-	begin
-		if rising_edge(CLOCK_50_B5B) then
+			-- Only one key is down
 			if (KEY(0) xor KEY(1)) = '1' then
 				clock <= clock + 1;
-			elsif key(3) = '1' then
-				diff <= std_logic_vector(to_unsigned(0, 16));
+				
+			-- Reset timer
+			elsif key(3) = '0' then
+				diff <= to_unsigned(0, 16);
+				clock <= to_unsigned(0, 31);
+				
+			-- Clock(15) is closest to 1 ms --> 2^16 * 20 ns = 1.31 ms
 			else
-				-- clock(15) is closest to 1 ms --> 2^16 * 20 ns = 1.31 ms
-				diff <= std_logic_vector(clock(30 downto 15));
+--				diff <= clock(30 downto 15);
+				diff <= clock(15 downto 0);
 				clock <= to_unsigned(0, 31);
 			end if;
 		end if;
 	end process;
 	
- 	hex3_inst:	entity work.seven_segment(behavioral) port map(diff(15 downto 12), '0', hex3);
- 	hex2_inst:	entity work.seven_segment(behavioral) port map(diff(11 downto 8), '0', hex2);
- 	hex1_inst:	entity work.seven_segment(behavioral) port map(diff(7 downto 4), '0', hex1);
- 	hex0_inst:	entity work.seven_segment(behavioral) port map(diff(3 downto 0), '0', hex0);
+ 	hex3_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(15 downto 12)), '0', hex3);
+ 	hex2_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(11 downto 8)), '0', hex2);
+ 	hex1_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(7 downto 4)), '0', hex1);
+ 	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(3 downto 0)), '0', hex0);
 end architecture;

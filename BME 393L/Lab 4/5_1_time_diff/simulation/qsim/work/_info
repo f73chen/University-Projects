@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/simulation/qsim
 Etime_diff
-Z1 w1645856757
+Z1 w1646323172
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
@@ -24,13 +24,13 @@ Z11 8time_diff.vho
 Z12 Ftime_diff.vho
 l0
 L38
-VJAz95h<<]mSig=^zjUK9W0
-!s100 h^a::l?8H9J4iKPI3:maN2
+V?<5VlG2O^H5RGI7C2VV5<1
+!s100 8C]V[6XB^h0>JBVSGQH7Q2
 Z13 OV;C;10.5b;63
 32
-Z14 !s110 1645856759
+Z14 !s110 1646323173
 !i10b 1
-Z15 !s108 1645856759.000000
+Z15 !s108 1646323173.000000
 Z16 !s90 -work|work|time_diff.vho|
 Z17 !s107 time_diff.vho|
 !i113 1
@@ -46,11 +46,11 @@ R7
 R8
 R9
 R10
-DEx4 work 9 time_diff 0 22 JAz95h<<]mSig=^zjUK9W0
-l175
-L83
-Va85Xa50K:O:0ZKRV^fT_71
-!s100 nPFCLU5jTUUKTIQeCmPZ32
+DEx4 work 9 time_diff 0 22 ?<5VlG2O^H5RGI7C2VV5<1
+l182
+L85
+Vlh]kD2G8i^OJR^ck9bjmP2
+!s100 n:1zYPP7MSQ5Q`[Anl1@j1
 R13
 32
 R14
@@ -62,7 +62,7 @@ R17
 R18
 R19
 Etime_diff_vhd_vec_tst
-Z20 w1645856755
+Z20 w1646323169
 R8
 R9
 R0
@@ -88,8 +88,8 @@ R9
 Z25 DEx4 work 21 time_diff_vhd_vec_tst 0 22 Vm:HQfW]VB;;beh7?e[z03
 l52
 L33
-Z26 VTXlfbSdNl_W3]IAb;]zc50
-Z27 !s100 D4LQ>22R5oJ0LHi988S=`3
+V@Rchh46U^m7`g<zAdHKAJ0
+!s100 9>S>iQVLNZ;TkTLSPdJ`30
 R13
 32
 R14

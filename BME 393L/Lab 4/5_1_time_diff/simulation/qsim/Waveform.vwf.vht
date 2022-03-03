@@ -18,7 +18,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "02/26/2022 01:25:55"
+-- Generated on "03/03/2022 10:59:29"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          time_diff
 -- 
@@ -38,7 +38,7 @@ SIGNAL hex0 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL hex1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL hex2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL hex3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-SIGNAL KEY : STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL KEY : STD_LOGIC_VECTOR(3 DOWNTO 0);
 COMPONENT time_diff
 	PORT (
 	CLOCK_50_B5B : IN STD_LOGIC;
@@ -46,7 +46,7 @@ COMPONENT time_diff
 	hex1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	hex2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	hex3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-	KEY : IN STD_LOGIC_VECTOR(1 DOWNTO 0)
+	KEY : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
@@ -66,9 +66,9 @@ t_prcs_CLOCK_50_B5B: PROCESS
 BEGIN
 LOOP
 	CLOCK_50_B5B <= '0';
-	WAIT FOR 5000 ps;
+	WAIT FOR 2500 ps;
 	CLOCK_50_B5B <= '1';
-	WAIT FOR 5000 ps;
+	WAIT FOR 2500 ps;
 	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
 END LOOP;
 END PROCESS t_prcs_CLOCK_50_B5B;
@@ -76,15 +76,40 @@ END PROCESS t_prcs_CLOCK_50_B5B;
 -- KEY[0]
 t_prcs_KEY_0: PROCESS
 BEGIN
-	FOR i IN 1 TO 6
-	LOOP
-		KEY(0) <= '0';
-		WAIT FOR 75000 ps;
-		KEY(0) <= '1';
-		WAIT FOR 75000 ps;
-	END LOOP;
 	KEY(0) <= '0';
-	WAIT FOR 75000 ps;
+	WAIT FOR 40000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 80000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 120000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 80000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(0) <= '0';
+	WAIT FOR 80000 ps;
 	KEY(0) <= '1';
 WAIT;
 END PROCESS t_prcs_KEY_0;
@@ -92,12 +117,70 @@ END PROCESS t_prcs_KEY_0;
 -- KEY[1]
 t_prcs_KEY_1: PROCESS
 BEGIN
-LOOP
 	KEY(1) <= '0';
-	WAIT FOR 125000 ps;
+	WAIT FOR 160000 ps;
 	KEY(1) <= '1';
-	WAIT FOR 125000 ps;
-	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
-END LOOP;
+	WAIT FOR 120000 ps;
+	KEY(1) <= '0';
+	WAIT FOR 80000 ps;
+	KEY(1) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(1) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(1) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(1) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(1) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(1) <= '0';
+	WAIT FOR 160000 ps;
+	KEY(1) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(1) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(1) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(1) <= '0';
+WAIT;
 END PROCESS t_prcs_KEY_1;
+
+-- KEY[3]
+t_prcs_KEY_3: PROCESS
+BEGIN
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 120000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 120000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '0';
+	WAIT FOR 40000 ps;
+	KEY(3) <= '1';
+	WAIT FOR 80000 ps;
+	KEY(3) <= '0';
+WAIT;
+END PROCESS t_prcs_KEY_3;
 END time_diff_arch;
