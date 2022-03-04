@@ -1,0 +1,1038 @@
+$comment
+	File created using the following command:
+		vcd file dot_scrolling.msim.vcd -direction
+$end
+$date
+	Fri Mar 04 11:25:37 2022
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module dot_scrolling_vhd_vec_tst $end
+$var wire 1 ! CLOCK_50_B5B $end
+$var wire 1 " GPIO [35] $end
+$var wire 1 # GPIO [34] $end
+$var wire 1 $ GPIO [33] $end
+$var wire 1 % GPIO [32] $end
+$var wire 1 & GPIO [31] $end
+$var wire 1 ' GPIO [30] $end
+$var wire 1 ( GPIO [29] $end
+$var wire 1 ) GPIO [28] $end
+$var wire 1 * GPIO [27] $end
+$var wire 1 + GPIO [26] $end
+$var wire 1 , GPIO [25] $end
+$var wire 1 - GPIO [24] $end
+$var wire 1 . GPIO [23] $end
+$var wire 1 / GPIO [22] $end
+$var wire 1 0 GPIO [21] $end
+$var wire 1 1 GPIO [20] $end
+$var wire 1 2 GPIO [19] $end
+$var wire 1 3 GPIO [18] $end
+$var wire 1 4 GPIO [17] $end
+$var wire 1 5 GPIO [16] $end
+$var wire 1 6 GPIO [15] $end
+$var wire 1 7 GPIO [14] $end
+$var wire 1 8 GPIO [13] $end
+$var wire 1 9 GPIO [12] $end
+$var wire 1 : GPIO [11] $end
+$var wire 1 ; GPIO [10] $end
+$var wire 1 < GPIO [9] $end
+$var wire 1 = GPIO [8] $end
+$var wire 1 > GPIO [7] $end
+$var wire 1 ? GPIO [6] $end
+$var wire 1 @ GPIO [5] $end
+$var wire 1 A GPIO [4] $end
+$var wire 1 B GPIO [3] $end
+$var wire 1 C GPIO [2] $end
+$var wire 1 D GPIO [1] $end
+$var wire 1 E GPIO [0] $end
+
+$scope module i1 $end
+$var wire 1 F gnd $end
+$var wire 1 G vcc $end
+$var wire 1 H unknown $end
+$var wire 1 I devoe $end
+$var wire 1 J devclrn $end
+$var wire 1 K devpor $end
+$var wire 1 L ww_devoe $end
+$var wire 1 M ww_devclrn $end
+$var wire 1 N ww_devpor $end
+$var wire 1 O ww_CLOCK_50_B5B $end
+$var wire 1 P ww_GPIO [35] $end
+$var wire 1 Q ww_GPIO [34] $end
+$var wire 1 R ww_GPIO [33] $end
+$var wire 1 S ww_GPIO [32] $end
+$var wire 1 T ww_GPIO [31] $end
+$var wire 1 U ww_GPIO [30] $end
+$var wire 1 V ww_GPIO [29] $end
+$var wire 1 W ww_GPIO [28] $end
+$var wire 1 X ww_GPIO [27] $end
+$var wire 1 Y ww_GPIO [26] $end
+$var wire 1 Z ww_GPIO [25] $end
+$var wire 1 [ ww_GPIO [24] $end
+$var wire 1 \ ww_GPIO [23] $end
+$var wire 1 ] ww_GPIO [22] $end
+$var wire 1 ^ ww_GPIO [21] $end
+$var wire 1 _ ww_GPIO [20] $end
+$var wire 1 ` ww_GPIO [19] $end
+$var wire 1 a ww_GPIO [18] $end
+$var wire 1 b ww_GPIO [17] $end
+$var wire 1 c ww_GPIO [16] $end
+$var wire 1 d ww_GPIO [15] $end
+$var wire 1 e ww_GPIO [14] $end
+$var wire 1 f ww_GPIO [13] $end
+$var wire 1 g ww_GPIO [12] $end
+$var wire 1 h ww_GPIO [11] $end
+$var wire 1 i ww_GPIO [10] $end
+$var wire 1 j ww_GPIO [9] $end
+$var wire 1 k ww_GPIO [8] $end
+$var wire 1 l ww_GPIO [7] $end
+$var wire 1 m ww_GPIO [6] $end
+$var wire 1 n ww_GPIO [5] $end
+$var wire 1 o ww_GPIO [4] $end
+$var wire 1 p ww_GPIO [3] $end
+$var wire 1 q ww_GPIO [2] $end
+$var wire 1 r ww_GPIO [1] $end
+$var wire 1 s ww_GPIO [0] $end
+$var wire 1 t \CLOCK_50_B5B~input_o\ $end
+$var wire 1 u \~QUARTUS_CREATED_GND~I_combout\ $end
+$var wire 1 v \scroll_counter[0]~4_combout\ $end
+$var wire 1 w \Add0~0_combout\ $end
+$var wire 1 x \scroll_counter[2]~3_combout\ $end
+$var wire 1 y \Equal0~1_combout\ $end
+$var wire 1 z row_driver [0] $end
+$var wire 1 { row_driver [1] $end
+$var wire 1 | row_driver [2] $end
+$var wire 1 } row_driver [3] $end
+$var wire 1 ~ row_driver [4] $end
+$var wire 1 !! row_driver [5] $end
+$var wire 1 "! row_driver [6] $end
+$var wire 1 #! row_driver [7] $end
+$var wire 1 $! ALT_INV_row_driver [7] $end
+$var wire 1 %! ALT_INV_row_driver [6] $end
+$var wire 1 &! ALT_INV_row_driver [5] $end
+$var wire 1 '! ALT_INV_row_driver [4] $end
+$var wire 1 (! ALT_INV_row_driver [3] $end
+$var wire 1 )! ALT_INV_row_driver [2] $end
+$var wire 1 *! ALT_INV_row_driver [1] $end
+$var wire 1 +! ALT_INV_row_driver [0] $end
+$var wire 1 ,! \ALT_INV_Add0~0_combout\ $end
+$var wire 1 -! \ALT_INV_scroll_counter[0]~4_combout\ $end
+$var wire 1 .! \ALT_INV_scroll_counter[2]~3_combout\ $end
+$var wire 1 /! \ALT_INV_Equal0~1_combout\ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0F
+1G
+xH
+1I
+1J
+1K
+1L
+1M
+1N
+0O
+0t
+xu
+xv
+xw
+xx
+xy
+x,!
+x-!
+x.!
+x/!
+1P
+0Q
+1R
+0S
+1T
+0U
+1V
+0W
+1X
+0Y
+1Z
+0[
+1\
+0]
+1^
+0_
+0`
+0a
+0b
+0c
+xd
+0e
+xf
+0g
+xh
+0i
+xj
+0k
+xl
+0m
+xn
+0o
+xp
+0q
+xr
+0s
+xz
+x{
+x|
+x}
+x~
+x!!
+x"!
+x#!
+x$!
+x%!
+x&!
+x'!
+x(!
+x)!
+x*!
+x+!
+1"
+0#
+1$
+0%
+1&
+0'
+1(
+0)
+1*
+0+
+1,
+0-
+1.
+0/
+10
+01
+02
+03
+04
+05
+x6
+07
+x8
+09
+x:
+0;
+x<
+0=
+x>
+0?
+x@
+0A
+xB
+0C
+xD
+0E
+$end
+#5000
+1!
+1O
+1t
+#10000
+0!
+0O
+0t
+#15000
+1!
+1O
+1t
+#20000
+0!
+0O
+0t
+#25000
+1!
+1O
+1t
+#30000
+0!
+0O
+0t
+#35000
+1!
+1O
+1t
+#40000
+0!
+0O
+0t
+#45000
+1!
+1O
+1t
+#50000
+0!
+0O
+0t
+#55000
+1!
+1O
+1t
+#60000
+0!
+0O
+0t
+#65000
+1!
+1O
+1t
+#70000
+0!
+0O
+0t
+#75000
+1!
+1O
+1t
+#80000
+0!
+0O
+0t
+#85000
+1!
+1O
+1t
+#90000
+0!
+0O
+0t
+#95000
+1!
+1O
+1t
+#100000
+0!
+0O
+0t
+#105000
+1!
+1O
+1t
+#110000
+0!
+0O
+0t
+#115000
+1!
+1O
+1t
+#120000
+0!
+0O
+0t
+#125000
+1!
+1O
+1t
+#130000
+0!
+0O
+0t
+#135000
+1!
+1O
+1t
+#140000
+0!
+0O
+0t
+#145000
+1!
+1O
+1t
+#150000
+0!
+0O
+0t
+#155000
+1!
+1O
+1t
+#160000
+0!
+0O
+0t
+#165000
+1!
+1O
+1t
+#170000
+0!
+0O
+0t
+#175000
+1!
+1O
+1t
+#180000
+0!
+0O
+0t
+#185000
+1!
+1O
+1t
+#190000
+0!
+0O
+0t
+#195000
+1!
+1O
+1t
+#200000
+0!
+0O
+0t
+#205000
+1!
+1O
+1t
+#210000
+0!
+0O
+0t
+#215000
+1!
+1O
+1t
+#220000
+0!
+0O
+0t
+#225000
+1!
+1O
+1t
+#230000
+0!
+0O
+0t
+#235000
+1!
+1O
+1t
+#240000
+0!
+0O
+0t
+#245000
+1!
+1O
+1t
+#250000
+0!
+0O
+0t
+#255000
+1!
+1O
+1t
+#260000
+0!
+0O
+0t
+#265000
+1!
+1O
+1t
+#270000
+0!
+0O
+0t
+#275000
+1!
+1O
+1t
+#280000
+0!
+0O
+0t
+#285000
+1!
+1O
+1t
+#290000
+0!
+0O
+0t
+#295000
+1!
+1O
+1t
+#300000
+0!
+0O
+0t
+#305000
+1!
+1O
+1t
+#310000
+0!
+0O
+0t
+#315000
+1!
+1O
+1t
+#320000
+0!
+0O
+0t
+#325000
+1!
+1O
+1t
+#330000
+0!
+0O
+0t
+#335000
+1!
+1O
+1t
+#340000
+0!
+0O
+0t
+#345000
+1!
+1O
+1t
+#350000
+0!
+0O
+0t
+#355000
+1!
+1O
+1t
+#360000
+0!
+0O
+0t
+#365000
+1!
+1O
+1t
+#370000
+0!
+0O
+0t
+#375000
+1!
+1O
+1t
+#380000
+0!
+0O
+0t
+#385000
+1!
+1O
+1t
+#390000
+0!
+0O
+0t
+#395000
+1!
+1O
+1t
+#400000
+0!
+0O
+0t
+#405000
+1!
+1O
+1t
+#410000
+0!
+0O
+0t
+#415000
+1!
+1O
+1t
+#420000
+0!
+0O
+0t
+#425000
+1!
+1O
+1t
+#430000
+0!
+0O
+0t
+#435000
+1!
+1O
+1t
+#440000
+0!
+0O
+0t
+#445000
+1!
+1O
+1t
+#450000
+0!
+0O
+0t
+#455000
+1!
+1O
+1t
+#460000
+0!
+0O
+0t
+#465000
+1!
+1O
+1t
+#470000
+0!
+0O
+0t
+#475000
+1!
+1O
+1t
+#480000
+0!
+0O
+0t
+#485000
+1!
+1O
+1t
+#490000
+0!
+0O
+0t
+#495000
+1!
+1O
+1t
+#500000
+0!
+0O
+0t
+#505000
+1!
+1O
+1t
+#510000
+0!
+0O
+0t
+#515000
+1!
+1O
+1t
+#520000
+0!
+0O
+0t
+#525000
+1!
+1O
+1t
+#530000
+0!
+0O
+0t
+#535000
+1!
+1O
+1t
+#540000
+0!
+0O
+0t
+#545000
+1!
+1O
+1t
+#550000
+0!
+0O
+0t
+#555000
+1!
+1O
+1t
+#560000
+0!
+0O
+0t
+#565000
+1!
+1O
+1t
+#570000
+0!
+0O
+0t
+#575000
+1!
+1O
+1t
+#580000
+0!
+0O
+0t
+#585000
+1!
+1O
+1t
+#590000
+0!
+0O
+0t
+#595000
+1!
+1O
+1t
+#600000
+0!
+0O
+0t
+#605000
+1!
+1O
+1t
+#610000
+0!
+0O
+0t
+#615000
+1!
+1O
+1t
+#620000
+0!
+0O
+0t
+#625000
+1!
+1O
+1t
+#630000
+0!
+0O
+0t
+#635000
+1!
+1O
+1t
+#640000
+0!
+0O
+0t
+#645000
+1!
+1O
+1t
+#650000
+0!
+0O
+0t
+#655000
+1!
+1O
+1t
+#660000
+0!
+0O
+0t
+#665000
+1!
+1O
+1t
+#670000
+0!
+0O
+0t
+#675000
+1!
+1O
+1t
+#680000
+0!
+0O
+0t
+#685000
+1!
+1O
+1t
+#690000
+0!
+0O
+0t
+#695000
+1!
+1O
+1t
+#700000
+0!
+0O
+0t
+#705000
+1!
+1O
+1t
+#710000
+0!
+0O
+0t
+#715000
+1!
+1O
+1t
+#720000
+0!
+0O
+0t
+#725000
+1!
+1O
+1t
+#730000
+0!
+0O
+0t
+#735000
+1!
+1O
+1t
+#740000
+0!
+0O
+0t
+#745000
+1!
+1O
+1t
+#750000
+0!
+0O
+0t
+#755000
+1!
+1O
+1t
+#760000
+0!
+0O
+0t
+#765000
+1!
+1O
+1t
+#770000
+0!
+0O
+0t
+#775000
+1!
+1O
+1t
+#780000
+0!
+0O
+0t
+#785000
+1!
+1O
+1t
+#790000
+0!
+0O
+0t
+#795000
+1!
+1O
+1t
+#800000
+0!
+0O
+0t
+#805000
+1!
+1O
+1t
+#810000
+0!
+0O
+0t
+#815000
+1!
+1O
+1t
+#820000
+0!
+0O
+0t
+#825000
+1!
+1O
+1t
+#830000
+0!
+0O
+0t
+#835000
+1!
+1O
+1t
+#840000
+0!
+0O
+0t
+#845000
+1!
+1O
+1t
+#850000
+0!
+0O
+0t
+#855000
+1!
+1O
+1t
+#860000
+0!
+0O
+0t
+#865000
+1!
+1O
+1t
+#870000
+0!
+0O
+0t
+#875000
+1!
+1O
+1t
+#880000
+0!
+0O
+0t
+#885000
+1!
+1O
+1t
+#890000
+0!
+0O
+0t
+#895000
+1!
+1O
+1t
+#900000
+0!
+0O
+0t
+#905000
+1!
+1O
+1t
+#910000
+0!
+0O
+0t
+#915000
+1!
+1O
+1t
+#920000
+0!
+0O
+0t
+#925000
+1!
+1O
+1t
+#930000
+0!
+0O
+0t
+#935000
+1!
+1O
+1t
+#940000
+0!
+0O
+0t
+#945000
+1!
+1O
+1t
+#950000
+0!
+0O
+0t
+#955000
+1!
+1O
+1t
+#960000
+0!
+0O
+0t
+#965000
+1!
+1O
+1t
+#970000
+0!
+0O
+0t
+#975000
+1!
+1O
+1t
+#980000
+0!
+0O
+0t
+#985000
+1!
+1O
+1t
+#990000
+0!
+0O
+0t
+#995000
+1!
+1O
+1t
+#1000000
