@@ -55,9 +55,9 @@ architecture main of traffic_light is
    signal state:  				state_names;
 	signal state_counter:		unsigned(3 downto 0);
 	
-	signal counter, counter2: 	unsigned(24 downto 0);
+	signal counter10:				unsigned(21 downto 0);
+	signal counter1:				unsigned(24 downto 0);
 	signal seconds:    			unsigned(3 downto 0);
-	signal hz_counter:			unsigned(3 downto 0);
 	signal hz1, hz10:				std_logic;
 	signal NSG, NSR, EWG, EWR: std_logic;
 	
@@ -67,19 +67,19 @@ begin
 		if rising_edge(CLOCK_50_B5B) then
 		
 			-- 10 Hz
-			if counter = to_unsigned(2499999, 25) then
-				counter <= to_unsigned(0, 25);
+			if counter10 = to_unsigned(2499999, 22) then
+				counter10 <= to_unsigned(0, 22);
 				hz10 <= not hz10;
 			else
-				counter <= counter + 1;
+				counter10 <= counter10 + 1;
 			end if;
 			
 			-- 1 Hz
-			if counter2 = to_unsigned(24999999, 25) then
-				counter2 <= to_unsigned(0, 25);
+			if counter1 = to_unsigned(24999999, 25) then
+				counter1 <= to_unsigned(0, 25);
 				hz1 <= not hz1;
 			else
-				counter2 <= counter2 + 1;
+				counter1 <= counter1 + 1;
 			end if;
 		end if;
 	end process;
@@ -92,34 +92,50 @@ begin
 				when ns0 =>
 					if seconds = "0001" then
 						seconds <= "0000";
+						state <= ns1;
+						state_counter <= "0001";
 					end if;
 				when ns1 =>
 					if seconds = "0100" then
 						seconds <= "0000";
+						state <= ns2;
+						state_counter <= "0010";
 					end if;
 				when ns2 =>
 					if seconds = "0010" then
 						seconds <= "0000";
+						state <= ns3;
+						state_counter <= "0011";
 					end if;
 				when ns3 =>
 					if seconds = "0000" then
 						seconds <= "0000";
+						state <= ew0;
+						state_counter <= "0100";
 					end if;
 				when ew0 =>
 					if seconds = "0001" then
 						seconds <= "0000";
+						state <= ew1;
+						state_counter <= "0101";
 					end if;
 				when ew1 =>
 					if seconds = "0100" then
 						seconds <= "0000";
+						state <= ew2;
+						state_counter <= "0110";
 					end if;
 				when ew2 =>
 					if seconds = "0010" then
 						seconds <= "0000";
+						state <= ew3;
+						state_counter <= "0111";
 					end if;
 				when ew3 =>
 					if seconds = "0000" then
 						seconds <= "0000";
+						state <= ns0;
+						state_counter <= "0000";
 					end if;
 			end case;
 		end if;
@@ -130,85 +146,45 @@ begin
 		if rising_edge(CLOCK_50_B5B) then
 			case state is
 				when ns0 =>
-					if seconds = "0001" then
-						state <= ns1;
-						state_counter <= "0001";
-					else
-						NSG <= hz10;
-						NSR <= '0';
-						EWG <= '0';
-						EWR <= '1';	
-					end if;
+					NSG <= hz10;
+					NSR <= '0';
+					EWG <= '0';
+					EWR <= '1';	
 				when ns1 =>
-					if seconds = "0100" then
-						state <= ns2;
-						state_counter <= "0010";
-					else
-						NSG <= '1';
-						NSR <= '0';
-						EWG <= '0';
-						EWR <= '1';
-					end if;
+					NSG <= '1';
+					NSR <= '0';
+					EWG <= '0';
+					EWR <= '1';
 				when ns2 =>
-					if seconds = "0010" then
-						state <= ns3;
-						state_counter <= "0011";
-					else
-						NSG <= '0';
-						NSR <= hz10;
-						EWG <= '0';
-						EWR <= '1';	
-					end if;
+					NSG <= '0';
+					NSR <= hz10;
+					EWG <= '0';
+					EWR <= '1';	
 				when ns3 =>
-					if seconds = "0000" then
-						state <= ew0;
-						state_counter <= "0100";
-					else
-						NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= '1';	
-					end if;
+					NSG <= '0';
+					NSR <= '1';
+					EWG <= '0';
+					EWR <= '1';	
 				when ew0 =>
-					if seconds = "0001" then
-						state <= ew1;
-						state_counter <= "0101";
-					else
-						NSG <= '0';
-						NSR <= '1';
-						EWG <= hz10;
-						EWR <= '0';	
-					end if;
+					NSG <= '0';
+					NSR <= '1';
+					EWG <= hz10;
+					EWR <= '0';	
 				when ew1 =>
-					if seconds = "0100" then
-						state <= ew2;
-						state_counter <= "0110";
-					else
-						NSG <= '0';
-						NSR <= '1';
-						EWG <= '1';
-						EWR <= '0';	
-					end if;
+					NSG <= '0';
+					NSR <= '1';
+					EWG <= '1';
+					EWR <= '0';	
 				when ew2 =>
-					if seconds = "0010" then
-						state <= ew3;
-						state_counter <= "0111";
-					else
-						NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= hz10;	
-					end if;
+					NSG <= '0';
+					NSR <= '1';
+					EWG <= '0';
+					EWR <= hz10;
 				when ew3 =>
-					if seconds = "0000" then
-						state <= ns0;
-						state_counter <= "0000";
-					else
-						NSG <= '0';
-						NSR <= '1';
-						EWG <= '0';
-						EWR <= '1';	
-					end if;
+					NSG <= '0';
+					NSR <= '1';
+					EWG <= '0';
+					EWR <= '1';	
 			end case;
 		end if;
 	end process;
