@@ -1,5 +1,5 @@
 Analysis & Synthesis report for time_diff
-Thu Mar 03 12:04:16 2022
+Fri Mar 04 09:54:33 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -14,13 +14,14 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Port Connectivity Checks: "seven_segment:hex0_inst"
- 10. Port Connectivity Checks: "seven_segment:hex1_inst"
- 11. Port Connectivity Checks: "seven_segment:hex2_inst"
- 12. Port Connectivity Checks: "seven_segment:hex3_inst"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Port Connectivity Checks: "seven_segment:hex0_inst"
+ 11. Port Connectivity Checks: "seven_segment:hex1_inst"
+ 12. Port Connectivity Checks: "seven_segment:hex2_inst"
+ 13. Port Connectivity Checks: "seven_segment:hex3_inst"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -46,7 +47,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Mar 03 12:04:16 2022       ;
+; Analysis & Synthesis Status     ; Successful - Fri Mar 04 09:54:33 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; time_diff                                   ;
 ; Top-level Entity Name           ; time_diff                                   ;
@@ -184,14 +185,14 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 33          ;
+; Estimate of Logic utilization (ALMs needed) ; 34          ;
 ;                                             ;             ;
-; Combinational ALUT usage for logic          ; 60          ;
+; Combinational ALUT usage for logic          ; 61          ;
 ;     -- 7 input functions                    ; 0           ;
 ;     -- 6 input functions                    ; 0           ;
 ;     -- 5 input functions                    ; 0           ;
 ;     -- 4 input functions                    ; 28          ;
-;     -- <=3 input functions                  ; 32          ;
+;     -- <=3 input functions                  ; 33          ;
 ;                                             ;             ;
 ; Dedicated logic registers                   ; 47          ;
 ;                                             ;             ;
@@ -201,8 +202,8 @@ refer to the applicable agreement for further details.
 ;                                             ;             ;
 ; Maximum fan-out node                        ; process_0~0 ;
 ; Maximum fan-out                             ; 47          ;
-; Total fan-out                               ; 393         ;
-; Average fan-out                             ; 2.27        ;
+; Total fan-out                               ; 396         ;
+; Average fan-out                             ; 2.28        ;
 +---------------------------------------------+-------------+
 
 
@@ -211,7 +212,7 @@ refer to the applicable agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                ; Entity Name   ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------+---------------+--------------+
-; |time_diff                   ; 60 (32)             ; 47 (47)                   ; 0                 ; 0          ; 33   ; 0            ; |time_diff                         ; time_diff     ; work         ;
+; |time_diff                   ; 61 (33)             ; 47 (47)                   ; 0                 ; 0          ; 33   ; 0            ; |time_diff                         ; time_diff     ; work         ;
 ;    |seven_segment:hex0_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex0_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex1_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex1_inst ; seven_segment ; work         ;
 ;    |seven_segment:hex2_inst| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |time_diff|seven_segment:hex2_inst ; seven_segment ; work         ;
@@ -233,6 +234,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Number of registers using Clock Enable       ; 16    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |time_diff|diff[12]        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-----------------------------------------------------+
@@ -279,12 +289,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; arriav_ff             ; 47                          ;
 ;     ENA SCLR          ; 16                          ;
 ;     SCLR              ; 31                          ;
-; arriav_lcell_comb     ; 64                          ;
+; arriav_lcell_comb     ; 65                          ;
 ;     arith             ; 31                          ;
 ;         1 data inputs ; 31                          ;
-;     normal            ; 33                          ;
+;     normal            ; 34                          ;
 ;         1 data inputs ; 4                           ;
 ;         2 data inputs ; 1                           ;
+;         3 data inputs ; 1                           ;
 ;         4 data inputs ; 28                          ;
 ; boundary_port         ; 33                          ;
 ;                       ;                             ;
@@ -308,7 +319,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Mar 03 12:03:54 2022
+    Info: Processing started: Fri Mar 04 09:54:09 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off time_diff -c time_diff
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -324,14 +335,14 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/5_1_time_diff/time_diff.vhd Line: 41
-Info (21057): Implemented 109 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 110 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 76 logic cells
+    Info (21061): Implemented 77 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4855 megabytes
-    Info: Processing ended: Thu Mar 03 12:04:16 2022
-    Info: Elapsed time: 00:00:22
+    Info: Peak virtual memory: 4852 megabytes
+    Info: Processing ended: Fri Mar 04 09:54:33 2022
+    Info: Elapsed time: 00:00:24
     Info: Total CPU time (on all processors): 00:00:46
 
 

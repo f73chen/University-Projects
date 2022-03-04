@@ -49,7 +49,7 @@ architecture main of time_diff is
 	component seven_segment is port(
 		data_in:			in std_logic_vector(3 downto 0);
 		blanking:		in std_logic;	
-		segments_out: 	out std_logic_vector(6 downto 0) );
+		segments_out: out std_logic_vector(6 downto 0) );
 	end component;
 	
 	signal clock:	unsigned(30 downto 0);
@@ -65,6 +65,7 @@ begin
 			-- Only one key is down
 			if (KEY(0) xor KEY(1)) = '1' then
 				clock <= clock + 1;
+				diff <= clock(30 downto 15);
 				
 			-- Reset timer
 			elsif KEY(3) = '0' then
@@ -73,7 +74,6 @@ begin
 				
 			-- Clock(15) is closest to 1 ms --> 2^16 * 20 ns = 1.31 ms
 			else
-				diff <= clock(30 downto 15);
 				clock <= to_unsigned(0, 31);
 			end if;
 			
@@ -85,3 +85,5 @@ begin
  	hex1_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(7 downto 4)), '0', hex1);
  	hex0_inst:	entity work.seven_segment(behavioral) port map(std_logic_vector(diff(3 downto 0)), '0', hex0);
 end architecture;
+
+
