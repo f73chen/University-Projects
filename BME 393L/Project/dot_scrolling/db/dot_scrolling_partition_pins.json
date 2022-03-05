@@ -34,6 +34,106 @@
 				{
 					"name" : "GPIO[15]",
 					"strict" : false
+				},
+				{
+					"name" : "GPIO[21]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[23]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[25]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[27]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[29]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[31]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[33]",
+					"strict" : false
+				},
+				{
+					"name" : "GPIO[35]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "row_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "col_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50_B5B",
+					"strict" : false
 				}
 			]
 		}
