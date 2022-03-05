@@ -4,8 +4,7 @@ use ieee.numeric_std.all;
 
 entity dot_scrolling is port( 
 	CLOCK_50_B5B: in std_logic;
-	GPIO:			 out std_logic_vector(35 downto 0);
-	row_out, col_out: out std_logic_vector(0 to 7) ); 
+	GPIO:			 out std_logic_vector(35 downto 0) ); 
 end entity dot_scrolling; 
 
 Architecture main of dot_scrolling is 
@@ -27,10 +26,8 @@ begin
 	end process;
 	
 	-- Dot scrolling
---	process (hz10) begin
---		if rising_edge(hz10) then
-	process (CLOCK_50_B5B) begin
-		if rising_edge(CLOCK_50_B5B) then
+	process (hz10) begin
+		if rising_edge(hz10) then
 			col_driver <= col_driver(7) & col_driver(0 to 6);
 			if scroll_counter = "111" then
 				scroll_counter <= "000";
@@ -58,7 +55,4 @@ begin
 	GPIO(31) <= col_driver(5); 
 	GPIO(33) <= col_driver(6); 
 	GPIO(35) <= col_driver(7);
-	
-	row_out <= row_driver;
-	col_out <= col_driver;
 end architecture; 
