@@ -17,11 +17,11 @@ of each sensor will need to be initialized by the user.
 #include "math.h"
 
 //Used to store the x-coordinate of each sensor. Initialize the sensor chosen as the origin to 0. Current values are in cm.
-const float A0x = 0;    // Green
-const float A1x = -4;
-const float A2x = -1;    // White
+const float A0x = 0;    // Green, Blue
+const float A1x = -4; 
+const float A2x = -1;    // White, Red
 const float A3x = -3;
-const float A6x = 4;   // Yellow
+const float A6x = 4;   // Yellow, Black
 const float A7x = 3.5;
 
 //Used to store the y-coordinate of each sensor. Initialize the sensor chosen as the origin to 0. Current values are in cm.
