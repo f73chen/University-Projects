@@ -25,15 +25,15 @@ CLOCK_50_B5B => counter[21].CLK
 CLOCK_50_B5B => counter[22].CLK
 CLOCK_50_B5B => counter[23].CLK
 CLOCK_50_B5B => counter[24].CLK
-LEDG[0] <= <GND>
-LEDG[1] <= <GND>
-LEDG[2] <= <GND>
-LEDG[3] <= <GND>
-LEDG[4] <= <GND>
-LEDG[5] <= clock_1_Hz.DB_MAX_OUTPUT_PORT_TYPE
-LEDG[6] <= <GND>
-LEDG[7] <= <GND>
-LEDG[8] <= <GND>
-LEDG[9] <= <GND>
+LEDG[0] << <GND>
+LEDG[1] << <GND>
+LEDG[2] << <GND>
+LEDG[3] << <GND>
+LEDG[4] << <GND>
+LEDG[5] << clock_1_Hz.DB_MAX_OUTPUT_PORT_TYPE
+LEDG[6] << <GND>
+LEDG[7] << <GND>
+LEDG[8] << <GND>
+LEDG[9] << <GND>
 
 
