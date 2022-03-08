@@ -1,5 +1,5 @@
 Assembler report for dot_scrolling
-Fri Mar 04 11:22:11 2022
+Tue Mar 08 12:39:16 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -10,8 +10,8 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof
-  6. Assembler Device Options: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof
+  5. Assembler Device Options: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof
+  6. Assembler Device Options: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof
   7. Assembler Messages
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Mar 04 11:22:11 2022 ;
+; Assembler Status      ; Successful - Tue Mar 08 12:39:16 2022 ;
 ; Revision Name         ; dot_scrolling                         ;
 ; Top-level Entity Name ; dot_scrolling                         ;
 ; Family                ; Cyclone V                             ;
@@ -53,35 +53,35 @@ refer to the applicable agreement for further details.
 +--------+---------+---------------+
 
 
-+--------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                              ;
-+--------------------------------------------------------------------------------------------------------+
-; File Name                                                                                              ;
-+--------------------------------------------------------------------------------------------------------+
-; C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof ;
-; C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof ;
-+--------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                    ;
++--------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                    ;
++--------------------------------------------------------------------------------------------------------------+
+; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof ;
+; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof ;
++--------------------------------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof ;
-+----------------+-----------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                         ;
-+----------------+-----------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00783F87                                                                                                      ;
-; Checksum       ; 0x00783F87                                                                                                      ;
-+----------------+-----------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.sof ;
++----------------+-----------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                               ;
++----------------+-----------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x0078C73B                                                                                                            ;
+; Checksum       ; 0x0078C73B                                                                                                            ;
++----------------+-----------------------------------------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof ;
-+--------------------+-------------------------------------------------------------------------------------------------------------+
-; Option             ; Setting                                                                                                     ;
-+--------------------+-------------------------------------------------------------------------------------------------------------+
-; JTAG usercode      ; 0x00000000                                                                                                  ;
-; Checksum           ; 0xECE27665                                                                                                  ;
-; Compression Ratio  ; 3                                                                                                           ;
-+--------------------+-------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/dot_scrolling/output_files/dot_scrolling.pof ;
++--------------------+-------------------------------------------------------------------------------------------------------------------+
+; Option             ; Setting                                                                                                           ;
++--------------------+-------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode      ; 0x00000000                                                                                                        ;
+; Checksum           ; 0xECE086C6                                                                                                        ;
+; Compression Ratio  ; 3                                                                                                                 ;
++--------------------+-------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -90,15 +90,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Mar 04 11:21:58 2022
+    Info: Processing started: Tue Mar 08 12:39:08 2022
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off dot_scrolling -c dot_scrolling
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4815 megabytes
-    Info: Processing ended: Fri Mar 04 11:22:11 2022
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:13
+    Info: Peak virtual memory: 4820 megabytes
+    Info: Processing ended: Tue Mar 08 12:39:16 2022
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:08
 
 

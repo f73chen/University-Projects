@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ALL_LEDs_flashing
-Wed Feb 09 11:23:05 2022
+Tue Mar 08 12:09:44 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -42,7 +42,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Feb 09 11:23:05 2022       ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 08 12:09:44 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; ALL_LEDs_flashing                           ;
 ; Top-level Entity Name           ; ALL_LEDs_flashing                           ;
@@ -154,7 +154,7 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
+; Number detected on machine ; 4           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
@@ -166,13 +166,13 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                           ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                    ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------+---------+
-; ALL_LEDs_flashing.vhd            ; yes             ; User VHDL File  ; C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                            ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; ALL_LEDs_flashing.vhd            ; yes             ; User VHDL File  ; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------------+
@@ -253,7 +253,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -263,61 +263,59 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Feb 09 11:22:43 2022
+    Info: Processing started: Tue Mar 08 12:09:32 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ALL_LEDs_flashing -c ALL_LEDs_flashing
-Info (125068): Revision "ALL_LEDs_flashing" was previously opened in Quartus Prime software version 16.1.0 Lite Edition. Created Quartus Prime Default Settings File C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing_assignment_defaults.qdf, which contains the default assignment setting information from Quartus Prime software version 16.1.0 Lite Edition.
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file all_leds_flashing.vhd
-    Info (12022): Found design unit 1: ALL_LEDs_flashing-main File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 14
-    Info (12023): Found entity 1: ALL_LEDs_flashing File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 7
+    Info (12022): Found design unit 1: ALL_LEDs_flashing-main File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 14
+    Info (12023): Found entity 1: ALL_LEDs_flashing File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 7
 Info (12127): Elaborating entity "ALL_LEDs_flashing" for the top level hierarchy
-Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at ALL_LEDs_flashing.vhd(10) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[21]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[23]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[25]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[27]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[29]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[31]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[33]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
-    Warning (13410): Pin "GPIO[35]" is stuck at GND File: C:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[21]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[23]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[25]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[27]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[29]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[31]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[33]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
+    Warning (13410): Pin "GPIO[35]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/all_leds_flashing/ALL_LEDs_flashing.vhd Line: 10
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -326,9 +324,9 @@ Info (21057): Implemented 62 device resources after synthesis - the final resour
     Info (21059): Implemented 36 output pins
     Info (21061): Implemented 25 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 46 warnings
-    Info: Peak virtual memory: 4855 megabytes
-    Info: Processing ended: Wed Feb 09 11:23:05 2022
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:43
+    Info: Peak virtual memory: 4850 megabytes
+    Info: Processing ended: Tue Mar 08 12:09:44 2022
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:22
 
 
