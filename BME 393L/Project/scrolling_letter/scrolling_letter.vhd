@@ -8,29 +8,31 @@ entity scrolling_letter is port(
 end entity scrolling_letter; 
 
 Architecture main of scrolling_letter is 
-	signal counter5:      unsigned(22 downto 0);
-	signal counter1k:     unsigned(14 downto 0);
+	signal counter5:          unsigned(22 downto 0);
+	signal counter1k:         unsigned(14 downto 0);
 	signal fast, slow, index: integer range 0 to 56 := 0;
-	signal hz1k, hz5:     std_logic;
-	signal row_driver:    std_logic_vector(0 to 7);
-	signal col_driver:    std_logic_vector(0 to 7) := "01111111"; 
-	signal letter:        std_logic_vector(0 to 63) := "0111110010000010100010101000010001111010000000000000000000000000";
+	signal hz1k, hz5:         std_logic;
+	signal row_driver:        std_logic_vector(0 to 7);
+	signal col_driver:        std_logic_vector(0 to 7) := "01111111"; 
+	signal letter:            std_logic_vector(0 to 63) := "0111110010000010100010101000010001111010000000000000000000000000";
 	
 begin 
 	-- Extract a 100 Hz signal
 	process (CLOCK_50_B5B) begin
-		if counter1k = to_unsigned(24999, 15) then
-			counter1k <= to_unsigned(0, 15);
-			hz1k <= not hz1k;
-		else
-			counter1k <= counter1k + 1;
-		end if;
-		
-		if counter5 = to_unsigned(4999999, 23) then
-			counter5 <= to_unsigned(0, 23);
-			hz5 <= not hz5;
-		else
-			counter5 <= counter5 + 1;
+		if rising_edge(CLOCK_50_B5B) then
+			if counter1k = to_unsigned(24999, 15) then
+				counter1k <= to_unsigned(0, 15);
+				hz1k <= not hz1k;
+			else
+				counter1k <= counter1k + 1;
+			end if;
+			
+			if counter5 = to_unsigned(4999999, 23) then
+				counter5 <= to_unsigned(0, 23);
+				hz5 <= not hz5;
+			else
+				counter5 <= counter5 + 1;
+			end if;
 		end if;
 	end process;
 	
@@ -44,7 +46,7 @@ begin
 				fast <= fast + 8;
 			end if;
 			
-			index <= (fast + slow) mod 56;
+			index <= (fast + slow) mod 64;
 		end if;
 	end process;
 	
