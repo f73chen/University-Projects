@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Fri Mar 04 20:51:31 2022
+Analysis & Synthesis Status : Successful - Tue Mar 08 12:49:06 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : stationary_letter
 Top-level Entity Name : stationary_letter
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 11
+Total registers : 27
 Total pins : 37
 Total virtual pins : 0
 Total block memory bits : 0

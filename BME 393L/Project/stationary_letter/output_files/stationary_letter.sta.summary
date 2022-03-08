@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'CLOCK_50_B5B'
+Slack : -3.836
+TNS   : -42.500
+
+Type  : Slow 1100mV 85C Model Setup 'hz1k'
+Slack : -1.504
+TNS   : -18.143
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK_50_B5B'
+Slack : 0.438
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'hz1k'
+Slack : 0.591
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B5B'
+Slack : -0.667
+TNS   : -15.147
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'hz1k'
+Slack : -0.538
+TNS   : -13.069
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK_50_B5B'
+Slack : -4.142
+TNS   : -43.338
+
+Type  : Slow 1100mV 0C Model Setup 'hz1k'
+Slack : -1.541
+TNS   : -18.396
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK_50_B5B'
+Slack : 0.444
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'hz1k'
+Slack : 0.550
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50_B5B'
+Slack : -0.701
+TNS   : -15.195
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'hz1k'
+Slack : -0.538
+TNS   : -13.121
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK_50_B5B'
+Slack : -2.700
+TNS   : -12.353
+
+Type  : Fast 1100mV 85C Model Setup 'hz1k'
+Slack : -0.428
+TNS   : -4.349
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK_50_B5B'
+Slack : 0.198
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'hz1k'
+Slack : 0.240
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B5B'
+Slack : -0.742
+TNS   : -8.581
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'hz1k'
+Slack : 0.143
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50_B5B'
+Slack : -2.300
+TNS   : -10.429
+
+Type  : Fast 1100mV 0C Model Setup 'hz1k'
+Slack : -0.363
+TNS   : -3.352
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50_B5B'
+Slack : 0.189
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'hz1k'
+Slack : 0.204
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50_B5B'
+Slack : -0.760
+TNS   : -10.426
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'hz1k'
+Slack : 0.142
+TNS   : 0.000
+
+------------------------------------------------------------

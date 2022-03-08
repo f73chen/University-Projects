@@ -1,5 +1,5 @@
 Analysis & Synthesis report for stationary_letter
-Fri Mar 04 20:51:31 2022
+Tue Mar 08 12:49:06 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,14 +13,12 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. User-Specified and Inferred Latches
-  9. Logic Cells Representing Combinational Loops
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Post-Synthesis Netlist Statistics for Top Partition
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -46,13 +44,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Mar 04 20:51:31 2022       ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 08 12:49:06 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; stationary_letter                           ;
 ; Top-level Entity Name           ; stationary_letter                           ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 11                                          ;
+; Total registers                 ; 27                                          ;
 ; Total pins                      ; 37                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -158,51 +156,53 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                            ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                     ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------+---------+
-; stationary_letter.vhd            ; yes             ; User VHDL File  ; C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                            ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; stationary_letter.vhd            ; yes             ; User VHDL File  ; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+---------------------------------------------+----------+
-; Resource                                    ; Usage    ;
-+---------------------------------------------+----------+
-; Estimate of Logic utilization (ALMs needed) ; 17       ;
-;                                             ;          ;
-; Combinational ALUT usage for logic          ; 31       ;
-;     -- 7 input functions                    ; 0        ;
-;     -- 6 input functions                    ; 0        ;
-;     -- 5 input functions                    ; 3        ;
-;     -- 4 input functions                    ; 1        ;
-;     -- <=3 input functions                  ; 27       ;
-;                                             ;          ;
-; Dedicated logic registers                   ; 11       ;
-;                                             ;          ;
-; I/O pins                                    ; 37       ;
-;                                             ;          ;
-; Total DSP Blocks                            ; 0        ;
-;                                             ;          ;
-; Maximum fan-out node                        ; Equal0~4 ;
-; Maximum fan-out                             ; 17       ;
-; Total fan-out                               ; 162      ;
-; Average fan-out                             ; 1.40     ;
-+---------------------------------------------+----------+
++------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                      ;
++---------------------------------------------+--------------------+
+; Resource                                    ; Usage              ;
++---------------------------------------------+--------------------+
+; Estimate of Logic utilization (ALMs needed) ; 17                 ;
+;                                             ;                    ;
+; Combinational ALUT usage for logic          ; 30                 ;
+;     -- 7 input functions                    ; 0                  ;
+;     -- 6 input functions                    ; 1                  ;
+;     -- 5 input functions                    ; 3                  ;
+;     -- 4 input functions                    ; 0                  ;
+;     -- <=3 input functions                  ; 26                 ;
+;                                             ;                    ;
+; Dedicated logic registers                   ; 27                 ;
+;                                             ;                    ;
+; I/O pins                                    ; 37                 ;
+;                                             ;                    ;
+; Total DSP Blocks                            ; 0                  ;
+;                                             ;                    ;
+; Maximum fan-out node                        ; CLOCK_50_B5B~input ;
+; Maximum fan-out                             ; 16                 ;
+; Total fan-out                               ; 196                ;
+; Average fan-out                             ; 1.50               ;
++---------------------------------------------+--------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -210,46 +210,9 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name       ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------------+--------------+
-; |stationary_letter         ; 31 (31)             ; 11 (11)                   ; 0                 ; 0          ; 37   ; 0            ; |stationary_letter  ; stationary_letter ; work         ;
+; |stationary_letter         ; 30 (30)             ; 27 (27)                   ; 0                 ; 0          ; 37   ; 0            ; |stationary_letter  ; stationary_letter ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+---------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                               ;
-+----------------------------------------------------+---------------------+------------------------+
-; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
-+----------------------------------------------------+---------------------+------------------------+
-; hz1k                                               ; counter[14]         ; yes                    ;
-; Number of user-specified and inferred latches = 1  ;                     ;                        ;
-+----------------------------------------------------+---------------------+------------------------+
-Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
-
-
-+-------------------------------------------------------------+
-; Logic Cells Representing Combinational Loops                ;
-+--------------------------------------------------------+----+
-; Logic Cell Name                                        ;    ;
-+--------------------------------------------------------+----+
-; counter[14]~0                                          ;    ;
-; Equal0~0                                               ;    ;
-; counter[13]~1                                          ;    ;
-; counter[8]~2                                           ;    ;
-; counter[7]~3                                           ;    ;
-; counter[5]~4                                           ;    ;
-; counter[2]~5                                           ;    ;
-; counter[1]~6                                           ;    ;
-; counter[12]~7                                          ;    ;
-; counter[11]~8                                          ;    ;
-; counter[10]~9                                          ;    ;
-; counter[9]~10                                          ;    ;
-; counter[6]~11                                          ;    ;
-; counter[4]~12                                          ;    ;
-; counter[3]~13                                          ;    ;
-; counter[0]~14                                          ;    ;
-; Number of logic cells representing combinational loops ; 16 ;
-+--------------------------------------------------------+----+
-Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +--------------------------------------------------------------------------------+
@@ -267,8 +230,8 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 11    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 27    ;
+; Number of registers using Synchronous Clear  ; 15    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -298,24 +261,23 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 11                          ;
-;     plain             ; 11                          ;
-; arriav_lcell_comb     ; 43                          ;
-;     arith             ; 14                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 12                          ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 29                          ;
+; arriav_ff             ; 27                          ;
+;     SCLR              ; 15                          ;
+;     plain             ; 12                          ;
+; arriav_lcell_comb     ; 42                          ;
+;     arith             ; 15                          ;
+;         1 data inputs ; 15                          ;
+;     normal            ; 27                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 14                          ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 5                           ;
-;         4 data inputs ; 1                           ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 6                           ;
 ;         5 data inputs ; 3                           ;
+;         6 data inputs ; 1                           ;
 ; boundary_port         ; 37                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.30                        ;
-; Average LUT depth     ; 2.00                        ;
+; Max LUT depth         ; 2.40                        ;
+; Average LUT depth     ; 1.71                        ;
 +-----------------------+-----------------------------+
 
 
@@ -334,71 +296,63 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Mar 04 20:51:20 2022
+    Info: Processing started: Tue Mar 08 12:48:56 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off stationary_letter -c stationary_letter
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file stationary_letter.vhd
-    Info (12022): Found design unit 1: stationary_letter-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 10
-    Info (12023): Found entity 1: stationary_letter File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 5
+    Info (12022): Found design unit 1: stationary_letter-main File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 10
+    Info (12023): Found entity 1: stationary_letter File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 5
 Info (12127): Elaborating entity "stationary_letter" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at stationary_letter.vhd(21): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 21
-Warning (10492): VHDL Process Statement warning at stationary_letter.vhd(23): signal "hz1k" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 23
-Warning (10492): VHDL Process Statement warning at stationary_letter.vhd(25): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 25
-Warning (10631): VHDL Process Statement warning at stationary_letter.vhd(20): inferring latch(es) for signal or variable "hz1k", which holds its previous value in one or more paths through the process File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 20
-Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at stationary_letter.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-Info (10041): Inferred latch for "hz1k" at stationary_letter.vhd(20) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 20
+Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at stationary_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[15]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
-    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[15]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
+    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 7
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "CLOCK_50_B5B" File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/stationary_letter/stationary_letter.vhd Line: 6
-Info (21057): Implemented 74 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 73 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 37 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 45 warnings
-    Info: Peak virtual memory: 4855 megabytes
-    Info: Processing ended: Fri Mar 04 20:51:31 2022
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:21
+    Info (21061): Implemented 36 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 39 warnings
+    Info: Peak virtual memory: 4856 megabytes
+    Info: Processing ended: Tue Mar 08 12:49:06 2022
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:22
 
 

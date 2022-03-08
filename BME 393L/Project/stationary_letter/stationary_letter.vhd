@@ -18,11 +18,13 @@ Architecture main of stationary_letter is
 begin 
 	-- Extract a 100 Hz signal
 	process (CLOCK_50_B5B) begin
-		if counter = to_unsigned(24999, 15) then
-			counter <= to_unsigned(0, 15);
-			hz1k <= not hz1k;
-		else
-			counter <= counter + 1;
+		if rising_edge(CLOCK_50_B5B) then
+			if counter = to_unsigned(24999, 15) then
+				counter <= to_unsigned(0, 15);
+				hz1k <= not hz1k;
+			else
+				counter <= counter + 1;
+			end if;
 		end if;
 	end process;
 	
