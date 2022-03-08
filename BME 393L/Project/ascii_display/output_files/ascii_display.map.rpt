@@ -1,0 +1,382 @@
+Analysis & Synthesis report for ascii_display
+Tue Mar 08 13:45:08 2022
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Port Connectivity Checks: "seven_segment:hex3_insta"
+ 12. Port Connectivity Checks: "seven_segment:hex2_insta"
+ 13. Port Connectivity Checks: "seven_segment:hex1_insta"
+ 14. Port Connectivity Checks: "seven_segment:hex0_insta"
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Mar 08 13:45:08 2022       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; ascii_display                               ;
+; Top-level Entity Name           ; ascii_display                               ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 12                                          ;
+; Total pins                      ; 47                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC5C6F27C7     ;                    ;
+; Top-level entity name                                                           ; ascii_display      ; ascii_display      ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                           ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                    ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------+---------+
+; ascii_display.vhd                ; yes             ; User VHDL File  ; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimate of Logic utilization (ALMs needed) ; 20           ;
+;                                             ;              ;
+; Combinational ALUT usage for logic          ; 40           ;
+;     -- 7 input functions                    ; 0            ;
+;     -- 6 input functions                    ; 0            ;
+;     -- 5 input functions                    ; 9            ;
+;     -- 4 input functions                    ; 15           ;
+;     -- <=3 input functions                  ; 16           ;
+;                                             ;              ;
+; Dedicated logic registers                   ; 12           ;
+;                                             ;              ;
+; I/O pins                                    ; 47           ;
+;                                             ;              ;
+; Total DSP Blocks                            ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; char_pntr[0] ;
+; Maximum fan-out                             ; 13           ;
+; Total fan-out                               ; 249          ;
+; Average fan-out                             ; 1.71         ;
++---------------------------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                             ;
++-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------+---------------+--------------+
+; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                     ; Entity Name   ; Library Name ;
++-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------+---------------+--------------+
+; |ascii_display                ; 40 (12)             ; 12 (12)                   ; 0                 ; 0          ; 47   ; 0            ; |ascii_display                          ; ascii_display ; work         ;
+;    |seven_segment:hex0_insta| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ascii_display|seven_segment:hex0_insta ; seven_segment ; work         ;
+;    |seven_segment:hex1_insta| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ascii_display|seven_segment:hex1_insta ; seven_segment ; work         ;
+;    |seven_segment:hex2_insta| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ascii_display|seven_segment:hex2_insta ; seven_segment ; work         ;
+;    |seven_segment:hex3_insta| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ascii_display|seven_segment:hex3_insta ; seven_segment ; work         ;
++-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------+---------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; char_pntr[5]                          ; Lost fanout        ;
+; Total Number of Removed Registers = 1 ;                    ;
++---------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 12    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; char_pntr[0]                           ; 13      ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "seven_segment:hex3_insta" ;
++------------+-------+----------+----------------------+
+; Port       ; Type  ; Severity ; Details              ;
++------------+-------+----------+----------------------+
+; data_in[3] ; Input ; Info     ; Stuck at GND         ;
+; blanking   ; Input ; Info     ; Stuck at GND         ;
++------------+-------+----------+----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "seven_segment:hex2_insta" ;
++----------+-------+----------+------------------------+
+; Port     ; Type  ; Severity ; Details                ;
++----------+-------+----------+------------------------+
+; blanking ; Input ; Info     ; Stuck at GND           ;
++----------+-------+----------+------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "seven_segment:hex1_insta" ;
++------------+-------+----------+----------------------+
+; Port       ; Type  ; Severity ; Details              ;
++------------+-------+----------+----------------------+
+; data_in[3] ; Input ; Info     ; Stuck at GND         ;
+; blanking   ; Input ; Info     ; Stuck at GND         ;
++------------+-------+----------+----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "seven_segment:hex0_insta" ;
++----------+-------+----------+------------------------+
+; Port     ; Type  ; Severity ; Details                ;
++----------+-------+----------+------------------------+
+; blanking ; Input ; Info     ; Stuck at GND           ;
++----------+-------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 12                          ;
+;     plain             ; 12                          ;
+; arriav_lcell_comb     ; 43                          ;
+;     normal            ; 43                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 1                           ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 15                          ;
+;         5 data inputs ; 9                           ;
+; boundary_port         ; 47                          ;
+;                       ;                             ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 1.73                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Tue Mar 08 13:44:57 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ascii_display -c ascii_display
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 4 design units, including 2 entities, in source file ascii_display.vhd
+    Info (12022): Found design unit 1: seven_segment-behavioral File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 11
+    Info (12022): Found design unit 2: ascii_display-main File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 53
+    Info (12023): Found entity 1: seven_segment File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 5
+    Info (12023): Found entity 2: ascii_display File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 41
+Info (12127): Elaborating entity "ascii_display" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at ascii_display.vhd(49): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+Warning (10036): Verilog HDL or VHDL warning at ascii_display.vhd(66): object "row_bits" assigned a value but never read File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 66
+Info (12129): Elaborating entity "seven_segment" using architecture "A:behavioral" for hierarchy "seven_segment:hex0_insta" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 120
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 49
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 8 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CLOCK_50_B5B" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 43
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 44
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 44
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 44
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 45
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 45
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 45
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/ascii_display/ascii_display.vhd Line: 45
+Info (21057): Implemented 94 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 9 input pins
+    Info (21059): Implemented 38 output pins
+    Info (21061): Implemented 47 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 4853 megabytes
+    Info: Processing ended: Tue Mar 08 13:45:08 2022
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:21
+
+
