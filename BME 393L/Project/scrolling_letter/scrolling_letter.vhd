@@ -8,37 +8,26 @@ entity scrolling_letter is port(
 end entity scrolling_letter; 
 
 Architecture main of scrolling_letter is 
-	signal counter5:          unsigned(22 downto 0);
-	signal counter1k:         unsigned(14 downto 0);
+	signal counter:            unsigned(24 downto 0);
 	signal fast, slow, index: integer range 0 to 56 := 0;
-	signal hz1k, hz5:         std_logic;
+	signal fast_clk, slow_clk: std_logic;
 	signal row_driver:        std_logic_vector(0 to 7);
 	signal col_driver:        std_logic_vector(0 to 7) := "01111111"; 
 	signal letter:            std_logic_vector(0 to 63) := "0111110010000010100010101000010001111010000000000000000000000000";
 	
 begin 
-	-- Extract a 100 Hz signal
+	-- Extract clock signals
 	process (CLOCK_50_B5B) begin
 		if rising_edge(CLOCK_50_B5B) then
-			if counter1k = to_unsigned(24999, 15) then
-				counter1k <= to_unsigned(0, 15);
-				hz1k <= not hz1k;
-			else
-				counter1k <= counter1k + 1;
-			end if;
-			
-			if counter5 = to_unsigned(4999999, 23) then
-				counter5 <= to_unsigned(0, 23);
-				hz5 <= not hz5;
-			else
-				counter5 <= counter5 + 1;
-			end if;
+			counter <= counter + 1;
+			fast_clk <= counter(14);
+			slow_clk <= counter(24);
 		end if;
 	end process;
 	
 	-- Scroll through row
-	process (hz1k) begin
-		if rising_edge(hz1k) then
+	process (fast_clk) begin
+		if rising_edge(fast_clk) then
 			col_driver <= col_driver(7) & col_driver(0 to 6);
 			if fast = 56 then
 				fast <= 0;
@@ -52,8 +41,8 @@ begin
 	
 	-- Move the letter to the left
 	-- In the full code, append the next character instead of letter(0 to 7)
-	process (hz5) begin
-		if rising_edge(hz5) then
+	process (slow_clk) begin
+		if rising_edge(slow_clk) then
 			if slow = 56 then
 				slow <= 0;
 			else

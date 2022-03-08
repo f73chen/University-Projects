@@ -3,147 +3,147 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50_B5B'
-Slack : -5.275
-TNS   : -134.294
+Slack : -1.982
+TNS   : -42.624
 
-Type  : Slow 1100mV 85C Model Setup 'hz1k'
-Slack : -1.573
-TNS   : -22.834
+Type  : Slow 1100mV 85C Model Setup 'slow_clk'
+Slack : -1.466
+TNS   : -5.264
 
-Type  : Slow 1100mV 85C Model Setup 'hz5'
-Slack : -1.410
-TNS   : -8.395
+Type  : Slow 1100mV 85C Model Setup 'fast_clk'
+Slack : -1.457
+TNS   : -19.358
+
+Type  : Slow 1100mV 85C Model Hold 'fast_clk'
+Slack : 0.352
+TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50_B5B'
-Slack : 0.441
+Slack : 0.437
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'hz1k'
-Slack : 0.595
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Hold 'hz5'
-Slack : 1.016
+Type  : Slow 1100mV 85C Model Hold 'slow_clk'
+Slack : 0.898
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B5B'
-Slack : -0.648
-TNS   : -39.565
+Slack : -0.607
+TNS   : -21.689
 
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'hz1k'
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'fast_clk'
 Slack : -0.538
-TNS   : -14.608
+TNS   : -13.466
 
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'hz5'
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'slow_clk'
 Slack : -0.538
-TNS   : -4.662
+TNS   : -3.087
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50_B5B'
-Slack : -5.490
-TNS   : -134.987
+Slack : -2.185
+TNS   : -47.130
 
-Type  : Slow 1100mV 0C Model Setup 'hz1k'
-Slack : -1.561
-TNS   : -22.878
+Type  : Slow 1100mV 0C Model Setup 'slow_clk'
+Slack : -1.510
+TNS   : -5.391
 
-Type  : Slow 1100mV 0C Model Setup 'hz5'
-Slack : -1.464
-TNS   : -8.511
+Type  : Slow 1100mV 0C Model Setup 'fast_clk'
+Slack : -1.494
+TNS   : -19.460
+
+Type  : Slow 1100mV 0C Model Hold 'fast_clk'
+Slack : 0.334
+TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50_B5B'
-Slack : 0.443
+Slack : 0.440
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Hold 'hz1k'
-Slack : 0.523
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Hold 'hz5'
-Slack : 0.974
+Type  : Slow 1100mV 0C Model Hold 'slow_clk'
+Slack : 0.864
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50_B5B'
-Slack : -0.653
-TNS   : -39.585
+Slack : -0.626
+TNS   : -21.717
 
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'hz1k'
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'fast_clk'
 Slack : -0.538
-TNS   : -14.701
+TNS   : -13.400
 
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'hz5'
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'slow_clk'
 Slack : -0.538
-TNS   : -4.620
+TNS   : -3.076
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50_B5B'
-Slack : -2.543
-TNS   : -43.084
+Slack : -0.560
+TNS   : -7.829
 
-Type  : Fast 1100mV 85C Model Setup 'hz1k'
-Slack : -0.475
-TNS   : -6.148
+Type  : Fast 1100mV 85C Model Setup 'fast_clk'
+Slack : -0.510
+TNS   : -5.243
 
-Type  : Fast 1100mV 85C Model Setup 'hz5'
-Slack : -0.403
-TNS   : -2.311
+Type  : Fast 1100mV 85C Model Setup 'slow_clk'
+Slack : -0.417
+TNS   : -1.368
 
-Type  : Fast 1100mV 85C Model Hold 'hz1k'
-Slack : 0.012
-TNS   : 0.000
+Type  : Fast 1100mV 85C Model Hold 'fast_clk'
+Slack : -0.144
+TNS   : -0.219
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50_B5B'
-Slack : 0.202
+Slack : 0.184
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Hold 'hz5'
-Slack : 0.438
+Type  : Fast 1100mV 85C Model Hold 'slow_clk'
+Slack : 0.383
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B5B'
-Slack : -0.724
-TNS   : -21.428
+Slack : -0.694
+TNS   : -12.394
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'hz1k'
-Slack : 0.143
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'fast_clk'
+Slack : 0.134
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'hz5'
-Slack : 0.145
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'slow_clk'
+Slack : 0.163
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK_50_B5B'
-Slack : -2.224
-TNS   : -36.359
+Slack : -0.543
+TNS   : -7.325
 
-Type  : Fast 1100mV 0C Model Setup 'hz1k'
-Slack : -0.387
-TNS   : -4.848
+Type  : Fast 1100mV 0C Model Setup 'fast_clk'
+Slack : -0.402
+TNS   : -4.131
 
-Type  : Fast 1100mV 0C Model Setup 'hz5'
-Slack : -0.322
-TNS   : -1.876
+Type  : Fast 1100mV 0C Model Setup 'slow_clk'
+Slack : -0.360
+TNS   : -1.149
 
-Type  : Fast 1100mV 0C Model Hold 'hz1k'
-Slack : -0.046
-TNS   : -0.062
+Type  : Fast 1100mV 0C Model Hold 'fast_clk'
+Slack : -0.156
+TNS   : -0.329
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK_50_B5B'
-Slack : 0.188
+Slack : 0.174
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Hold 'hz5'
-Slack : 0.390
+Type  : Fast 1100mV 0C Model Hold 'slow_clk'
+Slack : 0.339
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50_B5B'
-Slack : -0.728
-TNS   : -25.962
+Slack : -0.708
+TNS   : -14.811
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'hz1k'
-Slack : 0.141
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'fast_clk'
+Slack : 0.140
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'hz5'
-Slack : 0.148
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'slow_clk'
+Slack : 0.164
 TNS   : 0.000
 
 ------------------------------------------------------------

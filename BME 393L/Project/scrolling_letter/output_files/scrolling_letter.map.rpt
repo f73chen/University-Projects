@@ -1,5 +1,5 @@
 Analysis & Synthesis report for scrolling_letter
-Tue Mar 08 13:05:24 2022
+Tue Mar 08 14:27:29 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -45,13 +45,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Mar 08 13:05:24 2022       ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 08 14:27:29 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; scrolling_letter                            ;
 ; Top-level Entity Name           ; scrolling_letter                            ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 57                                          ;
+; Total registers                 ; 44                                          ;
 ; Total pins                      ; 37                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -165,7 +165,8 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -183,25 +184,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+--------------------+
 ; Resource                                    ; Usage              ;
 +---------------------------------------------+--------------------+
-; Estimate of Logic utilization (ALMs needed) ; 36                 ;
+; Estimate of Logic utilization (ALMs needed) ; 23                 ;
 ;                                             ;                    ;
-; Combinational ALUT usage for logic          ; 65                 ;
+; Combinational ALUT usage for logic          ; 41                 ;
 ;     -- 7 input functions                    ; 0                  ;
-;     -- 6 input functions                    ; 5                  ;
-;     -- 5 input functions                    ; 6                  ;
+;     -- 6 input functions                    ; 1                  ;
+;     -- 5 input functions                    ; 0                  ;
 ;     -- 4 input functions                    ; 1                  ;
-;     -- <=3 input functions                  ; 53                 ;
+;     -- <=3 input functions                  ; 39                 ;
 ;                                             ;                    ;
-; Dedicated logic registers                   ; 57                 ;
+; Dedicated logic registers                   ; 44                 ;
 ;                                             ;                    ;
 ; I/O pins                                    ; 37                 ;
 ;                                             ;                    ;
 ; Total DSP Blocks                            ; 0                  ;
 ;                                             ;                    ;
 ; Maximum fan-out node                        ; CLOCK_50_B5B~input ;
-; Maximum fan-out                             ; 40                 ;
-; Total fan-out                               ; 375                ;
-; Average fan-out                             ; 1.91               ;
+; Maximum fan-out                             ; 27                 ;
+; Total fan-out                               ; 229                ;
+; Average fan-out                             ; 1.44               ;
 +---------------------------------------------+--------------------+
 
 
@@ -210,7 +211,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+------------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name      ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+------------------+--------------+
-; |scrolling_letter          ; 65 (65)             ; 57 (57)                   ; 0                 ; 0          ; 37   ; 0            ; |scrolling_letter   ; scrolling_letter ; work         ;
+; |scrolling_letter          ; 41 (41)             ; 44 (44)                   ; 0                 ; 0          ; 37   ; 0            ; |scrolling_letter   ; scrolling_letter ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -220,8 +221,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------+----------------------------------------+
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
-; fast[0..2]                            ; Stuck at GND due to stuck port data_in ;
 ; slow[0..2]                            ; Stuck at GND due to stuck port data_in ;
+; fast[0..2]                            ; Stuck at GND due to stuck port data_in ;
 ; index[0..2]                           ; Stuck at GND due to stuck port data_in ;
 ; Total Number of Removed Registers = 9 ;                                        ;
 +---------------------------------------+----------------------------------------+
@@ -232,7 +233,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------+---------------------------+----------------------------------------+
 ; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
 +---------------+---------------------------+----------------------------------------+
-; fast[2]       ; Stuck at GND              ; index[2], index[1], index[0]           ;
+; slow[2]       ; Stuck at GND              ; index[0], index[1], index[2]           ;
 ;               ; due to stuck port data_in ;                                        ;
 +---------------+---------------------------+----------------------------------------+
 
@@ -242,8 +243,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 57    ;
-; Number of registers using Synchronous Clear  ; 38    ;
+; Total registers                              ; 44    ;
+; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -273,24 +274,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 57                          ;
-;     SCLR              ; 38                          ;
-;     plain             ; 19                          ;
-; arriav_lcell_comb     ; 77                          ;
-;     arith             ; 38                          ;
-;         1 data inputs ; 38                          ;
-;     normal            ; 39                          ;
+; arriav_ff             ; 44                          ;
+;     plain             ; 44                          ;
+; arriav_lcell_comb     ; 53                          ;
+;     arith             ; 24                          ;
+;         1 data inputs ; 23                          ;
+;         2 data inputs ; 1                           ;
+;     normal            ; 29                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 15                          ;
+;         1 data inputs ; 16                          ;
 ;         2 data inputs ; 4                           ;
-;         3 data inputs ; 7                           ;
+;         3 data inputs ; 6                           ;
 ;         4 data inputs ; 1                           ;
-;         5 data inputs ; 6                           ;
-;         6 data inputs ; 5                           ;
+;         6 data inputs ; 1                           ;
 ; boundary_port         ; 37                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.20                        ;
-; Average LUT depth     ; 2.00                        ;
+; Max LUT depth         ; 3.30                        ;
+; Average LUT depth     ; 1.97                        ;
 +-----------------------+-----------------------------+
 
 
@@ -309,7 +309,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue Mar 08 13:05:13 2022
+    Info: Processing started: Tue Mar 08 14:27:18 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off scrolling_letter -c scrolling_letter
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -317,7 +317,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file scrolli
     Info (12022): Found design unit 1: scrolling_letter-main File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 10
     Info (12023): Found entity 1: scrolling_letter File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 5
 Info (12127): Elaborating entity "scrolling_letter" for the top level hierarchy
-Warning (10540): VHDL Signal Declaration warning at scrolling_letter.vhd(17): used explicit default value for signal "letter" because signal was never assigned a value File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 17
+Warning (10540): VHDL Signal Declaration warning at scrolling_letter.vhd(16): used explicit default value for signal "letter" because signal was never assigned a value File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 16
 Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at scrolling_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 7
 Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at scrolling_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 7
 Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at scrolling_letter.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/scrolling_letter/scrolling_letter.vhd Line: 7
@@ -359,14 +359,14 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 108 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 86 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 71 logic cells
+    Info (21061): Implemented 49 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 40 warnings
-    Info: Peak virtual memory: 4849 megabytes
-    Info: Processing ended: Tue Mar 08 13:05:24 2022
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Tue Mar 08 14:27:29 2022
     Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:23
+    Info: Total CPU time (on all processors): 00:00:22
 
 
