@@ -8,35 +8,73 @@ entity full_message is port(
 end entity full_message; 
 
 architecture main of full_message is 
-	signal counter:            unsigned(24 downto 0);
-	signal fast, slow, index:  integer range 0 to 56 := 0;
-	signal fast_clk, slow_clk: std_logic;
-	signal row_driver:         std_logic_vector(0 to 7);
-	signal col_driver:         std_logic_vector(0 to 7) := "01111111"; 
-	signal letter:             std_logic_vector(0 to 63) := "0111110010000010100010101000010001111010000000000000000000000000";
+	signal counter:       unsigned(24 downto 0);
+	signal fast_clk:      std_logic; 
+	signal slow_clk:      std_logic;
+	signal row_driver:    std_logic_vector(0 to 7);
+	signal col_driver:    std_logic_vector(0 to 7) := "01111111"; 
+	signal letter:        std_logic_vector(0 to 63);
+	signal letter_idx:    integer range 0 to 56;
+	signal char_idx:      integer range 0 to 40;
 	
-	constant message_len:      integer := 29;
-	constant message:          string(1 to message_len) := "BME-393L DIGITAL SYSTEMS LAB ";
+	constant message_len: integer := 29;
+	constant message:     string(1 to message_len) := "BME-393L DIGITAL SYSTEMS LAB ";
 	
-	signal one_char:           character := ' ';
-	signal int_one_char:       integer;
-	signal row_bits:           std_logic_vector(47 downto 0);
-	signal ascii, ascii2:      std_logic_vector(6 downto 0);
-	signal pointer:            unsigned(5 downto 0) := "000001";
+	signal one_char:      character := ' ';
+	signal int_one_char:  integer;
+	signal row_bits:      std_logic_vector(47 downto 0);
+	signal ascii:         std_logic_vector(6 downto 0);
+	signal pointer:       unsigned(5 downto 0) := "000001";
 	
 begin 
+	-- Extract clock signals
+	process (CLOCK_50_B5B) begin
+		if rising_edge(CLOCK_50_B5B) then
+			counter <= counter + 1;
+			fast_clk <= counter(14);
+			slow_clk <= counter(24);
+		end if;
+	end process;
+	
+	-- Scroll through row index of the whole screen
+	process (fast_clk) begin
+		if rising_edge(fast_clk) then
+			col_driver <= col_driver(7) & col_driver(0 to 6);
+			if letter_idx = 56 then
+				letter_idx <= 0;
+			else
+				letter_idx <= letter_idx + 8;
+			end if;
+		end if;
+	end process;
+	
+	-- Assign 
+	process (slow_clk) begin
+		if rising_edge(slow_clk) then
+			letter <= letter(8 to 63) & row_bits(char_idx+7 downto char_idx);
+			
+			-- If reached the end of the current character
+			-- Then point to the next character in the message
+			if char_idx = 40 then
+				char_idx <= 0;
+
+				-- Wrap around to the beginning of the message
+				if pointer = message_len then
+					pointer <= to_unsigned(1, 6);
+				else
+					pointer <= pointer + 1;
+				end if;
+				
+			else
+				char_idx <= char_idx + 8;
+			end if;
+		end if;
+	end process;
+	
+	-- Update row_bits according to pointer location
 	one_char <= message(to_integer(pointer));
 	int_one_char <= character'pos(one_char);
 	ascii <= std_logic_vector(to_unsigned(int_one_char, 7));
-	
---	ascii2 <= ascii when rising_edge(KEY(0));
---	pointer <= pointer + 1 when rising_edge(KEY(0));
-
---	if pointer = message_len then
---		pointer <= to_unsigned(1, 6);
---	else
---		pointer <= pointer + 1;
---	end if;
 
 	row_bits <= "011111101001000010010000100100000111111000000000" when ascii = "1000001" else -- A (0x41)
 					"111111101001001010010010100100100110110000000000"	when ascii = "1000010" else -- B (0x42)
@@ -77,43 +115,8 @@ begin
 					"000000000000000000000000000000000000000000000000"	when ascii = "0100000" else -- Blank (0x20)
 					"000100000001000000010000000100000001000000000000"	when ascii = "0101101" else -- Dash (0x2D)
 					"100100101001001010010010100100101001001000000000";                            -- Error 
-
-	-- Extract clock signals
-	process (CLOCK_50_B5B) begin
-		if rising_edge(CLOCK_50_B5B) then
-			counter <= counter + 1;
-			fast_clk <= counter(14);
-			slow_clk <= counter(24);
-		end if;
-	end process;
 	
-	-- Scroll through row
-	process (fast_clk) begin
-		if rising_edge(fast_clk) then
-			col_driver <= col_driver(7) & col_driver(0 to 6);
-			if fast = 56 then
-				fast <= 0;
-			else
-				fast <= fast + 8;
-			end if;
-			
-			index <= (fast + slow) mod 64;
-		end if;
-	end process;
-	
-	-- Move the letter to the left
-	-- In the full code, append the next character instead of letter(0 to 7)
-	process (slow_clk) begin
-		if rising_edge(slow_clk) then
-			if slow = 56 then
-				slow <= 0;
-			else
-				slow <= slow + 8;
-			end if;
-		end if;
-	end process;
-	
-	row_driver <= letter(index to index+7);
+	row_driver <= letter(letter_idx to letter_idx+7);
 
 	GPIO( 1) <= row_driver(0);
 	GPIO( 3) <= row_driver(1); 
