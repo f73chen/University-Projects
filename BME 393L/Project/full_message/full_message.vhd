@@ -8,7 +8,7 @@ entity full_message is port(
 end entity full_message; 
 
 architecture main of full_message is 
-	signal counter:       unsigned(24 downto 0);
+	signal counter:       unsigned(23 downto 0);
 	signal fast_clk:      std_logic; 
 	signal slow_clk:      std_logic;
 	signal row_driver:    std_logic_vector(0 to 7);
@@ -22,7 +22,7 @@ architecture main of full_message is
 	
 	signal one_char:      character := ' ';
 	signal int_one_char:  integer;
-	signal row_bits:      std_logic_vector(47 downto 0);
+	signal row_bits:      std_logic_vector(0 to 47);
 	signal ascii:         std_logic_vector(6 downto 0);
 	signal pointer:       unsigned(5 downto 0) := "000001";
 	
@@ -32,7 +32,7 @@ begin
 		if rising_edge(CLOCK_50_B5B) then
 			counter <= counter + 1;
 			fast_clk <= counter(14);
-			slow_clk <= counter(24);
+			slow_clk <= counter(23);
 		end if;
 	end process;
 	
@@ -51,7 +51,7 @@ begin
 	-- Assign 
 	process (slow_clk) begin
 		if rising_edge(slow_clk) then
-			letter <= letter(8 to 63) & row_bits(char_idx+7 downto char_idx);
+			letter <= letter(8 to 63) & row_bits(char_idx to char_idx+7);
 			
 			-- If reached the end of the current character
 			-- Then point to the next character in the message
