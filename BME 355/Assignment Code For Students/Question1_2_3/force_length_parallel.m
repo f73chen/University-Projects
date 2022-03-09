@@ -8,6 +8,6 @@ function [normalize_PE_force] = force_length_parallel(lm)
     if lm < lpes
         normalize_PE_force = 0;
     else
-        normalize_PE_force = 3*(lm - lpes)^2 / (0.6 + lm - lpes);
+        normalize_PE_force = 3*(lm - lpes).^2 / (0.6 + lm - lpes);
     end
 end
