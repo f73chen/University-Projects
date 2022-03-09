@@ -146,7 +146,16 @@ function [force_length_regression] = get_muscle_force_length_regression()
             80.07780392156863 -0.21553659631791788];
 
     % Normalization
+    max_x = max(data(:,1));
+    min_x = min(data(:,1));
+    max_y = max(data(:,2));
+    min_y = min(data(:,2));
+    for i = 1:size(data,1)
+        data(i,1) = (data(i,1) - min_x) / (max_x - min_x);
+        data(i,2) = (data(i,2) - min_y) / (max_y - min_y);
+    end
 
     % Regression with "fit" function with "gauss2" option as model type
+    force_length_regression = fit(data(:,1), data(:,2), gauss2);
 
 end
