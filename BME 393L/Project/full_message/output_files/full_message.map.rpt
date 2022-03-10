@@ -1,5 +1,5 @@
 Analysis & Synthesis report for full_message
-Tue Mar 08 17:54:50 2022
+Wed Mar 09 11:38:00 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -46,13 +46,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Mar 08 17:54:50 2022       ;
+; Analysis & Synthesis Status     ; Successful - Wed Mar 09 11:38:00 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; full_message                                ;
 ; Top-level Entity Name           ; full_message                                ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 103                                         ;
+; Total registers                 ; 102                                         ;
 ; Total pins                      ; 37                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -158,25 +158,26 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 12          ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                  ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                           ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
-; full_message.vhd                 ; yes             ; User VHDL File  ; C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                  ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
+; full_message.vhd                 ; yes             ; User VHDL File  ; C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------+
@@ -184,16 +185,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimate of Logic utilization (ALMs needed) ; 86       ;
+; Estimate of Logic utilization (ALMs needed) ; 74       ;
 ;                                             ;          ;
-; Combinational ALUT usage for logic          ; 122      ;
+; Combinational ALUT usage for logic          ; 101      ;
 ;     -- 7 input functions                    ; 0        ;
-;     -- 6 input functions                    ; 42       ;
-;     -- 5 input functions                    ; 23       ;
-;     -- 4 input functions                    ; 3        ;
-;     -- <=3 input functions                  ; 54       ;
+;     -- 6 input functions                    ; 27       ;
+;     -- 5 input functions                    ; 18       ;
+;     -- 4 input functions                    ; 4        ;
+;     -- <=3 input functions                  ; 52       ;
 ;                                             ;          ;
-; Dedicated logic registers                   ; 103      ;
+; Dedicated logic registers                   ; 102      ;
 ;                                             ;          ;
 ; I/O pins                                    ; 37       ;
 ;                                             ;          ;
@@ -201,8 +202,8 @@ refer to the applicable agreement for further details.
 ;                                             ;          ;
 ; Maximum fan-out node                        ; slow_clk ;
 ; Maximum fan-out                             ; 65       ;
-; Total fan-out                               ; 765      ;
-; Average fan-out                             ; 2.56     ;
+; Total fan-out                               ; 649      ;
+; Average fan-out                             ; 2.34     ;
 +---------------------------------------------+----------+
 
 
@@ -211,7 +212,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name  ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
-; |full_message              ; 122 (122)           ; 103 (103)                 ; 0                 ; 0          ; 37   ; 0            ; |full_message       ; full_message ; work         ;
+; |full_message              ; 101 (101)           ; 102 (102)                 ; 0                 ; 0          ; 37   ; 0            ; |full_message       ; full_message ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -243,7 +244,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 103   ;
+; Total registers                              ; 102   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -265,7 +266,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; col_driver[5]                          ; 2       ;
 ; col_driver[6]                          ; 2       ;
 ; col_driver[7]                          ; 2       ;
-; pointer[0]                             ; 44      ;
+; pointer[0]                             ; 30      ;
 ; Total number of inverted registers = 8 ;         ;
 +----------------------------------------+---------+
 
@@ -286,25 +287,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 103                         ;
+; arriav_ff             ; 102                         ;
 ;     ENA               ; 5                           ;
-;     plain             ; 98                          ;
-; arriav_lcell_comb     ; 130                         ;
-;     arith             ; 24                          ;
-;         1 data inputs ; 23                          ;
+;     plain             ; 97                          ;
+; arriav_lcell_comb     ; 109                         ;
+;     arith             ; 23                          ;
+;         1 data inputs ; 22                          ;
 ;         2 data inputs ; 1                           ;
-;     normal            ; 106                         ;
+;     normal            ; 86                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 12                          ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 20                          ;
-;         4 data inputs ; 3                           ;
-;         5 data inputs ; 23                          ;
-;         6 data inputs ; 42                          ;
+;         2 data inputs ; 3                           ;
+;         3 data inputs ; 21                          ;
+;         4 data inputs ; 4                           ;
+;         5 data inputs ; 18                          ;
+;         6 data inputs ; 27                          ;
 ; boundary_port         ; 37                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 2.30                        ;
+; Max LUT depth         ; 3.20                        ;
+; Average LUT depth     ; 2.15                        ;
 +-----------------------+-----------------------------+
 
 
@@ -313,7 +314,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -323,63 +324,63 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue Mar 08 17:54:37 2022
+    Info: Processing started: Wed Mar 09 11:37:48 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off full_message -c full_message
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file full_message.vhd
-    Info (12022): Found design unit 1: full_message-main File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 10
-    Info (12023): Found entity 1: full_message File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 5
+    Info (12022): Found design unit 1: full_message-main File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 10
+    Info (12023): Found entity 1: full_message File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 5
 Info (12127): Elaborating entity "full_message" for the top level hierarchy
-Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at full_message.vhd(7) File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[34]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[32]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[30]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[28]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[26]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[24]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[22]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[20..16]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[14]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[12]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[10]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[8]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[6]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[4]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[2]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+Warning (10873): Using initial value X (don't care) for net "GPIO[0]" at full_message.vhd(7) File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[15]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
-    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/User/source/repos/Uni-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[0]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[2]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[4]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[6]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[8]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[10]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[12]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[14]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[15]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[16]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[17]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[18]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[19]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[20]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[22]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[24]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[26]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[28]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[30]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[32]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
+    Warning (13410): Pin "GPIO[34]" is stuck at GND File: C:/Users/f73chen/Documents/University-Projects/BME 393L/Project/full_message/full_message.vhd Line: 7
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 216 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 195 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 179 logic cells
+    Info (21061): Implemented 158 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 39 warnings
-    Info: Peak virtual memory: 4900 megabytes
-    Info: Processing ended: Tue Mar 08 17:54:51 2022
-    Info: Elapsed time: 00:00:14
+    Info: Peak virtual memory: 4851 megabytes
+    Info: Processing ended: Wed Mar 09 11:38:00 2022
+    Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:23
 
 
