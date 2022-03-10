@@ -18,7 +18,7 @@ start:
 ; PORTB 3 --> PIN 10 --> G
 
 segment:
-  ldi r21, 0x08  ; Initialize loop iterator
+  ldi r21, 0x01  ; Initialize loop iterator
   loop:
     ldi r16, 0xFF  ; Load register 16 with 0xFF (all bits 1)  
     out DDRB, r16  ; Define all pins on port B as output
@@ -33,8 +33,8 @@ segment:
     ; Therefore the switch-case can't be too long
 
     cp r21, 0x00
-    breq num_0
-    cp r21, 0x01
+    breq num_0     ; @@@ Error: no matter r21, eventually repeats this call
+    cp r21, 0x01   ; @@@ If r21 != 0, stays on error for 1 tick then back to num_0
     breq num_1
     cp r21, 0x02
     breq num_2
@@ -65,7 +65,7 @@ segment:
     ; cp r21, 0x0F
     ; breq letter_f
 
-    jmp other
+    jmp error
 
     num_0:
       sbi PORTD, 5
@@ -177,26 +177,30 @@ segment:
       sbi PORTB, 2
       sbi PORTB, 3
       jmp end
-    other:
+    error:
       sbi PORTD, 5
       sbi PORTB, 0
       sbi PORTB, 3
+      jmp end
     end:
-      inc r21        ; Increment iterator
-      and r21, 0x0F  ; Mask to remove the upper half of r21
 
-    ; @@@ Fix timings so it becomes 1Hz
-    ldi r18, 0x00  ; 4000000 / 256 = 15625
-    ldi r19, 0x7D  ; 15625 / 125 = 125
-    ldi r20, 0x40  ; 125 --> 0.5s
-    clock:
-      mul r17, r17
+    inc r21        ; Increment iterator
+    and r21, 0x0F  ; Mask to remove the upper half of r21
+
+    ; Wait for 1s
+    ldi r18, 0x00  ; 8000000 / 256 = 31250
+    l1:
+      ldi r19, 0xFA  ; 31250 / 250 = 125
+      l2:
+        ldi r20, 0x7D  ; 125 --> 0.5s
+        l3:
+          mul r17, r17
+          dec r20
+          brne l3
+        dec r19
+        brne l2
       dec r18
-      brne clock
-      dec r19
-      brne clock
-      dec r20
-      brne clock
+      brne l1
 
     ; @@@ STOP COPYING TO NEXT QUESTION
 
