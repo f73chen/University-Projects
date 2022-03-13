@@ -32,7 +32,11 @@ function simulate(T, f0M, resting_length_muscle, resting_length_tendon, RelTol, 
     
     %%% TASK 4
     % save the estimated forces in a vector called "forces"
-    forces = hill_type.get_force(muscle_tendon_length, norm_lm);
+    forces = zeros(1, size(norm_lm,1));
+    for i = 1:size(norm_lm,1)
+        forces(i) = hill_type.get_force(muscle_tendon_length, norm_lm(i));
+    end
+    % forces = hill_type.get_force(muscle_tendon_length, norm_lm);
     
     % Do not alter the rest (it should not be needed)
     norm_lm = norm_lm * resting_length_muscle;

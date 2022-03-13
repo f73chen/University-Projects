@@ -30,8 +30,8 @@ f0M = 100;
 resting_length_muscle = 0.3;
 resting_length_tendon = 0.1;
 
-% RelTol = 1e-6;
-RelTol = 1e-3;
+RelTol = 1e-6;
+% RelTol = 1e-3;
 AbsTol = 1e-8;
 
 tic
