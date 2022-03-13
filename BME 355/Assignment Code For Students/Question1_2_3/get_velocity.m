@@ -10,6 +10,8 @@ function [root] = get_velocity(a, lm, lt)
     beta = 0.1;
 
     % WRITE CODE HERE TO CALCULATE VELOCITY
+    % Assume pennation angle alpha = 0
+    % fo^M can be factored out of the equation
     fun = @(v) a*force_length_muscle(lm)*force_velocity_muscle(v) + force_length_parallel(lm) + beta*v - force_length_tendon(lt);
     root = fzero(fun, 0);
     
