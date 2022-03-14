@@ -183,5 +183,4 @@ function [force_length_regression] = get_muscle_force_length_regression()
 
     % Regression with "fit" function with "gauss2" option as model type
     force_length_regression = fit(data(:,1), data(:,2), 'gauss2');
-
 end
