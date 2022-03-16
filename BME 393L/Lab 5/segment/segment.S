@@ -19,10 +19,10 @@ start:
 
 segment:
   ldi r21, 0x00  ; Initialize loop iterator
+  ldi r16, 0xFF  ; Load register 16 with 0xFF (all bits 1)  
+  out DDRB, r16  ; Define all pins on port B as output
+  out DDRD, r16  ; Define all pins on port D as output
   loop:
-    ldi r16, 0xFF  ; Load register 16 with 0xFF (all bits 1)  
-    out DDRB, r16  ; Define all pins on port B as output
-    out DDRD, r16  ; Define all pins on port D as output
     ldi r16, 0x00  ; Load register 16 with 0x00 (all bits 0)  
     out PORTB, r16 ; Write 0x00 to port B. This sets all pins to 0
     out PORTD, r16 ; Write 0x00 to port D. This sets all pins to 0
@@ -30,7 +30,7 @@ segment:
     ; @@@ START COPYING TO NEXT QUESTION
 
     letter_f:
-      eor r21, 0x0F   ; eor and cp both set Z=1 if args are exactly the same
+      cpi r21, 0x0F   ; cpi and cpi both set Z=1 if args are exactly the same
       brne letter_e
       sbi PORTD, 5
       sbi PORTB, 1
@@ -38,7 +38,7 @@ segment:
       sbi PORTB, 3
       jmp end
     letter_e:
-      eor r21, 0x0E
+      cpi r21, 0x0E
       brne letter_d
       sbi PORTD, 5
       sbi PORTB, 0
@@ -47,7 +47,7 @@ segment:
       sbi PORTB, 3
       jmp end
     letter_d:
-      eor r21, 0x0D
+      cpi r21, 0x0D
       brne letter_c
       sbi PORTD, 6
       sbi PORTD, 7
@@ -56,7 +56,7 @@ segment:
       sbi PORTB, 3
       jmp end
     letter_c:
-      eor r21, 0x0C
+      cpi r21, 0x0C
       brne letter_b
       sbi PORTD, 5
       sbi PORTB, 0
@@ -64,7 +64,7 @@ segment:
       sbi PORTB, 2
       jmp end
     letter_b:
-      eor r21, 0x0B
+      cpi r21, 0x0B
       brne letter_a
       sbi PORTD, 7
       sbi PORTB, 0
@@ -73,7 +73,7 @@ segment:
       sbi PORTB, 3
       jmp end
     letter_a:
-      eor r21, 0x0A
+      cpi r21, 0x0A
       brne num_9
       sbi PORTD, 5
       sbi PORTD, 6
@@ -83,7 +83,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_9:
-      eor r21, 0x09
+      cpi r21, 0x09
       brne num_8
       sbi PORTD, 5
       sbi PORTD, 6
@@ -93,7 +93,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_8:
-      eor r21, 0x08
+      cpi r21, 0x08
       brne num_7
       sbi PORTD, 5
       sbi PORTD, 6
@@ -104,14 +104,14 @@ segment:
       sbi PORTB, 3
       jmp end
     num_7:
-      eor r21, 0x07
+      cpi r21, 0x07
       brne num_6
       sbi PORTD, 5
       sbi PORTD, 6
       sbi PORTD, 7
       jmp end
     num_6:
-      eor r21, 0x06
+      cpi r21, 0x06
       brne num_5
       sbi PORTD, 5
       sbi PORTD, 7
@@ -121,7 +121,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_5:
-      eor r21, 0x05
+      cpi r21, 0x05
       brne num_4
       sbi PORTD, 5
       sbi PORTD, 7
@@ -130,7 +130,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_4:
-      eor r21, 0x04
+      cpi r21, 0x04
       brne num_3
       sbi PORTD, 6
       sbi PORTD, 7
@@ -138,7 +138,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_3:
-      eor r21, 0x03
+      cpi r21, 0x03
       brne num_2
       sbi PORTD, 5
       sbi PORTD, 6
@@ -147,7 +147,7 @@ segment:
       sbi PORTB, 3
       jmp end
     num_2:
-      eor r21, 0x02
+      cpi r21, 0x02
       brne num_1
       sbi PORTD, 5
       sbi PORTD, 6
@@ -156,13 +156,13 @@ segment:
       sbi PORTB, 3
       jmp end
     num_1:
-      eor r21, 0x01
+      cpi r21, 0x01
       brne num_0
       sbi PORTD, 6
       sbi PORTD, 7
       jmp end
     num_0:
-      eor r21, 0x00
+      cpi r21, 0x00
       brne error
       sbi PORTD, 5
       sbi PORTD, 6
@@ -175,14 +175,14 @@ segment:
       sbi PORTD, 5
       sbi PORTB, 0
       sbi PORTB, 3
-      jmp end
+      
     end:
 
     inc r21        ; Increment iterator
-    and r21, 0x0F  ; Mask to remove the upper half of r21
+    andi r21, 0x0F  ; Mask to remove the upper half of r21
 
     ; Wait for 1s
-    ldi r18, 0x00  ; 8000000 / 256 = 31250
+    ldi r18, 0x68  ; 8000000 / 256 = 31250
     l1:
       ldi r19, 0xFA  ; 31250 / 250 = 125
       l2:
