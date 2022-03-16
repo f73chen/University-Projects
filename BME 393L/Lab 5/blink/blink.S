@@ -17,7 +17,7 @@ blink:
   sbi PORTB, 0   ; Sets bit 0 on port B to 1. 
 
   ; Turn on for 0.5s
-  ldi r18, 0x00  ; 8000000 / 256 = 31250
+  ldi r18, 0x68  ; 8000000 / 256 = 31250
   l1:
     ldi r19, 0x7D  ; 31250 / 250 (FA) = 125
     l2:
@@ -37,7 +37,7 @@ blink:
   cbi PORTB, 0   ; Clears bit 0 on port B to 0.
   
   ; Turn off for 0.5s
-  ldi r18, 0x00  ; 8000000 / 256 = 31250
+  ldi r18, 0x68  ; 8000000 / 256 = 31250
   l4:
     ldi r19, 0x7D  ; 31250 / 250 = 125
     l5:
