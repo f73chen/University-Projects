@@ -39,33 +39,27 @@ multiplier:
     ldi r16, 0x0C  ; 0000_1100
     out PORTD, r16 ; Reset all pins; activate pull-up for #2, #3
 
+    call enter
+    mov r23, r21
+    call enter
+    mov r24, r21
+    call enter
+    mov r25, r21
+    call enter
+    mov r26, r21
 
-    ; call enter
-    ; mov r23, r21
-    ; call enter
-    ; mov r24, r21
-    ; call enter
-    ; mov r25, r21
-    ; call enter
-    ; mov r26, r21
-
-    ; ldi r23, 0x07   ; @@@ Multiplication & displaying results work with preset inputs
-    ; ldi r24, 0x0A
-    ; ldi r25, 0x0D
-    ; ldi r26, 0x06
-
-    ; call multiply
-    ; show_results: ; After multiplication, cycle through results
-    ;   mov r21, r23
-    ;   call display_result
-    ;   mov r21, r24
-    ;   call display_result
-    ;   mov r21, r25
-    ;   call display_result
-    ;   mov r21, r26
-    ;   call display_result
-    ;   call display_dash
-    ;   jmp show_results
+    call multiply
+    show_results: ; After multiplication, cycle through results
+      mov r21, r23
+      call display_result
+      mov r21, r24
+      call display_result
+      mov r21, r25
+      call display_result
+      mov r21, r26
+      call display_result
+      call display_dash
+      jmp show_results
   jmp loop
 
 
@@ -77,26 +71,27 @@ enter:
   ldi r21, 0x00
 
   wait_r21:
-    in r27, PIND   ; Read input port D
-    andi r27, 0x0C ; Mask 0000_1100
+    in r27, PIND    ; Read input port D
+    andi r27, 0x0C  ; Mask 0000_1100
 
-    cpi r27, 0x04  ; Up key
+    cpi r27, 0x04   ; Up key
     breq inc_r21
     jmp ninc_r21
-    inc_r21:       ; If up key pressed
+    inc_r21:        ; If up key pressed
       inc r21
       andi r21, 0x0F
       call display_current
+      call wait_05s ; Debounce input
       jmp wait_r21
-    ninc_r21:      ; If up key not pressed
+    ninc_r21:       ; If up key not pressed
 
-    cpi r27, 0x08  ; Enter key
+    cpi r27, 0x08   ; Enter key
     breq enter_r21
     jmp nenter_r21
-    enter_r21:     ; If enter key pressed
+    enter_r21:      ; If enter key pressed
       call flash_current
       ret
-    nenter_r21:    ; If enter key not pressed
+    nenter_r21:     ; If enter key not pressed
       jmp wait_r21
 ret
 
@@ -344,8 +339,7 @@ wait_05s:
   push r19
   push r20
 
-  ; ldi r18, 0x68   @@@@@@ Restore this
-  ldi r18, 0x00
+  ldi r18, 0x68
   l1:
     ldi r19, 0x7D
     l2:
@@ -370,8 +364,7 @@ wait_02s:
   push r19
   push r20
 
-  ; ldi r18, 0x2A   @@@@@@ Restore this
-  ldi r18, 0x00
+  ldi r18, 0x2A
   l4:
     ldi r19, 0x7D
     l5:
