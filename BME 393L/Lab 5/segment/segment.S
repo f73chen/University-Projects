@@ -26,11 +26,11 @@ segment:
     ldi r16, 0x00  ; Load register 16 with 0x00 (all bits 0)  
     out PORTB, r16 ; Write 0x00 to port B. This sets all pins to 0
     out PORTD, r16 ; Write 0x00 to port D. This sets all pins to 0
-
+   
     ; @@@ START COPYING TO NEXT QUESTION
 
     letter_f:
-      cpi r21, 0x0F   ; cpi and cpi both set Z=1 if args are exactly the same
+      cpi r21, 0x0F
       brne letter_e
       sbi PORTD, 5
       sbi PORTB, 1
@@ -175,7 +175,6 @@ segment:
       sbi PORTD, 5
       sbi PORTB, 0
       sbi PORTB, 3
-      
     end:
 
     inc r21        ; Increment iterator
