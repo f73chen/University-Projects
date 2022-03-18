@@ -1,11 +1,11 @@
 /*
-This program is meant to run in conjunction with the sketch on the Arduino. Note that neither the serial monitor nor the serial plotter (in the
-arduino IDE) can run at the same time as this program. This program requires the Arduino to be connected via USB in order to function.
+This program is meant to run in conjunction with the sketch on the Arduino. Note that the serial monitor, serial plotter (in the
+arduino IDE) or csv file can run at the same time as this program. This program requires the Arduino to be connected via USB in order to function.
 The program uses the serial library in processing to read the data being written to the serial port by the Arduino. The program represents
 the amount of pressure at each sensor using circles that increase and decrease in size. The centre of pressure is represented with a green
 coloured circle which moves around and whose size scales with the total amount of pressure at all sensors. The locations of the pressure sensors are
 adjustable by assigning the x and y values to the variable of the corresponding sensor. By pressing "Enter", the program will write all the data received 
-in a 2 second window to a text file titled "sensordata.txt". This uses a Java printwriter. Data can be written to the file multiple times by pressing Enter 
+in a 2 second window to a text file titled "sensordata.csv". This uses a Java printwriter. Data can be written to the file multiple times by pressing Enter 
 more than once. Pressing it twice in less than 2 seconds will cut off the first stream of data. Pressing Enter will delete the previous set of data, so remember 
 to save the readings before pressing Enter again.
 
@@ -15,9 +15,10 @@ Pressing ESC will exit the program
 
 import processing.serial.*;    // Importing the serial library to communicate with the Arduino 
 
+//Change the COM port to match the COM from the Arduino code
+String portName = "COM4";
+
 Serial myPort;      // Declaring a variable named 'myPort' for serial communication
-Table rTable;       // Declaring a table named 'rTable' to read in and store values from serial monitor 
-String fileName;    // Declaring a variable named filename to store name of file being written to
 
 // Variables to store the force and resistance on each FSR. The numbers correspond with the analog pins on the arduino
 float m0, m1, m2, m3, m6, m7;
@@ -31,29 +32,30 @@ float totalR;
 
 // Use the following section to change the x coordinate of the sensors. Initialize sensor chosen as origin to 0. 
 // Current values are in cm. Make values negative if to the left of the origin.
-float A0x = 0;    // Green
+float A0x = 0;
 float A1x = -4;
-float A2x = -1;    // White
+float A2x = -3;
 float A3x = -3;
-float A6x = 4;    // Yellow
+float A6x = -3;
 float A7x = 3.5;
 
 // Use the following section to change the y coordinate of the sensors. Initialize sensor chosen as origin to 0. 
 // Values should not be negative, as the origin is the bottom most point.
-float A0y = 5;    // Green
+float A0y = 0;
 float A1y = 23.5;
-float A2y = 19;    // White
+float A2y = 22;
 float A3y = 17;
-float A6y = 18;    // Yellow
+float A6y = 15;
 float A7y = 0;
 
-//Coefficient
-float a0;
-float a1;
 
 // Arrays to store the x and y coordinates.
 float[] widthValues = { A0x, A1x, A2x, A3x, A6x, A7x};
 float[] lengthValues = { A0y, A1y, A2y, A3y, A6y, A7y};
+
+//Change these values to ajust the size of circles in pop-up window
+float sensor_factor = 5;
+float centre_factor = 2;
 
 // Variables to store the max distance between two sensors in the x and y direction.
 // These variables will be used to calculate the width to height ratio for the display.
@@ -62,35 +64,22 @@ float maxLength = max( lengthValues ) - min( lengthValues );
 
 PrintWriter output;// Initializing a printwriter to write to a csv file
 
-int dataPrinted = 200; // Variable is used to count how many times data was written to the file.
-                       // The program will not write to the file if this variable is 200 or more
-                       // At 100 Hertz, the program will print 200 times in 2 seconds
 /* 
- * Setup the table and visualization window
+ * Setup the visualization window
  */
 void setup ( ) {
   
-  myPort  =  new Serial (this, "COM5",  9600); // Set the com port and the baud rate according to the Arduino IDE. Change the COM to match each time!
+  myPort  =  new Serial (this, portName,  9600); // Set the com port and the baud rate according to the Arduino IDE. Change the COM to match each time!
   
-  //output = createWriter("sensordata.csv"); // Sets the printwriter up to write to a file titled "sensordata.csv"
+  output = createWriter("sensordata.csv"); // Sets the printwriter up to write to a file titled "sensordata.csv"
 
   size(800, 1000); // Size of the initial serial window
   background(0,0,0); // Sets the background color of the window
   surface.setResizable(true); // Allows user to change size of window
   
-  myPort.bufferUntil ( '\n' ); // Receives the data from the Arduino IDE
+  output.println("m0" + "," + "m1" + "," + "m2" + "," + "m3" + "," + "m6" + "," + "m7" + "," + "x" + "," + "y" + "," + "totalM"); 
   
-  rTable = new Table();
-  rTable.addColumn("id");
-  rTable.addColumn("r0");
-  rTable.addColumn("r1");
-  rTable.addColumn("r2");
-  rTable.addColumn("r3");
-  rTable.addColumn("r6");
-  rTable.addColumn("r7");
-  rTable.addColumn("x");
-  rTable.addColumn("y");
-  rTable.addColumn("TotalR");
+  myPort.bufferUntil ( '\n' ); // Receives the data from the Arduino IDE
 
 }
 
@@ -127,23 +116,23 @@ void draw(){
     // x coordinate starts half way and is adjusted by the scaling factor from cm to pixels.
     // y coordinate starts at 100 pixels from the bottom and is adjusted by the scaling factor.
     // Change the multiplier of r# (last two entries) to increase or decrease the size of the circles.
-    ellipse(int(width/2 + (A6x/maxWidth) * mappedWidth), int(height - 100 - A6y/maxLength * mappedHeight), m6 * 0.005, m6 * 0.005);
+    ellipse(int(width/2 + (A6x/maxWidth) * mappedWidth), int(height - 100 - A6y/maxLength * mappedHeight), m6 * sensor_factor, m6 * sensor_factor);
                                                                                                                                     
-    ellipse(int(width/2 + (A7x/maxWidth) * mappedWidth), int(height - 100 - A7y/maxLength * mappedHeight), m7 * 0.005, m7 * 0.005); 
+    ellipse(int(width/2 + (A7x/maxWidth) * mappedWidth), int(height - 100 - A7y/maxLength * mappedHeight), m7 * sensor_factor, m7 * sensor_factor); 
  
-    ellipse(int(width/2 + (A0x/maxWidth) * mappedWidth), int(height - 100 - A0y/maxLength * mappedHeight), m0 * 0.005, m0 * 0.005);
+    ellipse(int(width/2 + (A0x/maxWidth) * mappedWidth), int(height - 100 - A0y/maxLength * mappedHeight), m0 * sensor_factor, m0 * sensor_factor);
   
-    ellipse(int(width/2 + (A2x/maxWidth) * mappedWidth), int(height - 100 - A2y/maxLength * mappedHeight), m2 * 0.005, m2 * 0.005);
+    ellipse(int(width/2 + (A2x/maxWidth) * mappedWidth), int(height - 100 - A2y/maxLength * mappedHeight), m2 * sensor_factor, m2 * sensor_factor);
     
-    ellipse(int(width/2 + (A3x/maxWidth) * mappedWidth), int(height - 100 - A3y/maxLength * mappedHeight), m3 * 0.005, m3 * 0.005);
+    ellipse(int(width/2 + (A3x/maxWidth) * mappedWidth), int(height - 100 - A3y/maxLength * mappedHeight), m3 * sensor_factor, m3 * sensor_factor);
    
-    ellipse(int(width/2 + (A1x/maxWidth) * mappedWidth), int(height - 100 - A1y/maxLength * mappedHeight), m1 * 0.005, m1 * 0.005);
+    ellipse(int(width/2 + (A1x/maxWidth) * mappedWidth), int(height - 100 - A1y/maxLength * mappedHeight), m1 * sensor_factor, m1 * sensor_factor);
     
     // Draws the circle to represent the centre of pressure.
     fill(10, 200, 75, 200);
     
-    // Changes the multiplier of totalR to increase or decrease the size of the circles.
-    ellipse(int((width/2) + x*(mappedWidth/maxWidth)), int((height - 100) - y*(mappedHeight/maxLength)), totalM*0.0025, totalM*0.0025 ); 
+    // Change the multiplier of totalR to increase or decrease the size of the circles.
+    ellipse(int((width/2) + x*(mappedWidth/maxWidth)), int((height - 100) - y*(mappedHeight/maxLength)), totalM * centre_factor, totalM * centre_factor ); 
 }
 
 /*
@@ -154,9 +143,8 @@ void serialEvent(Serial myPort){
   String val = myPort.readStringUntil('\n'); // Reads a line serial printed by the arduino
 
   float[] values = float(val.split(" ")); // Splits up the string into an array so it's data can be parsed for each value
-  
-  TableRow newRow = rTable.addRow(); 
 
+  //Assigning resistance values read by the Arduino to the corresponding variable
   r0 = values[0];
   r1 = values[1];
   r2 = values[2];
@@ -167,7 +155,13 @@ void serialEvent(Serial myPort){
   y = values[7];
   totalR = values[8];
   
-  // Input your resistance to mass conversion equation here. 
+  //Prints readings to console below 
+  for (int i = 0; i < 9; i++) {
+    print(values[i] + " ");
+  }
+  println();
+  
+  // Replace each resistance with your conversion equation here. 
   m0 = r0;
   m1 = r1;
   m2 = r2;
@@ -176,37 +170,15 @@ void serialEvent(Serial myPort){
   m7 = r7;
   totalM = totalR;
   
-  
-  // dataPrinted is initialized to 200 and is set to 0 by pressing enter
-  if (dataPrinted < 200) {
-    
-      newRow.setInt("id", dataPrinted);
-      newRow.setFloat("r0", r0);
-      newRow.setFloat("r1", r1);
-      newRow.setFloat("r2", r2);
-      newRow.setFloat("r3", r3);
-      newRow.setFloat("r6", r6);
-      newRow.setFloat("r7", r7);
-      newRow.setFloat("x", x);
-      newRow.setFloat("y", y);
-      newRow.setFloat("rTotal", totalR);
-      
-      dataPrinted++;
-      //output.println(dataPrinted + ": " + val); // Writes data to csv file
-      //output.flush();
-  }
-
+  // Writes data to csv file
+  output.println(m0 + "," + m1 + "," + m2 + "," + m3 + "," + m6 + "," + m7 + "," + x + "," + y + "," + totalM); 
+  output.flush();
 }
 
 void keyPressed (){
  
- //Sets dataPrinted to 0, allowing the program to write 200 more sets of data to the file
  if (key == ENTER){
-   dataPrinted = 0;
-   fileName = "sensor.csv";
-   saveTable(rTable, fileName);
-   //output.println(" ");
-   //output.close(); //Finishes file 
-   //exit(); //Stops program
+   output.close();
+   exit();
  }
 }

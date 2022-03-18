@@ -1,7 +1,7 @@
 #include "math.h"
 
 //Change the pin to the sensor you are testing.
-const int analogPin = A0;
+const int analogPin = A2;
 
 
 const int avgSize = 10;
