@@ -8,7 +8,7 @@ function [waveform] = GetWaveform(type, total_s, amp, freq, duty)
     % Output
     %   waveform: FES wave from t = 0 to 1 (percent of gait cycle)
     
-    t = 0:0.01:s;  % x axis range for one gait cycle
+    t = 0:0.01:total_s;  % x axis range for one gait cycle
     swing = total_s*0.6; % start of the swing phase 
     
     function y = wave(x)
