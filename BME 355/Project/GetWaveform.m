@@ -17,9 +17,9 @@ function [waveform] = GetWaveform(t, type, total_s, amp, freq, duty)
             waveform(i) = 0;
         else
             if strcmp(type, 'sine') 
-                waveform(i) = amp * sin(freq*t(i));
+                waveform(i) = amp/2 * sin(freq*t(i)) + amp/2;
             elseif strcmp(type, 'square') 
-                waveform(i) = amp * square(freq*t(i), duty);
+                waveform(i) = amp/2 * square(freq*t(i), duty) + amp/2;
             elseif strcmp(type, 'trap') 
                 margin = (total_s - swing)*(duty/100)/2;
                 if t(i) < swing + margin
