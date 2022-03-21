@@ -17,19 +17,19 @@ of each sensor will need to be initialized by the user.
 #include "math.h"
 
 //Used to store the x-coordinate of each sensor. Initialize the sensor chosen as the origin to 0. Current values are in cm.
-const float A0x = 0;    // Green, Green
+const float A0x = 3;    // Green
 const float A1x = -4; 
-const float A2x = -1;    // White, White
+const float A2x = 1;    // White
 const float A3x = -3;
-const float A6x = 4;   // Yellow, Black
+const float A6x = -2;   // Black
 const float A7x = 3.5;
 
 //Used to store the y-coordinate of each sensor. Initialize the sensor chosen as the origin to 0. Current values are in cm.
-const float A0y = 5;    // Green
+const float A0y = 13;    // Green
 const float A1y = 23.5;
-const float A2y = 19;    // White
+const float A2y = 21;    // White
 const float A3y = 17;
-const float A6y = 18;   // Yellow
+const float A6y = 24;   // Black
 const float A7y = 0;
 
 const int noiseFactor = 25;//Any resistance reading above the noise factor will be outputted as 0

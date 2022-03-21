@@ -16,8 +16,8 @@ This program is meant to run in conjunction with the sketch on the Arduino. Note
 import processing.serial.*;    // Importing the serial library to communicate with the Arduino
 
 //Change the COM port to match the COM from both of the Arduino codes
-String port_1_name = "COM4";
-String port_2_name = "COM38";
+String port_1_name = "COM5";
+String port_2_name = "COM10";
 
 // Declaring a variable named 'myPort' for serial communication
 Serial port_1;
@@ -55,34 +55,34 @@ float totalM = 0;
 
 // Use the following section to change the x and y coordinate of the sensors on Arduino 1. Initialize sensor chosen as origin to 0.
 // Current values are in cm. Make values negative if to the left of the origin. Y coordinate values should not be negative as the origin is the bottom most point.
-float A0x_1 = 0;
+float A0x_1 = 0;    // Green
 float A1x_1 = -4;
-float A2x_1 = -3;
+float A2x_1 = -1;   // White
 float A3x_1 = -3;
-float A6x_1 = -3;
+float A6x_1 = 4;   // Yellow
 float A7x_1 = 3.5;
 
-float A0y_1 = 0;
+float A0y_1 = 0;    // Green
 float A1y_1 = 23.5;
-float A2y_1 = 22;
+float A2y_1 = 14;   // White
 float A3y_1 = 17;
-float A6y_1 = 15;
+float A6y_1 = 13;   // Yellow
 float A7y_1 = 0;
 
 // Use the following section to change the x and y coordinate of the sensors on Arduino 2. Initialize sensor chosen as origin to 0.
 // Current values are in cm. Make values negative if to the left of the origin. Y coordinate values should not be negative as the origin is the bottom most point.
-float A0x_2 = 2;
+float A0x_2 = 3;    // Green2
 float A1x_2 = -4;
-float A2x_2 = 2;
+float A2x_2 = 1;    // White2
 float A3x_2 = -3;
-float A6x_2 = 2;
+float A6x_2 = -2;   // Black
 float A7x_2 = 3.5;
 
-float A0y_2 = 0;
+float A0y_2 = 8;    // Green2
 float A1y_2 = 23.5;
-float A2y_2 = 22;
+float A2y_2 = 16;   // White2
 float A3y_2 = 17;
-float A6y_2 = 15;
+float A6y_2 = 19;   // Black
 float A7y_2 = 0;
 
 // Arrays to store the x and y coordinates.
@@ -90,8 +90,8 @@ float[] widthValues = { A0x_1, A1x_1, A2x_1, A3x_1, A6x_1, A7x_1, A0x_2, A1x_2, 
 float[] lengthValues = { A0y_1, A1y_1, A2y_1, A3y_1, A6y_1, A7y_1, A0y_2, A1y_2, A2y_2, A3y_2, A6y_2, A7y_2};
 
 //Change these values to adjust to size of circles in pop-up window 
-float sensor_factor = 5;
-float centre_factor = 2;
+float sensor_factor = 50;
+float centre_factor = 20;
 
 // Variables to store the max distance between two sensors in the x and y direction.
 // These variables will be used to calculate the width to height ratio for the display.
@@ -269,19 +269,19 @@ void serialEvent(Serial myPort) {
     }
 
     //Replace each resistance with your conversion equation.
-    m0_1 = r0_1;
+    m0_1 = 1.4694 * pow(r0_1, -0.449);
     m1_1 = r1_1;
-    m2_1 = r2_1;
+    m2_1 = 1.6239 * pow(r2_1, -0.315);
     m3_1 = r3_1;
-    m6_1 = r6_1;
+    m6_1 = 1.4571* pow(r6_1, -0.309); 
     m7_1 = r7_1;
     totalM_1 = m0_1 + m1_1 + m2_1 + m3_1 + m6_1 + m7_1;
 
-    m0_2 = r0_2;
+    m0_2 = 1.2637 * pow(r0_2, -0.323);
     m1_2 = r1_2;
-    m2_2 = r2_2;
+    m2_2 = 1.2362 * pow(r2_2, -0.341);
     m3_2 = r3_2;
-    m6_2 = r6_2;
+    m6_2 = 1.2756 * pow(r6_2,-0.387);
     m7_2 = r7_2;
     totalM_2 = m0_2 + m1_2 + m2_2 + m3_2 + m6_2 + m7_2;
     
