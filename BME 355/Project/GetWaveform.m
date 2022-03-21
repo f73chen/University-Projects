@@ -1,5 +1,6 @@
-function [waveform] = GetWaveform(type, total_s, amp, freq, duty)
+function [waveform] = GetWaveform(t, type, total_s, amp, freq, duty)
     % Input Parameters
+    %   t:        time in seconds during the gait cycle
     %   type:     type of waveform (sine, square, trap)
     %   total_s:  number of seconds in one gait cycle
     %   amp:      amplitude - all waves
@@ -8,30 +9,27 @@ function [waveform] = GetWaveform(type, total_s, amp, freq, duty)
     % Output
     %   waveform: FES wave from t = 0 to 1 (percent of gait cycle)
     
-    t = 0:0.01:total_s;  % x axis range for one gait cycle
     swing = total_s*0.6; % start of the swing phase 
     
-    function y = wave(x)
-        if x < swing
-            y = 0;
+    waveform = zeros(1, size(t, 2));
+    for i = 1:size(t,2)
+        if t(i) < swing
+            waveform(i) = 0;
         else
             if strcmp(type, 'sine') 
-                y = amp * sin(freq*x);
+                waveform(i) = amp * sin(freq*t(i));
             elseif strcmp(type, 'square') 
-                y = amp * square(freq*x, duty);
+                waveform(i) = amp * square(freq*t(i), duty);
             elseif strcmp(type, 'trap') 
                 margin = (total_s - swing)*(duty/100)/2;
-                if x < swing + margin
-                    y = (amp/margin)*x - swing*amp/margin;
-                elseif x > total_s - margin
-                    y = -(amp/margin)*x + amp/margin;
+                if t(i) < swing + margin
+                    waveform(i) = (amp/margin)*t(i) - swing*amp/margin;
+                elseif t(i) > total_s - margin
+                    waveform(i) = -(amp/margin)*t(i) + amp/margin*total_s;
                 else
-                    y = amp;
+                    waveform(i) = amp;
                 end
             end
         end
     end
-
-    waveform = @(t) wave(t);
-
 end
