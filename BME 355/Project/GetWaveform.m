@@ -1,7 +1,7 @@
-function [waveform] = get_waveform(type, amp, freq, duty)
+function [waveform] = GetWaveform(type, amp, freq, duty)
     % Input Parameters
     %   type: type of waveform (sine, square, trap)
-    %   amp: amplitude - all waves
+    %   amp:  amplitude - all waves
     %   freq: frequency (Hz) - all waves
     %   duty: duty cycle (int from 0 to 100) - square and trap waves
     % Output
