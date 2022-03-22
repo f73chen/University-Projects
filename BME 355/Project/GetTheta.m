@@ -21,6 +21,6 @@ function [theta, toe_y] = GetTheta(fm)
 end
 
 % references
-% male foot: https://www.researchgate.net/figure/Percentiles-of-Foot-Dimensions-mm_tbl1_327021689
+% male foot length (ankle to toe): https://www.researchgate.net/figure/Percentiles-of-Foot-Dimensions-mm_tbl1_327021689
 % male foot mass = 0.0145M, where M = total body mass (from ME 598 course)
 % male body mass: https://www.researchgate.net/figure/10th-50th-and-90th-mass-and-height-percentiles-for-male-and-female-adults-for-Caucasian_tbl1_51180593
