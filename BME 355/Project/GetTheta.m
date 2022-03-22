@@ -1,4 +1,4 @@
-function [theta, toe_y] = GetTheta(fm)
+function [theta, toe_y] = GetTheta() % put fm back as input
     % Input 
     %   fm:       vector of muscle forces w/ sampling rate matching opensim data
     % Outputs
@@ -11,12 +11,17 @@ function [theta, toe_y] = GetTheta(fm)
 
     tibia_angle_l = readmatrix('data.xlsx', 'Sheet', 1, 'Range', 'G2:G74');
     ankle_ty = readmatrix('data.xlsx', 'Sheet', 1, 'Range', 'H2:H74');
+    
+    % testing
+    fm = repelem(0.1950308, length(ankle_ty));
+    fm = fm.'; % transpose to column vector
 
     arg = (fm.*0.03)./(m_foot*g*0.442*l_foot); % scalar multiplication and division to muscle force matrix
+
     foot_angle = asin(arg); % returns angles in rad
     foot_angle = rad2deg(foot_angle); % convert to deg
     theta = foot_angle - tibia_angle_l;
-
+    
     toe_y = ankle_ty + sin(deg2rad(theta)).*l_foot;
 end
 
