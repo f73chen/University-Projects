@@ -1,4 +1,4 @@
-function [waveform] = GetWaveform(t, start, stop, type, total_s, amp, freq, duty)
+function [waveform] = GetWaveform(t, start, stop, type, amp, freq, duty)
     % Input Parameters
     %   t:        time in seconds during the gait cycle
     %   start:    start time of swing phase
@@ -17,7 +17,7 @@ function [waveform] = GetWaveform(t, start, stop, type, total_s, amp, freq, duty
             waveform(i) = 0;
         else
             if strcmp(type, 'sine') 
-                waveform(i) = amp/2 * sin(freq*(t(i)-start)) + amp/2;
+                waveform(i) = amp/2 * sin(freq*(t(i)-start-1/freq/0.75)) + amp/2;
             elseif strcmp(type, 'square') 
                 waveform(i) = amp/2 * square(freq*(t(i)-start), duty) + amp/2;
             elseif strcmp(type, 'trap') 
