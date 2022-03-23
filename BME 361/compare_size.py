@@ -17,7 +17,7 @@ def normalize(data):
     averages = []
     for name in sensor_names: 
         averages.append(sum(data[name][info[person][1][0]:info[person][1][1]])/10)
-    averages = [(avg - min(averages)) / (max(averages) - min(averages)) for avg in averages]
+    averages = [float("%0.3f" % (avg / sum(averages))) for avg in averages]
     return averages
 
 # get normalized sensor readings for each person
