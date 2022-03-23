@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+import numpy as np
+import math
 
 datapath = os.path.dirname(os.path.abspath(__file__)) + r'\data' 
 
@@ -11,7 +13,7 @@ info = {
     'fenglin': [r'\standard_grace_2-ss37.csv', [675, 684]]
 }
 
-# normalize sensor averages given dataframe
+# function for normalizing sensor averages given dataframe
 def normalize(data):
     sensor_names = ['r0_1', 'r2_1', 'r6_1', 'r0_2', 'r2_2', 'r6_2']
     averages = []
@@ -20,9 +22,20 @@ def normalize(data):
     averages = [float("%0.3f" % (avg / sum(averages))) for avg in averages]
     return averages
 
-# get normalized sensor readings for each person
+# function for adding rmse values to info dictionary
+def compute_rmse():
+    standard = info['christina'][2]
+    for person in info:
+        vals = info[person][2]
+        info[person].append(math.sqrt(np.square(np.subtract(standard, vals)).mean()))
+
+
+# add normalized sensor readings to info dictionary
 for person in info:
     data = pd.read_csv(datapath + info[person][0])
-    normalized_data = normalize(data)
-    print(normalized_data)
+    info[person].append(normalize(data))
+
+# add rmse to info dictionary
+compute_rmse()
+print(info)
     
