@@ -27,7 +27,7 @@ def compute_rmse():
     standard = info['christina'][2]
     for person in info:
         vals = info[person][2]
-        info[person].append(math.sqrt(np.square(np.subtract(standard, vals)).mean()))
+        info[person].append(float("%0.6f" % (math.sqrt(np.square(np.subtract(standard, vals)).mean()))))
 
 
 # add normalized sensor readings to info dictionary
