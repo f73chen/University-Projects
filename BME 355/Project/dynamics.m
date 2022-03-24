@@ -1,4 +1,4 @@
-function [x_dot] = dynamics(t, x, tibialis, model, type, amp, freq, duty, phase)
+function [x_dot] = dynamics(t, start, stop, x, tibialis, model, type, amp, freq, duty, phase)
     % Inputs
     % x: state vector (ankle angle, angular velocity, soleus normalized CE length, TA normalized CE length)
     % soleus: soleus muscle (HillTypeModel)
@@ -8,7 +8,7 @@ function [x_dot] = dynamics(t, x, tibialis, model, type, amp, freq, duty, phase)
     % x_dot: derivative of state vector
     
     % Get TA activation from FES
-    tibialis_activation = GetMuscleActivationFromWaveform(t, type, amp, freq, duty, phase);
+    tibialis_activation = GetMuscleActivationFromWaveform(t, start, stop, type, amp, freq, duty, phase);
 
     % m = 1.2325 --> mass (kg) of 50th percentile US male foot
     % l = 0.21517 --> length (m) of 50th percentile male foot (ankle to toe) 

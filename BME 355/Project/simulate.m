@@ -1,4 +1,4 @@
-function [] = simulate(T, type, amp, freq, duty, phase)
+function [] = simulate(T, start, stop, type, amp, freq, duty, phase)
     % Runs a simulation of the model and plots results.
     
     % Inputs
@@ -8,10 +8,10 @@ function [] = simulate(T, type, amp, freq, duty, phase)
     tibialis = HillTypeMuscle(2000, 0.6*rest_length_tibialis, 0.4*rest_length_tibialis);
     
     model = OpenSim('data/data.csv');   % Load data from OpenSim
-    f = @(t, x) dynamics(t, x, tibialis, model, type, amp, freq, duty, phase);
+    f = @(t, x) dynamics(t, start, stop, x, tibialis, model, type, amp, freq, duty, phase);
     
     % Run the simulation
-    tspan = [0 T];
+    tspan = [start stop];
     initialCondition = [0, 0, 1];
     options = odeset('RelTol', 1e-6, 'AbsTol', 1e-8);
     [time, y] = ode45(f, tspan, initialCondition, options);
