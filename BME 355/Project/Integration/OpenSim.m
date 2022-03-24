@@ -17,12 +17,24 @@ classdef OpenSim < handle
 
         % Return interpolated tibia tilt
         function tilt = GetTilt(model, t)
-            tilt = interp1(model.t_sample, model.tilt, t);
+            if t < 0
+                tilt = model.tilt(1);
+            elseif t > 1.2
+                tilt = model.tilt(end);
+            else
+                tilt = interp1(model.t_sample, model.tilt, t, 'linear', 'extrap');
+            end
         end
 
         % Return interpolated tibia height
         function height = GetHeight(model, t)
-            height = interp1(model.t_sample, model.height, t);
+            if t < 0
+                height = model.height(1);
+            elseif t > 1.2
+                height = model.height(end);
+            else
+                height = interp1(model.t_sample, model.height, t, 'linear', 'extrap');
+            end
         end
     end
 end
