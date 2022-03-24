@@ -22,7 +22,7 @@ classdef OpenSim < handle
             elseif t > 1.2
                 tilt = model.tilt(end);
             else
-                tilt = interp1(model.t_sample, model.tilt, t, 'linear', 'extrap');
+                tilt = interp1(model.t_sample, model.tilt, t);
             end
         end
 
@@ -33,7 +33,7 @@ classdef OpenSim < handle
             elseif t > 1.2
                 height = model.height(end);
             else
-                height = interp1(model.t_sample, model.height, t, 'linear', 'extrap');
+                height = interp1(model.t_sample, model.height, t);
             end
         end
     end
