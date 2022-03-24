@@ -9,7 +9,6 @@ function toe_height = GetToeHeight(model, t, theta_prime)
     l_foot = 0.21517;   % length (m) of 50th percentile male foot (ankle to toe)
 
     tibia_angle = model.GetTilt(t);     % Read the current tibia tilt
-    tibia_angle = deg2rad(tibia_angle); % Convert degrees to radians
     tibia_height = model.GetHeight(t);  % Read the current tibia height
     
     theta = theta_prime - tibia_angle;  % Ankle angle wrt. ground
