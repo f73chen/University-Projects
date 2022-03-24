@@ -168,13 +168,19 @@ function [force_length_regression] = get_muscle_force_length_regression()
             75.22373540856029 17.77282850779511;
             76.44941634241243 8.4187082405345];
 
-    length = data(:,1); 
-    force = data(:,2); 
-      
-    % Normalization 
-    force = force./max(force); % normalize force 
-    max_force_index = round(median(find(force == max(force)))); % find the index of location where force is max 
-    length = length./length(max_force_index); % normalize length
-      
-    force_length_regression = fit(length, force,'gauss2');
+    % Normalize muscle force between 0 and 1
+    [max_y, max_idx] = max(data(:,2));
+    min_y = min(data(:,2));
+    for i = 1:size(data,1)
+        data(i,2) = (data(i,2) - min_y) / (max_y - min_y);
+    end
+
+    % Normalize muscle length so max force happens at 1
+    pivot = data(max_idx,1);
+    for i = 1:size(data,1)
+        data(i,1) = data(i,1) / pivot;
+    end
+
+    % Regression with "fit" function with "gauss2" option as model type
+    force_length_regression = fit(data(:,1), data(:,2), 'gauss2');
 end

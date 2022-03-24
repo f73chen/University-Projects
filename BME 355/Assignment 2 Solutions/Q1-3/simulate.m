@@ -7,33 +7,29 @@ function simulate(T, f0M, resting_length_muscle, resting_length_tendon, RelTol, 
     
     %%% TASK 1
     % Define the Hill-type muscle
-    hill_type = HillTypeMuscle(f0M, resting_length_muscle, resting_length_tendon);
+    muscleModel = HillTypeMuscle(f0M, resting_length_muscle, resting_length_tendon);
     
     %%% TASK 2
-    % Isometric contraction at resting lengths
-    muscle_tendon_length = resting_length_muscle + resting_length_tendon;
-
-    % Return velocity based on time and normalized muscle length
-    function [sim_velocity] = simulation_velocity(time, normalized_muscle_length)
-        a = time >= 0.5;
-        % Get tendon length from muscle length
-        normalized_tendon_length = hill_type.norm_tendon_length(muscle_tendon_length, normalized_muscle_length);
-        sim_velocity = get_velocity(a, normalized_muscle_length, normalized_tendon_length);
+    function [root] = vm_fct(t, x) 
+        if t < 0.5 
+            a = 0; 
+        else 
+            a = 1; 
+        end 
+        root = get_velocity(a, x, muscleModel.norm_tendon_length(resting_length_muscle + resting_length_tendon, x)); 
     end
     
     %%% TASK 3
     % the outputs of ode45 must be named "time" and "norm_lm"
-    tspan = [0, T];
-    initial_condition = 1;
-    options = odeset('RelTol', RelTol);
-    [time, norm_lm] = ode45(@simulation_velocity, tspan, initial_condition, options);
+    tspan = [0 T]; 
+    initialCondition = 1; 
+    options = odeset('RelTol', RelTol, 'AbsTol', AbsTol); 
+    [time, norm_lm] = ode45(@vm_fct, tspan, initialCondition, options);
     
     %%% TASK 4
-    % save the estimated forces in a vector called "forces"
-    forces = zeros(1, size(norm_lm,1));
-    % Calculate force for each normalized length
-    for i = 1:size(norm_lm,1)
-        forces(i) = hill_type.get_force(muscle_tendon_length, norm_lm(i));
+    forces = zeros(1, length(norm_lm)); 
+    for i = 1:length(norm_lm)     
+        forces(i) = muscleModel.get_force(resting_length_muscle + resting_length_tendon, norm_lm(i)); 
     end
     
     % Do not alter the rest (it should not be needed)

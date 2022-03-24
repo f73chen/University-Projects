@@ -5,7 +5,13 @@ function [normalize_tendon_tension] = force_length_tendon(lt)
     % Output
     %   normalized tension produced by tendon
     
-    slack_length = 1; 
-    tight = lt >= slack_length; 
-    normalize_tendon_tension = tight.*(10 * (lt - slack_length) + 240 * (lt - slack_length).^2); 
+    lts = 1;
+    % Create empty array
+    normalize_tendon_tension = zeros(1, size(lt,2));
+    % Only change tension when the tendon is elongated
+    for i = 1:size(lt,2)
+        if lt(i) >= lts
+            normalize_tendon_tension(i) = 10*(lt(i) - lts) + 240*(lt(i) - lts)^2;
+        end
+    end
 end

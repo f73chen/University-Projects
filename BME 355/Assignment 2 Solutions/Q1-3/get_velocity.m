@@ -12,8 +12,10 @@ function [root] = get_velocity(a, lm, lt)
     % WRITE CODE HERE TO CALCULATE VELOCITY
     % Assume pennation angle alpha = 0
     % Isometric force f0M can be factored out of the equation
-    fun = @(v) a*force_length_muscle(lm)*force_velocity_muscle(v) + force_length_parallel(lm) + beta*v - force_length_tendon(lt);
-    root = fzero(fun, 0);
+    vm_func = @(vm) a*force_length_muscle(lm)*force_velocity_muscle(vm) + ... 
+    force_length_parallel(lm) + beta*vm - force_length_tendon(lt); 
+  
+    root = fzero(vm_func, 0);
 end
 
 
