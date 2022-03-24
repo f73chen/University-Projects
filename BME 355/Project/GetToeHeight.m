@@ -1,8 +1,8 @@
-function toe_height = GetToeHeight(model, t, theta_prime)
+function toe_height = GetToeHeight(model, t, ankle_angle)
     % Parameters
     %   model:  OpenSim model containing reference data
     %   t:      current time frame in range [0, 1.2]
-    %   theta_prime: current ankle angle wrt. tibia (radians)
+    %   ankle_angle: current ankle angle wrt. tibia (radians)
     % Outputs
     %   toe_y:  toe height (m) wrt ground at current time
 
@@ -11,7 +11,7 @@ function toe_height = GetToeHeight(model, t, theta_prime)
     tibia_angle = model.GetTilt(t);     % Read the current tibia tilt
     tibia_height = model.GetHeight(t);  % Read the current tibia height
     
-    theta = theta_prime - tibia_angle;  % Ankle angle wrt. ground
+    theta = ankle_angle - tibia_angle;  % Ankle angle wrt. ground
     toe_height = tibia_height + l_foot * sin(theta);
 end
 
