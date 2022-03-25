@@ -3,6 +3,7 @@ clc
 
 t = 0:1/60:1.2;
 
+%%
 subplot(4,1,1)
 plot(t, GetWaveform(t, 'sine', 3, 12, 50, 0.32));
 title('Sine');
@@ -27,6 +28,13 @@ ylim([-0.25, 4]);
 subplot(4,1,4)
 plot(t, GetWaveform(t, 'constant', 3, 20, 50, 0));
 title('Constant');
+xlabel('Time (s)'); 
+ylabel('Voltage (V)');
+ylim([-0.25, 4]);
+
+%%
+plot(t, GetWaveform(t, 'sine', 3.47, 12, 50, 0.32));
+title('FES Input');
 xlabel('Time (s)'); 
 ylabel('Voltage (V)');
 ylim([-0.25, 4]);
