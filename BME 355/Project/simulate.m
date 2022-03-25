@@ -12,7 +12,14 @@ function [] = simulate(T, start, stop, type, amp, freq, duty, phase)
     
     % Run the simulation
     tspan = [start stop];
-    initialCondition = [0, 0, 1];
+    delta = 0.001;
+    initial_angle = model.GetAnkleAngle(start);
+    initial_angle_delta = model.GetAnkleAngle(start-delta);
+    initial_angular_velocity = (initial_angle - initial_angle_delta) / delta;
+    initial_ta_length = tibialis_length(initial_angle) / tibialis_length(0);
+    initialCondition = [-pi/4, ...
+                        0, ...
+                        1.1];
     options = odeset('RelTol', 1e-6, 'AbsTol', 1e-8);
     [time, y] = ode45(f, tspan, initialCondition, options);
     
@@ -43,5 +50,5 @@ function [] = simulate(T, start, stop, type, amp, freq, duty, phase)
     subplot(3, 1, 3)
     plot(time, GetToeHeight(model, time, theta), 'b', 'LineWidth', LineWidth)
     xlabel('Time (s)')
-    ylabel('Toe height (m)')
+    ylabel('Toe Height (m)')
 end

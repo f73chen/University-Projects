@@ -6,8 +6,11 @@ function [tibialis_anterior_length] = tibialis_length(theta)
     % tibialis anterior length
     
     % define rotation matrix
-    rotation = [sin(theta) -cos(theta) 
-                cos(theta)  sin(theta)];
+    rotation = [cos(theta) -sin(theta) 
+                sin(theta)  cos(theta)];
+
+%     rotation = [sin(theta) -cos(theta) 
+%                 cos(theta)  sin(theta)];
     
     % coordinates in global reference frame
     origin = rotation * [0.3 -0.03]';
