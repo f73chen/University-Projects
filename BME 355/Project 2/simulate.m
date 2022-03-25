@@ -27,7 +27,7 @@ function [] = simulate(T)
     LineWidth = 1.5;
     subplot(2,1,1)
     plot(time, theta, 'LineWidth', LineWidth)
-    ylabel('Body Angle (rad)')
+    ylabel('Ankle Angle (rad)')
     
     subplot(2,1,2)
     plot(time, tibialis_moment, 'g', 'LineWidth', LineWidth), hold on
