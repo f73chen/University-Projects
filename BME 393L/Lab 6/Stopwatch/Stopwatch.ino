@@ -6,14 +6,12 @@ int debounce = 5;             // ms to wait for debouncing
 int val = 1;
 int lastVal = 1;          // Default state is unpressed
 
-void setup()
-{
+void setup() {
   Serial.begin(9600); 
   pinMode(switchPin, INPUT);  // Set the input pin as an input
 }
 
-void loop()
-{
+void loop() {
   val = digitalRead(switchPin); // Read pin state
 
   if (val != lastVal) {
