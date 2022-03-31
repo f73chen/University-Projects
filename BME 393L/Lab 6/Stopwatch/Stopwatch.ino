@@ -1,27 +1,34 @@
-const int switchPin = 2; // the number of the input pin
-long startTime; // store starting time here
-long duration; // variable to store how long the timer has been running
-float secduration; // variable to store the duration in seconds
+const int switchPin = 2;  // Input pin number
+long startTime;
+long duration;            // Duration in ticks
+float secDuration;        // Duration in seconds
+int debounce = 5;             // ms to wait for debouncing
+int val = 1;
+int lastVal = 1;          // Default state is unpressed
 
 void setup()
 {
-Set the input pin as an input
-Serial.begin(9600); //this will allow the Uno to comunicate with the serial monitor
+  Serial.begin(9600); 
+  pinMode(switchPin, INPUT);  // Set the input pin as an input
 }
 
 void loop()
 {
-Read start state from pin
-Serial.println("Button pushed"); // this will print to the serial monitor
-startTime = millis(); // stores the number of millisceoncds since the Uno was last reset. See http://arduino.cc/en/Reference/millis
-Read or Wait for a change in state of the input pin.  
-duration = the time difference between the two states of the input pin (start of the program until you wish to stop the stopwatch)
-secduration=(float)duration / (how many milliseconds in a second?) ; /* convert the integer value for the time differnce into a 
-                                                    floating variable before calculating time lapsed in seconds keeps precision */
-Serial.print("Button released after "); // print out your results
-Serial.print(secduration);
-Serial.println(" seconds");
+  val = digitalRead(switchPin); // Read pin state
 
+  if (val != lastVal) {
+    delay(debounce); // Debounce
+    lastVal = val;
+    if (val == LOW) { // Falling edge
+      Serial.println("Button pushed");
+      startTime = millis();
+    }
+    else {  // Rising edge
+      duration = millis() - startTime;
+      secDuration = float(duration + debounce) / 1000;
+      Serial.print("Button released after "); // print out your results
+      Serial.print(secDuration);
+      Serial.println(" seconds");
+    }
+  }
 }
-
-
