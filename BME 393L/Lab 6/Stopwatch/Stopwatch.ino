@@ -23,7 +23,7 @@ void loop()
       Serial.println("Button pushed");
       startTime = millis();
     }
-    else {  // Rising edge
+    if (val == HIGH) {  // Rising edge
       duration = millis() - startTime;
       secDuration = float(duration + debounce) / 1000;
       Serial.print("Button released after "); // print out your results
