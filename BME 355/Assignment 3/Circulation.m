@@ -61,6 +61,15 @@ classdef Circulation
             %  Implement this by deciding whether the model is in a filling, ejecting, or isovolumic phase and using
             %  the corresponding dynamic matrix.
 
+            if x(2) > x(1)
+                A = obj.filling_phase_dynamic_matrix(t);
+            elseif x(4) > 0 || x(1) > x(3)
+                A = obj.ejection_phase_dynamic_matrix(t);
+            else
+                A = obj.isovolumic_phase_dynamic_matrix(t);
+            end
+            state_derivatives = A * x;
+
         end
         
         function [A] = isovolumic_phase_dynamic_matrix(obj, t)
@@ -102,6 +111,12 @@ classdef Circulation
             % A matrix for filling phase
             
             % WRITE YOUR CODE HERE
+            el = obj.elastance(t);
+            del_dt = obj.elastance_finite_difference(t);
+            A = [del_dt/el - el/obj.R2, el/obj.R2,                               0,                  0
+                 1/(obj.R2*obj.C2),     -(obj.R1+obj.R2)/(obj.C2*obj.R1*obj.R2), 1/(obj.R1*obj.C2),  0
+                 0,                     1/(obj.R1*obj.C3),                       -1/(obj.R1*obj.C3), 0
+                 0,                     0,                                       0,                  0];
 
         end
         
