@@ -69,7 +69,6 @@ classdef Circulation
                 A = obj.isovolumic_phase_dynamic_matrix(t);
             end
             state_derivatives = A * x;
-
         end
         
         function [A] = isovolumic_phase_dynamic_matrix(obj, t)
