@@ -9,15 +9,17 @@ T = 5;
 
 %%% TASK 4
 % Do the necessary calculation (if required based on Q (4th state)) and then generate the desired plots.
-
-
+aortic_q = state(:, 1) - state(:, 4) .* circulation_model.R3;
 
 %%% Plotting
 figure()
 LineWidth = 1.5;
 FontSize = 12;
 % Your plotting code should be here
-
+plot(time, state(:, 1), 'r', 'LineWidth', LineWidth), hold on
+plot(time, state(:, 2), 'g', 'LineWidth', LineWidth)
+plot(time, state(:, 3), 'b', 'LineWidth', LineWidth)
+plot(time, aortic_q, 'k', 'LineWidth', LineWidth), hold off
 
 legend('ventricular', 'atrial', 'arterial', 'aortic')
 xlabel('Time (seconds)')

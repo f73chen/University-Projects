@@ -160,8 +160,13 @@ classdef Circulation
             
             % WRITE  YOUR CODE HERE
             % Put all the blood in the atria as an initial condition.
-            
-            
+        
+            f = @(t, x) obj.get_derivative(t, x);
+        
+            tspan = [0 total_time];
+            initialCondition = [0, obj.non_slack_blood_volume / obj.C2, 0, 0];
+            options = odeset('RelTol', 1e-6, 'AbsTol', 1e-8);
+            [time, y] = ode45(f, tspan, initialCondition, options);
         end
         
         function [normalized_time] = get_normalized_time(obj, t)
