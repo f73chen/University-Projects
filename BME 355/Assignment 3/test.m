@@ -22,7 +22,7 @@ assert(isequal(model.get_derivative(0, x5), model.isovolumic_phase_dynamic_matri
 %% Test task 4 - Calculating aortic Q and plotting
 T = 5;
 [time, state] = model.simulate(T);
-aortic_q = state(:, 1) - state(:, 4) .* 0.02;
+aortic_q = state(:, 1) - state(:, 4) .* model.R3;
 
 figure()
 LineWidth = 1.5;
@@ -44,7 +44,9 @@ cond2 = [model.non_slack_blood_volume / model.C2, 0, 0, 0]; % All blood in the v
 cond3 = [0, 0, model.non_slack_blood_volume / model.C2, 0]; % All blood in the arteries
 
 [time, state] = test_simulation(model, 5, cond3);
-aortic_q = state(:, 1) - state(:, 4) .* model.R3;
+aortic_q = state(:, 3) + ...
+           gradient(state(:, 4)) ./ gradient(time) .* model.L + ...
+           state(:, 4) * model.R4;
 
 figure()
 LineWidth = 1.5;

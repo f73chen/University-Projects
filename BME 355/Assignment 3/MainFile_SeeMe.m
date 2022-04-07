@@ -9,7 +9,9 @@ T = 5;
 
 %%% TASK 4
 % Do the necessary calculation (if required based on Q (4th state)) and then generate the desired plots.
-aortic_q = state(:, 1) - state(:, 4) .* circulation_model.R3;
+aortic_q = state(:, 3) + ...
+           gradient(state(:, 4)) ./ gradient(time) .* circulation_model.L + ...
+           state(:, 4) * circulation_model.R4;
 
 %%% Plotting
 figure()
