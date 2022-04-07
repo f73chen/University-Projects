@@ -1,4 +1,4 @@
-// The following program was taken from the Arduino website: 
+s // The following program was taken from the Arduino website: 
 // https://www.arduino.cc/en/Tutorial/ToneMelody?from=Tutorial.Tone 
 
 // Connect a speaker or buzzer between pin 8 and GND. 
@@ -98,42 +98,27 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-/*
-  Melody
-
-  Plays a melody
-
-  circuit:
-  - 8 ohm speaker on digital pin 8
-
-  created 21 Jan 2010
-  modified 30 Aug 2011
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Tone
-*/
-
-// #include "pitches.h"
-
-// notes in the melody:
-int melody[] = {
-  NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
-};
-
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4
-};
+const int led_pin = 13;
+const int interrupt_pin = 2;
+volatile byte state = LOW;
+int melody[] = { NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4 };
+int noteDurations[] = { 4, 8, 8, 4, 4, 4, 4, 4 };
 
 void setup() {
-// Attach interrupt here BME students!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  pinMode (led_pin, OUTPUT);
+  pinMode (interrupt_pin, INPUT);
+  attachInterrupt (digitalPinToInterrupt(interrupt_pin), ISR_blink, CHANGE);
+}
+
+void ISR_blink() {
+  state = !state;
+  delay(100);
 }
 
 void loop() {
   // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 8; thisNote++) {
+    digitalWrite(led_pin, state);
 
     // to calculate the note duration, take one second divided by the note type.
     //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
