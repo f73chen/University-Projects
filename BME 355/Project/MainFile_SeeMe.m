@@ -12,5 +12,16 @@ force_length_regression = get_muscle_force_length_regression();
 force_velocity_regression = get_muscle_force_velocity_regression();
 
 T = 1.2;
-simulate (T, 'constant', 0, 12, 50, 0);     % Zero activation
+% simulate(T, 'constant', 0, 12, 50, 0);     % Zero activation
+
 % simulate(T, 'sine', 3.47, 12, 50, 0.32);    % Closest to reference activation
+% simulate(T, 'square', 3.47, 12, 50, 0.32);
+% simulate(T, 'trap', 3.47, 12, 50, 0.32);
+
+% simulate(T, 'sine', 3.47, 20, 50, 0.32);
+% simulate(T, 'square', 3.47, 20, 50, 0.32);
+% simulate(T, 'trap', 3.47, 20, 50, 0.32);
+
+simulate(T, 'sine', 3.47, 20, 30, 0.32);
+simulate(T, 'square', 3.47, 20, 30, 0.32);
+simulate(T, 'trap', 3.47, 20, 30, 0.32);
