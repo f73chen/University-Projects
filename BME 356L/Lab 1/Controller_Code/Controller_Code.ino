@@ -133,7 +133,7 @@ volatile float VtoPWM = 0;                    // Conversion factor from Volts to
 static byte Mode = 0;
 
 // Declare Step Input PWM output (0-1023)
-static float Step_Input = 0;
+static float Step_Input = 1000;
 
 // Declare Start Ramp PWM output (0-1023) 
 static float Ramp_Start = 0;
@@ -157,16 +157,16 @@ static float N = 0;
 float Reference_Input = 0;          
 
 // Declare Input Filter Function I(s) (assumed to be a gain)
-float I_Gain = 0;
+float I_Gain = 318.3;
 
 // Declare Voltage Input (volts)
-float V_in = 0;
+float V_in = 12;
 
 // Declare Capture/Control Loop Period in milli seconds (2-1000)
-static unsigned int Period = 0;
+static unsigned int Period = 10;
 
 // Declare Test Duration in seconds
-static float Time = 0;
+static float Time = 20;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
