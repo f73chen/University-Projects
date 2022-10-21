@@ -24,6 +24,7 @@ ia = 0.0586;
 b = Kt*ia/wm;
 
 P = Kt / (Jt*La*s^3 + (Jt*Rt + b*La)*s^2 + (b*Rt + Kt*Ke)*s);
+P = minreal(P);
 poles = pole(P);
 
 numerator = Kt / (2.493e-07 * 8341.06665046695)

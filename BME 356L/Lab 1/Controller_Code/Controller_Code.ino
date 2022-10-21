@@ -130,7 +130,7 @@ volatile float VtoPWM = 0;                    // Conversion factor from Volts to
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 // Declare Mode of Operation
-static byte Mode = 0;
+static byte Mode = 3;
 
 // Declare Step Input PWM output (0-1023)
 static float Step_Input = 1000;
@@ -148,25 +148,25 @@ static float Freq_Final = 0;
 static float PWM_Amp = 0;
 
 // Declare PID Gains 
-static float Kp = 0;                     
+static float Kp = 0.106097104166405;                     
 static float Ki = 0;                
-static float Kd = 0;                
-static float N = 0;                 
+static float Kd = 0.0054295672399462;                
+static float N = 5;                 
 
 // Declare Desired Input Value (radians)
-float Reference_Input = 0;          
+float Reference_Input = 1;          
 
 // Declare Input Filter Function I(s) (assumed to be a gain)
-float I_Gain = 318.3;
+float I_Gain = 651.9;
 
 // Declare Voltage Input (volts)
 float V_in = 12;
 
 // Declare Capture/Control Loop Period in milli seconds (2-1000)
-static unsigned int Period = 10;
+static unsigned int Period = 9.90358624376205;
 
 // Declare Test Duration in seconds
-static float Time = 20;
+static float Time = 10;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
