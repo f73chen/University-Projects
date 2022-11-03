@@ -18,4 +18,4 @@ C = Kp;
 Tcl = I*C*P / (1 + H*C*P);
 tcl = minreal(Tcl);
 band = bandwidth(tcl);
-time = 2*pi/(band*10);
+time = 2*pi/(band*100);

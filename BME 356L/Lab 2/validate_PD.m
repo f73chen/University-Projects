@@ -25,3 +25,5 @@ tcl = minreal(Tcl);
 band = bandwidth(tcl);
 time = 2*pi/(band*10);
 N = 20 * band;
+
+Tloop = C*P*H;
