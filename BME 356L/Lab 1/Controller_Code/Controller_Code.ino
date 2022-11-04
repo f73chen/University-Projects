@@ -130,10 +130,10 @@ volatile float VtoPWM = 0;                    // Conversion factor from Volts to
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 // Declare Mode of Operation
-static byte Mode = 3;
+static byte Mode = 0;
 
 // Declare Step Input PWM output (0-1023)
-static float Step_Input = 1000;
+static float Step_Input = 90;
 
 // Declare Start Ramp PWM output (0-1023) 
 static float Ramp_Start = 0;
@@ -163,10 +163,10 @@ float I_Gain = 651.9;
 float V_in = 12;
 
 // Declare Capture/Control Loop Period in milli seconds (2-1000)
-static unsigned int Period = 9.90358624376205;
+static unsigned int Period = 10;
 
 // Declare Test Duration in seconds
-static float Time = 10;
+static float Time = 5;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
