@@ -1,1 +1,8 @@
 //Detecting module
+
+//Transducer Pulse Module
+void setup() {
+  pinMode(12, OUTPUT); // sets the digital pin 12 as output
+ }
+ 
+ 
