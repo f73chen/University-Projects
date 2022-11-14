@@ -5,10 +5,14 @@ long duration;  // Delay perceived by the sensor
 int distance;   // Distance as a function of time
 
 // Variables for the stepper motor
-int motorPinA = 8;
-int motorPinB = 9;
-int motorPinC = 10;
-int motorPinD = 11;
+int motor1PinA = 4;
+int motor1PinB = 5;
+int motor1PinC = 6;
+int motor1PinD = 7;
+int motor2PinA = 8;
+int motor2PinB = 9;
+int motor2PinC = 10;
+int motor2PinD = 11;
 int stepsPerRev = 512;
 
 // Variables for the detection array
@@ -22,10 +26,14 @@ void setup() {
   pinMode(echoPin, INPUT);
 
   // Initialize stepper motor pins
-  pinMode(motorPinA, OUTPUT);
-  pinMode(motorPinB, OUTPUT);
-  pinMode(motorPinC, OUTPUT);
-  pinMode(motorPinD, OUTPUT);
+  pinMode(motor1PinA, OUTPUT);
+  pinMode(motor1PinB, OUTPUT);
+  pinMode(motor1PinC, OUTPUT);
+  pinMode(motor1PinD, OUTPUT);
+  pinMode(motor2PinA, OUTPUT);
+  pinMode(motor2PinB, OUTPUT);
+  pinMode(motor2PinC, OUTPUT);
+  pinMode(motor2PinD, OUTPUT);
   
   Serial.begin(9600); // Setup serial
  }
@@ -36,8 +44,10 @@ void setup() {
 //  distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
 //  printValues(duration, distance);    // Display the calculated values
 
-  turnMotor(PI/2, 2.0);              // Turns the motor PI/2 radians CCW
-  turnMotor(-PI/2, 2.0);             // Turns the motor PI/2 radians CW
+  turnMotor(1, PI/2, 2.0);              // Turns motor 1 PI/2 radians CCW
+  turnMotor(1, -PI/2, 2.0);             // Turns motor 1 PI/2 radians CW
+  turnMotor(2, PI/2, 2.0);              // Turns motor 2 PI/2 radians CCW
+  turnMotor(2, -PI/2, 2.0);             // Turns motor 2 PI/2 radians CW
   delay(100000);
  }
 
@@ -60,38 +70,45 @@ void printValues(long duration, int distance) {
 }
 
 // Turns the motor by one step counter-clockwise
-void motorStepCCW(float wait) {
+void motorStep(float wait, int pinA, int pinB, int pinC, int pinD) {
   for (int i = 0; i < 8; i++) {
-    digitalWrite(motorPinA, i==7 or i==0 or i==1);
-    digitalWrite(motorPinB, i==1 or i==2 or i==3);
-    digitalWrite(motorPinC, i==3 or i==4 or i==5);
-    digitalWrite(motorPinD, i==5 or i==6 or i==7);
+    digitalWrite(pinA, i==7 or i==0 or i==1);
+    digitalWrite(pinB, i==1 or i==2 or i==3);
+    digitalWrite(pinC, i==3 or i==4 or i==5);
+    digitalWrite(pinD, i==5 or i==6 or i==7);
     delay(wait);
   }
 }
 
-// Turns the motor by one step clockwise
-void motorStepCW(float wait) {
-  for (int i = 0; i < 8; i++) {
-    digitalWrite(motorPinD, i==7 or i==0 or i==1);
-    digitalWrite(motorPinC, i==1 or i==2 or i==3);
-    digitalWrite(motorPinB, i==3 or i==4 or i==5);
-    digitalWrite(motorPinA, i==5 or i==6 or i==7);
-    delay(wait);
-  }
-}
-
-// Turns the motor x radians
-void turnMotor(float rad, float wait) {
+// Turns motor [index] by [x] radians with [wait] ms between actions
+// The if statements can be placed within the for loop to make the code shorter but less efficient
+void turnMotor(int index, float rad, float wait) {
   int steps = int(stepsPerRev * rad / (2*PI));
   Serial.print("Turning for: ");
   Serial.println(steps);
-  for (int i = 0; i < abs(steps); i++) {
-    Serial.println(i);
-    if (steps < 0) {
-      motorStepCW(wait);
-    } else {
-      motorStepCCW(wait);
+  if (index == 1) {
+    if (steps > 0) {  // Motor 1, CCW
+      for (int i = 0; i < abs(steps); i++) {
+        motorStep(wait, motor1PinA, motor1PinB, motor1PinC, motor1PinD);
+        Serial.println(i);
+      }
+    } else {          // Motor 1, CW
+      for (int i = 0; i < abs(steps); i++) {
+        motorStep(wait, motor1PinD, motor1PinC, motor1PinB, motor1PinA);
+        Serial.println(i);
+      }
+    }
+  } else {
+    if (steps > 0) {  // Motor 2, CCW
+      for (int i = 0; i < abs(steps); i++) {
+        motorStep(wait, motor2PinA, motor2PinB, motor2PinC, motor2PinD);
+        Serial.println(i);
+      }
+    } else {          // Motor 2, CW
+      for (int i = 0; i < abs(steps); i++) {
+        motorStep(wait, motor2PinD, motor2PinC, motor2PinB, motor2PinA);
+        Serial.println(i);
+      }
     }
   }
 }
