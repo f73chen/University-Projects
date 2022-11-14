@@ -12,19 +12,19 @@ void setup() {
  }
  
  void loop() {
-  sendPulse();  // Send a pulse from the trigger pin
-  duration = pulseIn(echoPin, HIGH); // Read the input pin
-  distance = duration * 0.034 / 2;  // Multiply by the speed of sound and divide by the bounce
-  printValues(duration, distance);
+  sendPulse();                        // Send a pulse to the trigger pin
+  duration = pulseIn(echoPin, HIGH);  // Read the input pin
+  distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
+  printValues(duration, distance);    // Display the calculated values
  }
 
 // Send 1 pulse out of the trigger
 void sendPulse() {
-  digitalWrite(triggerPin, LOW); // Turns off the signal
-  delayMicroseconds(2); // Wait 2 microseconds
-  digitalWrite(triggerPin, HIGH); // Turns on the trigger
-  delayMicroseconds(10); // Wait 10 microseconds
-  digitalWrite(triggerPin, LOW); // Turns off the trigger
+  digitalWrite(triggerPin, LOW);  // Turns OFF
+  delayMicroseconds(2);           // Wait 2 microseconds
+  digitalWrite(triggerPin, HIGH); // Turns ON
+  delayMicroseconds(10);          // Wait 10 microseconds
+  digitalWrite(triggerPin, LOW);  // Turns OFF
 }
 
 void printValues(long duration, int distance){
