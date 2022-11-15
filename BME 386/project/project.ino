@@ -1,26 +1,26 @@
 // Variables for the ultrasound sensor
-int triggerPin = 3; // Digital out
-int echoPin = 2;    // Digital in
+const int triggerPin = 3; // Digital out
+const int echoPin = 2;    // Digital in
 long duration;      // Delay perceived by the sensor
 float distance;     // Distance as a function of time
 
 // Variables for the stepper motor
-int motor1PinA = 4;
-int motor1PinB = 5;
-int motor1PinC = 6;
-int motor1PinD = 7;
-int motor2PinA = 8;
-int motor2PinB = 9;
-int motor2PinC = 10;
-int motor2PinD = 11;
-int stepsPerRev = 512;
+const int motor1PinA = 4;
+const int motor1PinB = 5;
+const int motor1PinC = 6;
+const int motor1PinD = 7;
+const int motor2PinA = 8;
+const int motor2PinB = 9;
+const int motor2PinC = 10;
+const int motor2PinD = 11;
+const int stepsPerRev = 512;
 
 // Variables for the detection array
 const int gridPixels = 4;       // Assume odd number of pixels
 const float gridWidth = 20;     // (cm)
 const float handDistance = 5;  // (cm)
-float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
-float totalRotation = 2 * atan((gridWidth/2) / handDistance);  // Angular window (rad)
+const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
+const float totalRotation = 2 * atan((gridWidth/2) / handDistance);  // Angular window (rad)
 float distances[gridPixels][gridPixels];
 
 void setup() {
