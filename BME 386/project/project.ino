@@ -16,11 +16,13 @@ const int motor2PinD = 11;
 const int stepsPerRev = 512;
 
 // Variables for the detection array
-const int gridPixels = 4;       // Assume odd number of pixels
+const int gridPixels = 5;       // Assume odd number of pixels
 const float gridWidth = 20;     // (cm)
-const float handDistance = 5;  // (cm)
+const float handDistance = 5;   // (cm)
 const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
-const float totalRotation = 2 * atan((gridWidth/2) / handDistance);  // Angular window (rad)
+const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
+float rowAngle = -halfRadWidth; // Top is negative, gain angle as it goes down
+float colAngle = -halfRadWidth; // Left is negative, gain angle as it goes right
 float distances[gridPixels][gridPixels];
 
 void setup() {
@@ -48,22 +50,26 @@ void setup() {
       sendPulse();                        // Send a pulse to the trigger pin
       duration = pulseIn(echoPin, HIGH);  // Read the input pin
       distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
-      distances[i][j] = distance;         // Store the current distance in the array
+      distances[i][j] = distance * cos(rowAngle) * cos(colAngle); // Store the current distance in the array
       printValues(duration, distance);    // Display the calculated values
 
       if (j != gridPixels - 1) {
-        turnMotor(1, angle(j), 2.0);      // Shift column if not at the last column
+        turnMotor(1, angle(j), 2.0);      // Turn right if not at the last column
+        colAngle += angle(j);             // Update column angle
         delay(100);
       }
     }
-    turnMotor(1, -totalRotation, 2.0);    // Return Motor 1 to the left
+    turnMotor(1, -2*halfRadWidth, 2.0);   // Return Motor 1 to the left
+    colAngle = -halfRadWidth;             // Reset column angle
     delay(100);
     if (i != gridPixels - 1) {
-      turnMotor(2, angle(i), 2.0);        // Shift row if not at the last row
+      turnMotor(2, angle(i), 2.0);        // Turn down if not at the last row
+      rowAngle += angle(i);               // Update row angle
       delay(100);
     }
   }
-  turnMotor(2, -totalRotation, 2.0);      // Return Motor 2 to the top
+  turnMotor(2, -2*halfRadWidth, 2.0);     // Return Motor 2 to the top
+  rowAngle = -halfRadWidth;               // Reset row angle
   printDistances();
   delay(1000000);
  }
@@ -93,20 +99,18 @@ void printDistances() {
     Serial.print("[");
     for (int j = 0; j < gridPixels; j++) {
       Serial.print(distances[i][j]);
-      Serial.print(", ");
+      if (j != gridPixels - 1) {
+        Serial.print(", ");
+      }
     }
     Serial.println("]");
   }
 }
 
-// Calculate the next turning angle in radians (should add up to totalRotation per cycle)
+// Calculate the next turning angle in radians (should add up to angularWidth per cycle)
 float angle(int i) {
   float initialOffset = gridWidth/2 - pixelWidth * i;
   float nextOffset = initialOffset - pixelWidth;
-  Serial.print("Initial Offset: ");
-  Serial.println(initialOffset);
-  Serial.print("Next Offset: ");
-  Serial.println(nextOffset);
   return atan(initialOffset / handDistance) - atan(nextOffset / handDistance);
 }
 
