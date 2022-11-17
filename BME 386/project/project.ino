@@ -7,10 +7,10 @@ long duration;            // Delay perceived by the sensor
 float distance;           // Distance as a function of time
 
 // Variables for the stepper motor
-const int control1Pin = A1;   // Mode selection
-const int control2Pin = A2;   // Confirmation
-const int manualTurn = 0.05;  // Manual turning radians (~3 deg)
-const float turnDelay = 2.0;  // ms between successive coil activations (higher = slower)
+const int control1Pin = A1;     // Mode selection
+const int control2Pin = A2;     // Confirmation
+const float manualTurn = 0.05;  // Manual turning radians (~3 deg)
+const float turnDelay = 2.0;    // ms between successive coil activations (higher = slower)
 const int motor1PinA = 4;
 const int motor1PinB = 5;
 const int motor1PinC = 6;
@@ -55,9 +55,10 @@ void setup() {
 
   // Make sure the sensor points at the starting pixel before data collection
   calibrate();  // Manually adjust the sensor to point at the center
+  Serial.println("*** Manual calibrations complete ***");
   turnMotor(1, -halfRadWidth, turnDelay); // Set Motor 1 to the left
   turnMotor(2, -halfRadWidth, turnDelay); // Set Motor 2 to the top
-  Serial.println("*** Calibrations complete ***");
+  Serial.println("*** Sensor initialized: READY ***");
  }
 
  // Assume that both motors are set to the top left and scanning left-right / up-down
@@ -74,18 +75,20 @@ void calibrate() {
   int mode = 0;
   bool pin1 = false;  // Mode selection pressed
   bool pin2 = false;  // Confirmation pressed
-  while (!done) {
-    sendPulse();                        // Send a pulse to the trigger pin
-    duration = pulseIn(echoPin, HIGH);  // Read the input pin
-    distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
-    pin1 = false;                       // Reset buttons to the unpressed state
+  
+  sendPulse();                        // Send a pulse to the trigger pin
+  duration = pulseIn(echoPin, HIGH);  // Read the input pin
+  distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
+  Serial.print("Radial distance: ");  
+  Serial.println(distance);           // Radial distance
+  
+  while (!done) {    
+    pin1 = false; // Reset buttons to the unpressed state
     pin2 = false;
     
-    Serial.print("Radial distance: ");  
-    Serial.println(distance);           // Radial distance
     Serial.print("Current mode: ");
     switch(mode) {
-      case 0: Serial.println("Done?"); break;
+      case 0: Serial.println("Finish"); break;
       case 1: Serial.println("Turn LEFT"); break;
       case 2: Serial.println("Turn RIGHT"); break;
       case 3: Serial.println("Turn UP"); break;
@@ -101,6 +104,7 @@ void calibrate() {
     
     Serial.print("Button pressed: ");
     Serial.println(1*pin1 + 2*pin2);
+    Serial.println();
     
     switch(mode) {
       case 0:
@@ -126,6 +130,12 @@ void calibrate() {
     }
     delay(100); // Wait a bit between cycles
   }
+  
+  sendPulse();                        // Send a pulse to the trigger pin
+  duration = pulseIn(echoPin, HIGH);  // Read the input pin
+  distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
+  Serial.print("Radial distance: ");  
+  Serial.println(distance);           // Radial distance
 }
 
 // Collect scanned distances
@@ -149,7 +159,7 @@ void collect() {
       if (j != gridPixels - 1) {
         turnMotor(1, angle(j), turnDelay);    // Turn right if not at the last column
         colAngle += angle(j);           // Update column angle
-        delay(100);
+        delay(50);
       }
     }
     turnMotor(1, -2*halfRadWidth, turnDelay); // Return Motor 1 to the left
