@@ -23,12 +23,12 @@ const int stepsPerRev = 512;
 
 // Variables for the detection array
 const int gridPixels = 5;       // Pixels for hand detection
-const float gridWidth = 20;     // (cm)
-const float handDistance = 5;   // (cm)
+const float gridWidth = 10;     // (cm)
+const float handDistance = 20;  // (cm)
 const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
 const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
 float rowAngle = -halfRadWidth; // Top is negative, gain angle as it goes down
-float colAngle = -halfRadWidth; // Left is negative, gain angle as it goes right
+float colAngle = halfRadWidth;  // Left is positive, lose angle as it goes right
 float maxDistance = 0;          // Maximum detected distance
 float minDistance = INT_MAX;    // Minimum detected distance
 float distances[gridPixels][gridPixels];    // Numerical distance
@@ -56,7 +56,7 @@ void setup() {
   // Make sure the sensor points at the starting pixel before data collection
   calibrate();  // Manually adjust the sensor to point at the center
   Serial.println("*** Manual calibrations complete ***");
-  turnMotor(1, -halfRadWidth, turnDelay); // Set Motor 1 to the left
+  turnMotor(1, halfRadWidth, turnDelay); // Set Motor 1 to the left
   turnMotor(2, -halfRadWidth, turnDelay); // Set Motor 2 to the top
   Serial.println("*** Sensor initialized: READY ***");
  }
@@ -113,11 +113,11 @@ void calibrate() {
       break;
       case 1:
         if (pin1) { mode = 2; }
-        if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go left
+        if (pin2) { turnMotor(1, manualTurn, turnDelay); }  // Positive to go left
       break;
       case 2:
         if (pin1) { mode = 3; }
-        if (pin2) { turnMotor(1, manualTurn, turnDelay); }  // Positive to go right
+        if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go right
       break;
       case 3:
         if (pin1) { mode = 4; }
@@ -156,22 +156,22 @@ void collect() {
       }
       
       if (j != gridPixels - 1) {
-        turnMotor(1, angle(j), turnDelay);    // Turn right if not at the last column
-        colAngle += angle(j);           // Update column angle
-        delay(50);
+        turnMotor(1, -angle(j), turnDelay); // Turn right if not at the last column
+        colAngle -= angle(j);               // Update column angle
+        delay(100);
       }
     }
-    turnMotor(1, -2*halfRadWidth, turnDelay); // Return Motor 1 to the left
-    colAngle = -halfRadWidth;           // Reset column angle
+    turnMotor(1, 2*halfRadWidth, turnDelay);  // Return Motor 1 to the left
+    colAngle = halfRadWidth;                  // Reset column angle
     delay(100);
     if (i != gridPixels - 1) {
-      turnMotor(2, angle(i), turnDelay);        // Turn down if not at the last row
+      turnMotor(2, angle(i), turnDelay);  // Turn down if not at the last row
       rowAngle += angle(i);               // Update row angle
       delay(100);
     }
   }
-  turnMotor(2, -2*halfRadWidth, turnDelay);     // Return Motor 2 to the top
-  rowAngle = -halfRadWidth;               // Reset row angle
+  turnMotor(2, -2*halfRadWidth, turnDelay); // Return Motor 2 to the top
+  rowAngle = -halfRadWidth;                 // Reset row angle
 }
 
 // Send 1 pulse out of the trigger
