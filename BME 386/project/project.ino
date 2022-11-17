@@ -7,6 +7,10 @@ long duration;            // Delay perceived by the sensor
 float distance;           // Distance as a function of time
 
 // Variables for the stepper motor
+const int control1Pin = A1;   // Mode selection
+const int control2Pin = A2;   // Confirmation
+const int manualTurn = 0.05;  // Manual turning radians (~3 deg)
+const float turnDelay = 2.0;  // ms between successive coil activations (higher = slower)
 const int motor1PinA = 4;
 const int motor1PinB = 5;
 const int motor1PinC = 6;
@@ -36,6 +40,8 @@ void setup() {
   pinMode(echoPin, INPUT);
 
   // Initialize stepper motor pins
+  pinMode(control1Pin, INPUT);
+  pinMode(control2Pin, INPUT);
   pinMode(motor1PinA, OUTPUT);
   pinMode(motor1PinB, OUTPUT);
   pinMode(motor1PinC, OUTPUT);
@@ -49,8 +55,8 @@ void setup() {
 
   // Make sure the sensor points at the starting pixel before data collection
   calibrate();  // Manually adjust the sensor to point at the center
-  turnMotor(1, -halfRadWidth, 2.0); // Set Motor 1 to the left
-  turnMotor(2, -halfRadWidth, 2.0); // Set Motor 2 to the top
+  turnMotor(1, -halfRadWidth, turnDelay); // Set Motor 1 to the left
+  turnMotor(2, -halfRadWidth, turnDelay); // Set Motor 2 to the top
  }
 
  // Assume that both motors are set to the top left and scanning left-right / up-down
@@ -63,7 +69,53 @@ void setup() {
 
 // Manually adjust the sensor to point at the center
 void calibrate() {
-  
+  bool done = false;
+  int mode = 0;
+  bool pin1 = false;  // Mode selection pressed
+  bool pin2 = false;  // Confirmation pressed
+  while (!done) {
+    sendPulse();                        // Send a pulse to the trigger pin
+    duration = pulseIn(echoPin, HIGH);  // Read the input pin
+    distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
+    Serial.print("Distance: ");  
+    Serial.println(distance);           // Radial distance
+    
+    pin1 = digitalRead(control1Pin);
+    pin2 = digitalRead(control2Pin);
+    if (pin1 or pin2) { // If one of the buttons are pressed (else wait for input)
+      delay(100);       // Slow input and prevent button bounce
+      switch (mode) {
+        case 0:
+          Serial.println("Done?");
+          if (pin1) { mode = 1; }
+          if (pin2) { done = true; }
+        break;
+        case 1:
+          Serial.println("Turn LEFT");
+          if (pin1) { mode = 2; }
+          if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go left
+        break;
+        case 2:
+          Serial.println("Turn RIGHT");
+          if (pin1) { mode = 3; }
+          if (pin2) { turnMotor(1, manualTurn, turnDelay); }  // Positive to go right
+        break;
+        case 3:
+          Serial.println("Turn UP");
+          if (pin1) { mode = 4; }
+          if (pin2) { turnMotor(2, -manualTurn, turnDelay); } // Negative to go up
+        break;
+        case 4:
+          Serial.println("Turn DOWN");
+          if (pin1) { mode = 0; }
+          if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
+        break;
+        default:
+          Serial.println("ERROR: UNEXPECTED CALIBRATION MODE");
+        break;
+      }
+    }
+  }
 }
 
 // Collect scanned distances
@@ -85,21 +137,21 @@ void collect() {
       }
       
       if (j != gridPixels - 1) {
-        turnMotor(1, angle(j), 2.0);    // Turn right if not at the last column
+        turnMotor(1, angle(j), turnDelay);    // Turn right if not at the last column
         colAngle += angle(j);           // Update column angle
         delay(100);
       }
     }
-    turnMotor(1, -2*halfRadWidth, 2.0); // Return Motor 1 to the left
+    turnMotor(1, -2*halfRadWidth, turnDelay); // Return Motor 1 to the left
     colAngle = -halfRadWidth;           // Reset column angle
     delay(100);
     if (i != gridPixels - 1) {
-      turnMotor(2, angle(i), 2.0);        // Turn down if not at the last row
+      turnMotor(2, angle(i), turnDelay);        // Turn down if not at the last row
       rowAngle += angle(i);               // Update row angle
       delay(100);
     }
   }
-  turnMotor(2, -2*halfRadWidth, 2.0);     // Return Motor 2 to the top
+  turnMotor(2, -2*halfRadWidth, turnDelay);     // Return Motor 2 to the top
   rowAngle = -halfRadWidth;               // Reset row angle
 }
 
