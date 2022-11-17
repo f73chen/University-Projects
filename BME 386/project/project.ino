@@ -18,7 +18,7 @@ const int motor2PinD = 11;
 const int stepsPerRev = 512;
 
 // Variables for the detection array
-const int gridPixels = 5;       // Assume odd number of pixels
+const int gridPixels = 5;       // Pixels for hand detection
 const float gridWidth = 20;     // (cm)
 const float handDistance = 5;   // (cm)
 const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
@@ -27,8 +27,8 @@ float rowAngle = -halfRadWidth; // Top is negative, gain angle as it goes down
 float colAngle = -halfRadWidth; // Left is negative, gain angle as it goes right
 float maxDistance = 0;          // Maximum detected distance
 float minDistance = INT_MAX;    // Minimum detected distance
-float distances[gridPixels][gridPixels];  // Numerical distance
-bool binaryDist[gridPixels][gridPixels];  // Thresholded distance
+float distances[gridPixels][gridPixels];    // Numerical distance
+bool binaryDist[gridPixels][gridPixels];    // Binary detection
 
 void setup() {
   // Initialize ultrasound pins
@@ -46,15 +46,25 @@ void setup() {
   pinMode(motor2PinD, OUTPUT);
   
   Serial.begin(9600); // Setup serial
+
+  // Make sure the sensor points at the starting pixel before data collection
+  calibrate();  // Manually adjust the sensor to point at the center
+  turnMotor(1, -halfRadWidth, 2.0); // Set Motor 1 to the left
+  turnMotor(2, -halfRadWidth, 2.0); // Set Motor 2 to the top
  }
 
  // Assume that both motors are set to the top left and scanning left-right / up-down
  void loop() {
-  collect();
-  printDistances();
-  threshold();
+  collect();        // Collect scanned distances (cast to perpendicular coordinates)
+  printDistances(); // Print the distances array
+  threshold();      // Convert numerical distances to a binary image
   delay(1000000);
  }
+
+// Manually adjust the sensor to point at the center
+void calibrate() {
+  
+}
 
 // Collect scanned distances
 void collect() {
