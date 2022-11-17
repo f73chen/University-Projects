@@ -57,6 +57,7 @@ void setup() {
   calibrate();  // Manually adjust the sensor to point at the center
   turnMotor(1, -halfRadWidth, turnDelay); // Set Motor 1 to the left
   turnMotor(2, -halfRadWidth, turnDelay); // Set Motor 2 to the top
+  Serial.println("*** Calibrations complete ***");
  }
 
  // Assume that both motors are set to the top left and scanning left-right / up-down
@@ -77,44 +78,53 @@ void calibrate() {
     sendPulse();                        // Send a pulse to the trigger pin
     duration = pulseIn(echoPin, HIGH);  // Read the input pin
     distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
-    Serial.print("Distance: ");  
-    Serial.println(distance);           // Radial distance
+    pin1 = false;                       // Reset buttons to the unpressed state
+    pin2 = false;
     
-    pin1 = digitalRead(control1Pin);
-    pin2 = digitalRead(control2Pin);
-    if (pin1 or pin2) { // If one of the buttons are pressed (else wait for input)
-      delay(100);       // Slow input and prevent button bounce
-      switch (mode) {
-        case 0:
-          Serial.println("Done?");
-          if (pin1) { mode = 1; }
-          if (pin2) { done = true; }
-        break;
-        case 1:
-          Serial.println("Turn LEFT");
-          if (pin1) { mode = 2; }
-          if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go left
-        break;
-        case 2:
-          Serial.println("Turn RIGHT");
-          if (pin1) { mode = 3; }
-          if (pin2) { turnMotor(1, manualTurn, turnDelay); }  // Positive to go right
-        break;
-        case 3:
-          Serial.println("Turn UP");
-          if (pin1) { mode = 4; }
-          if (pin2) { turnMotor(2, -manualTurn, turnDelay); } // Negative to go up
-        break;
-        case 4:
-          Serial.println("Turn DOWN");
-          if (pin1) { mode = 0; }
-          if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
-        break;
-        default:
-          Serial.println("ERROR: UNEXPECTED CALIBRATION MODE");
-        break;
-      }
+    Serial.print("Radial distance: ");  
+    Serial.println(distance);           // Radial distance
+    Serial.print("Current mode: ");
+    switch(mode) {
+      case 0: Serial.println("Done?"); break;
+      case 1: Serial.println("Turn LEFT"); break;
+      case 2: Serial.println("Turn RIGHT"); break;
+      case 3: Serial.println("Turn UP"); break;
+      case 4: Serial.println("Turn DOWN"); break;
+      default: Serial.println("ERROR"); break;
     }
+    
+    while (!pin1 and !pin2) {   // Exit when at least one button has been pressed
+      pin1 = digitalRead(control1Pin);
+      pin2 = digitalRead(control2Pin);
+    }
+    if (pin1) { pin2 = false; } // Prevent both buttons from activating
+    
+    Serial.print("Button pressed: ");
+    Serial.println(1*pin1 + 2*pin2);
+    
+    switch(mode) {
+      case 0:
+        if (pin1) { mode = 1; }
+        if (pin2) { done = true; }
+      break;
+      case 1:
+        if (pin1) { mode = 2; }
+        if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go left
+      break;
+      case 2:
+        if (pin1) { mode = 3; }
+        if (pin2) { turnMotor(1, manualTurn, turnDelay); }  // Positive to go right
+      break;
+      case 3:
+        if (pin1) { mode = 4; }
+        if (pin2) { turnMotor(2, -manualTurn, turnDelay); } // Negative to go up
+      break;
+      case 4:
+        if (pin1) { mode = 0; }
+        if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
+      break;
+    }
+    delay(100); // Wait a bit between cycles
   }
 }
 
