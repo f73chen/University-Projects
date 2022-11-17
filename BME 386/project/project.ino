@@ -1,8 +1,10 @@
+#include "limits.h"
+
 // Variables for the ultrasound sensor
 const int triggerPin = 3; // Digital out
 const int echoPin = 2;    // Digital in
-long duration;      // Delay perceived by the sensor
-float distance;     // Distance as a function of time
+long duration;            // Delay perceived by the sensor
+float distance;           // Distance as a function of time
 
 // Variables for the stepper motor
 const int motor1PinA = 4;
@@ -23,7 +25,10 @@ const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (
 const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
 float rowAngle = -halfRadWidth; // Top is negative, gain angle as it goes down
 float colAngle = -halfRadWidth; // Left is negative, gain angle as it goes right
-float distances[gridPixels][gridPixels];
+float maxDistance = 0;          // Maximum detected distance
+float minDistance = INT_MAX;    // Minimum detected distance
+float distances[gridPixels][gridPixels];  // Numerical distance
+bool binaryDist[gridPixels][gridPixels];  // Thresholded distance
 
 void setup() {
   // Initialize ultrasound pins
@@ -45,22 +50,38 @@ void setup() {
 
  // Assume that both motors are set to the top left and scanning left-right / up-down
  void loop() {
+  collect();
+  printDistances();
+  threshold();
+  delay(1000000);
+ }
+
+// Collect scanned distances
+void collect() {
   for (int i = 0; i < gridPixels; i++) {
     for (int j = 0; j < gridPixels; j++) {
-      sendPulse();                        // Send a pulse to the trigger pin
-      duration = pulseIn(echoPin, HIGH);  // Read the input pin
-      distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
-      distances[i][j] = distance * cos(rowAngle) * cos(colAngle); // Store the current distance in the array
-      printValues(duration, distance);    // Display the calculated values
-
+      sendPulse();                          // Send a pulse to the trigger pin
+      duration = pulseIn(echoPin, HIGH);    // Read the input pin
+      distance = duration * 0.034 / 2;      // Multiply by the speed of sound and divide by the bounce
+      float castDistance = distance * cos(rowAngle) * cos(colAngle);  // Cast radial distance to perpendicular distance
+      distances[i][j] = castDistance;       // Store the current distance in the array
+      printValues(duration, castDistance);  // Display the calculated values
+      
+      if (castDistance > maxDistance) {     // Set new max distance
+        maxDistance = castDistance;
+      }
+      if (castDistance < minDistance) {     // Set new min distance
+        minDistance = castDistance;
+      }
+      
       if (j != gridPixels - 1) {
-        turnMotor(1, angle(j), 2.0);      // Turn right if not at the last column
-        colAngle += angle(j);             // Update column angle
+        turnMotor(1, angle(j), 2.0);    // Turn right if not at the last column
+        colAngle += angle(j);           // Update column angle
         delay(100);
       }
     }
-    turnMotor(1, -2*halfRadWidth, 2.0);   // Return Motor 1 to the left
-    colAngle = -halfRadWidth;             // Reset column angle
+    turnMotor(1, -2*halfRadWidth, 2.0); // Return Motor 1 to the left
+    colAngle = -halfRadWidth;           // Reset column angle
     delay(100);
     if (i != gridPixels - 1) {
       turnMotor(2, angle(i), 2.0);        // Turn down if not at the last row
@@ -70,9 +91,7 @@ void setup() {
   }
   turnMotor(2, -2*halfRadWidth, 2.0);     // Return Motor 2 to the top
   rowAngle = -halfRadWidth;               // Reset row angle
-  printDistances();
-  delay(1000000);
- }
+}
 
 // Send 1 pulse out of the trigger
 void sendPulse() {
@@ -104,6 +123,23 @@ void printDistances() {
       }
     }
     Serial.println("]");
+  }
+}
+
+// Prints the binary image
+void threshold() {
+  float pivot = (minDistance + maxDistance) / 2;
+  for (int i = 0; i < gridPixels; i++) {
+    for (int j = 0; j < gridPixels; j++) {
+      if (distances[i][j] > pivot) {
+        binaryDist[i][j] = 0; // Too far away: ignore
+        Serial.print("-");
+      } else {
+        binaryDist[i][j] = 1; // Close enough: record
+        Serial.print("#");
+      }
+    }
+    Serial.println();
   }
 }
 
