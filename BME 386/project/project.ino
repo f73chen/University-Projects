@@ -128,14 +128,13 @@ void calibrate() {
         if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
       break;
     }
-    delay(100); // Wait a bit between cycles
+    sendPulse();                        // Send a pulse to the trigger pin
+    duration = pulseIn(echoPin, HIGH);  // Read the input pin
+    distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
+    Serial.print("Radial distance: ");  
+    Serial.println(distance);           // Radial distance
+    delay(1000); // Wait a bit between cycles
   }
-  
-  sendPulse();                        // Send a pulse to the trigger pin
-  duration = pulseIn(echoPin, HIGH);  // Read the input pin
-  distance = duration * 0.034 / 2;    // Multiply by the speed of sound and divide by the bounce
-  Serial.print("Radial distance: ");  
-  Serial.println(distance);           // Radial distance
 }
 
 // Collect scanned distances
