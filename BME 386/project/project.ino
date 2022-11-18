@@ -9,7 +9,7 @@ float distance;           // Distance as a function of time
 // Variables for the stepper motor
 const int control1Pin = A1;     // Mode selection
 const int control2Pin = A2;     // Confirmation
-const float manualTurn = 0.05;  // Manual turning radians (~3 deg)
+const float manualTurn = 0.15;  // Manual turning radians
 const float turnDelay = 2.0;    // ms between successive coil activations (higher = slower)
 const int motor1PinA = 4;
 const int motor1PinB = 5;
@@ -90,9 +90,9 @@ void calibrate() {
     switch(mode) {
       case 0: Serial.println("Finish"); break;
       case 1: Serial.println("Turn LEFT"); break;
-      case 2: Serial.println("Turn RIGHT"); break;
-      case 3: Serial.println("Turn UP"); break;
-      case 4: Serial.println("Turn DOWN"); break;
+      case 2: Serial.println("Turn DOWN"); break;
+      case 3: Serial.println("Turn RIGHT"); break;
+      case 4: Serial.println("Turn UP"); break;
       default: Serial.println("ERROR"); break;
     }
     
@@ -117,15 +117,15 @@ void calibrate() {
       break;
       case 2:
         if (pin1) { mode = 3; }
-        if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go right
+        if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
       break;
       case 3:
         if (pin1) { mode = 4; }
-        if (pin2) { turnMotor(2, -manualTurn, turnDelay); } // Negative to go up
+        if (pin2) { turnMotor(1, -manualTurn, turnDelay); } // Negative to go right
       break;
       case 4:
         if (pin1) { mode = 0; }
-        if (pin2) { turnMotor(2, manualTurn, turnDelay); }  // Positive to go down
+        if (pin2) { turnMotor(2, -manualTurn, turnDelay); } // Negative to go up
       break;
     }
     sendPulse();                        // Send a pulse to the trigger pin
