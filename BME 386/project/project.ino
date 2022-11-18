@@ -22,12 +22,11 @@ const int motor2PinD = 11;
 const int stepsPerRev = 512;
 
 // Variables for the detection array
-const int gridPixels = 3;        // Pixels for hand detection
-const float gridWidth = 25;       // (cm)
-const float handDistance = 19;    // (cm)
+const int gridPixels = 7;         // Pixels for hand detection
+const float gridWidth = 20;       // (cm)
+const float handDistance = 18;    // (cm)
 const float pixelWidth = gridWidth / (gridPixels - 1);          // Width of each pixel (cm)
 const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
-const float thresholdDist = 40.0; // (cm)
 float rowAngle = -halfRadWidth;   // Top is negative, gain angle as it goes down
 float colAngle = halfRadWidth;    // Left is positive, lose angle as it goes right
 float distances[gridPixels][gridPixels];  // Numerical distance
@@ -70,8 +69,8 @@ void setup() {
 
 // Manually adjust the sensor to point at the center
 void calibrate() {
-  bool done = false;
   int mode = 0;
+  bool done = false;
   bool pin1 = false;  // Mode selection pressed
   bool pin2 = false;  // Confirmation pressed
   
@@ -150,23 +149,23 @@ void collect() {
       if (j != gridPixels - 1) {
         turnMotor(1, -angle(j), turnDelay); // Turn right if not at the last column
         colAngle -= angle(j);               // Update column angle
-        delay(100);
+        delay(150);
       }
     }
     // Prepare for the next row (soft reset)
     if (i != gridPixels - 1) {
       turnMotor(1, 2*halfRadWidth, turnDelay);  // Return Motor 1 to the left
       colAngle = halfRadWidth;                  // Reset column angle
-      delay(100);
+      delay(150);
       turnMotor(2, angle(i), turnDelay);        // Turn down if not at the last row
       rowAngle += angle(i);                     // Update row angle
-      delay(100);
+      delay(150);
     }
   }
   // Finished scanning, return to center (hard reset)
   turnMotor(1, halfRadWidth, turnDelay);  // Return Motor 1 to the left
   colAngle = 0;                           // Reset column angle
-  delay(100);
+  delay(150);
   turnMotor(2, -halfRadWidth, turnDelay); // Return Motor 2 to the top
   rowAngle = 0;                           // Reset row angle
 }
@@ -208,7 +207,7 @@ void printDistances() {
 void threshold() {
   for (int i = 0; i < gridPixels; i++) {
     for (int j = 0; j < gridPixels; j++) {
-      if (distances[i][j] > thresholdDist) {
+      if (distances[i][j] > 2.5*handDistance) {
         binaryDist[i][j] = 0; // Too far away: ignore
         Serial.print("-");
       } else {
