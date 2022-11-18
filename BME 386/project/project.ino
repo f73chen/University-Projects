@@ -22,17 +22,16 @@ const int motor2PinD = 11;
 const int stepsPerRev = 512;
 
 // Variables for the detection array
-const int gridPixels = 5;       // Pixels for hand detection
-const float gridWidth = 10;     // (cm)
-const float handDistance = 20;  // (cm)
-const float pixelWidth = gridWidth / (gridPixels - 1);  // Width of each pixel (cm)
+const int gridPixels = 3;        // Pixels for hand detection
+const float gridWidth = 25;       // (cm)
+const float handDistance = 19;    // (cm)
+const float pixelWidth = gridWidth / (gridPixels - 1);          // Width of each pixel (cm)
 const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
-float rowAngle = -halfRadWidth; // Top is negative, gain angle as it goes down
-float colAngle = halfRadWidth;  // Left is positive, lose angle as it goes right
-float maxDistance = 0;          // Maximum detected distance
-float minDistance = INT_MAX;    // Minimum detected distance
-float distances[gridPixels][gridPixels];    // Numerical distance
-bool binaryDist[gridPixels][gridPixels];    // Binary detection
+const float thresholdDist = 40.0; // (cm)
+float rowAngle = -halfRadWidth;   // Top is negative, gain angle as it goes down
+float colAngle = halfRadWidth;    // Left is positive, lose angle as it goes right
+float distances[gridPixels][gridPixels];  // Numerical distance
+bool binaryDist[gridPixels][gridPixels];  // Binary detection
 
 void setup() {
   // Initialize ultrasound pins
@@ -147,31 +146,29 @@ void collect() {
       float castDistance = distance * cos(rowAngle) * cos(colAngle);  // Cast radial distance to perpendicular distance
       distances[i][j] = castDistance;       // Store the current distance in the array
       printValues(duration, castDistance);  // Display the calculated values
-      
-      if (castDistance > maxDistance) {     // Set new max distance
-        maxDistance = castDistance;
-      }
-      if (castDistance < minDistance) {     // Set new min distance
-        minDistance = castDistance;
-      }
-      
+            
       if (j != gridPixels - 1) {
         turnMotor(1, -angle(j), turnDelay); // Turn right if not at the last column
         colAngle -= angle(j);               // Update column angle
         delay(100);
       }
     }
-    turnMotor(1, 2*halfRadWidth, turnDelay);  // Return Motor 1 to the left
-    colAngle = halfRadWidth;                  // Reset column angle
-    delay(100);
+    // Prepare for the next row (soft reset)
     if (i != gridPixels - 1) {
-      turnMotor(2, angle(i), turnDelay);  // Turn down if not at the last row
-      rowAngle += angle(i);               // Update row angle
+      turnMotor(1, 2*halfRadWidth, turnDelay);  // Return Motor 1 to the left
+      colAngle = halfRadWidth;                  // Reset column angle
+      delay(100);
+      turnMotor(2, angle(i), turnDelay);        // Turn down if not at the last row
+      rowAngle += angle(i);                     // Update row angle
       delay(100);
     }
   }
-  turnMotor(2, -2*halfRadWidth, turnDelay); // Return Motor 2 to the top
-  rowAngle = -halfRadWidth;                 // Reset row angle
+  // Finished scanning, return to center (hard reset)
+  turnMotor(1, halfRadWidth, turnDelay);  // Return Motor 1 to the left
+  colAngle = 0;                           // Reset column angle
+  delay(100);
+  turnMotor(2, -halfRadWidth, turnDelay); // Return Motor 2 to the top
+  rowAngle = 0;                           // Reset row angle
 }
 
 // Send 1 pulse out of the trigger
@@ -209,10 +206,9 @@ void printDistances() {
 
 // Prints the binary image
 void threshold() {
-  float pivot = (minDistance + maxDistance) / 2;
   for (int i = 0; i < gridPixels; i++) {
     for (int j = 0; j < gridPixels; j++) {
-      if (distances[i][j] > pivot) {
+      if (distances[i][j] > thresholdDist) {
         binaryDist[i][j] = 0; // Too far away: ignore
         Serial.print("-");
       } else {
