@@ -27,6 +27,7 @@ const float gridWidth = 20;       // (cm)
 const float handDistance = 18;    // (cm)
 const float pixelWidth = gridWidth / (gridPixels - 1);          // Width of each pixel (cm)
 const float halfRadWidth = atan((gridWidth/2) / handDistance);  // Half of the total angular width (rad)
+const float adjustment_angle = 0.008; // Motor drift
 float rowAngle = -halfRadWidth;   // Top is negative, gain angle as it goes down
 float colAngle = halfRadWidth;    // Left is positive, lose angle as it goes right
 float distances[gridPixels][gridPixels];  // Numerical distance
@@ -147,7 +148,7 @@ void collect() {
       printValues(duration, castDistance);  // Display the calculated values
             
       if (j != gridPixels - 1) {
-        turnMotor(1, -angle(j), turnDelay); // Turn right if not at the last column
+        turnMotor(1, -angle(j)-adjustment_angle, turnDelay); // Turn right if not at the last column
         colAngle -= angle(j);               // Update column angle
         delay(150);
       }
