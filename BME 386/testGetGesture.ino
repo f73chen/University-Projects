@@ -22,9 +22,6 @@ void getGesture() {
   int numPixels = gridPixels * numRows;
   float ratio = 0.0;
 
-  //Serial.print(numRows);
-  //Serial.print(numPixels);
-
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < gridPixels; j++) {
       if (binaryDist[i][j] == 1) {
@@ -35,7 +32,7 @@ void getGesture() {
 
   ratio = float(count)/float(numPixels);
   
-  if (ratio > 0.9) {
+  if (ratio > 0.5) {
     Serial.println("PAPER");
     delay(1023);
   } else if (ratio <= 0.1) {
