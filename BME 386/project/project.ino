@@ -9,7 +9,7 @@ float distance;           // Distance as a function of time
 // Variables for the stepper motor
 const int control1Pin = A1;     // Mode selection
 const int control2Pin = A2;     // Confirmation
-const float manualTurn = 0.15;  // Manual turning radians
+const float manualTurn = 0.10;  // Manual turning radians
 const float turnDelay = 2.0;    // ms between successive coil activations (higher = slower)
 const int motor1PinA = 4;
 const int motor1PinB = 5;
@@ -80,21 +80,23 @@ void calibrate() {
     pin1 = false; // Reset buttons to the unpressed state
     pin2 = false;
     
-//    Serial.print("Current mode: ");
-//    switch(mode) {
-//      case 0: Serial.println("Finish"); break;
-//      case 1: Serial.println("Turn LEFT"); break;
-//      case 2: Serial.println("Turn DOWN"); break;
-//      case 3: Serial.println("Turn RIGHT"); break;
-//      case 4: Serial.println("Turn UP"); break;
-//      default: Serial.println("ERROR"); break;
-//    }
-    
     while (!pin1 and !pin2) {   // Exit when at least one button has been pressed
       pin1 = digitalRead(control1Pin);
       pin2 = digitalRead(control2Pin);
     }
-    if (pin1) { pin2 = false; } // Prevent both buttons from activating
+    if (pin1) { 
+      pin2 = false; 
+    
+      Serial.print("Current mode: ");
+      switch(mode) {
+        case 4: Serial.println("Finish Calibration"); break;
+        case 0: Serial.println("Turn LEFT"); break;
+        case 1: Serial.println("Turn DOWN"); break;
+        case 2: Serial.println("Turn RIGHT"); break;
+        case 3: Serial.println("Turn UP"); break;
+        default: Serial.println("ERROR"); break;
+      }
+    } // Prevent both buttons from activating
     
     switch(mode) {
       case 0:
