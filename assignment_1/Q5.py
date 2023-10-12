@@ -209,7 +209,7 @@ def VNS(n, width, radius):
 
     # Perform local search on each neighbourhood until all of them are checked
     i = 0
-    while i < n:
+    while i < len(N):
         best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=LOCAL_ITER,
                                                                   convergence_threshold=CONVERGENCE_THRESHOLD, 
                                                                   x_initial=local_x[i], x_range=N[i])
@@ -234,15 +234,28 @@ def VNS(n, width, radius):
 
     return all_best_x, all_best_cost, all_x_history, all_cost_history, N
 
-# Call VNS
+""" Call VNS and plot results """
 best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
 
-# Plot results without neighbourhoods
+# Without neighbourhoods
 plot_results(best_x=best_x, best_cost=best_cost,
              x_history=x_history, cost_history=cost_history,
              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
 
-# Plot results with neighbourhoods
+# With neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
+
+""" Call GNS and plot results """
+best_x, best_cost, x_history, cost_history, N = GNS(n=8, width=50, radius=100)
+
+# Without neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
+
+# With neighbourhoods
 plot_results(best_x=best_x, best_cost=best_cost,
              x_history=x_history, cost_history=cost_history,
              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
