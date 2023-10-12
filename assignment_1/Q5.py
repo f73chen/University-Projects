@@ -5,11 +5,10 @@ from typing import Tuple, List, Callable, Optional
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-DIMENSION = 2   # Assume the dimensionality is fixed at 2
-X_INITIAL = None
-MAX_ITER = 500
+DIMENSION = 2   # Assume the dimensionality is fixed at 2]
+LOCAL_ITER = 500
 CONVERGENCE_THRESHOLD = 0.001
-RANGE = [-500, 500]
+DOMAIN = [-500, 500]
 
 # Schwefel cost function from the tutorial
 def schwefel(x: List[float]) -> float:
@@ -55,10 +54,13 @@ def local_search(cost_function: Callable, max_itr: int, convergence_threshold: f
 
         # Accept the neighbor if it has lower cost
         if cost_neighbor < cost_current:
+            if cost_current - cost_neighbor < convergence_threshold:
+                convergence = True
             x_current = x_neighbor
             cost_current = cost_neighbor
-            if (cost_current < convergence_threshold) or (itr >= max_itr):
-                convergence = True
+
+        if itr >= max_itr:
+            convergence = True
 
         x_history.append(x_current)
         cost_history.append(cost_current)
@@ -76,7 +78,7 @@ def local_search(cost_function: Callable, max_itr: int, convergence_threshold: f
     return best_x, best_cost, x_history, cost_history    
 
 # Visualization from the tutorial
-def plot_results(best_x: np.array, best_cost: float, x_history: List[np.array], cost_history: List[float], cost_function: Callable, x_range: Optional[List[List[float]]] = None) -> None:
+def plot_results(best_x: np.array, best_cost: float, x_history: List[np.array], cost_history: List[float], cost_function: Callable, x_range: Optional[List[List[float]]] = None, N = []) -> None:
     x1_history = [x[0] for x in x_history]
     x2_history = [x[1] for x in x_history]
 
@@ -128,6 +130,12 @@ def plot_results(best_x: np.array, best_cost: float, x_history: List[np.array], 
     plt.title('Cost function and optimization')
     plt.grid(True)
 
+    # Plot each neighbourhood around x
+    for neighbourhood in N:
+        x1, x2, y1, y2 = neighbourhood[0, 0], neighbourhood[0, 1], neighbourhood[1, 0], neighbourhood[1, 1]
+        rect = patches.Rectangle((x1, y1), x2-x1, y2-y1, linewidth=2, edgecolor='green', facecolor=(0, 1, 0, 0.2))
+        plt.gca().add_patch(rect)
+
     # Overlay the optimization path on the heatmap as red dots
     plt.plot(x1_history, x2_history, c='red', marker='o', linestyle='-', label='Optimization path')
     plt.plot(best_x[0], best_x[1], c='blue', marker='o', linestyle='-', label='Best solution')
@@ -143,10 +151,10 @@ def partition_neighbourhoods(x, n, width, radius):
     for i in range(n):
         # Find the center points and boundaries [x1, x2, y1, y2]
         p = [x[0] + radius * np.cos(theta), x[1] + radius * np.sin(theta)]
-        box = [max(RANGE[0], p[0] - width), min(RANGE[1], p[0] + width), max(RANGE[0], p[1] - width), min(RANGE[1], p[1] + width)]
+        box = [[max(DOMAIN[0], p[0] - width), min(DOMAIN[1], p[0] + width)], [max(DOMAIN[0], p[1] - width), min(DOMAIN[1], p[1] + width)]]
         
         # Check if at least part of the box is in the domain
-        if box[0] < RANGE[1] and box[1] > RANGE[0] and box[2] < RANGE[1] and box[3] > RANGE[0]:
+        if box[0][0] < DOMAIN[1] and box[0][1] > DOMAIN[0] and box[1][0] < DOMAIN[1] and box[1][1] > DOMAIN[0]:
             box = np.round(np.array(box), 3)
             N.append(box)
         theta += delta
@@ -157,30 +165,84 @@ def visualize_neighbourhoods(x, neighbourhoods):
     fig, ax = plt.subplots()
 
     # Plot the outer bounding box
-    bounding_box = patches.Rectangle((RANGE[0], RANGE[0]), RANGE[1]-RANGE[0], RANGE[1]-RANGE[0], linewidth=2, edgecolor='red', facecolor='none')
+    bounding_box = patches.Rectangle((DOMAIN[0], DOMAIN[0]), DOMAIN[1]-DOMAIN[0], DOMAIN[1]-DOMAIN[0], linewidth=2, edgecolor='red', facecolor='none')
     ax.add_patch(bounding_box)
 
     # Plot the initial solution x
     ax.plot(*x, 'bo')
 
     # Plot each neighbourhood around x
-    for box in neighbourhoods:
-        x1, x2, y1, y2 = box
-        rect = patches.Rectangle((x1, y1), x2-x1, y2-y1, linewidth=2, edgecolor='green', facecolor='none')
+    for neighbourhood in neighbourhoods:
+        x1, x2, y1, y2 = neighbourhood[0, 0], neighbourhood[0, 1], neighbourhood[1, 0], neighbourhood[1, 1]
+        rect = patches.Rectangle((x1, y1), x2-x1, y2-y1, linewidth=2, edgecolor='green', facecolor=(0, 1, 0, 0.2))
         ax.add_patch(rect)
     
+    ax.set_title('Neighbourhoods around x')
     ax.set_aspect('equal')
     plt.show()
 
-x=[350, 150]
-N = partition_neighbourhoods(x=x, n=10, width=100, radius=400)
-visualize_neighbourhoods(x=x, neighbourhoods=N)
+# Checks if a point is within a bounding box
+def in_box(x, box):
+    for dim in range(len(x)):
+        if x[dim] < box[dim][0] or x[dim] > box[dim][1]:
+            return False
+    return True
 
+# Implement variable neighbourhood search
+def VNS(n, width, radius):
+    # Initial (naive) local search
+    best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=LOCAL_ITER,
+                                                              convergence_threshold=CONVERGENCE_THRESHOLD, 
+                                                              x_range=[DOMAIN for i in range(DIMENSION)])
+    all_best_x = best_x
+    all_best_cost = best_cost    
+    all_x_history = x_history
+    all_cost_history = cost_history
 
-# best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=MAX_ITER,
-#                                                           convergence_threshold=CONVERGENCE_THRESHOLD,
-#                                                           x_initial=X_INITIAL, x_range=x_range)
-        
-# plot_results(best_x=best_x, best_cost=best_cost,
-#              x_history=x_history, cost_history=cost_history,
-#              cost_function=schwefel, x_range=[RANGE for i in range(DIMENSION)])
+    # Create the neighbourhoods
+    N = partition_neighbourhoods(best_x, n, width, radius)
+    # visualize_neighbourhoods(best_x, N)
+
+    # Use the initial solution if in neighbourhood, else randomly generate a starting point
+    local_x = [best_x if in_box(best_x, Ni) else [np.random.uniform(Ni[0, 0], Ni[0, 1]), np.random.uniform(Ni[1, 0], Ni[1, 1])] for Ni in N]
+    local_cost = [schwefel(x) for x in local_x]
+
+    # Perform local search on each neighbourhood until all of them are checked
+    i = 0
+    while i < n:
+        best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=LOCAL_ITER,
+                                                                  convergence_threshold=CONVERGENCE_THRESHOLD, 
+                                                                  x_initial=local_x[i], x_range=N[i])
+        all_x_history += x_history
+        all_cost_history += cost_history
+
+        print(i, best_cost, all_best_cost)
+
+        # Update the local best for each neighbourhood if x is in neighbourhood
+        for j in range(len(N)):
+            if best_cost < local_cost[j] and in_box(best_x, N[j]):
+                local_x[j] = best_x
+                local_cost[j] = best_cost
+
+        # Restart the search if a better solution is found, else move on to the next neighbourhood
+        if best_cost < all_best_cost - CONVERGENCE_THRESHOLD:
+            all_best_cost = best_cost
+            all_best_x = best_x
+            i = 0
+        else:
+            i += 1
+
+    return all_best_x, all_best_cost, all_x_history, all_cost_history, N
+
+# Call VNS
+best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
+
+# Plot results without neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
+
+# Plot results with neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
