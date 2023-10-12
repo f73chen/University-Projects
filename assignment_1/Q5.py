@@ -268,17 +268,17 @@ def VNS(n, width, radius, x_initial=None):
     return all_best_x, all_best_cost, all_x_history, all_cost_history, N
 
 """ Call VNS and plot results """
-# best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
+best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
 
-# # Without neighbourhoods
-# plot_results(best_x=best_x, best_cost=best_cost,
-#              x_history=x_history, cost_history=cost_history,
-#              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
+# Without neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
 
-# # With neighbourhoods
-# plot_results(best_x=best_x, best_cost=best_cost,
-#              x_history=x_history, cost_history=cost_history,
-#              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
+# With neighbourhoods
+plot_results(best_x=best_x, best_cost=best_cost,
+             x_history=x_history, cost_history=cost_history,
+             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
 
 """ Call GNS and plot results """
 best_x, best_cost, x_history, cost_history, N = GNS(layers=3, n=[6, 10, 14], width=[50, 75, 100], radius=[100, 200, 350])
