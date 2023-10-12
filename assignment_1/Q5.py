@@ -188,20 +188,53 @@ def in_box(x, box):
             return False
     return True
 
-# Implement variable neighbourhood search
-def VNS(n, width, radius):
+# Implement generalized neighbourhood search
+def GNS(layers, n, width, radius):
     # Initial (naive) local search
     best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=LOCAL_ITER,
                                                               convergence_threshold=CONVERGENCE_THRESHOLD, 
                                                               x_range=[DOMAIN for i in range(DIMENSION)])
+    x_initial = best_x
     all_best_x = best_x
     all_best_cost = best_cost    
     all_x_history = x_history
     all_cost_history = cost_history
+    all_N = []
+
+    # Call each layer of VNS
+    for k in range(layers):
+        best_x, best_cost, x_history, cost_history, N = VNS(n=n[k], width=width[k], radius=radius[k], x_initial=x_initial)
+        if best_cost < all_best_cost:
+            all_best_x = best_x
+            all_best_cost = best_cost
+        all_x_history += x_history
+        all_cost_history += cost_history
+        all_N += N
+
+    visualize_neighbourhoods(x_initial, all_N)
+
+    return all_best_x, all_best_cost, all_x_history, all_cost_history, all_N
+
+# Implement variable neighbourhood search
+def VNS(n, width, radius, x_initial=None):
+    if not x_initial:
+        # Initial (naive) local search
+        best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=LOCAL_ITER,
+                                                                convergence_threshold=CONVERGENCE_THRESHOLD, 
+                                                                x_range=[DOMAIN for i in range(DIMENSION)])
+        all_best_x = best_x
+        all_best_cost = best_cost    
+        all_x_history = x_history
+        all_cost_history = cost_history
+    else:
+        best_x = x_initial
+        all_best_x = x_initial
+        all_best_cost = schwefel(x_initial)
+        all_x_history = []
+        all_cost_history = []
 
     # Create the neighbourhoods
     N = partition_neighbourhoods(best_x, n, width, radius)
-    # visualize_neighbourhoods(best_x, N)
 
     # Use the initial solution if in neighbourhood, else randomly generate a starting point
     local_x = [best_x if in_box(best_x, Ni) else [np.random.uniform(Ni[0, 0], Ni[0, 1]), np.random.uniform(Ni[1, 0], Ni[1, 1])] for Ni in N]
@@ -235,20 +268,20 @@ def VNS(n, width, radius):
     return all_best_x, all_best_cost, all_x_history, all_cost_history, N
 
 """ Call VNS and plot results """
-best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
+# best_x, best_cost, x_history, cost_history, N = VNS(n=8, width=50, radius=100)
 
-# Without neighbourhoods
-plot_results(best_x=best_x, best_cost=best_cost,
-             x_history=x_history, cost_history=cost_history,
-             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
+# # Without neighbourhoods
+# plot_results(best_x=best_x, best_cost=best_cost,
+#              x_history=x_history, cost_history=cost_history,
+#              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)])
 
-# With neighbourhoods
-plot_results(best_x=best_x, best_cost=best_cost,
-             x_history=x_history, cost_history=cost_history,
-             cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
+# # With neighbourhoods
+# plot_results(best_x=best_x, best_cost=best_cost,
+#              x_history=x_history, cost_history=cost_history,
+#              cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
 
 """ Call GNS and plot results """
-best_x, best_cost, x_history, cost_history, N = GNS(n=8, width=50, radius=100)
+best_x, best_cost, x_history, cost_history, N = GNS(layers=3, n=[6, 10, 14], width=[50, 75, 100], radius=[100, 200, 350])
 
 # Without neighbourhoods
 plot_results(best_x=best_x, best_cost=best_cost,
