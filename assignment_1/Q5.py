@@ -3,6 +3,7 @@ import numpy as np
 from tqdm import tqdm
 from typing import Tuple, List, Callable, Optional
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 DIMENSION = 2   # Assume the dimensionality is fixed at 2
 X_INITIAL = None
@@ -152,9 +153,28 @@ def partition_neighbourhoods(x, n, width, radius):
     return N
 
 # Plot the neighbourhoods around x
-def visualize_neighbourhoods():
-    pass
+def visualize_neighbourhoods(x, neighbourhoods):
+    fig, ax = plt.subplots()
 
+    # Plot the outer bounding box
+    bounding_box = patches.Rectangle((RANGE[0], RANGE[0]), RANGE[1]-RANGE[0], RANGE[1]-RANGE[0], linewidth=2, edgecolor='red', facecolor='none')
+    ax.add_patch(bounding_box)
+
+    # Plot the initial solution x
+    ax.plot(*x, 'bo')
+
+    # Plot each neighbourhood around x
+    for box in neighbourhoods:
+        x1, x2, y1, y2 = box
+        rect = patches.Rectangle((x1, y1), x2-x1, y2-y1, linewidth=2, edgecolor='green', facecolor='none')
+        ax.add_patch(rect)
+    
+    ax.set_aspect('equal')
+    plt.show()
+
+x=[350, 150]
+N = partition_neighbourhoods(x=x, n=10, width=100, radius=400)
+visualize_neighbourhoods(x=x, neighbourhoods=N)
 
 
 # best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=MAX_ITER,
