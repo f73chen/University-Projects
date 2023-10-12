@@ -4,10 +4,11 @@ from tqdm import tqdm
 from typing import Tuple, List, Callable, Optional
 import matplotlib.pyplot as plt
 
-DIMENSION = 2
+DIMENSION = 2   # Assume the dimensionality is fixed at 2
 X_INITIAL = None
 MAX_ITER = 500
 CONVERGENCE_THRESHOLD = 0.001
+RANGE = [-500, 500]
 
 # Schwefel cost function from the tutorial
 def schwefel(x: List[float]) -> float:
@@ -16,6 +17,15 @@ def schwefel(x: List[float]) -> float:
     for xi in x:
         f = f - (xi * np.sin(np.sqrt(np.abs(xi))))
     return f
+
+# Helper function from the tutorial
+def bound_solution_in_x_range(x: List[float], x_range: List[List[float]]) -> List[float]:
+    for j in range(len(x)):
+        if x[j] < x_range[j][0]:
+            x[j] = x_range[j][0]
+        elif x[j] > x_range[j][1]:
+            x[j] = x_range[j][1]
+    return x
 
 # Local search from the tutorial
 def local_search(cost_function: Callable, max_itr: int, convergence_threshold: float, 
@@ -56,8 +66,6 @@ def local_search(cost_function: Callable, max_itr: int, convergence_threshold: f
         if not hide_progress_bar:
             progress_bar.update(1)  # Increment the progress bar by 1 unit
         itr += 1
-    
-    # progress_bar.close()
 
     # Get the best solution
     best_cost_index = np.argmin(cost_history)
@@ -125,18 +133,34 @@ def plot_results(best_x: np.array, best_cost: float, x_history: List[np.array], 
     plt.legend()
     plt.show()
 
+# Create n neighbourhoods spaced evenly around x
+def partition_neighbourhoods(x, n, width, radius):
+    theta = 0               # Angle of the current neighbourhood
+    delta = 2 * np.pi / n   # Angle between neighbourhoods
+    N = []
 
-
-
-x_range = [[-500, 500] for i in range(DIMENSION)]
-
-
-best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=MAX_ITER,
-                                                                                    convergence_threshold=CONVERGENCE_THRESHOLD,
-                                                                                    x_initial=X_INITIAL, x_range=x_range)
+    for i in range(n):
+        # Find the center points and boundaries [x1, x2, y1, y2]
+        p = [x[0] + radius * np.cos(theta), x[1] + radius * np.sin(theta)]
+        box = [max(RANGE[0], p[0] - width), min(RANGE[1], p[0] + width), max(RANGE[0], p[1] - width), min(RANGE[1], p[1] + width)]
         
-if len(best_x) == 2: 
-    # If the dimensionality is 2, visualize the results.
-    plot_results(best_x=best_x, best_cost=best_cost,
-                            x_history=x_history, cost_history=cost_history,
-                            cost_function=schwefel, x_range=x_range)
+        # Check if at least part of the box is in the domain
+        if box[0] < RANGE[1] and box[1] > RANGE[0] and box[2] < RANGE[1] and box[3] > RANGE[0]:
+            box = np.round(np.array(box), 3)
+            N.append(box)
+        theta += delta
+    return N
+
+# Plot the neighbourhoods around x
+def visualize_neighbourhoods():
+    pass
+
+
+
+# best_x, best_cost, x_history, cost_history = local_search(cost_function=schwefel, max_itr=MAX_ITER,
+#                                                           convergence_threshold=CONVERGENCE_THRESHOLD,
+#                                                           x_initial=X_INITIAL, x_range=x_range)
+        
+# plot_results(best_x=best_x, best_cost=best_cost,
+#              x_history=x_history, cost_history=cost_history,
+#              cost_function=schwefel, x_range=[RANGE for i in range(DIMENSION)])
