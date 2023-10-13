@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/User/Desktop/School/3A/BME 393L/test2/simulation/qsim
+Efirst_circuit
+Z0 w1642527885
+Z1 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+Z3 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z4 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z7 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z8 dC:/Users/User/Desktop/School/3A/BME 393L/Lab 1/test2/simulation/qsim
+Z9 8First_circuit.vho
+Z10 FFirst_circuit.vho
+l0
+L36
+V<eFnGBPHAcaeBiAo?4SzB2
+!s100 HBjizGLa<8LZYN0?c`M192
+Z11 OV;C;10.5b;63
+32
+Z12 !s110 1642527886
+!i10b 1
+Z13 !s108 1642527886.000000
+Z14 !s90 -work|work|First_circuit.vho|
+Z15 !s107 First_circuit.vho|
+!i113 1
+Z16 o-work work
+Z17 tExplicit 1 CvgOpt 0
+Astructure
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 13 first_circuit 0 22 <eFnGBPHAcaeBiAo?4SzB2
+l78
+L53
+Va2Xgo6G=fcglL`1FVZ>923
+!s100 gM>B4zYcg^K;27z[T8cZW1
+R11
+32
+R12
+!i10b 1
+R13
+R14
+R15
+!i113 1
+R16
+R17
+Efirst_circuit_vhd_vec_tst
+Z18 w1642527883
+R5
+R6
+R8
+Z19 8Waveform2.vwf.vht
+Z20 FWaveform2.vwf.vht
+l0
+L31
+VR?zb=3ABM4^QBQ3ARU>8N1
+!s100 EQig>6RV=O_TRelTmV1g=2
+R11
+32
+R12
+!i10b 1
+R13
+Z21 !s90 -work|work|Waveform2.vwf.vht|
+Z22 !s107 Waveform2.vwf.vht|
+!i113 1
+R16
+R17
+Afirst_circuit_arch
+R5
+R6
+Z23 DEx4 work 25 first_circuit_vhd_vec_tst 0 22 R?zb=3ABM4^QBQ3ARU>8N1
+l44
+L33
+V;Uo=Y=A=1o9ej:O:;VA]:1
+!s100 =JKaZ>3cAcCTE0CPbh8G[2
+R11
+32
+R12
+!i10b 1
+R13
+R21
+R22
+!i113 1
+R16
+R17

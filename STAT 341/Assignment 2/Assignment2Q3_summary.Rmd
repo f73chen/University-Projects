@@ -1,0 +1,63 @@
+---
+title: "Assignment 2 Q3"
+author: "Fenglin Chen"
+date: "27/10/2021"
+output: word_document
+---
+
+## Summary
+
+When an attribute $a\left(\mathcal{P} \right)$ is calculated on a population, the influence of each unit is how much the attribute value changes when it's removed from the population. This is different from sensitivity, where arbitrary values inside or outside the population are added to the group.
+
+Influence is often used to locate interesting units in the population. For example, a unit with large influence (greatly alters the attribute value when removed) could match a particular filter well, have a very large/small value, or be an outlier. Whether the effect is good or bad, it's important to be aware of influential units when making summary reports to be more representative.
+
+## Mathematical Formula
+
+For every unit $u \in \mathcal{P}$, the change in attribute value can be written as:
+$$
+\Delta(a,u)=a(y_1, y_2, ..., y_{u-1}, y_{u}, y_{u+1}, ..., y_n)-a(y_1, y_2, ..., y_{u-1}, y_{u+1}, ..., y_n).
+$$
+Where unit $y_u$ is removed from the second attribute.
+
+## Mathematical Example
+
+For example, the influence on the range of the population $(1,3,5,7,9)$ when $9$ is removed is:
+
+$$
+\begin{aligned}
+  \text{influence} &= \text{range}(1,3,5,7,9)-\text{range}(1,3,5,7) \\
+  &= 8 - 6 \\
+  &= 2
+\end{aligned}
+$$
+Since $9$ lowers the range by $2$ when it's removed, it is an influential unit. On the other hand, values $(3,5,7)$ have no effect on the range.
+
+## General Code
+
+Below is a general formula in R. The function takes input `attr`: the attribute applied to the population.
+    
+\newpage
+```{r}
+influence <- function(attr) {
+  delta = rep(0, length(pop)) # Store the results, one for each unit
+  pop.attr <- attr(pop)       # The attribute over the original population
+  for (i in 1:length(pop)) {
+    delta[i] = pop.attr - attr(pop[-i]) # Calculate on all units except one
+  }
+  return(delta)
+}
+```
+
+## Code Example
+
+Test the general formula on the standard deviation of a population and plot the change caused by removing each unit:
+    
+```{r}
+pop <- 1:100
+pop.infl <- influence(sd)
+
+plot(pop.infl, pch=19, xlab="Unit", ylab="Influence", 
+     main="Effect on Standard Deviation")
+```
+
+This graph shows that values become more influential as they get closer to either extreme. On the other hand, values closer to the mean have negative influence, meaning they work to reduce the standard deviation.

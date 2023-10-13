@@ -1,0 +1,45 @@
+|seven_segment
+data_in[0] => Mux0.IN35
+data_in[0] => Mux1.IN35
+data_in[0] => Mux2.IN35
+data_in[0] => Mux3.IN35
+data_in[0] => Mux4.IN35
+data_in[0] => Mux5.IN35
+data_in[0] => Mux6.IN35
+data_in[1] => Mux0.IN34
+data_in[1] => Mux1.IN34
+data_in[1] => Mux2.IN34
+data_in[1] => Mux3.IN34
+data_in[1] => Mux4.IN34
+data_in[1] => Mux5.IN34
+data_in[1] => Mux6.IN34
+data_in[2] => Mux0.IN33
+data_in[2] => Mux1.IN33
+data_in[2] => Mux2.IN33
+data_in[2] => Mux3.IN33
+data_in[2] => Mux4.IN33
+data_in[2] => Mux5.IN33
+data_in[2] => Mux6.IN33
+data_in[3] => Mux0.IN32
+data_in[3] => Mux1.IN32
+data_in[3] => Mux2.IN32
+data_in[3] => Mux3.IN32
+data_in[3] => Mux4.IN32
+data_in[3] => Mux5.IN32
+data_in[3] => Mux6.IN32
+blanking => Mux0.IN36
+blanking => Mux1.IN36
+blanking => Mux2.IN36
+blanking => Mux3.IN36
+blanking => Mux4.IN36
+blanking => Mux5.IN36
+blanking => Mux6.IN36
+segments_out[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

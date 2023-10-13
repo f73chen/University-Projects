@@ -1,0 +1,14 @@
+|First_circuit
+SW[0] => xor1.IN0
+SW[0] => and1.IN0
+SW[1] => xor2.IN0
+SW[1] => and2.IN0
+SW[2] => xor1.IN1
+SW[2] => and1.IN1
+SW[3] => xor2.IN1
+SW[3] => and2.IN1
+LEDG[0] << xor1.DB_MAX_OUTPUT_PORT_TYPE
+LEDG[1] << xor3.DB_MAX_OUTPUT_PORT_TYPE
+LEDG[2] << or1.DB_MAX_OUTPUT_PORT_TYPE
+
+

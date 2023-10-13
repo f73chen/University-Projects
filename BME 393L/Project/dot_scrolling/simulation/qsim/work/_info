@@ -1,0 +1,102 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/grace/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/simulation/qsim
+Edot_scrolling
+Z0 w1646442635
+Z1 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+Z2 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+Z3 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z4 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z5 DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
+Z6 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z8 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z9 DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
+Z10 dC:/Users/User/source/repos/Uni-Projects/BME 393L/Project/dot_scrolling/simulation/qsim
+Z11 8dot_scrolling.vho
+Z12 Fdot_scrolling.vho
+l0
+L38
+VV[9;PPWb_C2][IU;f3:?n1
+!s100 ^`>^C0njF218LHBXj3?9e0
+Z13 OV;C;10.5b;63
+32
+Z14 !s110 1646442636
+!i10b 1
+Z15 !s108 1646442636.000000
+Z16 !s90 -work|work|dot_scrolling.vho|
+Z17 !s107 dot_scrolling.vho|
+!i113 1
+Z18 o-work work
+Z19 tExplicit 1 CvgOpt 0
+Astructure
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 13 dot_scrolling 0 22 V[9;PPWb_C2][IU;f3:?n1
+l159
+L103
+VYzAjDlfmfLzLaFiZ41I>k2
+!s100 @El1R9>>gO8[bCQlS8fXR3
+R13
+32
+R14
+!i10b 1
+R15
+R16
+R17
+!i113 1
+R18
+R19
+Edot_scrolling_vhd_vec_tst
+Z20 w1646442633
+R7
+R8
+R10
+Z21 8Waveform1.vwf.vht
+Z22 FWaveform1.vwf.vht
+l0
+L31
+VhSAIcciim3:R=H2kFN;=F0
+!s100 5BaZ^hmAGTcA<`3aL34450
+R13
+32
+R14
+!i10b 1
+R15
+Z23 !s90 -work|work|Waveform1.vwf.vht|
+Z24 !s107 Waveform1.vwf.vht|
+!i113 1
+R18
+R19
+Adot_scrolling_arch
+R7
+R8
+Z25 DEx4 work 25 dot_scrolling_vhd_vec_tst 0 22 hSAIcciim3:R=H2kFN;=F0
+l48
+L33
+Z26 VY[41hJBM1Ha@eWNP=XhjW2
+Z27 !s100 >djBQU@2nhU5]FiAcOSDL2
+R13
+32
+R14
+!i10b 1
+R15
+R23
+R24
+!i113 1
+R18
+R19

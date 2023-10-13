@@ -1,0 +1,102 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/grace/source/repos/Uni-Projects/BME 393L/Lab 4/binary_divider/simulation/qsim
+Ebinary_divider
+Z1 w1645852825
+Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+Z3 DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z5 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z6 DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
+Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z9 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z10 DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
+R0
+Z11 8binary_divider.vho
+Z12 Fbinary_divider.vho
+l0
+L38
+VAECi<n=W=9_5<@XYT6e833
+!s100 =@WMRGm4lGgbZ;em@cG9>0
+Z13 OV;C;10.5b;63
+32
+Z14 !s110 1645852826
+!i10b 1
+Z15 !s108 1645852826.000000
+Z16 !s90 -work|work|binary_divider.vho|
+Z17 !s107 binary_divider.vho|
+!i113 1
+Z18 o-work work
+Z19 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+DEx4 work 14 binary_divider 0 22 AECi<n=W=9_5<@XYT6e833
+l95
+L59
+VUnP8VA1G9fk8?GJ7;Ch5h1
+!s100 ]aP4_R^ZRdMU3oN:U6fB20
+R13
+32
+R14
+!i10b 1
+R15
+R16
+R17
+!i113 1
+R18
+R19
+Ebinary_divider_vhd_vec_tst
+Z20 w1645852823
+R8
+R9
+R0
+Z21 8Waveform1.vwf.vht
+Z22 FWaveform1.vwf.vht
+l0
+L31
+VEXk1aKeN?907?6l3A3F_E3
+!s100 `PemQM;ER<36VEYe:3QVG0
+R13
+32
+Z23 !s110 1645852827
+!i10b 1
+R15
+Z24 !s90 -work|work|Waveform1.vwf.vht|
+Z25 !s107 Waveform1.vwf.vht|
+!i113 1
+R18
+R19
+Abinary_divider_arch
+R8
+R9
+Z26 DEx4 work 26 binary_divider_vhd_vec_tst 0 22 EXk1aKeN?907?6l3A3F_E3
+l44
+L33
+VXCT>JODaNNJ80VATf9Re22
+!s100 Jz`_AI]I^d>SaGKohg`XI2
+R13
+32
+R23
+!i10b 1
+R15
+R24
+R25
+!i113 1
+R18
+R19
