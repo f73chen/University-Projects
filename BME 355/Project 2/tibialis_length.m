@@ -1,13 +1,15 @@
 function [tibialis_anterior_length] = tibialis_length(theta)
     % Inputs
-    % theta: body angle (up from prone horizontal)
-    
+    %   theta: body angle (up from prone horizontal)
     % Output
-    % tibialis anterior length
+    %   tibialis anterior length
+
+    % Change coordinate system from leg to ankle angle
+    theta = pi/2 - theta;
     
     % define rotation matrix
     rotation = [cos(theta) -sin(theta) 
-                sin(theta) cos(theta)];
+               sin(theta) cos(theta)];
     
     % coordinates in global reference frame
     origin = rotation * [0.3 -0.03]';
