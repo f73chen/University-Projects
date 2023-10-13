@@ -26,6 +26,9 @@ Visualized and collected data for 6 orthotic FSR sensors
 ### BME 393L [3A] - Digital Systems Lab
 Programmed an FPGA using Intel Quartus to write a message using scrolling dots
 
+### STAT 341 [3A] - Computational Statistics and Data Analysis
+Analyzed data using statistical methods in R and compiled visualizations in R Markdown
+
 ### BME 252 [2B] - Linear Signals and Systems
 Built a cochlear implant prototype in Python to split and recombine sound waves in 30 channels
 
@@ -34,9 +37,6 @@ Programmed an Arduino to use photoresistors to detect the location of a ball in 
 
 ### BME 294L [2B] - Circuits, Instrumentation, and Measurements Laboratory
 Explored low-pass and high-pass signal filters in Python
-
-### STAT 341 [2B] - Computational Statistics and Data Analysis
-Analyzed data using statistical methods in R and compiled visualizations in R Markdown
 
 ### SYDE 572 [2B] - Introduction to Pattern Recognition
 Implemented various classifiers like MICD, ME, KNN, Linear Regression etc.
