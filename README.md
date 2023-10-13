@@ -11,6 +11,9 @@ Simulate the activation function of neurons to model information transmission in
 ### SYDE 599 [4A] - Deep Learning
 Basic Deep Learning implementations in PyTorch
 
+### BME 356L [3B] - Control Systems Lab
+Find PID controllers for a spinning plate using MATLAB
+
 ### BME 386 [3B] - The Physics of Medical Imaging
 Arduino robot scans a grid of points to guess hand gestures
 
