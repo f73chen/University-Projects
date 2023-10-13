@@ -1,0 +1,393 @@
+---
+title: "Assignment 1"
+author: "Fenglin Chen"
+date: "21/09/2021"
+output:
+  word_document: default
+---
+
+### Question 1 a)
+
+$\alpha(\mathcal{P})$ is location invariant if $\alpha(\mathcal{P}+b) = \alpha(\mathcal{P})$.
+
+First, substitute $\sigma^4$ into the equation. $$
+\alpha(\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$
+
+Then, add a constant $b$ to all elements. Since the population mean is location equivariant, it also gains $b$. $$
+\alpha(\mathcal{P}+b) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u + b -(\overline{y} + b) \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u + b-(\overline y + b))^2]^2 }-3
+$$
+
+The additions cancel out. $$
+\alpha(\mathcal{P}+b) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u + b -\overline{y} - b \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u + b-\overline y - b)^2]^2 }-3
+$$ $$
+\alpha(\mathcal{P}+b) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u -\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+$$ Therefore, excess kurtosis is location invariant.
+
+\newpage
+### Question 1 b)
+
+$\alpha(\mathcal{P})$ is scale invariant if $\alpha(m*\mathcal{P}) = \alpha(\mathcal{P})$.
+
+Similar to part a), begin by substituting $\sigma^4$ into the equation. $$
+\alpha(\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$ Then, multiply all elements by $m$. Since the population mean is scale equivariant, it is also multiplied by $m$. $$
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( m*y_u - m*\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(m*y_u-m*\overline y)^2]^2 }-3
+$$ Factor out the multiplier $m$ in both the numerator and denominator. $$
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}(m\left(y_u - \overline{y} \right))^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(m(y_u-\overline y))^2]^2 }-3
+$$ $$
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}m^4\left( y_u - \overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}m^2(y_u-\overline y)^2]^2 }-3
+$$ $m$ is a constant, so it can be factored out of the sum and cancelled. $$
+\alpha(m*\mathcal{P}) = \frac{m^4\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ m^4[\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$ $$
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+$$ Therefore, excess kurtosis is scale invariant.
+
+\newpage
+### Question 1 c)
+
+Since excess kurtosis is both location invariant (part a) and scale invariant (part b), then by definition, it is location-scale invariant.
+
+\newpage
+### Question 1 d)
+
+$\alpha(\mathcal{P})$ is scale invariant if $\alpha(\mathcal{P}^k) = \alpha(\mathcal{P})$. Population $\mathcal{P}$ is duplicated $k-1$ times, and the new population size is $kN$.
+$$
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{kN} \sum_{u \in \mathcal{P}^k}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{kN}\sum_{u \in \mathcal{P}^k}(y_u-\overline y)^2]^2 }-3
+$$
+$$
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{kN} k\sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{kN}k\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$
+The summing operation is applied $k$ times, but the population is $k$ times larger, so the factors cancel out.
+$$
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+$$
+Therefore, excess kurtosis is replication invariant.
+
+\newpage
+### Question 1 e)
+
+In this case, the equation for $\sigma^4$ is changed.
+$$
+\sigma_*^4 = [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2
+$$
+
+For part b), the equation becomes:
+$$
+\alpha(m*\mathcal{P}) = \frac{m^4\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{ m^4[\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$
+$$
+\alpha(m*\mathcal{P}) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u - \overline{y} \right)^4}{[\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 = \alpha(\mathcal{P})
+$$
+Since the multiplier $m$ does not relate to the size of the population $N$, the attribute is still scale invariant (no change). However, for part d), the equation becomes:
+$$
+\alpha(\mathcal{P}^k) = \frac{\frac{k}{kN} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{k}{kN-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$
+$$
+\alpha(\mathcal{P}^k) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-\frac{1}{k}}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3 \ne \alpha(\mathcal{P})
+$$
+Therefore, $\alpha(\mathcal{P})$ is no longer replication invariant, but rather neither invariant nor equivariant.
+
+
+\newpage
+### Question 1 f)
+
+The sensitivity curve is defined as: $SC(y) = N(\alpha(\mathcal{P}^*) - \alpha(\mathcal{P}))$
+$$
+\alpha(\mathcal{P}^*) = \frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 }-3
+$$
+$$
+\alpha(\mathcal{P}) = \frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3
+$$
+Combined, the equation becomes:
+$$
+SC(y) = N[(\frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 }-3) - (\frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 }-3)]
+$$
+$$
+SC(y) = N(\frac{\frac{1}{N} \sum_{u \in \mathcal{P}^*}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N}\sum_{u \in \mathcal{P}^*}(y_u-\overline y)^2]^2 } - \frac{\frac{1}{N-1} \sum_{u \in \mathcal{P}}\left( y_u -\overline{y} \right)^4}{ [\frac{1}{N-1}\sum_{u \in \mathcal{P}}(y_u-\overline y)^2]^2 })
+$$
+
+
+
+\newpage
+### Question 1 g)
+   
+```{r}
+library(e1071)
+set.seed(341)
+pop <- rt(1000, 10)
+y <- seq(-10, 10, length.out=1001)
+
+sc <- function(y.pop, y, attr, ...) {
+  N <- length(y.pop) + 1
+  sapply(y, function(y.new) {
+    N * (attr(c(y.new, y.pop), ...) - attr(y.pop, ...))
+  })
+}
+
+plot(y, sc(pop, y, kurtosis), type="l", lwd=2,
+     main="Sensitivity Curve for Excess Kurtosis",
+     ylab="sensitivity", xlab="y")
+```
+   
+Based on this plot, kurtosis is robust to additions because its sensitivity curve is relative flat within [-5, 5]. However, it is unbounded because the two ends go to infinity, so it can be easily influenced by extreme outliers in the population.
+
+
+\newpage
+### Question 1 h)
+
+1. $\gamma(\mathcal P)$ measures how close values lie in relation to each other, not in relation to some constant like 0, so it should be location invariant. A cluster of points are just as spread out at $\overline{y}=0$ as $\overline{y}=b$.
+    
+2. $\gamma(\mathcal P)$ should be scale equivariant. When a population of points are each multiplied by $m$, the distance/spread between any two points are also multiplied by $m$, so $\gamma(\mathcal P)$ should reflect this change linearly.
+
+3. $\gamma(\mathcal P)$ should not be location-scale invariant nor equivariant, because location and scale have different ideal properties as seen in points 1 and 2. Choosing either would compromise location invariance or scale equivariance.
+
+
+\newpage
+### Question 2 a)
+
+```{r}
+filename <- paste("data/iris.csv", sep="/")
+iris <- read.csv(filename, header=TRUE)
+nrow(iris)
+ncol(iris)
+```
+
+\newpage
+### Question 2 b)
+
+```{r}
+library(pander)
+iris.freq <- table(iris$Species)
+pander(iris.freq, type = 'grid')
+```
+
+\newpage
+### Question 2 c)
+
+```{r}
+print(paste0("Species with the largest sepal widths: ", iris$Species[iris$SepalWidth == max(iris$SepalWidth)][1]))
+print(paste0("Species with the smallest sepal widths: ", iris$Species[iris$SepalWidth == min(iris$SepalWidth)][1]))
+```
+
+\newpage
+### Question 2 d)
+
+```{r}
+for (s in unique(iris$Species)){
+  print(paste0("Average sepal length for ", s, ": ", mean(iris$SepalLength[iris$Species == s])))
+}
+```
+
+\newpage
+### Question 2 e)
+```{r}
+iris$PetalRatio <- iris$PetalWidth/iris$PetalLength
+
+# Iris species with largest and smallest PetalRatios
+print(paste0("Species with the largest petal ratio: ", iris$Species[iris$PetalRatio == max(iris$PetalRatio)][1]))
+print(paste0("Species with the smallest petal ratio: ", iris$Species[iris$PetalRatio == min(iris$PetalRatio)][1]))
+
+# Proportion of samples with PetalRatio > 0.3
+for (s in unique(iris$Species)){
+  print(paste0("Proportion of samples in ", s, " with PetalRatio > 0.3: ", mean(iris$PetalRatio[iris$Species == s] > 0.3)))
+}
+```
+
+\newpage
+### Question 2 f)
+```{r}
+# Match each species name to a colour
+species <- unique(iris$Species)
+iris$SpeciesNum <- match(iris$Species, species)
+colours <- c("black", "red", "green")
+
+# Plot the points and add a legend
+plot(iris$PetalLength, iris$SepalLength, pch=19,
+     col=colours[as.numeric(iris$SpeciesNum)], 
+     xlab="petal length", ylab="sepal length", 
+     main="Petal Length vs. Sepal Length")
+legend(1, 7.75, legend=species, col=colours, lty=1, cex=0.8)
+```
+   
+From the plot, it is clear that Iris-setosas can be distinguished from Iris-versicolor and Iris-virginica by petal length alone, as there is a clear separation between the groups. 
+    
+In addition, there is a positive linear trend between petal length and sepal length in Iris-versicolor and Iris-virginica.
+
+
+\newpage
+### Question 2 g)
+
+```{r}
+par(mfrow=c(1,3), mar=c(2, 2, 2, 1), oma=c(4, 4, 0, 0))
+for (s in species) {
+  plot(jitter(PetalWidth, factor=0.5) ~ jitter(PetalLength, factor=0.5), 
+       data=iris[iris$Species == s, ],
+       col=adjustcolor("black", 0.3), pch=19, main=s)
+  points(mean(PetalWidth) ~ mean(PetalLength), pch=19,
+         data=iris[iris$Species == s, ], 
+         col=adjustcolor("red", 0.5))
+}
+mtext('petal width', side=1, outer=TRUE, line=2)
+mtext('petal length', side=2, outer=TRUE, line=2)
+```
+   
+The plots show that there is a slight positive linear relationship between petal width and petal length, especially in the plot of Iris-versicolor. The relationship might be clearer if the values were not discrete/overlapping.
+
+\newpage
+### Question 2 h)
+
+```{r}
+# Plot the base points
+par(mfrow=c(1,1))
+plot(iris$SpeciesNum, iris$SepalLength, pch=19, 
+     col=adjustcolor("black", 0.3), xaxt="n", 
+     xlab="species", ylab="sepal length", main="Sepal Length by Species")
+axis(side=1, at=c(1.0, 2.0, 3.0), labels=species)
+
+# Calculate, plot, and connect the medians
+medians <- c(median(iris$SepalLength[iris$SpeciesNum == 1]),
+             median(iris$SepalLength[iris$SpeciesNum == 2]),
+             median(iris$SepalLength[iris$SpeciesNum == 3]))
+points(1:3, medians, col="red", pch=19)
+lines(1:3, medians, col="red", pch=19)
+```
+
+\newpage
+### Question 2 i)
+
+```{r}
+powerfun <- function(x, alpha) {
+  if(sum(x <= 0) > 1) stop("x must be positive")
+  if (alpha == 0)
+    log(x)
+  else if (alpha > 0) {
+    x^alpha
+  } else -x^alpha
+}
+```
+```{r}
+# Part i: Histogram and scatterplots of SepalLength and PetalRatio
+par(mfrow=c(1,3), mar=c(2, 2, 2, 0.2))
+hist(iris$SepalLength, breaks=15, main="Sepal Length")
+hist(iris$PetalRatio, breaks=15, main="Petal Ratio")
+plot(SepalLength ~ PetalRatio, data=iris, pch=19,
+     col=adjustcolor("black", 0.5),
+     main="Sepal Length vs. Petal Ratio")
+```
+
+\newpage
+```{r eval=FALSE}
+# Part ii: Find alpha to make SepalLength symmetric
+for (i in c(-0.2, -0.1, 0, 0.1, 0.2)) {
+  hist(powerfun(iris$SepalLength, i), breaks=8)
+}
+```
+
+```{r}
+hist(powerfun(iris$SepalLength, 0), breaks=8,
+     xlab="log(Sepal Length)", ylab="Frequency", main="")
+```
+    
+After testing, the power 0 (log) makes sepal length most symmetric.
+
+\newpage
+```{r eval=FALSE}
+# Part iii: Find alpha to make PetalRatio symmetric
+for (i in c(1.25, 1.5, 1.75, 2, 2.25)) {
+  hist(powerfun(iris$PetalRatio, i), breaks=30)
+}
+```
+
+```{r}
+hist(powerfun(iris$PetalRatio, 1.75), breaks=15,
+     xlab="Petal Ratio ^ 1.75", ylab="Frequency", main="")
+```
+    
+A power of 1.75 makes the histogram of petal ratio most symmetric, though it is harder to judge than sepal length due to the second peak on the left.
+
+\newpage
+```{r}
+# Part iv: Find the pair of alphas to make the scatterplot approximately linear
+plot(powerfun(SepalLength, 0) ~ powerfun(PetalRatio, 1.75), data=iris, 
+     pch=19, col=adjustcolor("black", 0.5),
+     main="Power-Transformed Scatterplot", 
+     xlab="log(Sepal Length)", ylab="Petal Ratio ^ 1.75")
+```
+
+The new scatterplot uses the best alphas for sepal length (0) and petal ratio (1.75), respectively, resulting in a more linear graph than the one in part i).
+
+\newpage
+### Question 3
+
+```{r}
+drawBoxPlot <- function(df) {
+  plot(1, type="n", xlab="", ylab="", xaxt="n",
+       xlim=c(0.5, ncol(df)+0.5), ylim=c(min(df), max(df)))
+  
+  w1 = 0.25
+  w2 = 0.4
+  for (i in 1:ncol(df)){
+    bstats = boxplot.stats(df[,i])
+    stats = bstats$stats
+    
+    segments(i, stats[1], i, stats[5], lty=2)
+    segments(i-w1, stats[1], i+w1, stats[1], lty=1)
+    segments(i-w1, stats[5], i+w1, stats[5], lty=1)
+    rect(i-w2, stats[2], i+w2, stats[4], col="gray")
+    segments(i-w2, stats[3], i+w2, stats[3], lty=1, lwd=3)
+
+    points(x=rep(i, length(bstats$out)), y=bstats$out)
+  }
+  axis(side=1, at=1:ncol(df), labels=names(df), cex.axis=0.8)
+}
+
+drawBoxPlot(iris[c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth")])
+```
+
+
+\newpage
+### Question 4
+    
+#### Description of the data:
+This dataset contains the New York State math test results from 2006 to 2011 for students in grades 3-8. Samples are categorized by ethnicity and proficiency level. 
+    
+This is a population because it contains all math test results during the specified time and location, instead of randomly sampling from the pool of tests that were taken.
+
+#### Description of a unit and two variates:
+Each unit is a test that was taken. It is not each student who took the test, because the dataset spans multiple years, so the same student could have taken another test in another grade.
+    
+Variates include the test taker's grade, ethnicity, proficiency level, and year.
+
+#### URL:
+The dataset can be accessed at https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity
+
+\newpage
+#### Graphic visualizations (1/2):
+
+```{r}
+filename <- paste("data/NYS Math Results.csv", sep="/")
+res <- read.csv(filename, header=TRUE)
+
+colours <- c("firebrick", "blue", "green", "gold")
+res$EthNum <- match(res$Category, unique(res$Category))
+plot(jitter(res$Year, 0.75), res$Level.3.4...1,
+     pch=19, col=colours[res$EthNum],
+     xlab="Year", ylab="% of Level 3+4",
+     main="Proficiency by Year")
+legend(2008.255, 51, legend=unique(res$Category), col=colours, lty=1, cex=0.65)
+```
+    
+In this figure, the percent of test-takers in the highest proficiency category (level 3 & 4) are plotted by year and coloured by ethnicity. There is a clear trend that Asian and White students consistently score higher than Black and Hispanic students, though this gap was further widened in 2010.
+    
+Jitter was added to the points horizontally to aid visualization.
+
+\newpage
+#### Graphic visualizations (2/2):
+```{r}
+boxplot(res$Mean.Scale.Score ~ res$Grade, cex.axis=0.8,
+        xlab="Grade", ylab="Mean Score", main="Mean Test Score vs. Grades")
+```
+
+    
+In the second figure, there is a consistent downward trend of the median score as students go up in grades, and an increasing variation in results. It could be an indication that tests get harder as students advance through the grades, and it is harder for students scoring near the bottom to recover.

@@ -1,0 +1,466 @@
+---
+title: "Assignment3"
+author: "Fenglin Chen"
+date: "14/11/2021"
+output: word_document
+---
+
+### Question 1 a)
+
+```{r}
+disease <- read.csv("Infectious.csv", header=TRUE)
+plot(Deceased.Prop ~ Infected, data=disease, pch=19, cex=0.7, 
+     xlab="Infected", ylab="Deceased Proportion", 
+     main="Mortality vs. Infection Rate")
+```
+
+The deceased proportion (mortality rate) appears to increase monotonically as the number of infections increase. This indicates that the deadliness of the disease is related to its ability to spread. The public might see that sicker patients are more infectious.
+    
+The points are relatively compact along the line of best fit, which means the behaviour of the disease is consistent. In addition, the rate increases slower as mortality nears 100%, as it can never surpass 1 no matter how many people are infected.
+
+
+\newpage
+### Question 1 b)
+
+```{r}
+CreateObjectiveFunction <- function(X, Y) {
+  function(alpha, beta){
+    sum((Y - 1 + 1/(alpha + beta*X))^2)
+  }
+}
+rho <- CreateObjectiveFunction(disease$Infected, disease$Deceased.Prop)
+
+alpha <- seq(0.5, 4, 0.01)
+beta <- seq(0.1, 2, 0.01)
+mat <- outer(alpha, beta, FUN=Vectorize(rho))
+
+# 3D plot of alpha vs. beta
+library(plot3D)
+colours <- colorRampPalette(c("blue", "red"))(100)
+persp3D(x=alpha, y=beta, z=mat, xlab="alpha", ylab="beta", zlab="Objective",
+      main="Objective Function", theta=60, phi=10, ticktype="simple", 
+      col.palette=heat.colors, colkey=list(side=2))
+```
+
+\newpage
+```{r}
+# Heat map with superimposed contour plot
+image(x=alpha, y=beta, z=mat, xlab="alpha", ylab="beta", 
+      main="Objective Function")
+contour(x=alpha, y=beta, z=mat, nlevels=20, add=TRUE)
+```
+
+
+\newpage
+### Question 1 c)
+
+$\alpha \in (1, 3)$ and $\beta \in (0.1, 0.3)$ makes the neighbourbood of the minima more visible.
+
+```{r}
+# Narrow the ranges of alpha and beta
+alpha <- seq(1, 3, 0.01)
+beta <- seq(0.1, 0.3, 0.01)
+mat <- outer(alpha, beta, FUN=Vectorize(rho))
+
+# 3D plot of alpha vs. beta
+library(plot3D)
+colours <- colorRampPalette(c("blue", "red"))(100)
+persp3D(x=alpha, y=beta, z=mat, xlab="alpha", ylab="beta", zlab="Objective",
+      main="Objective Function", theta=60, phi=10, ticktype="simple", 
+      col.palette=heat.colors, colkey=list(side=2))
+```
+
+\newpage
+```{r}
+image(x=alpha, y=beta, z=mat, xlab="alpha", ylab="beta", 
+      main="Objective Function")
+contour(x=alpha, y=beta, z=mat, nlevels=20, add=TRUE)
+```
+
+
+\newpage
+### Question 1 d)
+
+The partial derivatives of the objective function are:
+
+$$
+\frac{\partial \rho}{\partial \alpha} = \sum_u -2\big(y_u-1+(\alpha+\beta x_u)^{-1}\big)(\alpha+\beta x_u)^{-2}
+$$
+    
+$$
+\frac{\partial \rho}{\partial \beta} = \sum_u -2 x_u \big(y_u-1+(\alpha+\beta x_u)^{-1}\big)(\alpha+\beta x_u)^{-2}
+$$
+
+The second partial derivatives of the objective function are:
+
+$$
+\frac{\partial^2 \rho}{\partial \alpha^2} = \sum_u 2(\alpha+\beta x_u)^{-4}+4\big(y_u-1+(\alpha+\beta x_u)^{-1}\big)(\alpha+\beta x_u)^{-3}
+$$
+    
+$$
+\frac{\partial^2 \rho}{\partial \alpha \partial \beta} = \sum_u 2 x_u (\alpha+\beta x_u)^{-4}+4 x_u \big(y_u-1+(\alpha+\beta x_u)^{-1}\big)(\alpha+\beta x_u)^{-3}
+$$
+   
+$$
+\frac{\partial^2 \rho}{\partial \beta^2} = \sum_u 2 x_u^2 (\alpha+\beta x_u)^{-4}+4 x_u^2\big(y_u-1+(\alpha+\beta x_u)^{-1}\big)(\alpha+\beta x_u)^{-3}
+$$
+
+```{r}
+CreatePsiFn <- function(X, Y){
+  psiFn <- function(theta) {
+    bracket = (theta[1]+theta[2]*X)
+    c(sum( -2*(Y-1 + 1/bracket)*  bracket^-2 ),
+      sum( -2*(Y-1 + 1/bracket)*X*bracket^-2 ))
+  }
+}
+
+CreatePsiPrimeFn <- function(X, Y){
+  function(theta) {
+    val = matrix(0, nrow=length(theta), ncol=length(theta))
+    bracket = (theta[1]+theta[2]*X)
+    val[1, 1] = sum( 2*    bracket^-4 + 4*    (Y-1 + 1/bracket)*bracket^-3 )
+    val[1, 2] = sum( 2*X*  bracket^-4 + 4*X*  (Y-1 + 1/bracket)*bracket^-3 )
+    val[2, 1] = sum( 2*X*  bracket^-4 + 4*X*  (Y-1 + 1/bracket)*bracket^-3 )
+    val[2, 2] = sum( 2*X^2*bracket^-4 + 4*X^2*(Y-1 + 1/bracket)*bracket^-3 )
+    return(val)
+  }
+}
+
+psiFn = CreatePsiFn(disease$Infected, disease$Deceased.Prop)
+psiPrimeFn = CreatePsiPrimeFn(disease$Infected, disease$Deceased.Prop)
+```
+
+\newpage
+
+Using the definition of the Newton-Raphson algorithm from class:
+
+```{r}
+testConvergence <- function(thetaNew, thetaOld, tolerance = 1e-10, relative = FALSE) {
+  sum(abs(thetaNew - thetaOld)) < if (relative) 
+    tolerance * sum(abs(thetaOld)) else tolerance
+}
+
+NewtonRaphson <- function(theta, psiFn, psiPrimeFn, dim, testConvergenceFn = testConvergence, maxIterations = 200, tolerance = 1e-06, relative = FALSE) {
+  if (missing(theta)) {
+    if (missing(dim)) {
+      dim <- length(psiFn())
+    }
+    theta <- rep(0, dim)
+  }
+  converged <- FALSE
+  i <- 0
+  while (!converged & i <= maxIterations) {
+    thetaNew <- theta - solve(psiPrimeFn(theta), psiFn(theta))
+    converged <- testConvergenceFn(thetaNew, theta, tolerance = tolerance, 
+                                   relative = relative)
+    theta <- thetaNew
+    i <- i + 1
+  }
+  list(theta = theta, converged = converged, iteration = i, fnValue = psiFn(theta))
+}
+```
+
+\newpage
+#### i) Initial values $(\alpha_0,\beta_0)=(2,3)$:
+
+```{r}
+NRresult1 <- NewtonRaphson(theta=c(2, 3), psiFn=psiFn, psiPrimeFn=psiPrimeFn, dim=2)
+print(NRresult1)
+```
+
+#### ii) Initial values $(\alpha_0,\beta_0)=(3,0.2)$:
+
+```{r}
+NRresult2 <- NewtonRaphson(theta=c(3, 0.2), psiFn=psiFn, psiPrimeFn=psiPrimeFn, dim=2)
+print(NRresult2)
+```
+
+#### iii) Estimate of the minima from part c) with $(\alpha_0,\beta_0)=(1.75,0.2)$:
+
+```{r}
+NRresult3 <- NewtonRaphson(theta=c(1.75, 0.2), psiFn=psiFn, psiPrimeFn=psiPrimeFn, dim=2)
+print(NRresult3)
+```
+
+```{r}
+rho(NRresult1$theta[1], NRresult1$theta[2])
+rho(NRresult2$theta[1], NRresult2$theta[2])
+rho(NRresult3$theta[1], NRresult3$theta[2])
+```
+
+Since the objective function is lowest for the third pair of parameters, the initial value of $(1.75, 0.2)$ is the most appropriate.
+
+
+\newpage
+### Question 1 e)
+
+```{r}
+regression <- function(alpha, beta){
+  function(x){
+    1 - 1/(alpha + beta*x)
+  }
+}
+
+infectedRange = seq(min(disease$Infected), max(disease$Infected), 0.01)
+reg1 = regression(NRresult1$theta[1], NRresult1$theta[2])
+reg2 = regression(NRresult2$theta[1], NRresult2$theta[2])
+reg3 = regression(NRresult3$theta[1], NRresult3$theta[2])
+```
+
+```{r}
+plot(Deceased.Prop ~ Infected, data=disease, pch=19, cex=0.7, 
+     xlab="Infected", ylab="Deceased Proportion", 
+     main="Observed vs. Estimated 1", ylim=c(0.4, 1))
+lines(infectedRange, reg1(infectedRange), col="red")
+```
+
+\newpage
+
+```{r}
+plot(Deceased.Prop ~ Infected, data=disease, pch=19, cex=0.7, 
+     xlab="Infected", ylab="Deceased Proportion", 
+     main="Observed vs. Estimated 2", ylim=c(0.4, 1))
+lines(infectedRange, reg2(infectedRange), col="red")
+```
+
+\newpage
+
+```{r}
+plot(Deceased.Prop ~ Infected, data=disease, pch=19, cex=0.7, 
+     xlab="Infected", ylab="Deceased Proportion", 
+     main="Observed vs. Estimated 3", ylim=c(0.4, 1))
+lines(infectedRange, reg3(infectedRange), col="red")
+```
+
+The plots show that the first two parameter estimates weren't able to converge. Since the Newton-Raphson method only finds the roots of the $\psi$ function, it is possible that they approached the maximum instead of the minimum.
+
+On the other hand, the hand-picked parameters (set 3) were able to converge to the minimum and demonstrate a close fit of the observed values.
+
+
+\newpage
+### Question 1 f)
+
+Transform the model so $\alpha$ and $\beta$ can be fitted linearly:
+
+$$
+Y_u = 1-\frac{1}{\alpha+\beta X_u}
+$$
+
+$$
+1-Y_u = \frac{1}{\alpha+\beta X_u}
+$$
+
+$$
+\frac{1}{1-Y_u} = \alpha+\beta X_u
+$$
+
+#### i) Summary of the fit results
+
+```{r}
+disease$transformed <- 1 / (1-disease$Deceased.Prop)
+coefs <- lm(transformed ~ Infected, data=disease)
+summary(coefs)
+```
+
+\newpage
+#### ii) Plot fitted results
+
+```{r}
+new.reg = regression(coefs$coefficients[1], coefs$coefficients[2])
+plot(Deceased.Prop ~ Infected, data=disease, pch=19, cex=0.7, 
+     xlab="Infected", ylab="Deceased Proportion", 
+     main="Transformed Linear Fit", ylim=c(0.4, 1))
+lines(infectedRange, new.reg(infectedRange), col="red")
+```
+
+The plot shows that the model fits very well to the data. When the observations were transformed using the proposed model, the coefficients could be fitted linearly, and the resultant re-transformation provided a good estimate.
+
+This demonstrates that assumptions made in the model were correct.
+
+
+\newpage
+### Question 2 a)
+
+The HT estimate of the total death in all 486 communities/towns/cities is the number of deaths in each sample divided by the chance of selecting that sample.
+    
+In SRSWR, the inclusion probability of one sample is $\pi_u = 1-\big(\frac{N-1}{N}\big)^n$, and the includion probability of any two samples is $\pi_{uv}=1-2(\frac{N-1}{N})^n+(\frac{N-2}{N})^n$.
+
+```{r}
+# Inclusion probability for any one sample
+srswr.incl <- function(u) {
+  N <- 486
+  n <- 100
+  1 - ((N-1)/N)^n
+}
+
+# Joint inclusion probability for any two samples
+srswr.joint <- function(u, v) {
+  N <- 486
+  n <- 100
+  if (u == v) {1 - ((N-1)/N)^n} 
+  else {1 - 2*((N-1)/N)^n + ((N-2)/N)^n}
+}
+
+# HT estimator from class
+createHTestimator <- function(pi_u_fn) {
+  function(samp, variateFn) {
+    Reduce(`+`, 
+           Map(function(u) {variateFn(u)/ pi_u_fn(u)}, samp),
+           init = 0
+    )
+  }
+}
+
+# HT variance estimator from class
+createHTVarianceEstimator <- function(pop, pi_u_fn, pi_uv_fn) {
+  function(samp, variateFn) {
+    Reduce(`+`,
+           Map(function(u) {
+             pi_u <- pi_u_fn(u)
+             y_u <- variateFn(u)
+             Reduce(`+`, 
+                    Map(function(v) {
+                      pi_v <- pi_u_fn(v)
+                      pi_uv <- pi_uv_fn(u, v)
+                      y_v <- variateFn(v)
+                      Delta_uv <- pi_uv - pi_u * pi_v
+                      result <- (Delta_uv  * y_u * y_v) 
+                      result <- result/(pi_uv * pi_u * pi_v)
+                      result
+                    }, 
+                    samp),
+                    init = 0) 
+           },
+           samp
+           ),
+           init = 0)
+  }
+}
+
+HT.est <- createHTestimator(srswr.incl)
+HT.var <- createHTVarianceEstimator(1:486,
+                                    pi_u_fn=srswr.incl,
+                                    pi_uv_fn=srswr.joint)
+
+createVariateFn <- function(pop, variate1, variate2){
+  function(u) {pop[u, variate1] * pop[u, variate2]}
+}
+deaths <- createVariateFn(disease, "Infected", "Deceased.Prop")
+
+tot.mean <- HT.est(1:100, deaths) * 12.5
+tot.mean
+tot.sdn <- sqrt(HT.var(1:100, deaths)) * 12.5
+tot.sdn
+```
+
+The number of deaths in country A due to the disease is around $10731.01$ per $1,000,000$, so the total number is $12.5*10731.01=134,137.6$ (or $134,138$ if rounded to the nearest person). 
+
+The standard error of the estimate is $664.341$ per $1,000,000$, or $8,304.263$ in total.
+
+```{r}
+# Assume normal distribution
+confidence <- 0.95
+c.val <- qnorm((confidence+1)/2)
+conf.interval <- c(tot.mean + c.val * c(-tot.sdn, tot.sdn))
+conf.interval
+```
+
+The 95% confidence interval for the total number of deaths is [117861.5, 150413.7].
+
+
+\newpage
+### Question 2 b)
+
+The unweighted inclusion probabilities can be rewritten as:
+$$
+\begin{aligned}
+\pi_u &= 1-\big(\frac{N-1}{N}\big)^n \\
+&= 1-\big(1-\frac{1}{N}\big)^n
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned}
+\pi_{uv} &= 1 - 2\big(\frac{N-1}{N}\big)^n + \big(\frac{N-2}{N}\big)^n \\
+&= 1 - 2\big(1-\frac{1}{N}\big)^n + \big(1-(\frac{1}{N}+\frac{1}{N})\big)^n
+\end{aligned}
+$$
+
+Where $\frac{1}{N}$ is the weight for each unit. Therefore, the inclusion and joint inclusion probabilities of weighted simple random sampling with replacement (WSRSWR) can be derived by replacing the weight variable:
+$$
+\pi_u = 1-\big(1-w_u\big)^n
+$$
+    
+$$
+\pi_{uv} = 1 - \big(1-w_u\big)^n - \big(1-w_v\big)^n + \big(1-w_u-w_v\big)^n
+$$
+
+
+\newpage
+### Question 2 c)
+
+```{r, echo=FALSE}
+# The inclusion weights of each sample
+w = c(0.0027, 0.016, 0.0069, 0.0011, 0.0066, 0.0108, 0.003, 0.0043,
+    0.0142, 0.0016, 0.0122, 4e-04, 0.0047, 0.014, 0.0086, 0.0169,
+    0.0165, 0.0118, 0.0043, 2e-04, 0.0142, 0.0092, 0.0162, 0.0106,
+    0.0588, 0.0135, 0.0025, 0.0011, 0.0109, 0.0085, 0.0027, 0.0112,
+    0.0127, 5e-04, 0.0082, 0.0085, 0.0066, 0.0125, 0.012, 0.0116,
+    0.0089, 0.016, 0.0108, 9e-04, 0.0088, 0.0066, 0.0588, 0.0044,
+    8e-04, 0.002, 0.01, 0.0101, 0.0012, 0.0135, 0.0103, 0.0058,
+    0.004, 0.0088, 0.0057, 0.0049, 0.0111, 0.0117, 0.0081, 0.014,
+    0.0079, 0.0134, 0.0149, 0.0042, 0.0109, 0.0072, 0.0109, 0.0082,
+    5e-04, 0.002, 0.0588, 0.0025, 0.0018, 0.0105, 0.015, 0.0148,
+    0.0042, 0.0025, 0.0061, 0.0111, 0.017, 0.015, 0.0056, 0.0011,
+    0.0072, 0.007, 0.015, 0.0081, 0.016, 0.0057, 0.0029, 0.0012,
+    0.0588, 8e-04, 2e-04, 0.005)
+```
+
+```{r}
+# Inclusion probability for any one sample
+wsrswr.incl <- function(u) {
+  N <- 486
+  n <- 100
+  1 - (1-w[u])^n
+}
+
+# Joint inclusion probability for any two samples
+wsrswr.joint <- function(u, v) {
+  N <- 486
+  n <- 100
+  if (u == v) {1 - ((N-1)/N)^n} 
+  else {1 - (1-w[u])^n - (1-w[v])^n + (1-w[u]-w[v])^n}
+}
+
+HT.est.weighted <- createHTestimator(wsrswr.incl)
+HT.var.weighted <- createHTVarianceEstimator(1:486,
+                                             pi_u_fn=wsrswr.incl,
+                                             pi_uv_fn=wsrswr.joint)
+
+tot.mean.weighted <- HT.est.weighted(1:100, deaths) * 12.5
+tot.mean.weighted
+tot.sdn.weighted <- sqrt(HT.var.weighted(1:100, deaths)) * 12.5
+tot.sdn.weighted
+```
+
+The total number of deaths in country A estimated using WSRSWR is 92,713.64 (or 92714 when rounded), and the standard error of the estimate is 12,444.1.
+
+```{r}
+# Assume normal distribution
+confidence <- 0.95
+c.val <- qnorm((confidence+1)/2)
+conf.interval <- c(tot.mean.weighted + c.val * c(-tot.sdn.weighted, tot.sdn.weighted))
+conf.interval
+```
+
+The confidence interval for WRSRWR is [68,323.65, 117,103.62].
+
+
+\newpage
+### Question 2 d)
+
+The sampling protocol in WSRSWR makes more sense than SRSWR. In SRSWR, the weight of each unit is $\frac{1}{N}$, which assumes that small towns have the same probability of being sampled than big cities.
+    
+However, larger locations have more residents. Assuming that each person is sampled at random, the cumulative probability of sampling people from larger cities is bigger than sampling people small towns. Since WSRSWR reflects the reality of population size differences, it is the better sampling protocol.

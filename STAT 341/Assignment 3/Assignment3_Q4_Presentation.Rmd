@@ -1,0 +1,106 @@
+---
+title: "Assignment 3 Question 4 Presentation"
+author: "Fenglin Chen"
+date: "15/11/2021"
+output: beamer_presentation
+---
+
+## Table of Contents
+
+- Summary
+- Math formula
+- General code
+- Code example
+
+## Summary
+
+4 steps to finding the significance level:
+
+1. State the null hypothesis H0
+2. Formulate a discrepancy measure $D(\mathcal{P}_1, \mathcal{P}_2)$
+3. Calculate the observed discrepancy $d_{obs} = D(\mathcal{P}_1, \mathcal{P}_2)$
+4. Apply $D$ to randomly shuffled sub-populations
+
+The proportion of random discrepancies greater than $d_{obs}$ is the p-value.
+
+## Mathematical Formula
+
+Observed discrepancy:
+
+$$
+d_{obs} = D(\mathcal{P}_1, \mathcal{P}_2)
+$$
+
+M randomly shuffled sub-populations:
+
+$$
+(\mathcal{P}_{1,1}^\star,\mathcal{P}_{2,1}^\star), (\mathcal{P}_{1,2}^\star,\mathcal{P}_{2,2}^\star), \ldots, (\mathcal{P}_{1,M}^\star,\mathcal{P}_{2,M}^\star)
+$$
+
+p-value:
+
+$$
+\text{p-value} = \frac{1}{M}\sum_{i=1}^{M}I\left(  D(\mathcal{P}_{1,i}^\star, \mathcal{P}_{2,i}^\star ) \ge d_{obs}\right)
+$$
+
+## General Code
+
+```{r}
+# Generate randomly shuffled sub-populations
+mixRandomly <- function(pop) {
+  pop1 <- pop$pop1
+  n_pop1 <- nrow(pop1)
+  
+  pop2 <- pop$pop2
+  n_pop2 <- nrow(pop2)
+  
+  mix <- rbind(pop1,pop2)
+  select4pop1 <- sample(1:(n_pop1 + n_pop2), n_pop1, 
+                        replace = FALSE)
+  
+  new_pop1 <- mix[select4pop1,]  
+  new_pop2 <- mix[-select4pop1,]
+  list(pop1=new_pop1, pop2=new_pop2)
+}
+```
+
+## General Code
+
+```{r}
+# Define the discrepancy measure
+getDiscrepancy <- function(variate, attr) {
+  function(pop) {attr(pop$pop1[, variate]) - 
+                 attr(pop$pop2[,variate])}
+}
+```
+
+## Code Example
+
+Gen Ed class size vs. CTT class size
+
+```{r}
+boroughs <- read.csv("Borough_Summary.csv", header=TRUE)
+pop <- list(pop1 = subset(boroughs, 
+                   boroughs$PROGRAM.TYPE == "GEN ED"), 
+            pop2 = subset(boroughs, 
+                   boroughs$PROGRAM.TYPE == "CTT"))
+set.seed(341)
+
+discFn <- getDiscrepancy("AVERAGE.CLASS.SIZE", mean)
+disc.random <- sapply(1:1000, FUN = function(...){ 
+  discFn(mixRandomly(pop)) 
+})
+
+disc.prop <- mean( abs(disc.random) >= discFn(pop) )
+disc.prop
+```
+
+## Code Example
+
+```{r, echo=FALSE}
+# Plot the results
+hist(disc.random, breaks="FD", prob=TRUE,
+     main = "Randomly Mixed Populations", xlab="Difference in Class Sizes",
+     col="lightgrey")
+abline(v=discFn(pop), col = "red", lwd=2)
+```
