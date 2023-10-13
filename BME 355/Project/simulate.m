@@ -35,6 +35,7 @@ function [] = simulate(T, start, stop, type, amp, freq, duty, phase)
     
     figure()
     LineWidth = 1.5;
+    
     subplot(3,1,1)
     plot(time, theta, 'LineWidth', LineWidth)
     ylabel('Ankle Angle (rad)')
