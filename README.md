@@ -38,5 +38,5 @@ Explored low-pass and high-pass signal filters in Python
 ### STAT 341 [2B] - Computational Statistics and Data Analysis
 Analyzed data using statistical methods in R and compiled visualizations in R Markdown
 
-### SYDE 572 [2A] - Introduction to Pattern Recognition
+### SYDE 572 [2B] - Introduction to Pattern Recognition
 Implemented various classifiers like MICD, ME, KNN, Linear Regression etc.
