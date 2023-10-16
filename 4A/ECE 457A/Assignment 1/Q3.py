@@ -11,17 +11,17 @@ def pso(X, V, alpha, iter):
         Xs += X.tolist()
         fitness = [fitness_func(x) for x in X]
         all_fitness += fitness
-        local_best = np.argmax(fitness)
+        # local_best = np.argmax(fitness)
         global_best = np.argmax(all_fitness)
 
         print(f"Fitness {i}: {np.round(fitness, 3)}")
-        print(f"Local best: {local_best}, {np.round(X[local_best], 3)}")
+        # print(f"Local best: {local_best}, {np.round(X[local_best], 3)}")
         print(f"Global best: {global_best}, {np.round(Xs[global_best], 3)}\n")
     
         X_new = np.zeros(X.shape)
         V_new = np.zeros(V.shape)
         for j in range(len(X)):
-            V_new[j] = alpha[0] * V[j] + alpha[1] * (X[local_best] - X[j]) + alpha[2] * (Xs[global_best] - X[j])
+            V_new[j] = alpha[0] * V[j] + alpha[1] * (X[j] - X[j]) + alpha[2] * (Xs[global_best] - X[j])
             X_new[j] = X[j] + V_new[j]
         X = X_new
         V = V_new
