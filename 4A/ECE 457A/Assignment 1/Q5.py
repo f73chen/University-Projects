@@ -134,7 +134,7 @@ def plot_results(best_x: np.array, best_cost: float, x_history: List[np.array], 
     ax.plot(x1_history, x2_history, c='red', marker='o', linestyle='-', label='Optimization path')
     ax.plot(best_x[0], best_x[1], c='blue', marker='o', linestyle='-', label='Best solution')
     ax.legend()
-    plt.show()
+    # plt.show()
 
     # Plot each neighbourhood around x
     for neighbourhood in N:
@@ -293,7 +293,7 @@ if DIMENSION == 2:
                 cost_function=schwefel, x_range=[DOMAIN for i in range(DIMENSION)], N=N)
 
 # Call GNS and plot results
-best_x, best_cost, x_history, cost_history, N = GNS(layers=3, n=[8, 10, 14], size=[45, 60, 75], radius=[100, 250, 400])
+best_x, best_cost, x_history, cost_history, N = GNS(layers=3, n=[8, 10, 14], size=[45, 60, 75], radius=[100, 225, 400])
 print(f"GNS best x: {best_x}, best cost: {best_cost}")
 
 if DIMENSION == 2:
