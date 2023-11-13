@@ -38,6 +38,8 @@ def scaling(arr, scale_factor):
     arr = arr*scale_factor
     arr = np.round(arr)
     arr = arr.astype(int)
+    return arr
+
 
 p = scaling(p, scale_factor)
 
