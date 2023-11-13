@@ -2,8 +2,8 @@ import numpy as np
 
 scale_factor = 265066 / 282510
 
-# Scale matrices from PAPER
-x = np.array([4, 4, 2],
+# Matrices from DOI:10.1080/20479700.2020.1763236 (A. Apornak et al., 2021)
+x = np.array([[4, 4, 2],
              [8, 9, 4],
              [20, 20, 10],
              [1, 1, 1],
@@ -11,9 +11,9 @@ x = np.array([4, 4, 2],
              [1, 1, 1],
              [1, 1, 1],
              [2, 2, 2],
-             [2, 2, 2]) * scale_factor
+             [2, 2, 2]])
 
-p = np.array([35, 37, 24],
+p = np.array([[35, 37, 24],
              [55, 56, 38],
              [60, 65, 45],
              [25, 28, 14],
@@ -21,9 +21,9 @@ p = np.array([35, 37, 24],
              [24, 22, 13],
              [32, 34, 23],
              [12, 10, 6],
-             [15, 18, 9]) * scale_factor
+             [15, 18, 9]])
 
-t = np.array([12, 14, 17],
+t = np.array([[12, 14, 17],
              [8, 9, 8],
              [168, 172, 86],
              [10, 10, 10],
@@ -31,17 +31,17 @@ t = np.array([12, 14, 17],
              [7, 7, 7],
              [15, 15, 15],
              [30, 30, 30],
-             [15, 15, 15]) * scale_factor
+             [15, 15, 15]])
 
-# Cast to int
-x = np.ceil(x)
-x = x.astype(int)
 
-p = np.ceil(p)
-p = p.astype(int)
+def scaling(arr, scale_factor):
+    arr = arr*scale_factor
+    arr = np.round(arr)
+    arr = arr.astype(int)
 
-t = np.ceil(t)
-t = t.astype(int)
+x = scaling(x, scale_factor)
+p = scaling(p, scale_factor)
+t = scaling(t, scale_factor)
 
 print(x)
 print(p)
