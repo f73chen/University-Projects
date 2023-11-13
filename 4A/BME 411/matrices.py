@@ -39,9 +39,7 @@ def scaling(arr, scale_factor):
     arr = np.round(arr)
     arr = arr.astype(int)
 
-x = scaling(x, scale_factor)
 p = scaling(p, scale_factor)
-t = scaling(t, scale_factor)
 
 print(x)
 print(p)
