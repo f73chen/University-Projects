@@ -42,7 +42,15 @@ def scaling(arr, scale_factor):
 
 
 p = scaling(p, scale_factor)
+P = np.sum(p) # total number of patients
 
-print(x)
-print(p)
-print(t)
+T = 480  # number of minutes in a shift
+N = 9    # number of resource categories
+M = 3    # number of shifts
+
+ARRIVAL_TIMES = [[] for _ in range(N)]
+for i in range(N):
+    for j in range(M):
+        padded_time = j*T
+        interval = int(np.floor(T/p[i][j]))
+        ARRIVAL_TIMES[i].extend(j*T + np.arange(0, interval*p[i][j], interval))
