@@ -1,8 +1,10 @@
 import numpy as np
 
 scale_factor = 265066 / 282510
+hr_to_min = 60
 
-# Matrices from DOI:10.1080/20479700.2020.1763236 (A. Apornak et al., 2021)
+# No. of resources, no. of patients, & time spent on each patient (min)
+# from DOI:10.1080/20479700.2020.1763236 (A. Apornak et al., 2021)
 x = np.array([[4, 4, 2],
              [8, 9, 4],
              [20, 20, 10],
@@ -33,6 +35,17 @@ t = np.array([[12, 14, 17],
              [30, 30, 30],
              [15, 15, 15]])
 
+# Cost of each resource (average salary) (per hr)
+c = np.array([[78, 78, 78],
+              [73, 73, 73],
+              [39, 39, 39],
+              [41.21, 41.21, 41.21],
+              [27.07, 27.07, 27.07],
+              [34.45, 34.45, 34.45],
+              [163, 163, 163],
+              [78+33.56+48, 78+33.56+48, 78+33.56+48],
+              [34.39, 34.39, 34.39]])
+
 
 def scaling(arr, scale_factor):
     arr = arr*scale_factor
@@ -41,7 +54,13 @@ def scaling(arr, scale_factor):
     return arr
 
 
+def hour_to_minutes(arr, hr_to_min):
+    arr = arr/hr_to_min
+    return arr
+
+
 p = scaling(p, scale_factor)
+c = hour_to_minutes(c, hr_to_min)
 
 T = 480  # number of minutes in a shift
 N = 9    # number of resource categories
