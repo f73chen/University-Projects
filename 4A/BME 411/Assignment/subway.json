@@ -7,7 +7,7 @@
         },
         "line 2": {
             "travel_time": 4,
-            "wait_time": 3.5,
+            "wait_time": 100,
             "stops": ["stop 2", "stop 3"]
         },
         "line 3": {
