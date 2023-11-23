@@ -1,0 +1,24 @@
+{
+    "lines": {
+               "line 1": {
+                          "travel_time": 5,
+                          "wait_time": 2
+                         },
+               "line 2": {
+                          "travel_time": 4,
+                          "wait_time": 3.5
+                         }
+             },
+    "stops": {
+              "stop 1": {
+                         "x": 0,
+                         "y": 0,
+                         "trains": ["line 1"]
+                        },
+              "stop 2": {
+                         "x": 0,
+                         "y": 1,
+                         "trains": ["line 1", "line 2"]
+                        }
+             }
+}
