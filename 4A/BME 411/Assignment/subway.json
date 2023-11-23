@@ -1,24 +1,39 @@
 {
     "lines": {
-               "line 1": {
-                          "travel_time": 5,
-                          "wait_time": 2
-                         },
-               "line 2": {
-                          "travel_time": 4,
-                          "wait_time": 3.5
-                         }
-             },
-    "stops": {
-              "stop 1": {
-                         "x": 0,
-                         "y": 0,
-                         "trains": ["line 1"]
-                        },
-              "stop 2": {
-                         "x": 0,
-                         "y": 1,
-                         "trains": ["line 1", "line 2"]
-                        }
-             }
+        "line 1": {
+            "travel_time": 5,
+            "wait_time": 2,
+            "stops": ["stop 1", "stop 2"]
+        },
+        "line 2": {
+            "travel_time": 4,
+            "wait_time": 3.5,
+            "stops": ["stop 2", "stop 3"]
+        },
+        "line 3": {
+            "travel_time": 6,
+            "wait_time": 2.5,
+            "stops": ["stop 3", "stop 4", "stop 5"]
+        },
+        "line 4": {
+            "travel_time": 3,
+            "wait_time": 2,
+            "stops": ["stop 5", "stop 6", "stop 7"]
+        },
+        "line 5": {
+            "travel_time": 7,
+            "wait_time": 4,
+            "stops": ["stop 7", "stop 8", "stop 1"]
+        }
+    },
+    "locations": {
+        "stop 1": [0, 0],
+        "stop 2": [1, 2],
+        "stop 3": [3, 5],
+        "stop 4": [5, 3],
+        "stop 5": [6, 1],
+        "stop 6": [4, -1],
+        "stop 7": [2, -2],
+        "stop 8": [0, -3]
+    }
 }
