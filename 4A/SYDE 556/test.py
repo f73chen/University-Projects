@@ -1,4 +1,8 @@
 import nengo
+from nengo.utils.matplotlib import rasterplot
+
+import numpy as np
+import matplotlib.pyplot as plt
 
 model = nengo.Network()
 
@@ -43,3 +47,12 @@ with model:
 
     nengo.Connection(a, c[0])
     nengo.Connection(b, c[1])
+
+    """"""
+    net = nengo.Network()
+    with net:
+        two_d_probe = nengo.Probe(two_d_ensemble, synapse=0.01)
+        product_probe = nengo.Probe(product_ensemble, synapse=0.01)
+    sim = nengo.Simulator(net)
+    sim.run(5.0)
+    print(sim.data[product_probe][-10:])
