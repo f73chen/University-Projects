@@ -45,6 +45,8 @@ def get_graph(nodes, edges, plot=True, directed=False):
     
     :return: nx graph object
     """
+    plt.figure(figsize=(9, 9))
+    
     G = nx.DiGraph() if directed else nx.Graph()
 
     G.add_nodes_from(nodes.keys())
