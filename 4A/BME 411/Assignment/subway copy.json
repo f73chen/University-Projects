@@ -1,0 +1,79 @@
+{
+    "lines": {
+        "line 1": {
+            "wait_time": 2,
+            "stops": [
+                {
+                "start": "stop 1",
+                "end": "stop 2",
+                "travel_time": 30
+                }
+            ]
+        },
+        "line 2": {
+            "wait_time": 100,
+            "stops": [
+                {
+                "start": "stop 2",
+                "end": "stop 3",
+                "travel_time": 20
+                }
+            ]
+        },
+        "line 3": {
+            "wait_time": 2.5,
+            "stops": [
+                {
+                "start": "stop 3",
+                "end": "stop 4",
+                "travel_time": 30
+                },
+                {
+                "start": "stop 4",
+                "end": "stop 5",
+                "travel_time": 35
+                }
+            ]
+        },
+        "line 4": {
+            "wait_time": 2,
+            "stops": [
+                {
+                "start": "stop 5",
+                "end": "stop 6",
+                "travel_time": 30
+                },
+                {
+                "start": "stop 6",
+                "end": "stop 7",
+                "travel_time": 35
+                }
+            ]
+        },
+        "line 5": {
+            "wait_time": 2,
+            "stops": [
+                {
+                "start": "stop 7",
+                "end": "stop 8",
+                "travel_time": 30
+                },
+                {
+                "start": "stop 8",
+                "end": "stop 1",
+                "travel_time": 35
+                }
+            ]
+        }
+    },
+    "locations": {
+        "stop 1": [0, 0],
+        "stop 2": [1, 2],
+        "stop 3": [3, 5],
+        "stop 4": [5, 3],
+        "stop 5": [6, 1],
+        "stop 6": [4, -1],
+        "stop 7": [2, -2],
+        "stop 8": [0, -3]
+    }
+}
