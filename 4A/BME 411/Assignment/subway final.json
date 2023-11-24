@@ -220,11 +220,11 @@
                 },
                 {
                     "start": "14 St W",
-                    "end": "W 4 St-Wash Sq",
+                    "end": "W 4 St Wash Sq",
                     "travel_time": 2
                 },
                 {
-                    "start": "W 4 St-Wash Sq",
+                    "start": "W 4 St Wash Sq",
                     "end": "Jay St Metro Tech",
                     "travel_time": 13
                 },
@@ -300,11 +300,11 @@
                 },
                 {
                     "start": "14 St W",
-                    "end": "W 4 St-Wash Sq",
+                    "end": "W 4 St Wash Sq",
                     "travel_time": 2
                 },
                 {
-                    "start": "W 4 St-Wash Sq",
+                    "start": "W 4 St Wash Sq",
                     "end": "Jay St Metro Tech",
                     "travel_time": 13
                 },
@@ -881,7 +881,6 @@
         "Times Sq-42 St": [0, 0],
         "Van Cortlandt Park-242 St": [0, 0],
         "W 4 St Wash Sq": [0, 0],
-        "W 4 St-Wash Sq": [0, 0],
         "Whitehall St-South Ferry": [0, 0],
         "Woodlawn": [0, 0]
     }
