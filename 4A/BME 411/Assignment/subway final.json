@@ -220,7 +220,7 @@
                 },
                 {
                     "start": "14 St W",
-                    "end": "W 4 St Wash Sq",
+                    "end": "W 4 St-Wash Sq",
                     "travel_time": 2
                 },
                 {
@@ -621,11 +621,11 @@
 
                 {
                     "start": "DeKalb Av",
-                    "end": "Prosper Park",
+                    "end": "Prospect Park",
                     "travel_time": 4
                 },
                 {
-                    "start": "Prosper Park",
+                    "start": "Prospect Park",
                     "end": "Coney Island-Stillwell Av",
                     "travel_time": 28
                 }
@@ -706,7 +706,7 @@
             "stops": [
                 {
                     "start": "Franklin Av C.S.",
-                    "end": "Prosper Park",
+                    "end": "Prospect Park",
                     "travel_time": 4
                 }
             ]
@@ -869,7 +869,6 @@
         "New Utrecht Av": [0, 0],
         "Norwood-205 St": [0, 0],
         "Prospect Park": [0, 0],
-        "Prosper Park": [0, 0],
         "Queens Plaza": [0, 0],
         "Queensboro Plaza": [0, 0],
         "Rockway Park-Beach 116 St": [0, 0],
