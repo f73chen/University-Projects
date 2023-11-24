@@ -1,37 +1,37 @@
-import networkx as nx
 import numpy as np
+import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib import colors as mcolors
 
-def get_nodes_and_edges(intersections):
-    """Draws map of stations based on json file
+def get_nodes_and_edges(node_list):
+    """Convert a list of station/intersection objects into nodes and edges for the graph
     
     :return: nodes, edges of graph
     """
-    # Turn intersections into nodes
+    # Turn node_list into nodes
     nodes = {}
-    for location, intersection in intersections.items():
-        nodes[intersection.name] = location
+    for location, node in node_list.items():
+        nodes[node.name] = location
     
-    # Turn roads into edges
+    # Turn connections into edges
     edges = []
-    for location, intersection in intersections.items():
-        for next_intersection, weight in intersection.connections.items():
-            edges.append((intersection.name, next_intersection.name, {'weight': weight}))
+    for location, node in node_list.items():
+        for next_node, weight in node.connections.items():
+            edges.append((node.name, next_node.name, {'weight': weight}))
 
     return nodes, edges
 
-def get_graph(intersections, plot=True, directed=False):
-    """Draws map of stations based on json file
+def get_graph(node_list, plot=True, directed=False):
+    """Draws a graph of the nodes and edges
     :param plot: boolean value to show plot or not
     
     :return: nx graph object
     """
     G = nx.DiGraph() if directed else nx.Graph()
 
-    nodes, edges = get_nodes_and_edges(intersections)
+    nodes, edges = get_nodes_and_edges(node_list)
 
-    G.add_nodes_from([intersection.name for intersection in intersections.values()])
+    G.add_nodes_from([node.name for node in node_list.values()])
     G.add_edges_from(edges)
     
     # Visualize the graph with node positions
@@ -44,12 +44,12 @@ def get_graph(intersections, plot=True, directed=False):
 
     return G
 
-def draw_graph_path(G, intersections, shortest_path, directed=False):
+def draw_graph_path(G, node_list, shortest_path, directed=False):
     """
     :param shortest_path: list of numbers representing the node indices of path
     """
     # Visualize the graph with node positions and edge labels
-    nodes, _ = get_nodes_and_edges(intersections)
+    nodes, _ = get_nodes_and_edges(node_list)
     
     # Convert the colors to their RGBA values
     start_rgba = np.array(mcolors.to_rgba('greenyellow' ))
