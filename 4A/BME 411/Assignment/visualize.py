@@ -30,6 +30,7 @@ def get_graph(node_list, plot=True, directed=False):
     G = nx.DiGraph() if directed else nx.Graph()
 
     nodes, edges = get_nodes_and_edges(node_list)
+    print(nodes, edges)
 
     G.add_nodes_from([node.name for node in node_list.values()])
     G.add_edges_from(edges)

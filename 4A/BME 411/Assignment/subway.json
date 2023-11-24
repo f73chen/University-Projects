@@ -1,39 +1,882 @@
 {
     "lines": {
         "line 1": {
-            "travel_time": 5,
-            "wait_time": 2,
-            "stops": ["stop 1", "stop 2"]
+            "wait_time": 3,
+            "stops": [
+                {
+                "start": "Van Cortlandt Park-242 St",
+                "end": "168 St",
+                "travel_time": 14
+                },
+                {
+                    "start": "168 St",
+                    "end": "96 St",
+                    "travel_time": 13
+                },
+                {
+                    "start": "96 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "South Ferry",
+                    "travel_time": 20
+                }
+            ]
         },
         "line 2": {
-            "travel_time": 4,
-            "wait_time": 100,
-            "stops": ["stop 2", "stop 3"]
+            "wait_time": 6.5,
+            "stops": [
+                {
+                    "start": "96 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Bleecker St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Bleecker St",
+                    "end": "Borough Hall",
+                    "travel_time": 16
+                },
+                {
+                    "start": "Borough Hall",
+                    "end": "Franklin Av Medger Evers College",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Franklin Av Medger Evers College",
+                    "end": "Flatbush Av-Brooklyn College",
+                    "travel_time": 15
+                }
+            ]
         },
         "line 3": {
-            "travel_time": 6,
-            "wait_time": 2.5,
-            "stops": ["stop 3", "stop 4", "stop 5"]
+            "wait_time": 6.5,
+            "stops": [
+                {
+                    "start": "Harlem 148 St",
+                    "end": "96 St",
+                    "travel_time": 13
+                },
+                {
+                    "start": "96 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Bleecker St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Bleecker St",
+                    "end": "Borough Hall",
+                    "travel_time": 16
+                },
+                {
+                    "start": "Borough Hall",
+                    "end": "Franklin Av Medger Evers College",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Franklin Av Medger Evers College",
+                    "end": "New Lots Av",
+                    "travel_time": 16
+                }
+            ]
         },
         "line 4": {
-            "travel_time": 3,
-            "wait_time": 2,
-            "stops": ["stop 5", "stop 6", "stop 7"]
+            "wait_time": 4.5,
+            "stops": [
+                {
+                    "start": "Woodlawn",
+                    "end": "161 St-Yankee Stadium",
+                    "travel_time": 17
+                },
+                {
+                    "start": "161 St-Yankee Stadium",
+                    "end": "59 St",
+                    "travel_time": 20
+                },
+                {
+                    "start": "59 St",
+                    "end": "Grand Central-42 St",
+                    "travel_time": 2
+                },
+                {
+                    "start": "Grand Central-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 4
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Bleecker St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Bleecker St",
+                    "end": "Borough Hall",
+                    "travel_time": 16
+                }
+            ]
         },
         "line 5": {
-            "travel_time": 7,
-            "wait_time": 4,
-            "stops": ["stop 7", "stop 8", "stop 1"]
+            "wait_time": 5.5,
+            "stops": [
+                {
+                    "start": "59 St",
+                    "end": "Grand Central-42 St",
+                    "travel_time": 2
+                },
+                {
+                    "start": "Grand Central-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 4
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Bleecker St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Bleecker St",
+                    "end": "Borough Hall",
+                    "travel_time": 16
+                },
+                {
+                    "start": "Borough Hall",
+                    "end": "Franklin Av Medger Evers College",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Franklin Av Medger Evers College",
+                    "end": "Flatbush Av-Brooklyn College",
+                    "travel_time": 15
+                }
+            ]
+        },
+        "line 7": {
+            "wait_time": 2.5,
+            "stops": [
+                {
+                "start": "Flushing-Main St",
+                "end": "Queensboro Plaza",
+                "travel_time": 21
+                },
+                {
+                "start": "Queensboro Plaza",
+                "end": "Court Sq",
+                "travel_time": 1
+                },
+                {
+                "start": "Court Sq",
+                "end": "Grand Central-42 St",
+                "travel_time": 6
+                },
+                {
+                "start": "Grand Central-42 St",
+                "end": "Times Sq-42 St",
+                "travel_time": 1
+                },
+                {
+                "start": "Times Sq-42 St",
+                "end": "34 St-Hudson Yards",
+                "travel_time": 3
+                }
+            ]
+        },
+        "line A": {
+            "wait_time": 2.5,
+            "stops": [
+                {
+                    "start": "Inwood-207 St",
+                    "end": "168 St",
+                    "travel_time": 11
+                },
+                {
+                    "start": "168 St",
+                    "end": "145 St",
+                    "travel_time": 11
+                },
+                {
+                    "start": "145 St",
+                    "end": "14 St W",
+                    "travel_time": 19
+                },
+                {
+                    "start": "14 St W",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "Jay St Metro Tech",
+                    "travel_time": 13
+                },
+                {
+                    "start": "Jay St Metro Tech",
+                    "end": "Franklin Av C.S.",
+                    "travel_time": 7
+                },
+                {
+                    "start": "Franklin Av C.S.",
+                    "end": "Broadway Junction",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Broadway Junction",
+                    "end": "Howard Beach-JFK Airport",
+                    "travel_time": 16
+                },
+                {
+                    "start": "Howard Beach-JFK Airport",
+                    "end": "Rockway Park-Beach 116 St",
+                    "travel_time": 16
+                }
+            ]
+        },
+        "line B": {
+            "wait_time": 8,
+            "stops": [
+                {
+                    "start": "145 St",
+                    "end": "14 St W",
+                    "travel_time": 19
+                },
+                {
+                    "start": "14 St W",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "B'way-Lafayette St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "B'way-Lafayette St",
+                    "end": "DeKalb Av",
+                    "travel_time": 11
+                },
+                {
+                    "start": "DeKalb Av",
+                    "end": "Prospect Park",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Prospect Park",
+                    "end": "Brighton Beach",
+                    "travel_time": 26
+                }
+            ]
+        },
+        "line C": {
+            "wait_time": 9.5,
+            "stops": [
+                {
+                    "start": "168 St",
+                    "end": "145 St",
+                    "travel_time": 11
+                },
+                {
+                    "start": "145 St",
+                    "end": "14 St W",
+                    "travel_time": 19
+                },
+                {
+                    "start": "14 St W",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "Jay St Metro Tech",
+                    "travel_time": 13
+                },
+                {
+                    "start": "Jay St Metro Tech",
+                    "end": "Franklin Av C.S.",
+                    "travel_time": 7
+                },
+                {
+                    "start": "Franklin Av C.S.",
+                    "end": "Broadway Junction",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Broadway Junction",
+                    "end": "Euclid Av",
+                    "travel_time": 7
+                }
+            ]
+        },
+        "line D": {
+            "wait_time": 6.5,
+            "stops": [
+                {
+                    "start": "Norwood-205 St",
+                    "end": "161 St-Yankee Stadium",
+                    "travel_time": 20
+                },
+                { 
+                    "start": "161 St-Yankee Stadium",
+                    "end": "145 St",    
+                    "travel_time": 3
+                },
+                {
+                    "start": "145 St",
+                    "end": "14 St W",
+                    "travel_time": 19
+                },
+                {
+                    "start": "14 St W",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "B'way-Lafayette St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "B'way-Lafayette St",
+                    "end": "DeKalb Av",
+                    "travel_time": 11
+                },
+                {
+                    "start": "DeKalb Av",
+                    "end": "4 Av 9 St",
+                    "travel_time": 7
+                },
+                {
+                    "start": "4 Av 9 St",
+                    "end": "36 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "36 St",
+                    "end": "62 St",
+                    "travel_time": 11
+                },
+                {
+                    "start": "62 St",
+                    "end": "Coney Island-Stillwell Av",
+                    "travel_time": 18
+                }
+            ]
+        },
+        "line F": {
+            "wait_time": 4.5,
+            "stops": [
+                {
+                    "start": "14 St",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "B'way-Lafayette St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "B'way-Lafayette St",
+                    "end": "Delancey St Essex St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "Delancey St Essex St",
+                    "end": "Jay St Metro Tech",
+                    "travel_time": 9
+                },
+                {
+                    "start": "Jay St Metro Tech",
+                    "end": "Bergen St",
+                    "travel_time": 6
+                },
+                {
+                    "start": "Bergen St",
+                    "end": "4 Av 9 St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "4 Av 9 St",
+                    "end": "Coney Island-Stillwell Av",
+                    "travel_time": 31
+                }
+            ]
+        },
+        "line G": {
+            "wait_time": 7.5,
+            "stops": [
+                {
+                    "start": "Court Sq",
+                    "end": "Metropolitan Av",
+                    "travel_time": 9
+                },
+                {
+                    "start": "Metropolitan Av",
+                    "end": "Bergen St",
+                    "travel_time": 16
+                },
+                {
+                    "start": "Bergen St",
+                    "end": "4 Av 9 St",
+                    "travel_time": 4
+                }
+            ]
+        },
+        "line JZ": {
+            "wait_time": 6.5,
+            "stops": [
+                {
+                    "start": "Jamaica Center-Parsons/Archer",
+                    "end": "Broadway Junction",
+                    "travel_time": 26
+                },
+                {
+                    "start": "Broadway Junction",
+                    "end": "Myrtle Ave",
+                    "travel_time": 7
+                },
+                {
+                    "start": "Myrtle Ave",
+                    "end": "Delancey St Essex St",
+                    "travel_time": 13
+                },
+                {
+                    "start": "Delancey St Essex St",
+                    "end": "Broad St",
+                    "travel_time": 8
+                }
+            ]
+        },
+        "line L": {
+            "wait_time": 4.5,
+            "stops": [
+                {
+                    "start": "14 St W",
+                    "end": "14 St",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 3
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Lorimer St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Lorimer St",
+                    "end": "Myrtle Wyckoff Avs",
+                    "travel_time": 10
+                },
+                {
+                    "start": "Myrtle Wyckoff Avs",
+                    "end": "Broadway Junction",
+                    "travel_time": 7
+                },
+                {
+                    "start": "Broadway Junction",
+                    "end": "Camarsie-Rockway Pkwy",
+                    "travel_time": 7
+                }
+            ]
+        },
+        "line M": {
+            "wait_time": 9,
+            "stops": [
+                {
+                    "start": "57 St",
+                    "end": "14 St",
+                    "travel_time": 12
+                },
+                {
+                    "start": "14 St",
+                    "end": "W 4 St Wash Sq",
+                    "travel_time": 2
+                },
+                {
+                    "start": "W 4 St Wash Sq",
+                    "end": "B'way-Lafayette St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "B'way-Lafayette St",
+                    "end": "Delancey St Essex St",
+                    "travel_time": 3
+                },
+                {
+                    "start": "Delancey St Essex St",
+                    "end": "Myrtle Ave",
+                    "travel_time": 13
+                },
+                {
+                    "start": "Myrtle Ave",
+                    "end": "Myrtle Wyckoff Avs",
+                    "travel_time": 7
+                },
+                {
+                    "start": "Myrtle Wyckoff Avs",
+                    "end": "Middle Village Metropolitan Av",
+                    "travel_time": 8
+                }
+            ]
+        },
+        "line N": {
+            "wait_time": 7,
+            "stops": [
+                {
+                    "start": "Astoria-Ditmars Blvd",
+                    "end": "Queensboro Plaza",
+                    "travel_time": 11
+                },
+                {
+                    "start": "Queensboro Plaza",
+                    "end": "Lexington Av/59 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "Lexington Av/59 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Canal St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Canal St",
+                    "end": "DeKalb Av",
+                    "travel_time": 8
+                },
+                {
+                    "start": "DeKalb Av",
+                    "end": "4 Av 9 St",
+                    "travel_time": 7
+                },
+                {
+                    "start": "4 Av 9 St",
+                    "end": "36 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "36 St",
+                    "end": "59 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "59 St",
+                    "end": "New Utrecht Av",
+                    "travel_time": 7
+                },
+                {
+                    "start": "New Utrecht Av",
+                    "end": "Coney Island-Stillwell Av",
+                    "travel_time": 18
+                }
+            ]
+        },
+        "line Q": {
+            "wait_time": 7,
+            "stops": [
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Canal St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Canal St",
+                    "end": "DeKalb Av",
+                    "travel_time": 8
+                },
+
+                {
+                    "start": "DeKalb Av",
+                    "end": "Prospect Park",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Prospect Park",
+                    "end": "Coney Island-Stillwell Av",
+                    "travel_time": 28
+                }
+            ]
+        },
+        "line R": {
+            "wait_time": 7,
+            "stops": [
+                {
+                    "start": "Forest Hills 71 Av",
+                    "end": "Queens Plaza",
+                    "travel_time": 22
+                },
+                {
+                    "start": "Queens Plaza",
+                    "end": "Lexington Av/59 St",
+                    "travel_time": 6
+                },
+                {
+                    "start": "Lexington Av/59 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Canal St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Canal St",
+                    "end": "Whitehall St-South Ferry",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Whitehall St-South Ferry",
+                    "end": "Court St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Court St",
+                    "end": "Jay St Metro Tech",
+                    "travel_time": 2
+                },
+                {
+                    "start": "Jay St Metro Tech",
+                    "end": "DeKalb Av",
+                    "travel_time": 2
+                },
+                {
+                    "start": "DeKalb Av",
+                    "end": "4 Av 9 St",
+                    "travel_time": 7
+                },
+                {
+                    "start": "4 Av 9 St",
+                    "end": "36 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "36 St",
+                    "end": "59 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "59 St",
+                    "end": "Bay Ridge 95 St",
+                    "travel_time": 8
+                }
+            ]
+        },
+        "line S": {
+            "wait_time": 3,
+            "stops": [
+                {
+                    "start": "Franklin Av C.S.",
+                    "end": "Prospect Park",
+                    "travel_time": 4
+                }
+            ]
+        },
+        "line W": {
+            "wait_time": 9,
+            "stops": [
+                {
+                    "start": "Astoria-Ditmars Blvd",
+                    "end": "Queensboro Plaza",
+                    "travel_time": 11
+                },
+                {
+                    "start": "Queensboro Plaza",
+                    "end": "Lexington Av/59 St",
+                    "travel_time": 5
+                },
+                {
+                    "start": "Lexington Av/59 St",
+                    "end": "Times Sq-42 St",
+                    "travel_time": 8
+                },
+                {
+                    "start": "Times Sq-42 St",
+                    "end": "14 St-Union Sq",
+                    "travel_time": 6
+                },
+                {
+                    "start": "14 St-Union Sq",
+                    "end": "Canal St",
+                    "travel_time": 4
+                },
+                {
+                    "start": "Canal St",
+                    "end": "Whitehall St-South Ferry",
+                    "travel_time": 8
+                }
+            ]
+        },
+        "line Airport": {
+            "wait_time": 9,
+            "stops": [
+                {
+                    "start": "Jamaica Center-Parsons/Archer",
+                    "end": "Howard Beach-JFK Airport",
+                    "travel_time": 47
+                }
+            ]
+        },
+        "transfer G-L": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "Metropolitan Av",
+                    "end": "Lorimer St",
+                    "travel_time": 1
+                }
+            ]
+        },
+        "transfer 2345-R": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "Borough Hall",
+                    "end": "Court St",
+                    "travel_time": 1
+                }
+            ]
+        },
+        "transfer 1-RW": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "South Ferry",
+                    "end": "Whitehall St-South Ferry",
+                    "travel_time": 1
+                }
+            ]
+        },
+        "transfer N-D": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "New Utrecht Av",
+                    "end": "62 St",
+                    "travel_time": 1
+                }
+            ]
+        },
+        "transfer NRW-456": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "Lexington Av/59 St",
+                    "end": "59 St",
+                    "travel_time": 1
+                }
+            ]
+        },
+        "transfer 6-BDFM": {
+            "wait_time": 0,
+            "stops": [
+                {
+                    "start": "Bleecker St",
+                    "end": "B'way-Lafayette St",
+                    "travel_time": 1
+                }
+            ]
         }
     },
     "locations": {
-        "stop 1": [0, 0],
-        "stop 2": [1, 2],
-        "stop 3": [3, 5],
-        "stop 4": [5, 3],
-        "stop 5": [6, 1],
-        "stop 6": [4, -1],
-        "stop 7": [2, -2],
-        "stop 8": [0, -3]
+        "14 St": [4, 13.5],
+        "14 St W": [2, 13.5],
+        "14 St-Union Sq": [5, 13.5],
+        "145 St": [2, 22.5],
+        "161 St-Yankee Stadium": [5.2, 23.5],
+        "168 St": [1.2, 24],
+        "34 St-Hudson Yards": [1.5, 15],
+        "36 St": [11, 6],
+        "4 Av 9 St": [11, 8],
+        "57 St": [4, 16.5],
+        "59 St": [5.5, 16.5],
+        "62 St": [13.2, 3.9],
+        "96 St": [1.5, 19.2],
+        "Astoria-Ditmars Blvd": [9, 20],
+        "B'way-Lafayette St": [5.2, 12],
+        "Bay Ridge 95 St": [11.3, 2.5],
+        "Bergen St": [10, 8.5],
+        "Bleecker St": [5.5, 12.2],
+        "Borough Hall": [9.5, 9.2],
+        "Brighton Beach": [17.2, 3],
+        "Broad St": [5.2, 9],
+        "Broadway Junction": [16.3, 12.5],
+        "Camarsie-Rockway Pkwy": [18.5, 9.5],
+        "Canal St": [5, 11.2],
+        "Coney Island-Stillwell Av": [16, 2],
+        "Court Sq": [8.2, 16],
+        "Court St": [9.5, 9.5],
+        "DeKalb Av": [11, 9.8],
+        "Delancey St Essex St": [7, 11.5],
+        "Euclid Av": [18.5, 13],
+        "Flatbush Av-Brooklyn College": [15.9, 6.8],
+        "Flushing-Main St": [14.6, 21],
+        "Forest Hills 71 Av": [16.5, 17.8],
+        "Franklin Av C.S.": [13, 10],
+        "Franklin Av Medger Evers College": [13.5, 9],
+        "Grand Central-42 St": [5.2, 15.2],
+        "Harlem 148 St": [3.5, 22.6],
+        "Howard Beach-JFK Airport": [21.2, 12.5],
+        "Inwood-207 St": [1.2, 26.2],
+        "Jamaica Center-Parsons/Archer": [21.5, 18],
+        "Jay St Metro Tech": [10, 9.8],
+        "Lexington Av/59 St": [5.7, 16.8],
+        "Lorimer St": [10.2, 13.5],
+        "Metropolitan Av": [10.1, 13.1],
+        "Middle Village Metropolitan Av": [14.5, 15.5],
+        "Myrtle Ave": [13, 12.5],
+        "Myrtle Wyckoff Avs": [14.2, 13.8],
+        "New Lots Av": [18.5, 12],
+        "New Utrecht Av": [12.8, 4],
+        "Norwood-205 St": [6.2, 28.2],
+        "Prospect Park": [13.5, 8],
+        "Queens Plaza": [8.6, 16.5],
+        "Queensboro Plaza": [8.5, 17],
+        "Rockway Park-Beach 116 St": [22, 6.2],
+        "South Ferry": [5, 8.2],
+        "Times Sq-42 St": [3.2, 15.2],
+        "Van Cortlandt Park-242 St": [3, 29],
+        "W 4 St Wash Sq": [4, 12.5],
+        "Whitehall St-South Ferry": [5.2, 8.3],
+        "Woodlawn": [5.5, 28.8]
     }
 }
