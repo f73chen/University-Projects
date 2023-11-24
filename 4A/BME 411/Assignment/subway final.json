@@ -40,11 +40,11 @@
                 },
                 {
                     "start": "14 St-Union Sq",
-                    "end": "Bleecker Street",
+                    "end": "Bleecker St",
                     "travel_time": 4
                 },
                 {
-                    "start": "Bleecker Street",
+                    "start": "Bleecker St",
                     "end": "Borough Hall",
                     "travel_time": 16
                 },
@@ -80,11 +80,11 @@
                 },
                 {
                     "start": "14 St-Union Sq",
-                    "end": "Bleecker Street",
+                    "end": "Bleecker St",
                     "travel_time": 4
                 },
                 {
-                    "start": "Bleecker Street",
+                    "start": "Bleecker St",
                     "end": "Borough Hall",
                     "travel_time": 16
                 },
@@ -130,7 +130,7 @@
                 },
                 {
                     "start": "Bleecker St",
-                    "end": "Borough hall",
+                    "end": "Borough Hall",
                     "travel_time": 16
                 }
             ]
@@ -150,11 +150,11 @@
                 },
                 {
                     "start": "14 St-Union Sq",
-                    "end": "Bleecker Street",
+                    "end": "Bleecker St",
                     "travel_time": 4
                 },
                 {
-                    "start": "Bleecker Street",
+                    "start": "Bleecker St",
                     "end": "Borough Hall",
                     "travel_time": 16
                 },
@@ -230,11 +230,11 @@
                 },
                 {
                     "start": "Jay St Metro Tech",
-                    "end": "Franklin Av",
+                    "end": "Franklin Av C.S.",
                     "travel_time": 7
                 },
                 {
-                    "start": "Franklin Av",
+                    "start": "Franklin Av C.S.",
                     "end": "Broadway Junction",
                     "travel_time": 8
                 },
@@ -310,11 +310,11 @@
                 },
                 {
                     "start": "Jay St Metro Tech",
-                    "end": "Franklin Av",
+                    "end": "Franklin Av C.S.",
                     "travel_time": 7
                 },
                 {
-                    "start": "Franklin Av",
+                    "start": "Franklin Av C.S.",
                     "end": "Broadway Junction",
                     "travel_time": 8
                 },
@@ -790,7 +790,7 @@
             "wait_time": 0,
             "stops": [
                 {
-                    "start": "New Utrecht",
+                    "start": "New Utrecht Av",
                     "end": "62 St",
                     "travel_time": 1
                 }
@@ -810,7 +810,7 @@
             "wait_time": 0,
             "stops": [
                 {
-                    "start": "Bleecker Street",
+                    "start": "Bleecker St",
                     "end": "B'way-Lafayette St",
                     "travel_time": 1
                 }
@@ -836,9 +836,7 @@
         "Bay Ridge 95 St": [0, 0],
         "Bergen St": [0, 0],
         "Bleecker St": [0, 0],
-        "Bleecker Street": [0, 0],
         "Borough Hall": [0, 0],
-        "Borough hall": [0, 0],
         "Brighton Beach": [0, 0],
         "Broad St": [0, 0],
         "Broadway Junction": [0, 0],
@@ -853,7 +851,6 @@
         "Flatbush Av-Brooklyn College": [0, 0],
         "Flushing-Main St": [0, 0],
         "Forest Hills 71 Av": [0, 0],
-        "Franklin Av": [0, 0],
         "Franklin Av C.S.": [0, 0],
         "Franklin Av Medger Evers College": [0, 0],
         "Grand Central-42 St": [0, 0],
@@ -869,7 +866,6 @@
         "Myrtle Ave": [0, 0],
         "Myrtle Wyckoff Avs": [0, 0],
         "New Lots Av": [0, 0],
-        "New Utrecht": [0, 0],
         "New Utrecht Av": [0, 0],
         "Norwood-205 St": [0, 0],
         "Prospect Park": [0, 0],
