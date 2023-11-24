@@ -1,6 +1,9 @@
 4A/SYDE 599/datafiles/
 4A/SYDE 599/Project/data/
 4A/SYDE 599/Tutorials/data/
+
+__pycache__/
+
 *.wav
 *.asv
 .DS_Store
