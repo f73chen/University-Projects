@@ -53,7 +53,6 @@ def get_graph(nodes, edges, plot=True, directed=False):
     G.add_edges_from(edges)
     
     # Visualize the graph with node positions
-    plt.figure(3, figsize=(12, 12))
     nx.draw(G, nodes, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
     nx.draw_networkx_edges(G, nodes, width=1.0, alpha=0.5)
     nx.draw_networkx_edge_labels(G, nodes, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
