@@ -39,26 +39,16 @@ def get_nodes_and_edges_traffic(intersections):
 
     return nodes, edges
 
-def get_graph(nodes, edges, plot=True, directed=False):
+def get_graph(nodes, edges, directed=False):
     """Draws a graph of the nodes and edges
     :param plot: boolean value to show plot or not
     
     :return: nx graph object
-    """
-    plt.figure(figsize=(9, 9))
-    
+    """    
     G = nx.DiGraph() if directed else nx.Graph()
 
     G.add_nodes_from(nodes.keys())
     G.add_edges_from(edges)
-    
-    # Visualize the graph with node positions
-    nx.draw(G, nodes, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
-    nx.draw_networkx_edges(G, nodes, width=1.0, alpha=0.5)
-    nx.draw_networkx_edge_labels(G, nodes, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
-
-    if plot:
-        plt.show()
 
     return G
 
@@ -81,6 +71,12 @@ def draw_graph_path(G, nodes, shortest_path, directed=False):
     else:
         edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) or edge[::-1] in zip(shortest_path, shortest_path[1:]) else 'black' for edge in G.edges()]
     
+    # Visualize the graph with node positions
+    plt.figure(figsize=(9, 9))
+    nx.draw(G, nodes, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
+    nx.draw_networkx_edges(G, nodes, width=1.0, alpha=0.5)
+    nx.draw_networkx_edge_labels(G, nodes, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
+
     # draw graph
     nx.draw(
         G,
