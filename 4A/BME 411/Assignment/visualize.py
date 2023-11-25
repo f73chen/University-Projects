@@ -69,7 +69,7 @@ def draw_graph_path(G, nodes, shortest_path, directed=False):
     if directed:
         edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) else 'none' for edge in G.edges()]
     else:
-        edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) or edge[::-1] in zip(shortest_path, shortest_path[1:]) else 'black' for edge in G.edges()]
+        edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) or edge[::-1] in zip(shortest_path, shortest_path[1:]) else 'none' for edge in G.edges()]
     
     # Visualize the graph with node positions
     plt.figure(figsize=(9, 9))
