@@ -3,57 +3,59 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib import colors as mcolors
 
-def get_nodes_and_edges(node_list):
+def get_nodes_and_edges_subway(stations):
     """Convert a list of station/intersection objects into nodes and edges for the graph
     
     :return: nodes, edges of graph
     """
     # Turn node_list into nodes
     nodes = {}
-    for location, node in node_list.items():
+    for name, node in stations.items():
+        nodes[name] = (node.x, node.y)
+    
+    # Turn connections into edges
+    edges = []
+    for name, node in stations.items():
+        for next_node, (line, travel_time) in node.connections.items():
+            edges.append((name, next_node.name, {'weight': travel_time, 'line': line.name}))
+
+    return nodes, edges
+
+def get_nodes_and_edges_traffic(intersections):
+    """Convert a list of station/intersection objects into nodes and edges for the graph
+    
+    :return: nodes, edges of graph
+    """
+    # Turn intersections into nodes
+    nodes = {}
+    for location, node in intersections.items():
         nodes[node.name] = location
     
     # Turn connections into edges
     edges = []
-    for location, node in node_list.items():
+    for location, node in intersections.items():
         for next_node, weight in node.connections.items():
             edges.append((node.name, next_node.name, {'weight': weight}))
 
     return nodes, edges
 
-def get_graph(node_list, plot=True, directed=False):
+def get_graph(nodes, edges, directed=False):
     """Draws a graph of the nodes and edges
     :param plot: boolean value to show plot or not
     
     :return: nx graph object
-    """
-    plt.figure(figsize=(9, 9))
-    
+    """    
     G = nx.DiGraph() if directed else nx.Graph()
 
-    nodes, edges = get_nodes_and_edges(node_list)
-    print(nodes, edges)
-
-    G.add_nodes_from([node.name for node in node_list.values()])
+    G.add_nodes_from(nodes.keys())
     G.add_edges_from(edges)
-    
-    # Visualize the graph with node positions
-    nx.draw(G, nodes, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
-    nx.draw_networkx_edges(G, nodes, width=1.0, alpha=0.5)
-    nx.draw_networkx_edge_labels(G, nodes, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
-
-    if plot:
-        plt.show()
 
     return G
 
-def draw_graph_path(G, node_list, shortest_path, directed=False):
+def draw_graph_path(G, nodes, shortest_path, directed=False):
     """
     :param shortest_path: list of numbers representing the node indices of path
     """
-    # Visualize the graph with node positions and edge labels
-    nodes, _ = get_nodes_and_edges(node_list)
-    
     # Convert the colors to their RGBA values
     start_rgba = np.array(mcolors.to_rgba('greenyellow' ))
     target_rgba = np.array(mcolors.to_rgba('salmon'))
@@ -67,8 +69,14 @@ def draw_graph_path(G, node_list, shortest_path, directed=False):
     if directed:
         edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) else 'none' for edge in G.edges()]
     else:
-        edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) or edge[::-1] in zip(shortest_path, shortest_path[1:]) else 'black' for edge in G.edges()]
+        edge_colors = ['red' if edge in zip(shortest_path, shortest_path[1:]) or edge[::-1] in zip(shortest_path, shortest_path[1:]) else 'none' for edge in G.edges()]
     
+    # Visualize the graph with node positions
+    plt.figure(figsize=(9, 9))
+    nx.draw(G, nodes, with_labels=True, node_color='lightblue', node_size=500, font_weight='bold')
+    nx.draw_networkx_edges(G, nodes, width=1.0, alpha=0.5)
+    nx.draw_networkx_edge_labels(G, nodes, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
+
     # draw graph
     nx.draw(
         G,
