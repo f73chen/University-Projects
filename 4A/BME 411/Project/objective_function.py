@@ -33,16 +33,16 @@ def simulation_by_shift(served_times, i, j, xij, tij, oij, T=T, arrival_times=AR
             cur_waiting += 1
 
         x_available = [k for k, v in staff_availability.items() if v == 0] # keys of staff that are free
-        if not x_available or minute + tij > (j+1)*T:  # if no available staff or not enough time remaining in shift
+        if not x_available or minute + tij > (j+1)*T:   # if no available staff or not enough time remaining in shift
             pass 
         elif not cur_waiting:                           # if there are no patients waiting
             pass
-        elif cur_waiting <= len(x_available):          # if enough staff to attend to number of patients waiting
+        elif cur_waiting <= len(x_available):           # if enough staff to attend to number of patients waiting
             for k in range(cur_waiting):
                 staff_availability[x_available[k]] = tij
                 served_times[i].append(minute)
             cur_waiting = 0
-        else:                                          # if less staff available than waiting patients
+        else:                                           # if less staff available than waiting patients
             for k in x_available:
                 staff_availability[k] = tij
                 served_times[i].append(minute)
