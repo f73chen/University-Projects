@@ -4,6 +4,10 @@ import utilities
 scale_factor = 265066 / 282510
 hr_to_min = 60
 
+T = 480  # number of minutes in a shift
+N = 9  # number of resource categories
+M = 3  # number of shifts
+
 # No. of resources, no. of patients, & time spent on each patient (min)
 # from DOI:10.1080/20479700.2020.1763236 (A. Apornak et al., 2021)
 x = np.array([[4, 4, 2],
@@ -50,15 +54,11 @@ c = np.array([[78, 78, 78],
 p = utilities.scaling(p, scale_factor)
 c = utilities.hour_to_minutes(c, hr_to_min)
 
-T = 480  # number of minutes in a shift
-N = 9  # number of resource categories
-M = 3  # number of shifts
-
 ARRIVAL_TIMES = [[] for _ in range(N)]
 for i in range(N):
-    for j in range(M):
-        padded_time = j * T
-        interval = int(np.floor(T / p[i][j]))
-        ARRIVAL_TIMES[i].extend(j * T + np.arange(0, interval * p[i][j], interval))
+    for j in range(M):  # For each shift
+        padded_time = j * T # Time elapsed before the shift
+        interval = int(np.floor(T / p[i][j]))   # Minutes between each patient
+        ARRIVAL_TIMES[i].extend(padded_time + np.arange(0, interval * p[i][j], interval))
 
 d = utilities.hour_to_minutes(30.68, hr_to_min)  # average salary per person in KW region (https://ca.talent.com/salary?job=waterloo+kitchener#:~:text=The%20average%20waterloo%20kitchener%20salary%20in%20Canada%20is%20%2459%2C819%20per,up%20to%20%24133%2C095%20per%20year.)
