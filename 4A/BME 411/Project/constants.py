@@ -1,5 +1,4 @@
 import numpy as np
-import utilities
 
 scale_factor = 265066 / 282510
 min_per_hour = 60
