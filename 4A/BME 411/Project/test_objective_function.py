@@ -1,6 +1,6 @@
 import numpy as np
 
-import objective_function as of
+import objective_function as obj
 
 def test_wait_time_1():
     # wait time: 88 min
@@ -13,7 +13,7 @@ def test_wait_time_1():
                          [ 15,  15,  15],
                          [ 30,  30,  30],
                          [ 15,  15,  15]])
-    wait_time = of.simulation(t=test_t_1)
+    wait_time = obj.simulation(t=test_t_1)
     assert wait_time == 88
 
     # wait time: 0 min
@@ -26,7 +26,7 @@ def test_wait_time_1():
                          [ 15,  15,  15],
                          [ 30,  30,  30],
                          [ 15,  15,  15]])
-    wait_time = of.simulation(t=test_t_2)
+    wait_time = obj.simulation(t=test_t_2)
     assert wait_time == 0
 
     # wait time: inf
@@ -39,7 +39,7 @@ def test_wait_time_1():
                          [ 15,  15,  15],
                          [ 30,  30,  30],
                          [ 15,  15,  15]])
-    wait_time = of.simulation(t=test_t_3)
+    wait_time = obj.simulation(t=test_t_3)
     assert np.isinf(wait_time)
 
     # wait time > 480 min
@@ -52,7 +52,7 @@ def test_wait_time_1():
                          [ 15,  15,  15],
                          [ 30,  30,  30],
                          [ 15,  15,  15]])
-    wait_time = of.simulation(t=test_t_4)
+    wait_time = obj.simulation(t=test_t_4)
     assert wait_time > 480
 
     # with researched values https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371290/
@@ -65,7 +65,7 @@ def test_wait_time_1():
                          [ 15,  15,  15],
                          [ 30,  30,  30],
                          [ 15,  15,  15]])
-    wait_time = of.simulation(t=test_t_5)
+    wait_time = obj.simulation(t=test_t_5)
     assert wait_time == 0
 
 def test_wait_time_2():
@@ -88,7 +88,7 @@ def test_wait_time_2():
             interval = int(np.floor(T_test/p_test[i][j]))
             ARRIVAL_TIMES_test[i].extend(padded_time + np.arange(0, interval*p_test[i][j], interval))
 
-    wait_time = of.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
+    wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
     assert wait_time == 0
 
 def test_arrival_times():
