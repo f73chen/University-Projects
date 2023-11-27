@@ -91,6 +91,32 @@ def test_wait_time_2():
     wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
     assert wait_time == 0
 
+def test_wait_time_3():
+    # Number of resources == number of patients and no overflow
+    T_test = 480  
+    N_test = 3  
+    M_test = 3  
+    p_test = np.array([[10, 10, 7],
+              [1, 1, 1],
+              [1, 1, 1]])
+    x_test = np.array([[9, 9, 9],
+              [1, 1, 1],
+              [1, 1, 1]])
+    t_test = np.array([[49, 49, 49],
+              [1, 1, 1],
+              [1, 1, 1]])
+
+    ARRIVAL_TIMES_test = [[] for _ in range(N_test)]
+    for i in range(N_test):
+        for j in range(M_test):
+            padded_time = j*T_test
+            interval = int(np.floor(T_test/p_test[i][j]))
+            ARRIVAL_TIMES_test[i].extend(padded_time + np.arange(0, interval*p_test[i][j], interval))
+
+    wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
+    #print(wait_time)
+    assert wait_time == 96
+
 def test_arrival_times():
     expected_arrival_times =[0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456]
 
@@ -108,3 +134,6 @@ def test_arrival_times():
             ARRIVAL_TIMES_test[i].extend(j * T_test + np.arange(0, interval * p_test[0][0], interval))
             
     assert ARRIVAL_TIMES_test[0][:20] == expected_arrival_times
+
+# run test_wait_time 3
+#test_wait_time_3()
