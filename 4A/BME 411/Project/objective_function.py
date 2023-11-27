@@ -84,8 +84,8 @@ def calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N):
 
     # calculate resource and wait costs
     resource_cost = sum([c[i][j]*x[i][j] for j in range(M) for i in range(N)])
-    wait_time = simulation(x, t)
-    total_cost = resource_cost + d*wait_time
+    wait_time = simulation(x=x, t=t)
+    total_cost = resource_cost + d * wait_time
 
     # Not all patients were served by the end of the day
     if np.isinf(wait_time):
