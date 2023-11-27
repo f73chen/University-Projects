@@ -114,7 +114,6 @@ def test_wait_time_3():
             ARRIVAL_TIMES_test[i].extend(padded_time + np.arange(0, interval*p_test[i][j], interval))
 
     wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
-    #print(wait_time)
     assert wait_time == 96
 
 def test_arrival_times():
@@ -134,6 +133,3 @@ def test_arrival_times():
             ARRIVAL_TIMES_test[i].extend(j * T_test + np.arange(0, interval * p_test[0][0], interval))
             
     assert ARRIVAL_TIMES_test[0][:20] == expected_arrival_times
-
-# run test_wait_time 3
-#test_wait_time_3()
