@@ -8,7 +8,7 @@ def test_arrival_times():
     T = 480    # number of minutes in a shift
     N = 1      # number of resource categories
     M = 3      # number of shifts
-    p =  np.array([[20, 1, 1]])
+    p = np.array([[20, 1, 1]])
 
     arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
     assert arrival_times[0] == expected_arrival_times
