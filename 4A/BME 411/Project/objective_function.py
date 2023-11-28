@@ -6,13 +6,23 @@ N = constants.N  # number of resource categories
 M = constants.M  # number of shifts
 x = constants.x  # staff availability matrix
 t = constants.t  # time for resource matrix
+p = constants.p  # patient arrival matrix
 c = constants.c  # cost of resource matrix
 d = constants.d  # cost of waiting 1 minute
 
-ARRIVAL_TIMES = constants.ARRIVAL_TIMES
+
+def calculate_arrival_times(N, M, T, p):
+    arrival_times = [[] for _ in range(N)]
+    for i in range(N):
+        for j in range(M):  # For each shift
+            interval = int(np.floor(T / p[i][j]))   # Minutes between each patient
+            arrival_times[i].extend(j * T + np.arange(0, interval * p[i][j], interval))
+    return arrival_times
+
+ARRIVAL_TIMES = calculate_arrival_times(N=N, M=M, T=T, p=p)
 
 
-def simulation_by_shift(served_times, i, j, xij, tij, oij, T=T, arrival_times=ARRIVAL_TIMES):
+def simulation_by_shift(served_times, i, j, xij, tij, oij, arrival_times, T=T):
     """
     :param i: index of resource [0, 8]
     :param j: index of shift [0, 2]
@@ -75,16 +85,15 @@ def simulation(x=x, t=t, N=N, arrival_times=ARRIVAL_TIMES):
     return np.sum([np.sum(wait_times[i]) for i in range(N)])
 
 
-def calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N):
+def calculate_objective(x=x, t=t, c=c, p=p, d=d, N=N, M=M, T=T, arrival_times=ARRIVAL_TIMES):
     """ 
     :param x: matrix of number of staff working for each resource in each shift
 
     :return: (value of cost function, list of contraints broken if applicable)
     """
-
     # calculate resource and wait costs
     resource_cost = sum([c[i][j]*x[i][j] for j in range(M) for i in range(N)])
-    wait_time = simulation(x=x, t=t)
+    wait_time = simulation(x=x, t=t, arrival_times=arrival_times)
     total_cost = resource_cost + d * wait_time
 
     # Not all patients were served by the end of the day

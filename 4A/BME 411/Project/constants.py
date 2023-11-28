@@ -63,12 +63,5 @@ p = scaling(p, scale_factor)
 # Convert salary per hour to salary per shift
 c *= hour_per_shift
 
-ARRIVAL_TIMES = [[] for _ in range(N)]
-for i in range(N):
-    for j in range(M):  # For each shift
-        padded_time = j * T # Time elapsed before the shift
-        interval = int(np.floor(T / p[i][j]))   # Minutes between each patient
-        ARRIVAL_TIMES[i].extend(padded_time + np.arange(0, interval * p[i][j], interval))
-
 # Calculate waiting cost per minute
 d = 30.68 / min_per_hour  # average salary per person in KW region (https://ca.talent.com/salary?job=waterloo+kitchener#:~:text=The%20average%20waterloo%20kitchener%20salary%20in%20Canada%20is%20%2459%2C819%20per,up%20to%20%24133%2C095%20per%20year.)

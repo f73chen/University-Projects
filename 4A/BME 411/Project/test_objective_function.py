@@ -2,6 +2,17 @@ import numpy as np
 
 import objective_function as obj
 
+def test_arrival_times():
+    expected_arrival_times = [0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456, 480, 960]
+
+    T = 480    # number of minutes in a shift
+    N = 1      # number of resource categories
+    M = 3      # number of shifts
+    p =  np.array([[20, 1, 1]])
+    
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    assert arrival_times[0] == expected_arrival_times
+
 def test_wait_time_1():
     # wait time: 88 min
     test_t_1 = np.array([[ 12,  14,  17],
@@ -70,66 +81,52 @@ def test_wait_time_1():
 
 def test_wait_time_2():
     # Number of resources == number of patients and no overflow
-    T_test = 480  
-    N_test = 3  
-    M_test = 3  
-    p_test = np.array([[4, 4, 4],
-                       [8, 8, 8],
-                       [20, 20, 20]])
-    x_test = p_test.copy()
-    t_test = np.array([[15, 15, 15],
-                       [10, 10, 10],
-                       [5, 5, 5]])
+    T = 480  
+    N = 3  
+    M = 3  
+    p = np.array([[4, 4, 4],
+                    [8, 8, 8],
+                    [20, 20, 20]])
+    x = p.copy()
+    t = np.array([[15, 15, 15],
+                    [10, 10, 10],
+                    [5, 5, 5]])
 
-    ARRIVAL_TIMES_test = [[] for _ in range(N_test)]
-    for i in range(N_test):
-        for j in range(M_test):
-            padded_time = j*T_test
-            interval = int(np.floor(T_test/p_test[i][j]))
-            ARRIVAL_TIMES_test[i].extend(padded_time + np.arange(0, interval*p_test[i][j], interval))
-
-    wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    wait_time = obj.simulation(x=x, t=t, N=N, arrival_times=arrival_times)
     assert wait_time == 0
 
 def test_wait_time_3():
     # Number of resources == number of patients and no overflow
-    T_test = 480  
-    N_test = 3  
-    M_test = 3  
-    p_test = np.array([[10, 10, 7],
-              [1, 1, 1],
-              [1, 1, 1]])
-    x_test = np.array([[9, 9, 9],
-              [1, 1, 1],
-              [1, 1, 1]])
-    t_test = np.array([[49, 49, 49],
-              [1, 1, 1],
-              [1, 1, 1]])
+    T = 480  
+    N = 3  
+    M = 3  
+    p = np.array([[10, 10, 7],
+                [1, 1, 1],
+                [1, 1, 1]])
+    x = np.array([[9, 9, 9],
+                [1, 1, 1],
+                [1, 1, 1]])
+    t = np.array([[49, 49, 49],
+                [1, 1, 1],
+                [1, 1, 1]])
 
-    ARRIVAL_TIMES_test = [[] for _ in range(N_test)]
-    for i in range(N_test):
-        for j in range(M_test):
-            padded_time = j*T_test
-            interval = int(np.floor(T_test/p_test[i][j]))
-            ARRIVAL_TIMES_test[i].extend(padded_time + np.arange(0, interval*p_test[i][j], interval))
-
-    wait_time = obj.simulation(x_test, t_test, N=N_test, arrival_times=ARRIVAL_TIMES_test)
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    wait_time = obj.simulation(x=x, t=t, N=N, arrival_times=arrival_times)
     assert wait_time == 96
-
-def test_arrival_times():
-    expected_arrival_times =[0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456]
-
-    T_test = 480  # number of minutes in a shift
-    N_test = 9  # number of resource categories
-    M_test = 3  # number of shifts
-
-    p_test =  np.array([[20, 0, 0],
-                        [0, 0, 0]])
-    ARRIVAL_TIMES_test = [[] for _ in range(N_test)]
-    for i in range(N_test):
-        for j in range(M_test):
-            padded_time = j * T_test
-            interval = int(np.floor(T_test / p_test[0][0]))
-            ARRIVAL_TIMES_test[i].extend(j * T_test + np.arange(0, interval * p_test[0][0], interval))
-            
-    assert ARRIVAL_TIMES_test[0][:20] == expected_arrival_times
+    
+def test_objective_function():
+    N = 9
+    M = 3
+    T = 480
+    x = np.ones((9, 3)).astype(int)
+    t = np.ones((9, 3))
+    c = np.ones((9, 3)) * 100
+    p = np.ones((9, 3))
+    d = 1
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    
+    obj_cost, not_served, wait_exceeded = obj.calculate_objective(x=x, t=t, c=c, p=p, d=d, N=N, M=M, T=T, arrival_times=arrival_times)
+    assert not not_served
+    assert not wait_exceeded
+    assert obj_cost == 2700
