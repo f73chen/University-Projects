@@ -15,6 +15,8 @@ def calculate_arrival_times(N, M, T, p):
     arrival_times = [[] for _ in range(N)]
     for i in range(N):
         for j in range(M):  # For each shift
+            if p[i][j] == 0:
+                continue
             interval = int(np.floor(T / p[i][j]))   # Minutes between each patient
             arrival_times[i].extend(j * T + np.arange(0, interval * p[i][j], interval))
     return arrival_times
@@ -93,7 +95,7 @@ def calculate_objective(x=x, t=t, c=c, p=p, d=d, N=N, M=M, T=T, arrival_times=AR
     """
     # calculate resource and wait costs
     resource_cost = sum([c[i][j]*x[i][j] for j in range(M) for i in range(N)])
-    wait_time = simulation(x=x, t=t, arrival_times=arrival_times)
+    wait_time = simulation(x=x, t=t, N=N, arrival_times=arrival_times)
     total_cost = resource_cost + d * wait_time
 
     # Not all patients were served by the end of the day

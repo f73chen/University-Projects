@@ -115,7 +115,8 @@ def test_wait_time_3():
     wait_time = obj.simulation(x=x, t=t, N=N, arrival_times=arrival_times)
     assert wait_time == 96
     
-def test_objective_function():
+def test_objective_function_1():
+    # Number of resources == number of patients and no overflow
     N = 9
     M = 3
     T = 480
@@ -130,3 +131,37 @@ def test_objective_function():
     assert not not_served
     assert not wait_exceeded
     assert obj_cost == 2700
+    
+def test_objective_function_2():
+    # 1 patient forced to wait from shift 1 until shift 3
+    N = 1
+    M = 3
+    T = 480
+    x = np.array([[0, 0, 1]])
+    c = np.array([[0, 0, 100]])
+    p = np.array([[1, 0, 0]])
+    t = np.array([[1, 1, 1]])
+    d = 1
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    
+    obj_cost, not_served, wait_exceeded = obj.calculate_objective(x=x, c=c, p=p, d=d, N=N, M=M, T=T, arrival_times=arrival_times)
+    assert obj_cost == 100 + 960
+    assert not not_served
+    assert wait_exceeded
+    
+def test_objective_function_3():
+    # Unable to serve all patients
+    N = 1
+    M = 3
+    T = 480
+    x = np.array([[0, 0, 1]])
+    c = np.array([[0, 0, 100]])
+    p = np.array([[0, 0, 100]])
+    t = np.array([[1, 1, 1]])
+    d = 1
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    
+    obj_cost, not_served, wait_exceeded = obj.calculate_objective(x=x, c=c, p=p, d=d, N=N, M=M, T=T, arrival_times=arrival_times)
+    assert np.isinf(obj_cost)
+    assert not_served
+    assert not wait_exceeded
