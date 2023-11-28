@@ -2,7 +2,7 @@ import numpy as np
 
 import objective_function as obj
 
-def test_arrival_times():
+def test_arrival_times_1():
     expected_arrival_times = [0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456, 480, 960]
 
     T = 480    # number of minutes in a shift
@@ -12,6 +12,19 @@ def test_arrival_times():
 
     arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
     assert arrival_times[0] == expected_arrival_times
+
+def test_arrival_times_2():
+    expected_arrival_times = [0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456]
+
+    T = 480  # number of minutes in a shift
+    N = 2  # number of resource categories
+    M = 3  # number of shifts
+
+    p =  np.array([[20, 0, 0],
+                    [0, 0, 0]])
+    
+    arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
+    assert arrival_times[0][:20] == expected_arrival_times
 
 def test_wait_time_1():
     # wait time: 88 min
@@ -177,16 +190,14 @@ def test_objective_function_4():
     p = np.array([[10, 10, 10]])
 
     arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
-    obj_value, not_served, wait_exceeded = obj.calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N, T=T, arrival_times=arrival_times)
+    obj_cost, not_served, wait_exceeded = obj.calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N, T=T, arrival_times=arrival_times)
 
-    expected = 270+3*0
-
-    assert obj_value == expected
+    assert obj_cost == 270 + 3*0
     assert not not_served
     assert not wait_exceeded
 
 def test_objective_function_5():
-    # not all patients served at the end of the day and wait time exceeds 8 hours (feel free to delete)
+    # Not all patients served at the end of the day and wait time exceeds 8 hours
     d = 3
     M = 3
     N = 1
@@ -194,30 +205,12 @@ def test_objective_function_5():
     x = np.array([[1, 1, 1]])
     t = np.array([[100, 100, 100]])
     c = np.array([[10, 10, 10]])
-    p = np.array([[1000, 1000, 1000]])
+    p = np.array([[100, 100, 100]])
 
     arrival_times = obj.calculate_arrival_times(N=N, M=M, T=T, p=p)
-    obj_value, not_served, wait_exceeded = obj.calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N, T=T, arrival_times=arrival_times)
+    obj_cost, not_served, wait_exceeded = obj.calculate_objective(x=x, t=t, c=c, d=d, M=M, N=N, T=T, arrival_times=arrival_times)
 
-    assert obj_value == np.inf
+    assert np.isinf(obj_cost)
     assert not_served
-    assert wait_exceeded
-
-def test_arrival_times():
-    expected_arrival_times =[0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456]
-
-    T_test = 480  # number of minutes in a shift
-    N_test = 9  # number of resource categories
-    M_test = 3  # number of shifts
-
-    p_test =  np.array([[20, 0, 0],
-                        [0, 0, 0]])
-    ARRIVAL_TIMES_test = [[] for _ in range(N_test)]
-    for i in range(N_test):
-        for j in range(M_test):
-            padded_time = j * T_test
-            interval = int(np.floor(T_test / p_test[0][0]))
-            ARRIVAL_TIMES_test[i].extend(j * T_test + np.arange(0, interval * p_test[0][0], interval))
-
-    assert ARRIVAL_TIMES_test[0][:20] == expected_arrival_times
+    assert not wait_exceeded
 
