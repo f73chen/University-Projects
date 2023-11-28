@@ -32,7 +32,7 @@ p = np.array([[35, 37, 24],
 
 t = np.array([[ 12,  14,  17],
               [  8,   9,   8],
-              [ 21,  20,  14],    # [168, 172, 86] from the paper
+              [ 21,  20,  14],  # from PMC6371290 (P.Y. Yen et al., 2018); [168, 172, 86] (A. Apornak et al., 2021)
               [ 10,  10,  10],
               [  4,   4,   4],
               [  7,   7,   7],
@@ -65,3 +65,7 @@ c *= hour_per_shift
 
 # Calculate waiting cost per minute
 d = 30.68 / min_per_hour  # average salary per person in KW region (https://ca.talent.com/salary?job=waterloo+kitchener#:~:text=The%20average%20waterloo%20kitchener%20salary%20in%20Canada%20is%20%2459%2C819%20per,up%20to%20%24133%2C095%20per%20year.)
+
+print("p = ", p)
+print("c = ", c)
+print("d = ", d)

@@ -1,6 +1,7 @@
 import numpy as np
 
 import objective_function as obj
+import constants as const
 
 def test_arrival_times_1():
     expected_arrival_times = [0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384, 408, 432, 456, 480, 960]
@@ -213,4 +214,32 @@ def test_objective_function_5():
     assert np.isinf(obj_cost)
     assert not_served
     assert not wait_exceeded
+
+def test_scaling():
+
+    test = np.array([0, 1, 10, 100])
+    scale_factor = const.scale_factor
+    test_scaled = const.scaling(test, scale_factor)
+    test_expected = np.array([0, 1, 9, 94])
+
+    np.testing.assert_array_equal(test_scaled, test_expected) 
+
+def test_constants_p():
+     
+    p_scaled = const.p
+    p_expected = np.array([[33, 35, 23],
+                           [52, 53, 36],
+                           [56, 61, 42],
+                           [23, 26, 13],
+                           [25, 27, 17],
+                           [23, 21, 12],
+                           [30, 32, 22],
+                           [11, 9, 6],
+                           [14, 17, 8]]).astype(int)
+
+    np.testing.assert_array_equal(p_scaled, p_expected) 
+
+
+
+
 
