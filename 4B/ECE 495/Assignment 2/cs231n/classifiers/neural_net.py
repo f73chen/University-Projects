@@ -80,7 +80,9 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        layer_1_values = X.dot(W1) + b1
+        layer_1_values = np.maximum(0, layer_1_values)  # ReLU activation
+        scores = layer_1_values.dot(W2) + b2  # Raw scores (logits)
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -98,7 +100,12 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        exp_scores = np.exp(scores - np.max(scores, axis=1, keepdims=True))
+        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+        correct_logprobs = -np.log(probs[range(N), y])
+        data_loss = np.sum(correct_logprobs) / N
+        reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+        loss = data_loss + reg_loss
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -111,7 +118,33 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+		# Compute the gradient on scores
+        dscores = probs
+        dscores[range(N), y] -= 1
+        dscores /= N
+
+        # Backprop into W2 and b2
+        dW2 = np.dot(layer_1_values.T, dscores)
+        db2 = np.sum(dscores, axis=0)
+
+        # Backprop into hidden layer
+        dhidden = np.dot(dscores, W2.T)
+        # Backprop the ReLU non-linearity
+        dhidden[layer_1_values <= 0] = 0
+
+        # Backprop into W1 and b1
+        dW1 = np.dot(X.T, dhidden)
+        db1 = np.sum(dhidden, axis=0)
+
+        # Add regularization gradient contribution
+        dW2 += 2 * reg * W2
+        dW1 += 2 * reg * W1
+
+        # Store the gradients in the grads dictionary
+        grads['W1'] = dW1
+        grads['b1'] = db1
+        grads['W2'] = dW2
+        grads['b2'] = db2
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
