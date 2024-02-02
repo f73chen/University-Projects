@@ -80,9 +80,19 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
+        # In the forward pass, propagate inputs using the formula y = w * x + b
+        # Where w = weights, x = input, and b = bias
+        # Perform the multiplication as a dot product
         layer_1_values = X.dot(W1) + b1
-        layer_1_values = np.maximum(0, layer_1_values)  # ReLU activation
-        scores = layer_1_values.dot(W2) + b2  # Raw scores (logits)
+        
+        # Apply ReLU activation, which is 0 for negative values and unchanged for positive values
+        layer_1_values = np.maximum(0, layer_1_values)
+        
+        # Since the network only has 2 layers, the output is first layer outputs * second layer weights plus biases
+        # Scores represent the raw class scores
+        # Also known as logits
+        # The shape is (N, C) = (Number of samples, Number of classes)
+        scores = layer_1_values.dot(W2) + b2
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -100,10 +110,30 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        exp_scores = np.exp(scores - np.max(scores, axis=1, keepdims=True))
-        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
-        correct_logprobs = -np.log(probs[range(N), y])
+        # The softmax function is defined as exp(x) / sum(exp(x))
+        # First, subtract the maximum value from each score to improve numerical stability
+        # The maximum is taken for each sample along all classes (axis 1)
+        # This shouldn't change the mathematical result, but helps prevent overflow
+        # Applying softmax to the raw scores gives the class probabilities
+        # Softmax is used to emphasize the highest scores and suppress the lower ones
+        def softmax(x):
+            normalized_scores = x - np.max(x, axis=1, keepdims=True)
+            exp_scores = np.exp(normalized_scores)
+            return exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+        class_probs = softmax(scores)
+        
+        # Cross-entropy loss is defined as -log(exp(correct_class_score) / sum(exp(scores))) in the context of softmax classification
+        # However, the inside portion is already calculated in class_probs
+        # So the formula simplifies to -log(class_probs)
+        # The index of the correct class y is used to select the correct class score
+        # So the data loss is only calculated for the correct class
+        # Finally, the loss is averaged over all N samples
+        correct_logprobs = -np.log(class_probs[range(N), y])
         data_loss = np.sum(correct_logprobs) / N
+        
+        # L2 regularization is defined as the sum of the squared weights multiplied by the regularization factor
+        # The purpose of regularization is to limit the size of the weights to prevent overfitting
+        # The data loss is added to the regularization loss to get the total loss        
         reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
         loss = data_loss + reg_loss
 
@@ -118,29 +148,55 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-		# Compute the gradient on scores
-        dscores = probs
-        dscores[range(N), y] -= 1
-        dscores /= N
-
-        # Backprop into W2 and b2
+        # First, copy the class probabilities, which are the softmax of the scores
+        # Subtract 1 from all correct class probabilities (indicated by index y)
+        # This is so the error is low when: 1) the correct class probability is high, and 2) the incorrect class probabilities are low
+        # For example, if a value is supposed to be 0, then the loss is smaller when the model predicts 0
+        # Alternatively, if a value is supposed to be 1, then the loss is smaller when the model predicts 1 --> 1 - 1 = 0
+        # This pushes the model to predict the correct class with high probability and incorrect classes with low probability
+        class_probs_error = class_probs
+        class_probs_error[range(N), y] -= 1
+        
+        # The class_probs_error is divided by the number of samples to get the average error
+        # Which is the derivative of the loss with respect to the scores dL/dscores
+        dscores = class_probs_error / N
+        
+        # Calculate dW2 using the chain rule dL/dW2 = dL/dscores * dscores/dW2
+        # Since dscores/dW2 is the activations from the first layer,
+        # Calculate dW2 as the dot product of the activations and dscores
+        # Transpose the activations to match the shape of the weights
         dW2 = np.dot(layer_1_values.T, dscores)
+        
+        # Similarly, the chain rule is db2 = dL/dscores * dscores/db2
+        # Where dscores/db2 is 1 (addition), so the gradient is the sum of the gradients across all samples
+        # Note that dscores is already divided by N, so the sum is the average gradient
+        # Axis 0 means the sum is taken across all samples for each class
         db2 = np.sum(dscores, axis=0)
 
-        # Backprop into hidden layer
+        # Then, propagate the gradient back to the hidden layer (dhidden)
+        # The chain rule is dL/dhidden = dL/dscores * dscores/dhidden
+        # Where dscores/dhidden is the weights W2
+        # Transpose the weights to match the shape of the scores
         dhidden = np.dot(dscores, W2.T)
-        # Backprop the ReLU non-linearity
+        
+        # Apply the gradient of the ReLU activation
+        # The gradient is 1 * dhidden for positive values, and 0 * dhidden for negative values
+        # Similar to the forward pass, set the gradient to 0 if the previous layer activations are negative (layer 1)
         dhidden[layer_1_values <= 0] = 0
-
-        # Backprop into W1 and b1
+        
+        # Calculate dW1 using the chain rule dL/dW1 = dL/dhidden * dhidden/dW1
+        # Where dhidden/dW1 is input X
+        # Transpose the input to match the shape of the weights
+        # Do the same for db1 like db2
         dW1 = np.dot(X.T, dhidden)
         db1 = np.sum(dhidden, axis=0)
 
-        # Add regularization gradient contribution
+        # Add the regularization gradient
+        # Since the formula of the regularization term is reg * W^2, the gradient is 2 * reg * W
         dW2 += 2 * reg * W2
         dW1 += 2 * reg * W1
 
-        # Store the gradients in the grads dictionary
+        # Store the gradients in grads with the key as the variable name
         grads['W1'] = dW1
         grads['b1'] = db1
         grads['W2'] = dW2
