@@ -54,6 +54,7 @@ def primality(N):
     """
     # TODO: Implement a True/False test for primality of an input number N.
     
+    # Choose 10 random values of a to check
     for i in range(10):
         a = random.randint(1, N - 1)
 
@@ -90,9 +91,9 @@ def main():
     """
     ## A2Q1:  generating primes and RSA
     ##################
-    # p = prime_generator(10000000)
-    # q = prime_generator(10000000)
-    # N = p * q
+    p = prime_generator(10000000)
+    q = prime_generator(10000000)
+    N = p * q
     e = 5
     x = 2148321
 
@@ -103,6 +104,7 @@ def main():
     # iii) Check if e and (p - 1)(q - 1) are coprime
     # If not, regenerate p and q until they become coprime
     gcd = 0
+    random.seed(10)
     while gcd != 1:
         p = prime_generator(10000000)
         q = prime_generator(10000000)
@@ -111,8 +113,9 @@ def main():
         xx, yy, gcd = extended_euclid(e, pq_1)
 
     assert gcd == 1 # e and (p - 1)(q - 1) should be coprime
-    print(xx * e + yy * pq_1)
-    print(f"p: {p}, q: {q}, N: {N}, pq1: {pq_1}, xx: {xx}, yy: {yy}, gcd: {gcd}")
+    assert xx * e + yy * pq_1 == 1  # xx should be the multiplicative inverse of e mod (p - 1)(q - 1)
+    print(f"p: {p}")
+    print(f"q: {q}")
 
     # iv) Find the value of d for the private key
     # Modular Division Theorem
@@ -120,10 +123,11 @@ def main():
     d = xx % pq_1
 
     assert (d * e) % pq_1 == 1  # d should be the multiplicative inverse of e mod (p - 1)(q - 1)
-    print(f"d: {d}, xx: {xx}, b: {pq_1}")
+    print(f"d: {d}")
 
     # v) Encode x as y = x^e mod N
     encoded_x = modexp(x, e, N)
+    
     print(f"Encoded message: {encoded_x}")
 
     # vi) Decode y as x = y^d mod N
