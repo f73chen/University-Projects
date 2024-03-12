@@ -19,8 +19,8 @@ import numpy as np
 ################################################################################
 # student info
 #
-# WatIAM username: TODO
-# Student number: TODO
+# WatIAM username: f73chen
+# Student number: 20823934
 ################################################################################
 
 def random_adjacency_matrix(n):
