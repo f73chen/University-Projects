@@ -101,11 +101,13 @@ def bellman_ford(A, s):
         assert np.abs(A[vertex_u.index, vertex_v.index]) > 0, '(u, v) must be a valid edge (non-zero length) in A'
         ################################################################################
         # TODO: implement update here
-
-        #
-        #
+        new_distance = min(vertex_v.dist, vertex_u.dist + A[vertex_u.index, vertex_v.index])
+        if new_distance < vertex_v.dist:
+            vertex_v.dist = new_distance
+            vertex_v.prev = vertex_u
+            return True
         ################################################################################
-        return
+        return False
 
     n, m = A.shape
     assert n == m, 'Only square matrices allowed'
@@ -113,10 +115,25 @@ def bellman_ford(A, s):
     vertices[s].dist = 0
     ################################################################################
     # TODO: implement the Bellman-Ford algorithm here
-    #
+    # Repeat |V| - 1 times
+    for i in range(n-1):
+        # Repeat over all edges
+        for u in range(n):
+            for v in range(n):
+                # Call update if the edge exists
+                if A[u, v] != 0:
+                    updated = update(vertices[u], vertices[v], A)
 
-    #
-    #
+    # Check if the graph has negative cycles
+    # Loop over all edges the |V|th time
+    for u in range(n):
+        for v in range(n):
+            if A[u, v] != 0:
+                # If shorter paths are still being found, a negative cycle must exist
+                updated = update(vertices[u], vertices[v], A)
+                if updated:
+                    raise ValueError('Negative cycle detected')
+
     ################################################################################
 
     # NOTE: Your implementation should raise a ValueError if A contains a negative cycle
