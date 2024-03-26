@@ -19,8 +19,8 @@ from scipy.optimize import linprog
 ################################################################################
 # student info
 #
-# WatIAM username: TODO
-# Student number: TODO
+# WatIAM username: f73chen
+# Student number: 20823934
 ################################################################################
 
 
@@ -33,10 +33,55 @@ def max_flow(cap, s, t):
             A number giving the value of the max flow.
     """
     n = len(cap)
+
     # TODO: implement the proper objective function and constraints, then call linprog to solve the LP
+    # 1. Define the upper and lower variable bounds
+    bounds = []
+    for i in range(n):
+        bounds += [(0, cap[i][j]) for j in range(n)]
+        
+    # 2. Define equality constraints
+    # For all nodes except s and t, total flow entering - total flow exiting = 0
+    # e.g.
+    #   0, -1, 0, 0, 0, 
+    #   1,  0, 1, 1, 1, 
+    #   0, -1, 0, 0, 0, 
+    #   0, -1, 0, 0, 0, 
+    #   0, -1, 0, 0, 0
+    Aeq = []
+    beq = []
+    for i in range(n):
+        if i != s and i != t:
+            flow_i = [0] * n**2
+
+            for j in range(n):
+                if j != i:
+                    idx = n*i + j
+                    flow_i[idx] = 1
+
+            for k in range(n):
+                if k != i:
+                    idx = i + n*k
+                    flow_i[idx] = -1
+
+            Aeq += [flow_i]
+            beq += [0]
+    
+    # 3. Define objective function as maximizing the total flow going out of node s (source)
+    c = [0] * n**2                  # Set all coefficients to 0
+    for i in range(n*s, n*(s+1)):   # Set edges outgoing from node s to -1 (convert maximization to minimization)
+        c[i] = -1
+
+    # 4. Get the results from the optimizer
+    opt = linprog(c=c, A_eq=Aeq, b_eq=beq, bounds=bounds, method='highs')
+    x = opt["x"]
     flows_per_edge = None # Should be a (length-n) list of (length-n) lists. The i-th entry in the outer
                           # list should be a list of all outgoing flows from the i-th vertex to all other vertices.
-    total_flow = None # Should be a float indicating the total flow for the system.
+    total_flow = -opt["fun"] # Should be a float indicating the total flow for the system.
+
+    # 5. Format the result without using Numpy
+    flows_per_edge = [[x[i*n+j] for j in range(n)] for i in range(n)]
+
     return flows_per_edge, total_flow
 
 
@@ -66,7 +111,7 @@ def main():
     Testing your LP.  The following is a single example.  Your alg
     should work for any input.
     """
-    example()
+    # example()
     # the output of the example is the following :
      #     con: array([0.])
      #     fun: -2.0
