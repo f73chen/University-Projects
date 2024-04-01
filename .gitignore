@@ -7,3 +7,5 @@ __pycache__/
 *.wav
 *.asv
 .DS_Store
+*.zip
+*.png
