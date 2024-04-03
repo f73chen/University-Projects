@@ -1,0 +1,794 @@
+--- Groups sharing exactly 1 word ---
+Group: Basel, A, B, C, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium
+Count of shared words: 1
+
+Group: Basel, A, Ch, G, Li, Lo, Ma, Mo1, N, O1, O3, P, Pa1, Pa2, Pv, R, S, U1, U2, V3, V4, W
+Common words: mihi
+Count of shared words: 1
+
+Group: A, B, C, Ch, Li, Mo1, O2, O3, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: regimina
+Count of shared words: 1
+
+Group: B, C, Ch, G, Lo, Ma, N, O1, O2, O3, P, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2
+Common words: cum 1
+Count of shared words: 1
+
+Group: A, B, C, Ch, G, Li, Lo, Pa1, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: augendo
+Count of shared words: 1
+
+Group: C, Li, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur
+Count of shared words: 1
+
+Group: C, G, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2, V3
+Common words: cum 2
+Count of shared words: 1
+
+Group: A, G, Lo, Mo1, Mo2, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W
+Common words: et fide et dextera
+Count of shared words: 1
+
+Group: B, Ch, G, Li, Lo, Ma, N, O1, O2, R, Sm, U1h1, U2, V1, V2
+Common words: maximo[rum]
+Count of shared words: 1
+
+Group: Mo1, P, Pa1, Pa2, Pv, S, U1h2, V3, V4, W
+Common words: maximarum
+Count of shared words: 1
+
+Group: B, C, Ma, N, Nd, O3, P, Pa1, Pa2
+Common words: et fide et dextra
+Count of shared words: 1
+
+Group: A, B, N, P, Pa1, Pa2
+Common words: occasum 1
+Count of shared words: 1
+
+Group: A, B, Mo2
+Common words: co[n]tinet[or]
+Count of shared words: 1
+
+--- Groups sharing exactly 2 words ---
+Group: Basel, A, B, C, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium
+Count of shared words: 2
+
+Group: Basel, A, C, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, occasum 2
+Count of shared words: 2
+
+Group: Basel, Ch, G, Li, Lo, Ma, N, O1, P, Pa1, Pa2, Pv, R, S, U1, U2, V4, W
+Common words: mihi, limine
+Count of shared words: 2
+
+Group: A, B, C, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina
+Count of shared words: 2
+
+Group: A, B, C, Ch, Li, Pa1, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: regimina, augendo
+Count of shared words: 2
+
+Group: C, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2, V3
+Common words: continetur, cum 2
+Count of shared words: 2
+
+Group: A, Ch, G, Li, Lo, Pa1, Pv, R, S, U1, U2, V3, V4, W
+Common words: mihi, augendo
+Count of shared words: 2
+
+Group: A, Ch, Li, Mo1, O3, Pa1, Pa2, R, S, U1, U2, V3, V4, W
+Common words: mihi, regimina
+Count of shared words: 2
+
+Group: B, C, Ch, O2, O3, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2
+Common words: cum 1, regimina
+Count of shared words: 2
+
+Group: C, Li, Mo1, O2, O3, Pa1, Pa2, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, regimina
+Count of shared words: 2
+
+Group: C, G, Lo, Ma, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2
+Common words: cum 2, cum 1
+Count of shared words: 2
+
+Group: C, Lo, Ma, N, O2, O3, P, Pa1, Pa2, S, Sm, U1, V1, V2
+Common words: continetur, cum 1
+Count of shared words: 2
+
+Group: Ch, G, Lo, Ma, N, O1, O3, P, Pa1, Pa2, R, S, U1, U2
+Common words: mihi, cum 1
+Count of shared words: 2
+
+Group: Li, Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, Pv, S, U1, V3, V4
+Common words: mihi, continetur
+Count of shared words: 2
+
+Group: B, C, Ch, G, Lo, Pa1, R, S, Sm, U1, U2, V1, V2
+Common words: cum 1, augendo
+Count of shared words: 2
+
+Group: B, Ch, G, Lo, Ma, N, O1, O2, R, Sm, U2, V1, V2
+Common words: maximo[rum], cum 1
+Count of shared words: 2
+
+Group: C, Li, Lo, Pa1, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, augendo
+Count of shared words: 2
+
+Group: G, Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, U1, V3
+Common words: mihi, cum 2
+Count of shared words: 2
+
+Group: C, G, Lo, Pa1, Sm, U1, V1, V2, V3
+Common words: cum 2, augendo
+Count of shared words: 2
+
+Group: Mo1, P, Pa1, Pa2, Pv, S, V3, V4, W
+Common words: mihi, maximarum
+Count of shared words: 2
+
+Group: Li, Lo, Ma, N, O2, Sm, V1, V2
+Common words: continetur, maximo[rum]
+Count of shared words: 2
+
+Group: A, N, P, Pa1, Pa2
+Common words: mihi, occasum 1
+Count of shared words: 2
+
+Group: A, B, Pa1, Pa2
+Common words: regimina, occasum 1
+Count of shared words: 2
+
+Group: A, Mo2
+Common words: et fide et dextera, co[n]tinet[or]
+Count of shared words: 2
+
+Group: Basel, O3
+Common words: mihi, maximatum
+Count of shared words: 2
+
+--- Groups sharing exactly 3 words ---
+Group: Basel, A, C, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, occasum 2
+Count of shared words: 3
+
+Group: Basel, A, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, occasum 2, post producta ad
+Count of shared words: 3
+
+Group: A, B, C, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, augendo
+Count of shared words: 3
+
+Group: A, B, C, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, regimina
+Count of shared words: 3
+
+Group: A, C, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, occasum 2
+Count of shared words: 3
+
+Group: B, C, Ch, G, Lo, O1, O2, R, S, Sm, U1, U2, V1, V2
+Common words: ueteru[m], exordium, cum 1
+Count of shared words: 3
+
+Group: C, Lo, Ma, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2
+Common words: cum 2, continetur, cum 1
+Count of shared words: 3
+
+Group: Ch, G, Lo, Ma, N, O1, P, Pa1, Pa2, R, S, U1, U2
+Common words: mihi, limine, cum 1
+Count of shared words: 3
+
+Group: C, Li, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, exordium, occasum 2
+Count of shared words: 3
+
+Group: Ch, G, Li, Lo, Pa1, Pv, R, S, U1, U2, V4, W
+Common words: mihi, limine, augendo
+Count of shared words: 3
+
+Group: B, Ch, G, Li, Lo, O1, O2, R, Sm, U2, V1, V2
+Common words: ueteru[m], maximo[rum], exordium
+Count of shared words: 3
+
+Group: A, Ch, Li, Pa1, R, S, U1, U2, V3, V4, W
+Common words: mihi, regimina, augendo
+Count of shared words: 3
+
+Group: B, C, Ch, Pa1, R, S, Sm, U1, U2, V1, V2
+Common words: cum 1, regimina, augendo
+Count of shared words: 3
+
+Group: C, Mo1, O2, O3, Pa1, Pa2, Sm, U1, V1, V2, V3
+Common words: cum 2, continetur, regimina
+Count of shared words: 3
+
+Group: Li, Lo, Ma, N, P, Pa1, Pa2, Pv, S, U1, V4
+Common words: mihi, limine, continetur
+Count of shared words: 3
+
+Group: C, Li, Pa1, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, regimina, augendo
+Count of shared words: 3
+
+Group: C, O2, O3, Pa1, Pa2, S, Sm, U1, V1, V2
+Common words: cum 1, continetur, regimina
+Count of shared words: 3
+
+Group: Ch, Li, Pa1, Pa2, R, S, U1, U2, V4, W
+Common words: mihi, limine, regimina
+Count of shared words: 3
+
+Group: C, G, Lo, Mo1, O2, Sm, U1, V1, V2, V3
+Common words: cum 2, exordium, occasum 2
+Count of shared words: 3
+
+Group: Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, U1, V3
+Common words: mihi, continetur, cum 2
+Count of shared words: 3
+
+Group: Li, Mo1, O3, Pa1, Pa2, S, U1, V3, V4
+Common words: mihi, continetur, regimina
+Count of shared words: 3
+
+Group: G, Lo, Ma, N, O3, P, Pa1, Pa2, U1
+Common words: mihi, cum 1, cum 2
+Count of shared words: 3
+
+Group: Lo, Ma, N, O3, P, Pa1, Pa2, S, U1
+Common words: mihi, continetur, cum 1
+Count of shared words: 3
+
+Group: Ch, G, Li, Lo, Ma, N, O1, R, U2
+Common words: mihi, limine, maximo[rum]
+Count of shared words: 3
+
+Group: C, G, Lo, Pa1, Sm, U1, V1, V2
+Common words: cum 2, cum 1, augendo
+Count of shared words: 3
+
+Group: C, Lo, Pa1, S, Sm, U1, V1, V2
+Common words: continetur, cum 1, augendo
+Count of shared words: 3
+
+Group: C, Lo, Pa1, Sm, U1, V1, V2, V3
+Common words: continetur, cum 2, augendo
+Count of shared words: 3
+
+Group: Li, Lo, Pa1, Pv, S, U1, V3, V4
+Common words: mihi, continetur, augendo
+Count of shared words: 3
+
+Group: B, C, Mo1, O2, Sm, V1, V2, V3
+Common words: exordium, regimina, limite
+Count of shared words: 3
+
+Group: Ch, O3, Pa1, Pa2, R, S, U1, U2
+Common words: cum 1, regimina, mihi
+Count of shared words: 3
+
+Group: B, C, Ma, N, O3, P, Pa1, Pa2
+Common words: et fide et dextra, cum 1, post producta in
+Count of shared words: 3
+
+Group: G, Lo, Ma, N, O2, Sm, V1, V2
+Common words: cum 2, maximo[rum], cum 1
+Count of shared words: 3
+
+Group: Mo1, P, Pa1, Pa2, Pv, S, V3, V4
+Common words: mihi, maximarum, continetur
+Count of shared words: 3
+
+Group: Mo1, Pa1, Pa2, S, V3, V4, W
+Common words: mihi, maximarum, regimina
+Count of shared words: 3
+
+Group: P, Pa1, Pa2, Pv, S, V4, W
+Common words: mihi, limine, maximarum
+Count of shared words: 3
+
+Group: Pa1, Pv, S, V3, V4, W
+Common words: mihi, maximarum, augendo
+Count of shared words: 3
+
+Group: G, Lo, Pa1, U1, V3
+Common words: mihi, cum 2, augendo
+Count of shared words: 3
+
+Group: Basel, G, Ma, N
+Common words: mihi, limine, regimini
+Count of shared words: 3
+
+Group: A, B, Pa1
+Common words: regimina, occasum 1, augendo
+Count of shared words: 3
+
+Group: A, Pa1, Pa2
+Common words: mihi, regimina, occasum 1
+Count of shared words: 3
+
+Group: Basel, B, V4
+Common words: ueteru[m], quum 2, exordium
+Count of shared words: 3
+
+--- Groups sharing exactly 4 words ---
+Group: Basel, A, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, occasum 2, post producta ad
+Count of shared words: 4
+
+Group: A, C, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, occasum 2, augendo
+Count of shared words: 4
+
+Group: Basel, A, Ch, G, Li, Lo, Mo1, O1, Pv, R, S, U1, U2, V3, V4, W
+Common words: mihi, exordium, occasum 2, post producta ad
+Count of shared words: 4
+
+Group: A, B, C, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, regimina, augendo
+Count of shared words: 4
+
+Group: A, C, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, regimina, occasum 2
+Count of shared words: 4
+
+Group: A, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, occasum 2, post producta ad
+Count of shared words: 4
+
+Group: A, G, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W
+Common words: exordium, et fide et dextera, occasum 2, post producta ad
+Count of shared words: 4
+
+Group: Basel, C, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: ueteru[m], exordium, occasum 2, occasu
+Count of shared words: 4
+
+Group: C, Ch, G, Lo, O1, O2, R, S, Sm, U1, U2, V1, V2
+Common words: ueteru[m], exordium, cum 1, occasum 2
+Count of shared words: 4
+
+Group: B, C, Ch, G, Lo, R, S, Sm, U1, U2, V1, V2
+Common words: ueteru[m], exordium, cum 1, augendo
+Count of shared words: 4
+
+Group: C, Li, Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, ueteru[m], exordium, occasum 2
+Count of shared words: 4
+
+Group: Li, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, exordium, occasum 2, post producta ad
+Count of shared words: 4
+
+Group: B, C, Ch, O2, R, S, Sm, U1, U2, V1, V2
+Common words: cum 1, ueteru[m], exordium, regimina
+Count of shared words: 4
+
+Group: C, Li, Mo1, O2, S, Sm, U1, V1, V2, V3, V4
+Common words: continetur, exordium, regimina, occasum 2
+Count of shared words: 4
+
+Group: B, Ch, G, Lo, O1, O2, R, Sm, U2, V1, V2
+Common words: ueteru[m], maximo[rum], cum 1, exordium
+Count of shared words: 4
+
+Group: B, Ch, G, Li, Lo, R, Sm, U2, V1, V2
+Common words: ueteru[m], maximo[rum], exordium, augendo
+Count of shared words: 4
+
+Group: Ch, Li, Pa1, R, S, U1, U2, V4, W
+Common words: mihi, limine, regimina, augendo
+Count of shared words: 4
+
+Group: B, Ch, Li, O2, R, Sm, U2, V1, V2
+Common words: ueteru[m], maximo[rum], regimina, exordium
+Count of shared words: 4
+
+Group: C, O2, O3, Pa1, Pa2, Sm, U1, V1, V2
+Common words: cum 1, continetur, regimina, cum 2
+Count of shared words: 4
+
+Group: C, G, Lo, O2, Sm, U1, V1, V2, V3
+Common words: cum 2, ueteru[m], exordium, occasum 2
+Count of shared words: 4
+
+Group: C, Lo, Mo1, O2, Sm, U1, V1, V2, V3
+Common words: cum 2, continetur, exordium, occasum 2
+Count of shared words: 4
+
+Group: Ch, G, Lo, Pa1, R, S, U1, U2
+Common words: mihi, limine, cum 1, augendo
+Count of shared words: 4
+
+Group: Ch, G, Lo, Ma, N, O1, R, U2
+Common words: mihi, limine, maximo[rum], cum 1
+Count of shared words: 4
+
+Group: G, Lo, Ma, N, P, Pa1, Pa2, U1
+Common words: mihi, limine, cum 1, cum 2
+Count of shared words: 4
+
+Group: Lo, Ma, N, O3, P, Pa1, Pa2, U1
+Common words: mihi, continetur, cum 1, cum 2
+Count of shared words: 4
+
+Group: Lo, Ma, N, P, Pa1, Pa2, S, U1
+Common words: mihi, limine, continetur, cum 1
+Count of shared words: 4
+
+Group: C, Lo, Pa1, Sm, U1, V1, V2
+Common words: cum 2, continetur, cum 1, augendo
+Count of shared words: 4
+
+Group: C, Pa1, S, Sm, U1, V1, V2
+Common words: cum 1, continetur, regimina, augendo
+Count of shared words: 4
+
+Group: C, Pa1, Sm, U1, V1, V2, V3
+Common words: cum 2, continetur, regimina, augendo
+Count of shared words: 4
+
+Group: Li, Lo, Pa1, Pv, S, U1, V4
+Common words: mihi, limine, continetur, augendo
+Count of shared words: 4
+
+Group: B, C, O2, Sm, V1, V2, V3
+Common words: ueteru[m], exordium, regimina, limite
+Count of shared words: 4
+
+Group: Ch, Pa1, Pa2, R, S, U1, U2
+Common words: cum 1, limine, regimina, mihi
+Count of shared words: 4
+
+Group: Lo, Ma, N, O2, Sm, V1, V2
+Common words: cum 2, maximo[rum], continetur, cum 1
+Count of shared words: 4
+
+Group: Li, Pa1, S, U1, V3, V4
+Common words: mihi, continetur, regimina, augendo
+Count of shared words: 4
+
+Group: Li, Pa1, Pa2, S, U1, V4
+Common words: mihi, limine, continetur, regimina
+Count of shared words: 4
+
+Group: Mo1, O3, Pa1, Pa2, U1, V3
+Common words: mihi, continetur, regimina, cum 2
+Count of shared words: 4
+
+Group: Mo1, Pa1, Pa2, S, V3, V4
+Common words: mihi, maximarum, continetur, regimina
+Count of shared words: 4
+
+Group: P, Pa1, Pa2, Pv, S, V4
+Common words: mihi, limine, maximarum, continetur
+Count of shared words: 4
+
+Group: Pa1, Pv, S, V3, V4
+Common words: mihi, maximarum, continetur, augendo
+Count of shared words: 4
+
+Group: Pa1, Pv, S, V4, W
+Common words: mihi, limine, maximarum, augendo
+Count of shared words: 4
+
+Group: Pa1, S, V3, V4, W
+Common words: mihi, maximarum, regimina, augendo
+Count of shared words: 4
+
+Group: B, C, O3, Pa1, Pa2
+Common words: cum 1, et fide et dextra, regimina, post producta in
+Count of shared words: 4
+
+Group: O3, Pa1, Pa2, S, U1
+Common words: cum 1, continetur, regimina, mihi
+Count of shared words: 4
+
+Group: Pa1, Pa2, S, V4, W
+Common words: mihi, limine, maximarum, regimina
+Count of shared words: 4
+
+Group: B, N, P, Pa1, Pa2
+Common words: cum 1, et fide et dextra, occasum 1, post producta in
+Count of shared words: 4
+
+Group: Mo1, P, Pa1, Pa2, V3
+Common words: mihi, maximarum, continetur, cum 2
+Count of shared words: 4
+
+Group: Lo, Pa1, U1, V3
+Common words: mihi, continetur, cum 2, augendo
+Count of shared words: 4
+
+Group: Li, Lo, Ma, N
+Common words: mihi, limine, maximo[rum], continetur
+Count of shared words: 4
+
+Group: B, Ma, N
+Common words: maximo[rum], et fide et dextra, cum 1, post producta in
+Count of shared words: 4
+
+Group: A, Pa1
+Common words: mihi, regimina, occasum 1, augendo
+Count of shared words: 4
+
+--- Groups sharing exactly 5 words ---
+Group: A, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, post producta ad, augendo, ueteru[m], occasum 2
+Count of shared words: 5
+
+Group: Basel, A, Ch, G, Li, Lo, O1, Pv, R, S, U1, U2, V3, V4, W
+Common words: exordium, post producta ad, mihi, ueteru[m], occasum 2
+Count of shared words: 5
+
+Group: A, C, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, augendo, ueteru[m], occasum 2
+Count of shared words: 5
+
+Group: A, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, post producta ad, ueteru[m], occasum 2
+Count of shared words: 5
+
+Group: A, G, Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W
+Common words: exordium, post producta ad, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 5
+
+Group: Basel, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, post producta ad, occasu, ueteru[m], occasum 2
+Count of shared words: 5
+...
+Group: B, N
+Common words: cum 1, maximo[rum], occasum 1, et fide et dextra, post producta in
+Count of shared words: 5
+
+--- Groups sharing exactly 6 words ---
+Group: A, Ch, G, Li, Lo, Pv, R, S, U1, U2, V3, V4, W
+Common words: exordium, post producta ad, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 6
+
+Group: A, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, post producta ad, augendo, ueteru[m], occasum 2
+Count of shared words: 6
+
+Group: Basel, Ch, G, Li, Lo, O1, Pv, R, S, U1, U2, V4, W
+Common words: exordium, post producta ad, limine, mihi, ueteru[m], occasum 2
+Count of shared words: 6
+
+Group: A, G, Lo, Pv, S, Sm, U1, V1, V2, V3, V4, W
+Common words: exordium, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 6
+
+Group: C, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, occasu, augendo, ueteru[m], occasum 2
+Count of shared words: 6
+
+Group: Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, post producta ad, occasu, augendo, ueteru[m], occasum 2
+Count of shared words: 6
+...
+Group: Pa1, V3
+Common words: continetur, cum 2, regimina, maximarum, augendo, mihi
+Count of shared words: 6
+
+--- Groups sharing exactly 7 words ---
+Group: Ch, G, Li, Lo, Pv, R, S, U1, U2, V4, W
+Common words: exordium, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 7
+
+Group: A, Ch, Li, R, S, U1, U2, V3, V4, W
+Common words: exordium, regimina, post producta ad, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 7
+
+Group: R, S, Sm, U1, U2, V1, V2, V3, V4, W
+Common words: exordium, regimina, post producta ad, occasu, augendo, ueteru[m], occasum 2
+Count of shared words: 7
+
+Group: A, G, Lo, Pv, S, U1, V3, V4, W
+Common words: exordium, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 7
+
+Group: A, S, Sm, U1, V1, V2, V3, V4, W
+Common words: exordium, regimina, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 7
+
+Group: Lo, Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: exordium, continetur, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 7
+...
+Group: Basel, Li
+Common words: exordium, quum 1, post producta ad, limine, mihi, ueteru[m], occasum 2
+Count of shared words: 7
+
+--- Groups sharing exactly 8 words ---
+Group: Ch, Li, R, S, U1, U2, V4, W
+Common words: exordium, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 8
+
+Group: Pv, S, Sm, U1, V1, V2, V3, V4
+Common words: exordium, continetur, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 8
+
+Group: S, Sm, U1, V1, V2, V3, V4, W
+Common words: exordium, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 8
+
+Group: O2, S, Sm, U1, V1, V2, V3, V4
+Common words: exordium, continetur, regimina, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 8
+
+Group: Ch, G, Lo, R, S, U1, U2
+Common words: exordium, cum 1, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 8
+
+Group: G, Lo, Pv, S, U1, V4, W
+Common words: exordium, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 8
+...
+Group: Basel, V4
+Common words: exordium, post producta ad, occasu, limine, mihi, ueteru[m], quum 2, occasum 2
+Count of shared words: 8
+
+--- Groups sharing exactly 9 words ---
+Group: S, Sm, U1, V1, V2, V3, V4
+Common words: exordium, continetur, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 9
+
+Group: R, S, U1, U2, V4, W
+Common words: exordium, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 9
+
+Group: O2, S, Sm, U1, V1, V2
+Common words: cum 1, exordium, continetur, regimina, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 9
+
+Group: O2, Sm, U1, V1, V2, V3
+Common words: exordium, continetur, regimina, post producta ad, occasu, cum 2, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 9
+
+Group: Ma, N, O3, P, Pa1, Pa2
+Common words: cum 1, continetur, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in
+Count of shared words: 9
+
+Group: C, Sm, U1, V1, V2
+Common words: cum 1, exordium, continetur, regimina, cum 2, occasu, augendo, ueteru[m], occasum 2
+Count of shared words: 9
+...
+Group: Basel, R
+Common words: exordium, omitted 3, post producta ad, occasu, limine, et dextera, et fide, mihi, ueteru[m], occasum 2
+Count of shared words: 9
+
+--- Groups sharing exactly 10 words ---
+Group: S, Sm, U1, V1, V2
+Common words: cum 1, exordium, continetur, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 10
+
+Group: Sm, U1, V1, V2, V3
+Common words: exordium, continetur, regimina, post producta ad, occasu, cum 2, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 10
+
+Group: C, O2, Sm, V1, V2
+Common words: omitted 1, cum 1, exordium, continetur, regimina, cum 2, occasu, limite, ueteru[m], occasum 2
+Count of shared words: 10
+
+Group: O2, Sm, U1, V1, V2
+Common words: cum 1, exordium, continetur, regimina, post producta ad, occasu, cum 2, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 10
+
+Group: O2, Sm, V1, V2, V3
+Common words: exordium, continetur, regimina, post producta ad, occasu, cum 2, limite, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 10
+
+Group: Ma, N, O3, Pa1, Pa2
+Common words: cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in
+Count of shared words: 10
+...
+Group: Li, S
+Common words: exordium, continetur, augendo, regimina, post producta ad, limine, quom 2, mihi, ueteru[m], occasum 2
+Count of shared words: 10
+
+--- Groups sharing exactly 11 words ---
+Group: C, Sm, V1, V2
+Common words: omitted 1, cum 1, exordium, continetur, regimina, cum 2, occasu, limite, augendo, ueteru[m], occasum 2
+Count of shared words: 11
+
+Group: Sm, U1, V1, V2
+Common words: cum 1, exordium, continetur, regimina, post producta ad, occasu, cum 2, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 11
+
+Group: Sm, V1, V2, V3
+Common words: exordium, continetur, regimina, post producta ad, occasu, cum 2, limite, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 11
+
+Group: Ma, N, Pa1, Pa2
+Common words: cum 1, continetur, gentihum, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in
+Count of shared words: 11
+
+Group: N, O3, Pa1, Pa2
+Common words: cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 11
+
+Group: S, U1, V4
+Common words: exordium, continetur, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 11
+...
+Group: Mo1, V3
+Common words: exordium, continetur, quom 1, regimina, post producta ad, cum 2, maximarum, limite, mihi, et fide et dextera, occasum 2
+Count of shared words: 11
+
+--- Groups sharing exactly 12 words ---
+Group: N, P, Pa1, Pa2
+Common words: cum 1, continetur, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 12
+
+Group: Ch, R, U2
+Common words: cum 1, exordium, omitted 2, maximo[rum], omitted 3, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 12
+
+Group: Pv, S, V4
+Common words: exordium, continetur, post dicti sunt (incolentes version), post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 12
+
+Group: O3, Pa1, Pa2
+Common words: cum 1, continetur, gentihum, regimina, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 12
+
+Group: N, O3, Pa2
+Common words: cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 12
+
+Group: S, U1
+Common words: cum 1, exordium, continetur, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 12
+...
+Group: V4, W
+Common words: exordium, quom 1, regimina, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 12
+
+--- Groups sharing exactly 13 words ---
+Group: O2, Sm, V1, V2
+Common words: omitted 1, cum 1, exordium, continetur, maximo[rum], regimina, post producta ad, occasu, cum 2, limite, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 13
+
+Group: N, Pa1, Pa2
+Common words: cum 1, continetur, gentihum, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 13
+
+Group: R, U2
+Common words: cum 1, exordium, omitted 2, maximo[rum], omitted 3, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2
+Count of shared words: 13
+
+Group: S, V4
+Common words: exordium, continetur, post dicti sunt (incolentes version), regimina, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 13
+
+Group: O3, Pa2
+Common words: cum 1, continetur, gentihum, regimina, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 13
+
+Group: Ma, N
+Common words: cum 1, continetur, maximo[rum], gentihum, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, regimini, post atlantis filia natum, post producta in
+Count of shared words: 13
+
+--- Groups sharing exactly 14 words ---
+Group: Sm, V1, V2
+Common words: omitted 1, cum 1, exordium, continetur, maximo[rum], regimina, post producta ad, occasu, cum 2, limite, augendo, ueteru[m], et fide et dextera, occasum 2
+Count of shared words: 14
+
+Group: P, Pa1, Pa2
+Common words: cum 1, continetur, occasum 1, cum 2, post comitasque add industria, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, maximarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 14
+
+Group: N, Pa2
+Common words: cum 1, continetur, gentihum, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 14
+
+--- Groups sharing exactly 17 words ---
+Group: Pa1, Pa2
+Common words: cum 1, continetur, occiduo, gentihum, regimina, occasum 1, cum 2, post comitasque add industria, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, maximarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in
+Count of shared words: 17

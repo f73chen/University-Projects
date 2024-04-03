@@ -1,0 +1,404 @@
+Group,Common Words,Count of Shared Words
+"Basel, A, B, C, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W",exordium,1
+"Basel, A, Ch, G, Li, Lo, Ma, Mo1, N, O1, O3, P, Pa1, Pa2, Pv, R, S, U1, U2, V3, V4, W",mihi,1
+"A, B, C, Ch, Li, Mo1, O2, O3, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2, V3, V4, W",regimina,1
+"B, C, Ch, G, Lo, Ma, N, O1, O2, O3, P, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2",cum 1,1
+"A, B, C, Ch, G, Li, Lo, Pa1, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W",augendo,1
+"C, Li, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Pv, S, Sm, U1, V1, V2, V3, V4",continetur,1
+"C, G, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2, V3",cum 2,1
+"A, G, Lo, Mo1, Mo2, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W",et fide et dextera,1
+"B, Ch, G, Li, Lo, Ma, N, O1, O2, R, Sm, U1h1, U2, V1, V2",maximo[rum],1
+"Mo1, P, Pa1, Pa2, Pv, S, U1h2, V3, V4, W",maximarum,1
+"B, C, Ma, N, Nd, O3, P, Pa1, Pa2",et fide et dextra,1
+"A, B, N, P, Pa1, Pa2",occasum 1,1
+"A, B, Mo2",co[n]tinet[or],1
+"Basel, A, B, C, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium",2
+"Basel, A, C, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, occasum 2",2
+"Basel, Ch, G, Li, Lo, Ma, N, O1, P, Pa1, Pa2, Pv, R, S, U1, U2, V4, W","mihi, limine",2
+"A, B, C, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina",2
+"A, B, C, Ch, Li, Pa1, R, S, Sm, U1, U2, V1, V2, V3, V4, W","regimina, augendo",2
+"C, Lo, Ma, Mo1, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2, V3","continetur, cum 2",2
+"A, Ch, G, Li, Lo, Pa1, Pv, R, S, U1, U2, V3, V4, W","mihi, augendo",2
+"A, Ch, Li, Mo1, O3, Pa1, Pa2, R, S, U1, U2, V3, V4, W","mihi, regimina",2
+"B, C, Ch, O2, O3, Pa1, Pa2, R, S, Sm, U1, U2, V1, V2","cum 1, regimina",2
+"C, Li, Mo1, O2, O3, Pa1, Pa2, S, Sm, U1, V1, V2, V3, V4","continetur, regimina",2
+"C, G, Lo, Ma, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2","cum 2, cum 1",2
+"C, Lo, Ma, N, O2, O3, P, Pa1, Pa2, S, Sm, U1, V1, V2","continetur, cum 1",2
+"Ch, G, Lo, Ma, N, O1, O3, P, Pa1, Pa2, R, S, U1, U2","mihi, cum 1",2
+"Li, Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, Pv, S, U1, V3, V4","mihi, continetur",2
+"B, C, Ch, G, Lo, Pa1, R, S, Sm, U1, U2, V1, V2","cum 1, augendo",2
+"B, Ch, G, Lo, Ma, N, O1, O2, R, Sm, U2, V1, V2","maximo[rum], cum 1",2
+"C, Li, Lo, Pa1, Pv, S, Sm, U1, V1, V2, V3, V4","continetur, augendo",2
+"G, Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, U1, V3","mihi, cum 2",2
+"C, G, Lo, Pa1, Sm, U1, V1, V2, V3","cum 2, augendo",2
+"Mo1, P, Pa1, Pa2, Pv, S, V3, V4, W","mihi, maximarum",2
+"Li, Lo, Ma, N, O2, Sm, V1, V2","continetur, maximo[rum]",2
+"A, N, P, Pa1, Pa2","mihi, occasum 1",2
+"A, B, Pa1, Pa2","regimina, occasum 1",2
+"A, Mo2","et fide et dextera, co[n]tinet[or]",2
+"Basel, O3","mihi, maximatum",2
+"Basel, A, C, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, occasum 2",3
+"Basel, A, Ch, G, Li, Lo, Mo1, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, occasum 2, post producta ad",3
+"A, B, C, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, augendo",3
+"A, B, C, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, regimina",3
+"A, C, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, occasum 2",3
+"B, C, Ch, G, Lo, O1, O2, R, S, Sm, U1, U2, V1, V2","ueteru[m], exordium, cum 1",3
+"C, Lo, Ma, N, O2, O3, P, Pa1, Pa2, Sm, U1, V1, V2","cum 2, continetur, cum 1",3
+"Ch, G, Lo, Ma, N, O1, P, Pa1, Pa2, R, S, U1, U2","mihi, limine, cum 1",3
+"C, Li, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4","continetur, exordium, occasum 2",3
+"Ch, G, Li, Lo, Pa1, Pv, R, S, U1, U2, V4, W","mihi, limine, augendo",3
+"B, Ch, G, Li, Lo, O1, O2, R, Sm, U2, V1, V2","ueteru[m], maximo[rum], exordium",3
+"A, Ch, Li, Pa1, R, S, U1, U2, V3, V4, W","mihi, regimina, augendo",3
+"B, C, Ch, Pa1, R, S, Sm, U1, U2, V1, V2","cum 1, regimina, augendo",3
+"C, Mo1, O2, O3, Pa1, Pa2, Sm, U1, V1, V2, V3","cum 2, continetur, regimina",3
+"Li, Lo, Ma, N, P, Pa1, Pa2, Pv, S, U1, V4","mihi, limine, continetur",3
+"C, Li, Pa1, S, Sm, U1, V1, V2, V3, V4","continetur, regimina, augendo",3
+"C, O2, O3, Pa1, Pa2, S, Sm, U1, V1, V2","cum 1, continetur, regimina",3
+"Ch, Li, Pa1, Pa2, R, S, U1, U2, V4, W","mihi, limine, regimina",3
+"C, G, Lo, Mo1, O2, Sm, U1, V1, V2, V3","cum 2, exordium, occasum 2",3
+"Lo, Ma, Mo1, N, O3, P, Pa1, Pa2, U1, V3","mihi, continetur, cum 2",3
+"Li, Mo1, O3, Pa1, Pa2, S, U1, V3, V4","mihi, continetur, regimina",3
+"G, Lo, Ma, N, O3, P, Pa1, Pa2, U1","mihi, cum 1, cum 2",3
+"Lo, Ma, N, O3, P, Pa1, Pa2, S, U1","mihi, continetur, cum 1",3
+"Ch, G, Li, Lo, Ma, N, O1, R, U2","mihi, limine, maximo[rum]",3
+"C, G, Lo, Pa1, Sm, U1, V1, V2","cum 2, cum 1, augendo",3
+"C, Lo, Pa1, S, Sm, U1, V1, V2","continetur, cum 1, augendo",3
+"C, Lo, Pa1, Sm, U1, V1, V2, V3","continetur, cum 2, augendo",3
+"Li, Lo, Pa1, Pv, S, U1, V3, V4","mihi, continetur, augendo",3
+"B, C, Mo1, O2, Sm, V1, V2, V3","exordium, regimina, limite",3
+"Ch, O3, Pa1, Pa2, R, S, U1, U2","cum 1, regimina, mihi",3
+"B, C, Ma, N, O3, P, Pa1, Pa2","et fide et dextra, cum 1, post producta in",3
+"G, Lo, Ma, N, O2, Sm, V1, V2","cum 2, maximo[rum], cum 1",3
+"Mo1, P, Pa1, Pa2, Pv, S, V3, V4","mihi, maximarum, continetur",3
+"Mo1, Pa1, Pa2, S, V3, V4, W","mihi, maximarum, regimina",3
+"P, Pa1, Pa2, Pv, S, V4, W","mihi, limine, maximarum",3
+"Pa1, Pv, S, V3, V4, W","mihi, maximarum, augendo",3
+"G, Lo, Pa1, U1, V3","mihi, cum 2, augendo",3
+"Basel, G, Ma, N","mihi, limine, regimini",3
+"A, B, Pa1","regimina, occasum 1, augendo",3
+"A, Pa1, Pa2","mihi, regimina, occasum 1",3
+"Basel, B, V4","ueteru[m], quum 2, exordium",3
+"Basel, A, Ch, G, Li, Lo, O1, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, occasum 2, post producta ad",4
+"A, C, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, occasum 2, augendo",4
+"Basel, A, Ch, G, Li, Lo, Mo1, O1, Pv, R, S, U1, U2, V3, V4, W","mihi, exordium, occasum 2, post producta ad",4
+"A, B, C, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, regimina, augendo",4
+"A, C, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, regimina, occasum 2",4
+"A, Ch, Li, Mo1, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, occasum 2, post producta ad",4
+"A, G, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W","exordium, et fide et dextera, occasum 2, post producta ad",4
+"Basel, C, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","ueteru[m], exordium, occasum 2, occasu",4
+"C, Ch, G, Lo, O1, O2, R, S, Sm, U1, U2, V1, V2","ueteru[m], exordium, cum 1, occasum 2",4
+"B, C, Ch, G, Lo, R, S, Sm, U1, U2, V1, V2","ueteru[m], exordium, cum 1, augendo",4
+"C, Li, Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4","continetur, ueteru[m], exordium, occasum 2",4
+"Li, Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4","continetur, exordium, occasum 2, post producta ad",4
+"B, C, Ch, O2, R, S, Sm, U1, U2, V1, V2","cum 1, ueteru[m], exordium, regimina",4
+"C, Li, Mo1, O2, S, Sm, U1, V1, V2, V3, V4","continetur, exordium, regimina, occasum 2",4
+"B, Ch, G, Lo, O1, O2, R, Sm, U2, V1, V2","ueteru[m], maximo[rum], cum 1, exordium",4
+"B, Ch, G, Li, Lo, R, Sm, U2, V1, V2","ueteru[m], maximo[rum], exordium, augendo",4
+"Ch, Li, Pa1, R, S, U1, U2, V4, W","mihi, limine, regimina, augendo",4
+"B, Ch, Li, O2, R, Sm, U2, V1, V2","ueteru[m], maximo[rum], regimina, exordium",4
+"C, O2, O3, Pa1, Pa2, Sm, U1, V1, V2","cum 1, continetur, regimina, cum 2",4
+"C, G, Lo, O2, Sm, U1, V1, V2, V3","cum 2, ueteru[m], exordium, occasum 2",4
+"C, Lo, Mo1, O2, Sm, U1, V1, V2, V3","cum 2, continetur, exordium, occasum 2",4
+"Ch, G, Lo, Pa1, R, S, U1, U2","mihi, limine, cum 1, augendo",4
+"Ch, G, Lo, Ma, N, O1, R, U2","mihi, limine, maximo[rum], cum 1",4
+"G, Lo, Ma, N, P, Pa1, Pa2, U1","mihi, limine, cum 1, cum 2",4
+"Lo, Ma, N, O3, P, Pa1, Pa2, U1","mihi, continetur, cum 1, cum 2",4
+"Lo, Ma, N, P, Pa1, Pa2, S, U1","mihi, limine, continetur, cum 1",4
+"C, Lo, Pa1, Sm, U1, V1, V2","cum 2, continetur, cum 1, augendo",4
+"C, Pa1, S, Sm, U1, V1, V2","cum 1, continetur, regimina, augendo",4
+"C, Pa1, Sm, U1, V1, V2, V3","cum 2, continetur, regimina, augendo",4
+"Li, Lo, Pa1, Pv, S, U1, V4","mihi, limine, continetur, augendo",4
+"B, C, O2, Sm, V1, V2, V3","ueteru[m], exordium, regimina, limite",4
+"Ch, Pa1, Pa2, R, S, U1, U2","cum 1, limine, regimina, mihi",4
+"Lo, Ma, N, O2, Sm, V1, V2","cum 2, maximo[rum], continetur, cum 1",4
+"Li, Pa1, S, U1, V3, V4","mihi, continetur, regimina, augendo",4
+"Li, Pa1, Pa2, S, U1, V4","mihi, limine, continetur, regimina",4
+"Mo1, O3, Pa1, Pa2, U1, V3","mihi, continetur, regimina, cum 2",4
+"Mo1, Pa1, Pa2, S, V3, V4","mihi, maximarum, continetur, regimina",4
+"P, Pa1, Pa2, Pv, S, V4","mihi, limine, maximarum, continetur",4
+"Pa1, Pv, S, V3, V4","mihi, maximarum, continetur, augendo",4
+"Pa1, Pv, S, V4, W","mihi, limine, maximarum, augendo",4
+"Pa1, S, V3, V4, W","mihi, maximarum, regimina, augendo",4
+"B, C, O3, Pa1, Pa2","cum 1, et fide et dextra, regimina, post producta in",4
+"O3, Pa1, Pa2, S, U1","cum 1, continetur, regimina, mihi",4
+"Pa1, Pa2, S, V4, W","mihi, limine, maximarum, regimina",4
+"B, N, P, Pa1, Pa2","cum 1, et fide et dextra, occasum 1, post producta in",4
+"Mo1, P, Pa1, Pa2, V3","mihi, maximarum, continetur, cum 2",4
+"Lo, Pa1, U1, V3","mihi, continetur, cum 2, augendo",4
+"Li, Lo, Ma, N","mihi, limine, maximo[rum], continetur",4
+"B, Ma, N","maximo[rum], et fide et dextra, cum 1, post producta in",4
+"A, Pa1","mihi, regimina, occasum 1, augendo",4
+"A, Ch, G, Li, Lo, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, post producta ad, augendo, ueteru[m], occasum 2",5
+"Basel, A, Ch, G, Li, Lo, O1, Pv, R, S, U1, U2, V3, V4, W","exordium, post producta ad, mihi, ueteru[m], occasum 2",5
+"A, C, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, augendo, ueteru[m], occasum 2",5
+"A, Ch, Li, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, post producta ad, ueteru[m], occasum 2",5
+"A, G, Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4, W","exordium, post producta ad, ueteru[m], et fide et dextera, occasum 2",5
+"Basel, O2, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, post producta ad, occasu, ueteru[m], occasum 2",5
+"C, Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, occasu, augendo, ueteru[m], occasum 2",5
+"C, O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, occasu, ueteru[m], occasum 2",5
+"Ch, G, Lo, O1, O2, R, S, Sm, U1, U2, V1, V2","exordium, cum 1, post producta ad, ueteru[m], occasum 2",5
+"C, Ch, G, Lo, R, S, Sm, U1, U2, V1, V2","exordium, cum 1, augendo, ueteru[m], occasum 2",5
+"C, Li, Lo, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, augendo, ueteru[m], occasum 2",5
+"A, Ch, Li, Mo1, R, S, U1, U2, V3, V4, W","exordium, regimina, post producta ad, mihi, occasum 2",5
+"A, Mo1, O2, S, Sm, U1, V1, V2, V3, V4, W","exordium, regimina, post producta ad, et fide et dextera, occasum 2",5
+"Lo, Mo1, O2, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, et fide et dextera, occasum 2",5
+"Ch, G, Li, Lo, O1, O2, R, Sm, U2, V1, V2","exordium, maximo[rum], post producta ad, ueteru[m], occasum 2",5
+"Li, Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, ueteru[m], occasum 2",5
+"B, C, Ch, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, augendo, ueteru[m]",5
+"C, Ch, O2, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, ueteru[m], occasum 2",5
+"C, Li, O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, ueteru[m], occasum 2",5
+"Li, Mo1, O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, occasum 2",5
+"A, G, Lo, Mo1, Pv, S, U1, V3, V4, W","exordium, post producta ad, mihi, et fide et dextera, occasum 2",5
+"C, O2, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, occasu, ueteru[m], occasum 2",5
+"B, Ch, G, Lo, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], augendo, ueteru[m]",5
+"G, Lo, Mo1, O2, Sm, U1, V1, V2, V3","exordium, cum 2, post producta ad, et fide et dextera, occasum 2",5
+"B, Ch, Li, R, Sm, U2, V1, V2","exordium, maximo[rum], regimina, augendo, ueteru[m]",5
+"C, G, Lo, Sm, U1, V1, V2, V3","exordium, cum 2, augendo, ueteru[m], occasum 2",5
+"B, Ch, O2, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, ueteru[m]",5
+"C, Mo1, O2, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, regimina, occasum 2",5
+"C, G, Lo, O2, Sm, U1, V1, V2","exordium, cum 1, cum 2, ueteru[m], occasum 2",5
+"C, Lo, O2, S, Sm, U1, V1, V2","exordium, cum 1, continetur, ueteru[m], occasum 2",5
+"C, Lo, O2, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, ueteru[m], occasum 2",5
+"Li, Lo, Mo1, Pv, S, U1, V3, V4","exordium, continetur, post producta ad, mihi, occasum 2",5
+"C, Ma, N, O3, P, Pa1, Pa2","cum 1, continetur, cum 2, et fide et dextra, post producta in",5
+"Lo, Ma, N, P, Pa1, Pa2, U1","cum 1, continetur, cum 2, limine, mihi",5
+"B, C, Sm, V1, V2, V3","exordium, regimina, limite, augendo, ueteru[m]",5
+"C, Pa1, Sm, U1, V1, V2","cum 1, continetur, cum 2, regimina, augendo",5
+"Ch, Pa1, R, S, U1, U2","cum 1, regimina, limine, augendo, mihi",5
+"Li, Pa1, S, U1, V4","continetur, regimina, limine, augendo, mihi",5
+"G, Lo, Pa1, U1","cum 1, cum 2, limine, augendo, mihi",5
+"Lo, Pa1, S, U1","cum 1, continetur, limine, augendo, mihi",5
+"Pa1, Pv, S, V4","continetur, limine, maximarum, augendo, mihi",5
+"Pa1, S, V3, V4","continetur, regimina, maximarum, augendo, mihi",5
+"Pa1, S, V4, W","regimina, limine, maximarum, augendo, mihi",5
+"Mo1, Pa1, Pa2, V3","continetur, regimina, cum 2, maximarum, mihi",5
+"O3, Pa1, Pa2, U1","cum 1, continetur, cum 2, regimina, mihi",5
+"Pa1, Pa2, S, U1","cum 1, continetur, regimina, limine, mihi",5
+"Pa1, Pa2, S, V4","continetur, regimina, limine, maximarum, mihi",5
+"G, Lo, Ma, N","cum 1, maximo[rum], cum 2, limine, mihi",5
+"P, Pa1, Pa2, S","cum 1, continetur, limine, maximarum, mihi",5
+"B, C, Pa1","cum 1, regimina, et fide et dextra, augendo, post producta in",5
+"Pa1, U1, V3","continetur, cum 2, regimina, augendo, mihi",5
+"B, Pa1, Pa2","cum 1, regimina, occasum 1, et fide et dextra, post producta in",5
+"B, V4","exordium, regimina, augendo, ueteru[m], quum 2",5
+"B, N","cum 1, maximo[rum], occasum 1, et fide et dextra, post producta in",5
+"A, Ch, G, Li, Lo, Pv, R, S, U1, U2, V3, V4, W","exordium, post producta ad, augendo, mihi, ueteru[m], occasum 2",6
+"A, Ch, Li, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, post producta ad, augendo, ueteru[m], occasum 2",6
+"Basel, Ch, G, Li, Lo, O1, Pv, R, S, U1, U2, V4, W","exordium, post producta ad, limine, mihi, ueteru[m], occasum 2",6
+"A, G, Lo, Pv, S, Sm, U1, V1, V2, V3, V4, W","exordium, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",6
+"C, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, occasu, augendo, ueteru[m], occasum 2",6
+"Pv, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, post producta ad, occasu, augendo, ueteru[m], occasum 2",6
+"O2, R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, post producta ad, occasu, ueteru[m], occasum 2",6
+"Ch, G, Lo, R, S, Sm, U1, U2, V1, V2","exordium, cum 1, post producta ad, augendo, ueteru[m], occasum 2",6
+"Li, Lo, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, augendo, ueteru[m], occasum 2",6
+"A, O2, S, Sm, U1, V1, V2, V3, V4, W","exordium, regimina, post producta ad, ueteru[m], et fide et dextera, occasum 2",6
+"Lo, O2, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, ueteru[m], et fide et dextera, occasum 2",6
+"O2, Pv, S, Sm, U1, V1, V2, V3, V4, W","exordium, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2",6
+"Ch, G, Lo, O1, O2, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], post producta ad, ueteru[m], occasum 2",6
+"C, Ch, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, augendo, ueteru[m], occasum 2",6
+"C, Li, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, augendo, ueteru[m], occasum 2",6
+"C, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, occasu, augendo, ueteru[m], occasum 2",6
+"Ch, G, Li, Lo, R, Sm, U2, V1, V2","exordium, maximo[rum], post producta ad, augendo, ueteru[m], occasum 2",6
+"C, O2, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, occasu, ueteru[m], occasum 2",6
+"C, O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, occasu, ueteru[m], occasum 2",6
+"Ch, O2, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, post producta ad, ueteru[m], occasum 2",6
+"Li, O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, ueteru[m], occasum 2",6
+"Mo1, O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, et fide et dextera, occasum 2",6
+"Basel, Pv, R, S, U1, U2, V3, V4, W","exordium, post producta ad, occasu, mihi, ueteru[m], occasum 2",6
+"Ch, Li, O2, R, Sm, U2, V1, V2","exordium, maximo[rum], regimina, post producta ad, ueteru[m], occasum 2",6
+"G, Lo, O2, S, Sm, U1, V1, V2","cum 1, exordium, post producta ad, ueteru[m], et fide et dextera, occasum 2",6
+"G, Lo, O2, Sm, U1, V1, V2, V3","exordium, cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",6
+"Lo, Mo1, O2, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, post producta ad, et fide et dextera, occasum 2",6
+"B, Ch, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, augendo, ueteru[m]",6
+"C, G, Lo, Sm, U1, V1, V2","exordium, cum 1, cum 2, augendo, ueteru[m], occasum 2",6
+"C, Lo, S, Sm, U1, V1, V2","exordium, cum 1, continetur, augendo, ueteru[m], occasum 2",6
+"C, Lo, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, augendo, ueteru[m], occasum 2",6
+"A, Mo1, S, U1, V3, V4, W","exordium, regimina, post producta ad, mihi, et fide et dextera, occasum 2",6
+"C, Mo1, O2, Sm, V1, V2, V3","exordium, continetur, cum 2, regimina, limite, occasum 2",6
+"Lo, Mo1, Pv, S, U1, V3, V4","exordium, continetur, post producta ad, mihi, et fide et dextera, occasum 2",6
+"C, Lo, O2, Sm, U1, V1, V2","exordium, cum 1, continetur, cum 2, ueteru[m], occasum 2",6
+"B, C, O2, Sm, V1, V2","omitted 1, cum 1, exordium, regimina, limite, ueteru[m]",6
+"Li, Mo1, S, U1, V3, V4","exordium, continetur, regimina, post producta ad, mihi, occasum 2",6
+"Mo1, Pv, S, V3, V4, W","exordium, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",6
+"Li, Lo, O2, Sm, V1, V2","exordium, continetur, maximo[rum], post producta ad, ueteru[m], occasum 2",6
+"G, Lo, Mo1, U1, V3","exordium, cum 2, post producta ad, mihi, et fide et dextera, occasum 2",6
+"C, O3, Pa1, Pa2","cum 1, continetur, regimina, cum 2, et fide et dextra, post producta in",6
+"Lo, Pa1, U1","cum 1, continetur, cum 2, limine, augendo, mihi",6
+"Pa1, S, U1","cum 1, continetur, regimina, limine, augendo, mihi",6
+"Pa1, S, V4","continetur, regimina, limine, maximarum, augendo, mihi",6
+"Pa1, Pa2, S","cum 1, continetur, regimina, limine, maximarum, mihi",6
+"Pa1, Pa2, U1","cum 1, continetur, cum 2, regimina, limine, mihi",6
+"G, Ma, N","cum 1, maximo[rum], cum 2, limine, mihi, regimini",6
+"Lo, Ma, N","cum 1, continetur, maximo[rum], cum 2, limine, mihi",6
+"A, B","exordium, regimina, occasum 1, co[n]tinet[or], augendo, ueteru[m]",6
+"B, Pa1","cum 1, regimina, occasum 1, et fide et dextra, augendo, post producta in",6
+"Pa1, V3","continetur, cum 2, regimina, maximarum, augendo, mihi",6
+"Ch, G, Li, Lo, Pv, R, S, U1, U2, V4, W","exordium, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",7
+"A, Ch, Li, R, S, U1, U2, V3, V4, W","exordium, regimina, post producta ad, augendo, mihi, ueteru[m], occasum 2",7
+"R, S, Sm, U1, U2, V1, V2, V3, V4, W","exordium, regimina, post producta ad, occasu, augendo, ueteru[m], occasum 2",7
+"A, G, Lo, Pv, S, U1, V3, V4, W","exordium, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",7
+"A, S, Sm, U1, V1, V2, V3, V4, W","exordium, regimina, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",7
+"Lo, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",7
+"Pv, S, Sm, U1, V1, V2, V3, V4, W","exordium, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2",7
+"O2, S, Sm, U1, V1, V2, V3, V4, W","exordium, regimina, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2",7
+"O2, Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2",7
+"C, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, occasu, augendo, ueteru[m], occasum 2",7
+"C, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, occasu, augendo, ueteru[m], occasum 2",7
+"Ch, G, Lo, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], post producta ad, augendo, ueteru[m], occasum 2",7
+"Ch, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, post producta ad, augendo, ueteru[m], occasum 2",7
+"Li, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, augendo, ueteru[m], occasum 2",7
+"Pv, R, S, U1, U2, V3, V4, W","exordium, post producta ad, occasu, augendo, mihi, ueteru[m], occasum 2",7
+"O2, R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, post producta ad, occasu, ueteru[m], occasum 2",7
+"Ch, G, Lo, O1, R, S, U1, U2","exordium, cum 1, post producta ad, limine, mihi, ueteru[m], occasum 2",7
+"Basel, Pv, R, S, U1, U2, V4, W","exordium, post producta ad, occasu, limine, mihi, ueteru[m], occasum 2",7
+"Ch, Li, R, Sm, U2, V1, V2","exordium, maximo[rum], regimina, post producta ad, augendo, ueteru[m], occasum 2",7
+"G, Lo, S, Sm, U1, V1, V2","cum 1, exordium, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",7
+"G, Lo, Sm, U1, V1, V2, V3","exordium, cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",7
+"Li, Lo, Pv, S, U1, V3, V4","exordium, continetur, post producta ad, augendo, mihi, ueteru[m], occasum 2",7
+"C, O2, S, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, occasu, ueteru[m], occasum 2",7
+"C, O2, Sm, U1, V1, V2, V3","exordium, continetur, regimina, cum 2, occasu, ueteru[m], occasum 2",7
+"Ch, O2, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, post producta ad, ueteru[m], occasum 2",7
+"Mo1, O2, Sm, U1, V1, V2, V3","exordium, continetur, regimina, post producta ad, cum 2, et fide et dextera, occasum 2",7
+"G, Lo, O2, Sm, U1, V1, V2","cum 1, exordium, cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",7
+"Lo, O2, S, Sm, U1, V1, V2","cum 1, exordium, continetur, post producta ad, ueteru[m], et fide et dextera, occasum 2",7
+"Lo, O2, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",7
+"Ch, G, Li, Lo, O1, R, U2","exordium, maximo[rum], post producta ad, limine, mihi, ueteru[m], occasum 2",7
+"C, Lo, Sm, U1, V1, V2","exordium, cum 1, continetur, cum 2, augendo, ueteru[m], occasum 2",7
+"B, C, Sm, V1, V2","omitted 1, cum 1, exordium, regimina, limite, augendo, ueteru[m]",7
+"Li, Lo, Sm, V1, V2","exordium, continetur, maximo[rum], post producta ad, augendo, ueteru[m], occasum 2",7
+"A, Mo1, V3, V4, W","exordium, quom 1, regimina, post producta ad, mihi, et fide et dextera, occasum 2",7
+"B, O2, Sm, V1, V2","omitted 1, cum 1, exordium, maximo[rum], regimina, limite, ueteru[m]",7
+"Li, O2, Sm, V1, V2","exordium, continetur, maximo[rum], regimina, post producta ad, ueteru[m], occasum 2",7
+"Mo1, S, U1, V3, V4","exordium, continetur, regimina, post producta ad, mihi, et fide et dextera, occasum 2",7
+"Mo1, S, V3, V4, W","exordium, regimina, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",7
+"Mo1, Pv, S, V3, V4","exordium, continetur, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",7
+"Basel, Ch, O1, R, U2","exordium, omitted 3, post producta ad, limine, mihi, ueteru[m], occasum 2",7
+"Lo, Mo1, U1, V3","exordium, continetur, cum 2, post producta ad, mihi, et fide et dextera, occasum 2",7
+"C, Pa1","cum 1, continetur, regimina, cum 2, et fide et dextra, augendo, post producta in",7
+"Pa1, S","cum 1, continetur, regimina, limine, maximarum, augendo, mihi",7
+"Pa1, U1","cum 1, continetur, regimina, cum 2, limine, augendo, mihi",7
+"Basel, G","exordium, post producta ad, limine, mihi, ueteru[m], regimini, occasum 2",7
+"Basel, Li","exordium, quum 1, post producta ad, limine, mihi, ueteru[m], occasum 2",7
+"Ch, Li, R, S, U1, U2, V4, W","exordium, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",8
+"Pv, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2",8
+"S, Sm, U1, V1, V2, V3, V4, W","exordium, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2",8
+"O2, S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2",8
+"Ch, G, Lo, R, S, U1, U2","exordium, cum 1, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",8
+"G, Lo, Pv, S, U1, V4, W","exordium, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",8
+"Pv, R, S, U1, U2, V4, W","exordium, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",8
+"R, S, Sm, U1, U2, V1, V2","cum 1, exordium, regimina, post producta ad, occasu, augendo, ueteru[m], occasum 2",8
+"R, S, U1, U2, V3, V4, W","exordium, regimina, post producta ad, occasu, augendo, mihi, ueteru[m], occasum 2",8
+"A, S, U1, V3, V4, W","exordium, regimina, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",8
+"C, S, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, occasu, augendo, ueteru[m], occasum 2",8
+"C, Sm, U1, V1, V2, V3","exordium, continetur, regimina, cum 2, occasu, augendo, ueteru[m], occasum 2",8
+"Ch, G, Li, Lo, R, U2","exordium, maximo[rum], post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",8
+"Ch, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, post producta ad, augendo, ueteru[m], occasum 2",8
+"G, Lo, Sm, U1, V1, V2","cum 1, exordium, cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",8
+"Li, Lo, Pv, S, U1, V4","exordium, continetur, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",8
+"Lo, Pv, S, U1, V3, V4","exordium, continetur, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",8
+"Lo, S, Sm, U1, V1, V2","cum 1, exordium, continetur, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",8
+"Lo, Sm, U1, V1, V2, V3","exordium, continetur, cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",8
+"Pv, S, U1, V3, V4, W","exordium, post producta ad, occasu, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",8
+"C, O2, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, cum 2, occasu, ueteru[m], occasum 2",8
+"C, O2, Sm, V1, V2, V3","exordium, continetur, regimina, cum 2, occasu, limite, ueteru[m], occasum 2",8
+"Mo1, O2, Sm, V1, V2, V3","exordium, continetur, regimina, post producta ad, cum 2, limite, et fide et dextera, occasum 2",8
+"O2, R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, post producta ad, occasu, ueteru[m], occasum 2",8
+"G, Lo, O2, Sm, V1, V2","cum 1, exordium, maximo[rum], cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",8
+"Lo, O2, Sm, U1, V1, V2","cum 1, exordium, continetur, cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",8
+"Ch, G, Lo, O1, R, U2","cum 1, exordium, maximo[rum], post producta ad, limine, mihi, ueteru[m], occasum 2",8
+"Li, S, U1, V3, V4","exordium, continetur, regimina, post producta ad, augendo, mihi, ueteru[m], occasum 2",8
+"A, Li, S, W","exordium, augendo, regimina, post producta ad, quom 2, mihi, ueteru[m], occasum 2",8
+"B, Sm, V1, V2","omitted 1, cum 1, exordium, maximo[rum], regimina, limite, augendo, ueteru[m]",8
+"G, Lo, U1, V3","exordium, cum 2, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",8
+"Li, Sm, V1, V2","exordium, continetur, maximo[rum], regimina, post producta ad, augendo, ueteru[m], occasum 2",8
+"Mo1, S, V3, V4","exordium, continetur, regimina, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",8
+"Mo1, V3, V4, W","exordium, quom 1, regimina, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",8
+"Mo1, U1, V3","exordium, continetur, regimina, post producta ad, cum 2, mihi, et fide et dextera, occasum 2",8
+"Basel, R, U2","exordium, omitted 3, post producta ad, occasu, limine, mihi, ueteru[m], occasum 2",8
+"Basel, V4","exordium, post producta ad, occasu, limine, mihi, ueteru[m], quum 2, occasum 2",8
+"S, Sm, U1, V1, V2, V3, V4","exordium, continetur, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2",9
+"R, S, U1, U2, V4, W","exordium, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",9
+"O2, S, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, post producta ad, occasu, ueteru[m], et fide et dextera, occasum 2",9
+"O2, Sm, U1, V1, V2, V3","exordium, continetur, regimina, post producta ad, occasu, cum 2, ueteru[m], et fide et dextera, occasum 2",9
+"Ma, N, O3, P, Pa1, Pa2","cum 1, continetur, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in",9
+"C, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, cum 2, occasu, augendo, ueteru[m], occasum 2",9
+"C, Sm, V1, V2, V3","exordium, continetur, regimina, cum 2, occasu, limite, augendo, ueteru[m], occasum 2",9
+"Ch, G, Lo, R, U2","cum 1, exordium, maximo[rum], post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",9
+"Ch, R, S, U1, U2","cum 1, exordium, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",9
+"G, Lo, Sm, V1, V2","cum 1, exordium, maximo[rum], cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",9
+"Lo, Pv, S, U1, V4","exordium, continetur, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Lo, Sm, U1, V1, V2","cum 1, exordium, continetur, cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",9
+"Pv, S, U1, V3, V4","exordium, continetur, post producta ad, occasu, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Pv, S, U1, V4, W","exordium, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Pv, S, V3, V4, W","exordium, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"R, Sm, U2, V1, V2","cum 1, exordium, maximo[rum], regimina, post producta ad, occasu, augendo, ueteru[m], occasum 2",9
+"S, U1, V3, V4, W","exordium, regimina, post producta ad, occasu, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Lo, O2, Sm, V1, V2","cum 1, exordium, continetur, maximo[rum], cum 2, post producta ad, ueteru[m], et fide et dextera, occasum 2",9
+"A, V3, V4, W","exordium, quom 1, regimina, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Ch, Li, R, U2","exordium, maximo[rum], regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",9
+"G, Lo, S, U1","cum 1, exordium, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Li, S, U1, V4","exordium, continetur, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",9
+"Pv, R, S, V4","exordium, post dicti sunt (incolentes version), post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",9
+"A, S, W","exordium, augendo, regimina, post producta ad, quom 2, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Li, S, W","exordium, augendo, regimina, post producta ad, limine, quom 2, mihi, ueteru[m], occasum 2",9
+"Lo, U1, V3","exordium, continetur, cum 2, post producta ad, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",9
+"Mo1, V3, V4","exordium, continetur, quom 1, regimina, post producta ad, maximarum, mihi, et fide et dextera, occasum 2",9
+"B, C","omitted 1, cum 1, exordium, regimina, et fide et dextra, limite, augendo, ueteru[m], post producta in",9
+"Li, Lo","exordium, continetur, maximo[rum], post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",9
+"Basel, R","exordium, omitted 3, post producta ad, occasu, limine, et dextera, et fide, mihi, ueteru[m], occasum 2",9
+"S, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, post producta ad, occasu, augendo, ueteru[m], et fide et dextera, occasum 2",10
+"Sm, U1, V1, V2, V3","exordium, continetur, regimina, post producta ad, occasu, cum 2, augendo, ueteru[m], et fide et dextera, occasum 2",10
+"C, O2, Sm, V1, V2","omitted 1, cum 1, exordium, continetur, regimina, cum 2, occasu, limite, ueteru[m], occasum 2",10
+"O2, Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, post producta ad, occasu, cum 2, ueteru[m], et fide et dextera, occasum 2",10
+"O2, Sm, V1, V2, V3","exordium, continetur, regimina, post producta ad, occasu, cum 2, limite, ueteru[m], et fide et dextera, occasum 2",10
+"Ma, N, O3, Pa1, Pa2","cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in",10
+"Ma, N, P, Pa1, Pa2","cum 1, continetur, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in",10
+"N, O3, P, Pa1, Pa2","cum 1, continetur, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",10
+"Lo, Sm, V1, V2","cum 1, exordium, continetur, maximo[rum], cum 2, post producta ad, augendo, ueteru[m], et fide et dextera, occasum 2",10
+"Pv, S, U1, V4","exordium, continetur, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"Pv, S, V3, V4","exordium, continetur, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"Pv, S, V4, W","exordium, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"R, S, U1, U2","cum 1, exordium, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",10
+"S, U1, V3, V4","exordium, continetur, regimina, post producta ad, occasu, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"S, U1, V4, W","exordium, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"S, V3, V4, W","exordium, regimina, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"Ch, O1, R, U2","cum 1, exordium, omitted 2, maximo[rum], omitted 3, post producta ad, limine, mihi, ueteru[m], occasum 2",10
+"G, Lo, U1","cum 1, exordium, cum 2, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"Lo, S, U1","cum 1, exordium, continetur, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"R, S, V4","exordium, post dicti sunt (incolentes version), regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",10
+"A, W","exordium, augendo, quom 1, regimina, post producta ad, quom 2, mihi, ueteru[m], et fide et dextera, occasum 2",10
+"Li, S","exordium, continetur, augendo, regimina, post producta ad, limine, quom 2, mihi, ueteru[m], occasum 2",10
+"C, Sm, V1, V2","omitted 1, cum 1, exordium, continetur, regimina, cum 2, occasu, limite, augendo, ueteru[m], occasum 2",11
+"Sm, U1, V1, V2","cum 1, exordium, continetur, regimina, post producta ad, occasu, cum 2, augendo, ueteru[m], et fide et dextera, occasum 2",11
+"Sm, V1, V2, V3","exordium, continetur, regimina, post producta ad, occasu, cum 2, limite, augendo, ueteru[m], et fide et dextera, occasum 2",11
+"Ma, N, Pa1, Pa2","cum 1, continetur, gentihum, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, post atlantis filia natum, post producta in",11
+"N, O3, Pa1, Pa2","cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",11
+"S, U1, V4","exordium, continetur, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"S, V3, V4","exordium, continetur, regimina, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"S, V4, W","exordium, regimina, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"V3, V4, W","exordium, quom 1, regimina, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"G, Lo","cum 1, exordium, maximo[rum], cum 2, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"Lo, U1","cum 1, exordium, continetur, cum 2, post producta ad, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"R, S","cum 1, exordium, post dicti sunt (incolentes version), regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",11
+"U1, V3","exordium, continetur, regimina, post producta ad, occasu, cum 2, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"U1, W","exordium, regimina, post producta ad, occasu, omit unde gens... hoc regnante, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",11
+"Mo1, V3","exordium, continetur, quom 1, regimina, post producta ad, cum 2, maximarum, limite, mihi, et fide et dextera, occasum 2",11
+"N, P, Pa1, Pa2","cum 1, continetur, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",12
+"Ch, R, U2","cum 1, exordium, omitted 2, maximo[rum], omitted 3, regimina, post producta ad, limine, augendo, mihi, ueteru[m], occasum 2",12
+"Pv, S, V4","exordium, continetur, post dicti sunt (incolentes version), post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",12
+"O3, Pa1, Pa2","cum 1, continetur, gentihum, regimina, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",12
+"N, O3, Pa2","cum 1, continetur, gentihum, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",12
+"S, U1","cum 1, exordium, continetur, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",12
+"S, W","exordium, augendo, regimina, post producta ad, occasu, limine, maximarum, quom 2, mihi, ueteru[m], et fide et dextera, occasum 2",12
+"V3, V4","exordium, continetur, quom 1, regimina, post producta ad, occasu, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",12
+"V4, W","exordium, quom 1, regimina, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",12
+"O2, Sm, V1, V2","omitted 1, cum 1, exordium, continetur, maximo[rum], regimina, post producta ad, occasu, cum 2, limite, ueteru[m], et fide et dextera, occasum 2",13
+"N, Pa1, Pa2","cum 1, continetur, gentihum, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",13
+"R, U2","cum 1, exordium, omitted 2, maximo[rum], omitted 3, regimina, post producta ad, occasu, limine, augendo, mihi, ueteru[m], occasum 2",13
+"S, V4","exordium, continetur, post dicti sunt (incolentes version), regimina, post producta ad, occasu, limine, maximarum, augendo, mihi, ueteru[m], et fide et dextera, occasum 2",13
+"O3, Pa2","cum 1, continetur, gentihum, regimina, cum 2, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",13
+"Ma, N","cum 1, continetur, maximo[rum], gentihum, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, mihi, regimini, post atlantis filia natum, post producta in",13
+"Sm, V1, V2","omitted 1, cum 1, exordium, continetur, maximo[rum], regimina, post producta ad, occasu, cum 2, limite, augendo, ueteru[m], et fide et dextera, occasum 2",14
+"P, Pa1, Pa2","cum 1, continetur, occasum 1, cum 2, post comitasque add industria, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, maximarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",14
+"N, Pa2","cum 1, continetur, gentihum, occasum 1, cum 2, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, gubernando, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",14
+"Pa1, Pa2","cum 1, continetur, occiduo, gentihum, regimina, occasum 1, cum 2, post comitasque add industria, limine, originem, et fide et dextra, post spectamus omit orbis terrarum, maximarum, omit et incolentes...dicti sub dicta, mihi, post atlantis filia natum, post producta in",17
