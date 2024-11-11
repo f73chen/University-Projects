@@ -1,0 +1,8 @@
+name: rlcourse
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - scipy
+  - pandas
+  - matplotlib

@@ -1,0 +1,9 @@
+name: rlcourse
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - scipy
+  - pandas
+  - matplotlib
+prefix: /Users/mcrowley/opt/miniconda3/envs/rlcourse
