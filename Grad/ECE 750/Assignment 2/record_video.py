@@ -1,16 +1,19 @@
 import gymnasium as gym
-from stable_baselines3 import DQN
-import highway_env  # noqa: F401
+from stable_baselines3 import DQN, PPO
+import highway_env
 import os
 import shutil
 from PIL import Image
 import subprocess
 
-def record_frames(env, model, frame_path, episodes=1):
-    os.makedirs(frame_path, exist_ok=True)
+def record_frames(env, model, folder, episodes=1):
+    frame_folder = folder + "/frames"
+    video_folder = folder + "/videos"
+    
+    os.makedirs(frame_folder, exist_ok=True)
 
     for i in range(episodes):
-        episode_dir = os.path.join(frame_path, f"episode_{i}")
+        episode_dir = os.path.join(frame_folder, f"episode_{i}")
         os.makedirs(episode_dir, exist_ok=True)
         
         obs, info = env.reset()
@@ -28,8 +31,8 @@ def record_frames(env, model, frame_path, episodes=1):
             frame_count += 1
 
         # Generate video from frames using ffmpeg
-        video_path = f"highway_dqn/videos/episode_{i}.mp4"
-        os.makedirs("highway_dqn/videos", exist_ok=True)
+        video_path = f"{video_folder}/episode_{i}.mp4"
+        os.makedirs(video_folder, exist_ok=True)
         ffmpeg_command = [
             "ffmpeg", "-framerate", "15", "-i", f"{episode_dir}/frame_%04d.png",
             "-c:v", "mpeg4", video_path
@@ -40,9 +43,17 @@ def record_frames(env, model, frame_path, episodes=1):
         shutil.rmtree(episode_dir)
         print(f"Episode {i} video saved to {video_path} and frames deleted.")
 
-# Initialize environment and load model
-env = gym.make("highway-fast-v0", render_mode="rgb_array")
-model = DQN.load("highway_dqn/model", env=env)
+# # Highway DQN
+# env = gym.make("highway-fast-v0", render_mode="rgb_array")
+# model = DQN.load("results/highway_dqn/model", env=env)
+# record_frames(env, model, folder="results/highway_dqn", episodes=1)
 
-# Save frames and convert them to videos
-record_frames(env, model, "highway_dqn/frames")
+# Intersection PPO
+env = gym.make("intersection-v0", render_mode="rgb_array")
+model = PPO.load("results/intersection_ppo/model", env=env)
+record_frames(env, model, folder="results/intersection_ppo", episodes=1)
+
+# # Racetrack PPO
+# env = gym.make("racetrack-v0", render_mode="rgb_array")
+# model = PPO.load("results/racetrack_ppo/model", env=env)
+# record_frames(env, model, folder="results/racetrack_ppo", episodes=1)
