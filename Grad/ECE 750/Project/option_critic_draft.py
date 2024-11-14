@@ -5,7 +5,7 @@ from math import exp
 import numpy as np
 from copy import deepcopy
 
-from Project.replay_buffer_draft import ReplayBuffer
+from Project.replay_buffer import ReplayBuffer
 from Project.utils_draft import actor_loss, critic_loss
 
 
@@ -208,15 +208,6 @@ class OptionCriticConv(nn.Module):
         q_values = logits  # Q-values are derived directly from the logits for each action
 
         return q_values
-    
-    def save(self, filepath):
-        """Saves model parameters to a file."""
-        torch.save(self.state_dict(), filepath)
-
-    def load(self, filepath, device='cpu'):
-        """Loads model parameters from a file and moves to the specified device."""
-        self.load_state_dict(torch.load(filepath, map_location=device))
-        self.to(device)
         
     @property
     def epsilon(self):
