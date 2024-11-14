@@ -5,6 +5,7 @@ import numpy as np
 from copy import deepcopy
 
 from replay_buffer import ReplayBuffer
+from utils import actor_loss, critic_loss
 
 # Flattens observations
 # Outputs a discrete action index
@@ -17,22 +18,39 @@ class OptionCriticFeatures(nn.Module):
                  temperature=1.0,
                  epsilon_start=1.0,
                  epsilon_min=0.1,
-                 epsilon_decay=int(1e6)) -> None:
+                 epsilon_decay=int(1e6),
+                 gamma=0.95,
+                 termination_reg=0.01,
+                 entropy_reg = 0.01,
+                 learning_rate=1e-4,
+                 batch_size=64,
+                 train_freq=1,
+                 target_update_freq=50,
+                 buffer_size=10000) -> None:
         super(OptionCriticFeatures, self).__init__()
         
+        self.env = env
         obs_shape = env.observation_space.shape
         flattened_obs = np.prod(obs_shape)
         self.in_features = flattened_obs
-        
         self.num_actions = env.action_space.n
-        self.num_options = num_options
         
+        self.num_options = num_options
         self.device = device
         
         self.temperature = temperature
         self.epsilon_start = epsilon_start
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
+        self.gamma = gamma
+        self.termination_reg = termination_reg
+        self.entropy_reg = entropy_reg
+        
+        self.learning_rate = learning_rate
+        self.batch_size = batch_size
+        self.train_freq = train_freq
+        self.target_update_freq = target_update_freq
+        self.buffer_size = buffer_size
         
         # TODO: Make epsilon a class property
         self.epsilon = 1.0
@@ -59,11 +77,62 @@ class OptionCriticFeatures(nn.Module):
         self.to(device)
         
         # Target network for training stability
-        self.option_critic_prime = deepcopy(self)
+        self.target_network = deepcopy(self)
+        
+    # TODO: Test both copy methods
+    def update_target_network(self, hard=True, tau=0.005):
+        # Hard copy: Directly copy all parameters to the target network
+        # Better if updates are less frequent
+        if hard:
+            self.target_network.load_state_dict(self.state_dict())
+            
+        # Soft copy: Gradually change the target network towards the policy network
+        # Better if updates are more frequent
+        else:
+            for target_param, param in zip(self.target_network.parameters(), self.parameters()):
+                target_param.data.copy_(tau * param.data + (1.0 - tau) * target_param.data)
         
     # TODO
     def learn(self, total_timesteps) -> None:
-        pass
+        obs, _ = self.env.reset()
+        episode_reward = 0
+        replay_buffer = ReplayBuffer(capacity=self.buffer_size)
+        optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
+        
+        for step in range(total_timesteps):
+            # Choose an option and action using epsilon-greedy
+            # TODO: Double check epsilon is implemented correctly (logging)
+            # TODO: Terminate options according to termination_prob
+            option, action, logp, entropy = self.predict(obs, deterministic=False)
+            
+            # Take a step in the environment
+            next_obs, reward, done, truncated, _ = self.env.step(action)
+            replay_buffer.add(obs, option, reward, next_obs, done)
+            
+            obs = next_obs
+            episode_reward += reward
+            
+            # Reset environment if done or truncated
+            if done or truncated:
+                print(f"Episode finished with reward: {episode_reward}")
+                obs, _ = self.env.reset()
+                episode_reward = 0
+                
+            # Sample from buffer and train
+            if len(replay_buffer) >= self.batch_size and step % self.train_freq == 0:
+                batch = replay_buffer.sample(self.batch_size)
+                actor_loss_value = actor_loss(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
+                critic_loss_value = critic_loss() # TODO
+                
+                # Optimization step
+                loss = actor_loss_value + critic_loss_value
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                
+            # Update the target network every few steps
+            if step % self.target_update_freq == 0:
+                self.update_target_network(hard=True)
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):
@@ -107,7 +176,7 @@ class OptionCriticFeatures(nn.Module):
         
         # Choose an action based on the option
         action, logp, entropy = self.get_action(state, option)
-        return action
+        return option, action, logp, entropy
     
     # Saves the model
     def save(self, filepath) -> None:
