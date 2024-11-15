@@ -3,6 +3,8 @@ import numpy as np
 
 # TODO: Check outputs
 def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, entropy):
+    assert option is not None
+    
     obs_tensor      = torch.tensor(obs,      dtype=torch.float32).reshape(1, -1).to(model.device)
     next_obs_tensor = torch.tensor(next_obs, dtype=torch.float32).reshape(1, -1).to(model.device)
     state      = model.features(obs_tensor)

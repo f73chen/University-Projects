@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
-from torch.distributions import Categorical
+from torch.distributions import Categorical, Bernoulli
 import numpy as np
 from copy import deepcopy
+from math import exp
 
 from replay_buffer import ReplayBuffer
 from utils import actor_loss, critic_loss
@@ -24,7 +25,7 @@ class OptionCriticFeatures(nn.Module):
                  entropy_reg = 0.01,
                  learning_rate=1e-4,
                  batch_size=64,
-                 train_freq=1,
+                 critic_freq=10,
                  target_update_freq=50,
                  buffer_size=10000,
                  is_policy_network=True) -> None:
@@ -49,12 +50,9 @@ class OptionCriticFeatures(nn.Module):
         
         self.learning_rate = learning_rate
         self.batch_size = batch_size
-        self.train_freq = train_freq
+        self.critic_freq = critic_freq
         self.target_update_freq = target_update_freq
         self.buffer_size = buffer_size
-        
-        # TODO: Make epsilon a class property
-        self.epsilon = 1.0
         
         # Shared network
         self.features = nn.Sequential(
@@ -78,57 +76,72 @@ class OptionCriticFeatures(nn.Module):
         self.to(device)
         
         # Initialize target network and copy over the parameters
+        # Only create the target network if self is policy network to avoid infinite recursion
         if is_policy_network:
-            self.target_network = OptionCriticFeatures(env, num_options, device, temperature, epsilon_start, 
-                                                    epsilon_min, epsilon_decay, gamma, termination_reg,
-                                                    entropy_reg, learning_rate, batch_size, train_freq, 
-                                                    target_update_freq, buffer_size, False)
+            self.target_network = OptionCriticFeatures(env, num_options, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
         
-    # TODO: Test for correctness
     # Tau = 1.0 --> Hard copy, completely replace target network with policy network
     # Tau = 0.01 --> Soft update, gradually shift target network in the direction of policy network
     def update_target_network(self, tau=1.0):
         with torch.no_grad():
             for target_param, param in zip(self.target_network.parameters(), self.parameters()):
                 target_param.data.copy_(tau * param.data + (1.0 - tau) * target_param.data)
+                
+    # Calculate whether the current option should terminate
+    def get_option_termination(self, obs, option):
+        obs_tensor = torch.tensor(obs, dtype=torch.float32).reshape(1, -1).to(self.device)
+        state = self.features(obs_tensor)
+        termination = self.terminations(state)[:, option].sigmoid()
+        termination = Bernoulli(termination).sample()
+        return bool(termination.item())
         
-    # TODO
+    # Learn by interacting with the environment
     def learn(self, total_timesteps) -> None:
         obs, _ = self.env.reset()
         episode_reward = 0
+        option = None
+        option_termination = True
         replay_buffer = ReplayBuffer(capacity=self.buffer_size)
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
         
         for step in range(total_timesteps):
             # Choose an option and action using epsilon-greedy
-            # TODO: Double check epsilon is implemented correctly (logging)
-            # TODO: Terminate options according to termination_prob
-            option, action, logp, entropy = self.predict(obs, deterministic=False)
+            epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
+            option, action, logp, entropy = self.predict(obs, option, option_termination, epsilon)
             
             # Take a step in the environment
             next_obs, reward, done, truncated, _ = self.env.step(action)
             replay_buffer.add(obs, option, reward, next_obs, done)
+            
+            # Sample whether the current option terminates in the next step
+            option_termination = self.get_option_termination(next_obs, option)
             
             obs = next_obs
             episode_reward += reward
             
             # Reset environment if done or truncated
             if done or truncated:
-                print(f"Episode finished with reward: {episode_reward}")
+                # print(f"Episode finished with reward: {episode_reward}")
                 obs, _ = self.env.reset()
                 episode_reward = 0
+                option_termination = True
                 
             # Sample from buffer and train
-            if len(replay_buffer) >= self.batch_size and step % self.train_freq == 0:
-                batch = replay_buffer.sample(self.batch_size)
+            if len(replay_buffer) >= self.batch_size:
+                # Update the actor loss every step
                 actor_loss_value = actor_loss(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
-                critic_loss_value = critic_loss(self, self.target_network, batch) # TODO
+                loss = actor_loss_value
+                
+                # Update the critic loss every critic_freq steps
+                if step % self.critic_freq == 0:
+                    batch = replay_buffer.sample(self.batch_size)
+                    critic_loss_value = critic_loss(self, self.target_network, batch)
+                    loss += critic_loss_value
                 
                 # Optimization step
-                loss = actor_loss_value + critic_loss_value
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
@@ -139,10 +152,7 @@ class OptionCriticFeatures(nn.Module):
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):
-        # Calculate Q_Omega for each option
-        # print(state)
         Q_Omegas = self.Q(state)
-        # print(Q_Omegas)
         return Q_Omegas.argmax(dim=-1).item()
     
     # Helper: Selects an action based on the state and option
@@ -164,18 +174,19 @@ class OptionCriticFeatures(nn.Module):
         return action.item(), logp, entropy
     
     # Selects an action based on the observations
-    def predict(self, obs, deterministic=True) -> int:
+    def predict(self, obs, option, option_termination, epsilon=1.0, deterministic=False) -> int:
         # Flatten the observations to 1D and add a batch dimension
         obs_tensor = torch.tensor(obs, dtype=torch.float32).reshape(1, -1).to(self.device)
         
         # Get the output of the shared network
         state = self.features(obs_tensor)
         
-        # Choose an option
-        if deterministic or np.random.random() > self.epsilon:
-            option = self.greedy_option(state)
-        else:
-            option = np.random.randint(0, self.num_options)
+        # Only choose a new option if the previous one terminates, else continue with the current option
+        if option_termination:
+            if deterministic or np.random.random() > epsilon:
+                option = self.greedy_option(state)
+            else:
+                option = np.random.randint(0, self.num_options)
         
         # Choose an action based on the option
         action, logp, entropy = self.get_action(state, option)

@@ -25,4 +25,5 @@ env = gym.make("highway-fast-v0", render_mode='rgb_array')  # (5, 5) --> 5
 obs, info = env.reset()
 
 oc = OptionCriticFeatures(env=env, num_options=4)
-oc.learn(100)
+print([param for param in oc.parameters()][0])
+print([param for param in oc.target_network.parameters()][0])
