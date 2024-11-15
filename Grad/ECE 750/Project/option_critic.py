@@ -26,7 +26,8 @@ class OptionCriticFeatures(nn.Module):
                  batch_size=64,
                  train_freq=1,
                  target_update_freq=50,
-                 buffer_size=10000) -> None:
+                 buffer_size=10000,
+                 is_policy_network=True) -> None:
         super(OptionCriticFeatures, self).__init__()
         
         self.env = env
@@ -76,19 +77,21 @@ class OptionCriticFeatures(nn.Module):
         
         self.to(device)
         
-        # Target network for training stability
-        self.target_network = deepcopy(self)
-        
-    # TODO: Test both copy methods
-    def update_target_network(self, hard=True, tau=0.005):
-        # Hard copy: Directly copy all parameters to the target network
-        # Better if updates are less frequent
-        if hard:
-            self.target_network.load_state_dict(self.state_dict())
-            
-        # Soft copy: Gradually change the target network towards the policy network
-        # Better if updates are more frequent
+        # Initialize target network and copy over the parameters
+        if is_policy_network:
+            self.target_network = OptionCriticFeatures(env, num_options, device, temperature, epsilon_start, 
+                                                    epsilon_min, epsilon_decay, gamma, termination_reg,
+                                                    entropy_reg, learning_rate, batch_size, train_freq, 
+                                                    target_update_freq, buffer_size, False)
+            self.update_target_network()
         else:
+            self.target_network = None
+        
+    # TODO: Test for correctness
+    # Tau = 1.0 --> Hard copy, completely replace target network with policy network
+    # Tau = 0.01 --> Soft update, gradually shift target network in the direction of policy network
+    def update_target_network(self, tau=1.0):
+        with torch.no_grad():
             for target_param, param in zip(self.target_network.parameters(), self.parameters()):
                 target_param.data.copy_(tau * param.data + (1.0 - tau) * target_param.data)
         
@@ -122,7 +125,7 @@ class OptionCriticFeatures(nn.Module):
             if len(replay_buffer) >= self.batch_size and step % self.train_freq == 0:
                 batch = replay_buffer.sample(self.batch_size)
                 actor_loss_value = actor_loss(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
-                critic_loss_value = critic_loss() # TODO
+                critic_loss_value = critic_loss(self, self.target_network, batch) # TODO
                 
                 # Optimization step
                 loss = actor_loss_value + critic_loss_value
@@ -132,7 +135,7 @@ class OptionCriticFeatures(nn.Module):
                 
             # Update the target network every few steps
             if step % self.target_update_freq == 0:
-                self.update_target_network(hard=True)
+                self.update_target_network()
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):
