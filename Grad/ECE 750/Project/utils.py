@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 
-# TODO: Check outputs
 def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, entropy):
     assert option is not None
     
@@ -53,7 +52,6 @@ def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, e
     actor_loss = termination_loss + policy_loss
     return actor_loss
 
-# The critic updates using a batch instead of every interaction for Q estimate stability
 def critic_loss(model, target_model, batch):
     # Extract interactions from the batch
     # Note: They already are tensors on model.device

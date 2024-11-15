@@ -4,9 +4,11 @@ from torch.distributions import Categorical, Bernoulli
 import numpy as np
 from copy import deepcopy
 from math import exp
+import time
 
 from replay_buffer import ReplayBuffer
 from utils import actor_loss, critic_loss
+from logger import Logger
 
 # Flattens observations
 # Outputs a discrete action index
@@ -28,6 +30,7 @@ class OptionCriticFeatures(nn.Module):
                  critic_freq=10,
                  target_update_freq=50,
                  buffer_size=10000,
+                 tensorboard_log=None,
                  is_policy_network=True) -> None:
         super(OptionCriticFeatures, self).__init__()
         
@@ -53,6 +56,8 @@ class OptionCriticFeatures(nn.Module):
         self.critic_freq = critic_freq
         self.target_update_freq = target_update_freq
         self.buffer_size = buffer_size
+        
+        self.tensorboard_log = tensorboard_log
         
         # Shared network
         self.features = nn.Sequential(
@@ -101,10 +106,15 @@ class OptionCriticFeatures(nn.Module):
     # Learn by interacting with the environment
     def learn(self, total_timesteps) -> None:
         obs, _ = self.env.reset()
+        episode_idx = 0
         episode_reward = 0
+        episode_length = 0
+        option_lengths = {opt: [] for opt in range(self.num_options)}
         option = None
+        curr_option_length = 0
         option_termination = True
         replay_buffer = ReplayBuffer(capacity=self.buffer_size)
+        logger = Logger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
         
         for step in range(total_timesteps):
@@ -121,15 +131,27 @@ class OptionCriticFeatures(nn.Module):
             
             obs = next_obs
             episode_reward += reward
+            episode_length += 1
+            curr_option_length += 1
+            
+            # TODO: Verify logged option lengths match printed lengths
+            if option_termination:
+                option_lengths[option].append(curr_option_length)
+                curr_option_length = 0
             
             # Reset environment if done or truncated
             if done or truncated:
-                # print(f"Episode finished with reward: {episode_reward}")
+                print(f"Episode {episode_idx} finished with reward: {episode_reward}, epsilon:{epsilon}")
+                logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)    # TODO
                 obs, _ = self.env.reset()
+                episode_idx += 1
                 episode_reward = 0
+                episode_length = 0
                 option_termination = True
                 
-            # Sample from buffer and train
+            # Sample from buffer and backprop the loss
+            actor_loss_value = None
+            critic_loss_value = None
             if len(replay_buffer) >= self.batch_size:
                 # Update the actor loss every step
                 actor_loss_value = actor_loss(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
@@ -149,6 +171,8 @@ class OptionCriticFeatures(nn.Module):
             # Update the target network every few steps
             if step % self.target_update_freq == 0:
                 self.update_target_network()
+                
+            logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)   # TODO
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):

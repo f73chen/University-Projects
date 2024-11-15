@@ -4,7 +4,6 @@ from highway_env.envs.intersection_env import IntersectionEnv
 import ale_py
 
 from option_critic import OptionCriticFeatures
-from utils import actor_loss
 
 # intersection_config = IntersectionEnv.default_config()
 # intersection_config["observation"]["flatten"] = True
@@ -24,6 +23,19 @@ env = gym.make("highway-fast-v0", render_mode='rgb_array')  # (5, 5) --> 5
 
 obs, info = env.reset()
 
-oc = OptionCriticFeatures(env=env, num_options=4)
-print([param for param in oc.parameters()][0])
-print([param for param in oc.target_network.parameters()][0])
+oc = OptionCriticFeatures(env=env, num_options=4, tensorboard_log="results/highway_oc/")
+oc.learn(total_timesteps=1000)
+# oc.save("results/highway_oc/model")
+
+# env.unwrapped.config["simulation_frequency"] = 15
+# for episode in range(10):
+#     done = truncated = False
+#     obs, info = env.reset()
+#     option = None
+#     option_termination = True
+#     while not (done or truncated):
+#         option, action, logp, entropy = oc.predict(obs, option, option_termination, deterministic=True)
+#         option_termination = oc.get_option_termination(obs, option)
+#         obs, reward, done, truncated, info = env.step(action)
+#         env.render()
+# env.close()
