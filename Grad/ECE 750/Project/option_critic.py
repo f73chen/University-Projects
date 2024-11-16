@@ -13,7 +13,6 @@ from logger import Logger
 # Flattens observations
 # Outputs a discrete action index
 class OptionCriticFeatures(nn.Module):
-    # TODO: Add tensorboard_log
     def __init__(self,
                  env,
                  num_options,
@@ -241,3 +240,81 @@ class OptionCriticFeatures(nn.Module):
         device = torch.device(device)
         self.load_state_dict(torch.load(filepath, map_location=device))
         self.to(device)
+        
+class OptionCriticConv(OptionCriticFeatures):
+    # TODO
+    def __init__(self,
+                 env,
+                 num_options,
+                 device="cpu",
+                 temperature=1.0,
+                 epsilon_start=1.0,
+                 epsilon_min=0.1,
+                 epsilon_decay=int(1e6),
+                 gamma=0.95,
+                 termination_reg=0.01,
+                 entropy_reg = 0.01,
+                 learning_rate=1e-4,
+                 batch_size=64,
+                 critic_freq=10,
+                 target_update_freq=50,
+                 buffer_size=10000,
+                 tensorboard_log=None,
+                 verbose=1,
+                 is_policy_network=True) -> None:
+        super(OptionCriticFeatures, self).__init__()
+        
+        self.env = env
+        obs_shape = env.observation_space.shape
+        flattened_obs = np.prod(obs_shape)
+        self.in_features = flattened_obs
+        self.num_actions = env.action_space.n
+        
+        self.num_options = num_options
+        self.device = device
+        
+        self.temperature = temperature
+        self.epsilon_start = epsilon_start
+        self.epsilon_min = epsilon_min
+        self.epsilon_decay = epsilon_decay
+        self.gamma = gamma
+        self.termination_reg = termination_reg
+        self.entropy_reg = entropy_reg
+        
+        self.learning_rate = learning_rate
+        self.batch_size = batch_size
+        self.critic_freq = critic_freq
+        self.target_update_freq = target_update_freq
+        self.buffer_size = buffer_size
+        
+        self.tensorboard_log = tensorboard_log
+        self.verbose = verbose
+        
+        # Shared network
+        self.features = nn.Sequential(
+            nn.Linear(self.in_features, 32),
+            nn.ReLU(),
+            nn.Linear(32, 64),
+            nn.ReLU()
+        )
+        
+        # Q_Omega head
+        self.Q = nn.Linear(512, num_options)
+        
+        # beta_w head
+        self.terminations = nn.Linear(512, num_options)
+        
+        # pi_w head weights and biases
+        self.options_W = nn.Parameter(torch.empty(num_options, 512, self.num_actions, device=device))
+        torch.nn.init.xavier_uniform_(self.options_W)   # Make weights non-zero
+        self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
+        
+        self.to(device)
+        
+        # Initialize target network and copy over the parameters
+        # Only create the target network if self is policy network to avoid infinite recursion
+        if is_policy_network:
+            self.target_network = OptionCriticFeatures(env, num_options, is_policy_network=False)
+            self.update_target_network()
+        else:
+            self.target_network = None

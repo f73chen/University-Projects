@@ -87,10 +87,10 @@ if __name__ == "__main__":
         gamma=study.best_params["gamma"],
         verbose=0,
     )
-    # model.learn(total_timesteps=int(1e5))
-    # model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
+    model.learn(total_timesteps=int(1e5))
+    model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
 
     # Visualize results
-    optuna.visualization.plot_contour(study).show()
-    optuna.visualization.plot_slice(study).show()
-    optuna.visualization.plot_param_importances(study).show()
+    # optuna.visualization.plot_contour(study).show()
+    # optuna.visualization.plot_slice(study).show()
+    # optuna.visualization.plot_param_importances(study).show()

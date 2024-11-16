@@ -5,8 +5,10 @@ from stable_baselines3.common.vec_env import SubprocVecEnv
 
 import highway_env
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
-TRAIN = True
+TRAIN = False
 
 if __name__ == "__main__":
     n_cpu = 6
@@ -32,7 +34,7 @@ if __name__ == "__main__":
         del model
 
     # Run the algorithm
-    model = PPO.load("results/intersection_ppo/model", env=env)
+    model = PPO.load("results/intersection_ppo/optimized_model", env=env)
 
     env = gym.make("intersection-v0", render_mode="rgb_array")
 
