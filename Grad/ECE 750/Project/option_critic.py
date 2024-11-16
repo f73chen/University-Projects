@@ -31,6 +31,7 @@ class OptionCriticFeatures(nn.Module):
                  target_update_freq=50,
                  buffer_size=10000,
                  tensorboard_log=None,
+                 verbose=1,
                  is_policy_network=True) -> None:
         super(OptionCriticFeatures, self).__init__()
         
@@ -58,6 +59,7 @@ class OptionCriticFeatures(nn.Module):
         self.buffer_size = buffer_size
         
         self.tensorboard_log = tensorboard_log
+        self.verbose = verbose
         
         # Shared network
         self.features = nn.Sequential(
@@ -114,8 +116,10 @@ class OptionCriticFeatures(nn.Module):
         curr_option_length = 0
         option_termination = True
         replay_buffer = ReplayBuffer(capacity=self.buffer_size)
-        logger = Logger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
+        
+        if self.tensorboard_log is not None:
+            logger = Logger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         
         for step in range(total_timesteps):
             # Choose an option and action using epsilon-greedy
@@ -129,24 +133,35 @@ class OptionCriticFeatures(nn.Module):
             # Sample whether the current option terminates in the next step
             option_termination = self.get_option_termination(next_obs, option)
             
+            # Iterate episodic variables
             obs = next_obs
             episode_reward += reward
             episode_length += 1
             curr_option_length += 1
             
-            # TODO: Verify logged option lengths match printed lengths
+            # Record option lengths
             if option_termination:
                 option_lengths[option].append(curr_option_length)
                 curr_option_length = 0
             
             # Reset environment if done or truncated
             if done or truncated:
-                print(f"Episode {episode_idx} finished with reward: {episode_reward}, epsilon:{epsilon}")
-                logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)    # TODO
+                if self.verbose == 1:
+                    print(f"Episode {episode_idx} finished with reward: {episode_reward}, epsilon:{epsilon}")
+                
+                # Terminate the option if the episode ends
+                if not option_termination:
+                    option_lengths[option].append(curr_option_length)
+                    curr_option_length = 0
+                
+                # Log and reset episodic variables
+                if self.tensorboard_log is not None:
+                    logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)    # TODO
                 obs, _ = self.env.reset()
                 episode_idx += 1
                 episode_reward = 0
                 episode_length = 0
+                option_lengths = {opt: [] for opt in range(self.num_options)}
                 option_termination = True
                 
             # Sample from buffer and backprop the loss
@@ -172,7 +187,8 @@ class OptionCriticFeatures(nn.Module):
             if step % self.target_update_freq == 0:
                 self.update_target_network()
                 
-            logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)   # TODO
+            if self.tensorboard_log is not None:
+                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)   # TODO
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):

@@ -9,25 +9,46 @@ from option_critic import OptionCriticFeatures
 # intersection_config["observation"]["flatten"] = True
 
 # Feature input, Discrete action space
-# env = gym.make("CartPole-v1", render_mode='rgb_array')      # (4,) --> 2
-# env = gym.make("LunarLander-v3", render_mode='rgb_array')   # (8,) --> 4
-env = gym.make("highway-fast-v0", render_mode='rgb_array')  # (5, 5) --> 5
-# env = gym.make("intersection-v0", render_mode='rgb_array')  # (15, 7) --> 3
+ENV_NAME = "CartPole-v1"      # (4,) --> 2
+# ENV_NAME = "LunarLander-v3"     # (8,) --> 4
+# ENV_NAME = "highway-fast-v0"  # (5, 5) --> 5
+# ENV_NAME = "intersection-v0"  # (15, 7) --> 3
 
 # Feature input, Continuous action space
-# env = gym.make("intersection-v1", render_mode='rgb_array')  # (5, 8) --> -1, 1, (2,)
-# env = gym.make("racetrack-v0", render_mode='rgb_array')     # (2, 12, 12)
+# ENV_NAME = "intersection-v1"  # (5, 8) --> -1, 1, (2,)
+# ENV_NAME = "racetrack-v0"     # (2, 12, 12)
 
 # Image input, Discrete action space
-# env = gym.make("ALE/Pong-v5", render_mode='rgb_array')      # (210, 160, 3)
+# ENV_NAME = "ALE/Pong-v5"    # (210, 160, 3)
 
+RENDER_MODE = None
+# RENDER_MODE = "rgb_array"
+# RENDER_MODE = "human"
+
+env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
 obs, info = env.reset()
 
-oc = OptionCriticFeatures(env=env, num_options=4, tensorboard_log="results/highway_oc/")
-oc.learn(total_timesteps=1000)
-# oc.save("results/highway_oc/model")
+oc = OptionCriticFeatures(env=env, 
+                          num_options=2, 
+                          device="cpu",
+                          temperature=1.0,
+                          epsilon_start=1.0,
+                          epsilon_min=0.1,
+                          epsilon_decay=int(1e5),
+                          gamma=0.95,
+                          termination_reg=0.01,
+                          entropy_reg = 0.01,
+                          learning_rate=1e-3,
+                          batch_size=64,
+                          critic_freq=10,
+                          target_update_freq=10,
+                          buffer_size=10000,
+                          tensorboard_log="results/lunarlander_oc/")
+oc.learn(total_timesteps=100000)
+oc.save("results/cartpole_oc/model")
 
 # env.unwrapped.config["simulation_frequency"] = 15
+# oc.load("results/lunarlander_oc/model")
 # for episode in range(10):
 #     done = truncated = False
 #     obs, info = env.reset()

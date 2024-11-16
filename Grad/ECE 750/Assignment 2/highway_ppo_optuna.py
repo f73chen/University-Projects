@@ -9,8 +9,13 @@ import highway_env
 from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 
-ENV = "highway-fast-v0"
-ENV_TYPE = "highway"
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
+
+# ENV = "highway-fast-v0"
+ENV = "intersection-v0"
+# ENV = "racetrack-v0"
+ENV_TYPE = "intersection"
 MODEL_TYPE = "ppo"
 
 def objective(trial):
@@ -54,15 +59,12 @@ def objective(trial):
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 50
-    # study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
-    # study.optimize(objective, n_trials=TOTAL_TRIALS, show_progress_bar=True)
-    
-    study = optuna.load_study(study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
-    completed_trials = len(study.trials)
-    remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
-    print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
-    study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
+    TOTAL_TRIALS = 40
+    study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
+    # completed_trials = len(study.trials)
+    # remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
+    # print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
+    # study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
 
     # Display best hyperparameters
     print("Best hyperparameters:", study.best_params)
@@ -85,8 +87,8 @@ if __name__ == "__main__":
         gamma=study.best_params["gamma"],
         verbose=0,
     )
-    model.learn(total_timesteps=int(1e5))
-    model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
+    # model.learn(total_timesteps=int(1e5))
+    # model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
 
     # Visualize results
     optuna.visualization.plot_contour(study).show()
