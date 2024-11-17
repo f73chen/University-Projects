@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, entropy):
+def actor_loss_oc(model, target_model, obs, option, reward, next_obs, done, logp, entropy):
     assert option is not None
     
     obs_tensor      = torch.tensor(obs,      dtype=torch.float32).reshape(1, -1).to(model.device)
@@ -9,12 +9,12 @@ def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, e
     state      = model.features(obs_tensor)
     next_state = model.features(next_obs_tensor)
     
-    # Detach everything related to the target model
-    next_state_target = target_model.features(next_obs_tensor).detach() # [1, state_size]
-    
     # β(s',o) --> Probability of terminating in the next state given the current option
     # Detach because it's part of gt
     next_termination_prob = model.terminations(next_state)[:, option].sigmoid().detach()    # [1]
+    
+    # Detach everything related to the target model
+    next_state_target = target_model.features(next_obs_tensor).detach() # [1, state_size]
     
     # Q(s',o) --> The Q_Omega value in the next state given the current option
     # Use the target network to estimate Q_Omega
@@ -52,7 +52,43 @@ def actor_loss(model, target_model, obs, option, reward, next_obs, done, logp, e
     actor_loss = termination_loss + policy_loss
     return actor_loss
 
-def critic_loss(model, target_model, batch):
+# Follows the same formula as OC actor loss, but adds diversity, sparsity, and smoothness regularization
+def actor_loss_aoc(model, target_model, obs, option, reward, next_obs, done, logp, entropy):
+    assert option is not None
+    
+    # Get state and next_state
+    attended_obs = model.apply_attention(obs, option)
+    attended_next_obs = model.apply_attention(next_obs, option)
+    state = model.features(attended_obs)
+    next_state = model.features(attended_next_obs)
+    
+    # Calculate ground truth value (detach everything)
+    next_termination_prob = model.terminations(next_state)[:, option].sigmoid().detach()
+    next_state_target = target_model.features(attended_next_obs).detach()
+    next_Q_Omega_target = target_model.Q(next_state_target).squeeze()[option].detach()
+    max_Q_Omega_target = target_model.Q(next_state_target).squeeze().max(dim=-1)[0].detach()
+    gt = reward + (1 - done) * model.gamma * ((1 - next_termination_prob) * next_Q_Omega_target + next_termination_prob * max_Q_Omega_target).detach()
+    
+    # Get termination loss
+    termination_prob = model.terminations(state)[:, option].sigmoid()
+    Q_Omegas = model.Q(state).squeeze()
+    continue_advantage = Q_Omegas[option] - Q_Omegas.max(dim=-1)[0]
+    termination_loss = (1 - done) * termination_prob * (continue_advantage + model.termination_reg)
+
+    # Get regularization losses
+    diversity_loss = model.attention_diversity_reg * model.get_diversity_loss()
+    sparsity_loss = model.attention_sparsity_reg * model.get_sparsity_loss()
+    smoothness_loss = model.attention_smoothness_reg * model.get_smoothness_loss()
+
+    # Policy loss
+    Q_est_err = gt - Q_Omegas[option]
+    policy_loss = -logp * Q_est_err - model.entropy_reg * entropy
+    
+    # Total loss
+    actor_loss = policy_loss + termination_loss + diversity_loss + sparsity_loss + smoothness_loss
+    return actor_loss
+
+def critic_loss_oc(model, target_model, batch):
     # Extract interactions from the batch
     # Note: They already are tensors on model.device
     obs, options, rewards, next_obs, dones = batch

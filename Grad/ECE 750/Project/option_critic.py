@@ -2,12 +2,11 @@ import torch
 import torch.nn as nn
 from torch.distributions import Categorical, Bernoulli
 import numpy as np
-from copy import deepcopy
 from math import exp
 import time
 
 from replay_buffer import ReplayBuffer
-from utils import actor_loss, critic_loss
+from utils import actor_loss_oc, critic_loss_oc
 from logger import Logger
 
 # Flattens observations
@@ -39,7 +38,6 @@ class OptionCriticFeatures(nn.Module):
         flattened_obs = np.prod(obs_shape)
         self.in_features = flattened_obs
         self.num_actions = env.action_space.n
-        
         self.num_options = num_options
         self.device = device
         
@@ -61,6 +59,7 @@ class OptionCriticFeatures(nn.Module):
         self.verbose = verbose
         
         # Shared network
+        # TODO: Tune network shape as a hyperparameter
         self.features = nn.Sequential(
             nn.Linear(self.in_features, 32),
             nn.ReLU(),
@@ -74,20 +73,21 @@ class OptionCriticFeatures(nn.Module):
         # beta_w head
         self.terminations = nn.Linear(64, num_options)
         
-        # pi_w head weights and biases
+        # Intra-option policy (pi_w) weights and biases
         self.options_W = nn.Parameter(torch.empty(num_options, 64, self.num_actions, device=device))
-        torch.nn.init.xavier_uniform_(self.options_W)   # Make weights non-zero
+        torch.nn.init.xavier_uniform_(self.options_W)   # Weight initialization
         self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
-        
-        self.to(device)
         
         # Initialize target network and copy over the parameters
         # Only create the target network if self is policy network to avoid infinite recursion
+        # TODO: Copy over the init input params too
         if is_policy_network:
             self.target_network = OptionCriticFeatures(env, num_options, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
+        
+        self.to(device)
         
     # Tau = 1.0 --> Hard copy, completely replace target network with policy network
     # Tau = 0.01 --> Soft update, gradually shift target network in the direction of policy network
@@ -155,7 +155,7 @@ class OptionCriticFeatures(nn.Module):
                 
                 # Log and reset episodic variables
                 if self.tensorboard_log is not None:
-                    logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)    # TODO
+                    logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)
                 obs, _ = self.env.reset()
                 episode_idx += 1
                 episode_reward = 0
@@ -168,13 +168,13 @@ class OptionCriticFeatures(nn.Module):
             critic_loss_value = None
             if len(replay_buffer) >= self.batch_size:
                 # Update the actor loss every step
-                actor_loss_value = actor_loss(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
+                actor_loss_value = actor_loss_oc(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
                 loss = actor_loss_value
                 
                 # Update the critic loss every critic_freq steps
                 if step % self.critic_freq == 0:
                     batch = replay_buffer.sample(self.batch_size)
-                    critic_loss_value = critic_loss(self, self.target_network, batch)
+                    critic_loss_value = critic_loss_oc(self, self.target_network, batch)
                     loss += critic_loss_value
                 
                 # Optimization step
@@ -187,7 +187,7 @@ class OptionCriticFeatures(nn.Module):
                 self.update_target_network()
                 
             if self.tensorboard_log is not None:
-                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)   # TODO
+                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)
     
     # Helper: Return the option index with the highest Q_Omega value
     def greedy_option(self, state):
@@ -227,7 +227,7 @@ class OptionCriticFeatures(nn.Module):
             else:
                 option = np.random.randint(0, self.num_options)
         
-        # Choose an action based on the option
+        # Choose an action based on the chosen option
         action, logp, entropy = self.get_action(state, option)
         return option, action, logp, entropy
     
@@ -240,9 +240,9 @@ class OptionCriticFeatures(nn.Module):
         device = torch.device(device)
         self.load_state_dict(torch.load(filepath, map_location=device))
         self.to(device)
-        
+
+"""
 class OptionCriticConv(OptionCriticFeatures):
-    # TODO
     def __init__(self,
                  env,
                  num_options,
@@ -318,3 +318,4 @@ class OptionCriticConv(OptionCriticFeatures):
             self.update_target_network()
         else:
             self.target_network = None
+"""
