@@ -21,19 +21,16 @@ MODEL_TYPE = "dqn"
 def objective(trial):
     # Define the hyperparameters to tune
     learning_rate = trial.suggest_float("learning_rate", 1e-5, 1e-3, log=True)
-    gamma = trial.suggest_float("gamma", 0.9, 0.99)
+    gamma = trial.suggest_float("gamma", 0.85, 0.99)
     net_arch_type = trial.suggest_categorical("net_arch", ["tiny", "small", "medium"])
-
     net_arch = {"tiny": [64], "small": [64, 64], "medium": [256, 256]}[net_arch_type]
-    target_update_interval = trial.suggest_categorical(
-    "target_update_interval", [1, 1000, 5000, 10000]
-)
+    target_update_interval = trial.suggest_categorical("target_update_interval", [1, 1000, 5000, 10000])
     batch_size = trial.suggest_categorical("batch_size", [16, 32, 64, 100, 128, 256])
     buffer_size = trial.suggest_categorical("buffer_size", [int(1e4), int(1e5), int(5e4)])
     exploration_final_eps = trial.suggest_float("exploration_final_eps", 0, 0.15)
     exploration_fraction = trial.suggest_float("exploration_fraction", 0, 0.3)
     learning_starts = trial.suggest_categorical("learning_starts", [0, 1000, 5000])
-    train_freq = trial.suggest_categorical("train_freq", [1, 4, 8, 16, 128])
+    train_freq = trial.suggest_categorical("train_freq", [1, 4, 8, 16, 32, 64, 128])
     
 
     n_cpu = 8
@@ -73,9 +70,8 @@ def objective(trial):
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 40
+    TOTAL_TRIALS = 50
     
-
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
     completed_trials = len(study.trials)
     remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
@@ -109,6 +105,6 @@ if __name__ == "__main__":
     # model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
 
     # # Visualize results
-    # optuna.visualization.plot_contour(study).show()
-    # optuna.visualization.plot_slice(study).show()
-    # optuna.visualization.plot_param_importances(study).show()
+    optuna.visualization.plot_contour(study).show()
+    optuna.visualization.plot_slice(study).show()
+    optuna.visualization.plot_param_importances(study).show()
