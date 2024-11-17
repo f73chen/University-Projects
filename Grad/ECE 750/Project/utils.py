@@ -76,9 +76,9 @@ def actor_loss_aoc(model, target_model, obs, option, reward, next_obs, done, log
     termination_loss = (1 - done) * termination_prob * (continue_advantage + model.termination_reg)
 
     # Get regularization losses
-    diversity_loss = model.attention_diversity_reg * model.get_diversity_loss()
-    sparsity_loss = model.attention_sparsity_reg * model.get_sparsity_loss()
-    smoothness_loss = model.attention_smoothness_reg * model.get_smoothness_loss()
+    diversity_loss = model.get_diversity_loss()
+    sparsity_loss = model.get_sparsity_loss()
+    smoothness_loss = model.get_smoothness_loss()
 
     # Policy loss
     Q_est_err = gt - Q_Omegas[option]

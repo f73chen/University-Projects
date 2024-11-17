@@ -13,21 +13,29 @@ class AOCFeatures(OptionCriticFeatures):
                  env,
                  num_options,
                  device="cpu",
+                 
                  temperature=1.0,
                  epsilon_start=1.0,
                  epsilon_min=0.1,
                  epsilon_decay=int(1e6),
                  gamma=0.95,
+                 tau=1.0,
+                 
                  termination_reg=0.01,
                  entropy_reg=0.01,
-                 attention_diversity_reg=4.0,  # TODO # AOC only
-                 attention_sparsity_reg=2.0,   # TODO # AOC only
-                 attention_smoothness_reg=1.0, # TODO # AOC only
+                 diversity_reg=4.0,  # TODO # AOC only
+                 sparsity_reg=2.0,   # TODO # AOC only
+                 smoothness_reg=1.0, # TODO # AOC only
+                 
+                 hidden_size=32,
+                 state_size=64,
+                 
                  learning_rate=1e-4,
                  batch_size=64,
                  critic_freq=10,
                  target_update_freq=50,
                  buffer_size=10000,
+                 
                  tensorboard_log=None,
                  verbose=1,
                  is_policy_network=True) -> None:
@@ -46,12 +54,13 @@ class AOCFeatures(OptionCriticFeatures):
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
         self.gamma = gamma
+        self.tau = tau
         
         self.termination_reg = termination_reg
         self.entropy_reg = entropy_reg
-        self.attention_diversity_reg = attention_diversity_reg
-        self.attention_sparsity_reg = attention_sparsity_reg
-        self.attention_smoothness_reg = attention_smoothness_reg
+        self.diversity_reg = diversity_reg
+        self.sparsity_reg = sparsity_reg
+        self.smoothness_reg = smoothness_reg
         
         self.learning_rate = learning_rate
         self.batch_size = batch_size
@@ -71,29 +80,32 @@ class AOCFeatures(OptionCriticFeatures):
         ])
 
         # Shared network
-        # TODO: Tune network shape as a hyperparameter
         self.features = nn.Sequential(
-            nn.Linear(self.in_features, 32),
+            nn.Linear(self.in_features, hidden_size),
             nn.ReLU(),
-            nn.Linear(32, 64),
+            nn.Linear(hidden_size, state_size),
             nn.ReLU()
         )
 
         # Q_Omega head
-        self.Q = nn.Linear(64, num_options)
+        self.Q = nn.Linear(state_size, num_options)
 
         # Termination head
-        self.terminations = nn.Linear(64, num_options)
+        self.terminations = nn.Linear(state_size, num_options)
 
         # Intra-option policy (pi_w) weights and biases
-        self.options_W = nn.Parameter(torch.empty(num_options, 64, self.num_actions, device=device))
+        self.options_W = nn.Parameter(torch.empty(num_options, state_size, self.num_actions, device=device))
         torch.nn.init.xavier_uniform_(self.options_W)
         self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
 
         # Target network
-        # TODO: Copy over the init input params too
         if is_policy_network:
-            self.target_network = AOCFeatures(env, num_options, is_policy_network=False)
+            self.target_network = AOCFeatures(env, num_options, device,
+                                              temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
+                                              termination_reg, entropy_reg, diversity_reg, sparsity_reg, smoothness_reg,
+                                              hidden_size, state_size,
+                                              learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
+                                              tensorboard_log, verbose, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
@@ -139,7 +151,7 @@ class AOCFeatures(OptionCriticFeatures):
         for i in range(len(attention_masks)):
             for j in range(i + 1, len(attention_masks)):
                 total_similarity += F.cosine_similarity(attention_masks[i], attention_masks[j]).mean()
-        return total_similarity
+        return self.diversity_reg * total_similarity
 
     # Helper: Attention weights should be as small as possible
     # TODO: Test
@@ -147,9 +159,9 @@ class AOCFeatures(OptionCriticFeatures):
         sparsity_loss = 0
         for att in self.attention:
             sparsity_loss += att.weight.abs().sum()
-        return sparsity_loss
+        return self.sparsity_reg * sparsity_loss
 
     # Helper: Attentions for the same option should be consistent across a trajectory
     # TODO: Implement
     def get_smoothness_loss(self):
-        return 0
+        return self.smoothness_reg * 0

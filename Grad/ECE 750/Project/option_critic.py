@@ -16,18 +16,26 @@ class OptionCriticFeatures(nn.Module):
                  env,
                  num_options,
                  device="cpu",
+                 
                  temperature=1.0,
                  epsilon_start=1.0,
                  epsilon_min=0.1,
                  epsilon_decay=int(1e6),
                  gamma=0.95,
+                 tau=1.0,
+                 
                  termination_reg=0.01,
-                 entropy_reg = 0.01,
+                 entropy_reg=0.01,
+                 
+                 hidden_size=32,
+                 state_size=64,
+                 
                  learning_rate=1e-4,
                  batch_size=64,
                  critic_freq=10,
                  target_update_freq=50,
                  buffer_size=10000,
+                 
                  tensorboard_log=None,
                  verbose=1,
                  is_policy_network=True) -> None:
@@ -46,6 +54,8 @@ class OptionCriticFeatures(nn.Module):
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
         self.gamma = gamma
+        self.tau = tau
+        
         self.termination_reg = termination_reg
         self.entropy_reg = entropy_reg
         
@@ -59,30 +69,33 @@ class OptionCriticFeatures(nn.Module):
         self.verbose = verbose
         
         # Shared network
-        # TODO: Tune network shape as a hyperparameter
         self.features = nn.Sequential(
-            nn.Linear(self.in_features, 32),
+            nn.Linear(self.in_features, hidden_size),
             nn.ReLU(),
-            nn.Linear(32, 64),
+            nn.Linear(hidden_size, state_size),
             nn.ReLU()
         )
         
         # Q_Omega head
-        self.Q = nn.Linear(64, num_options)
+        self.Q = nn.Linear(state_size, num_options)
         
         # beta_w head
-        self.terminations = nn.Linear(64, num_options)
+        self.terminations = nn.Linear(state_size, num_options)
         
         # Intra-option policy (pi_w) weights and biases
-        self.options_W = nn.Parameter(torch.empty(num_options, 64, self.num_actions, device=device))
+        self.options_W = nn.Parameter(torch.empty(num_options, state_size, self.num_actions, device=device))
         torch.nn.init.xavier_uniform_(self.options_W)   # Weight initialization
         self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
         
         # Initialize target network and copy over the parameters
         # Only create the target network if self is policy network to avoid infinite recursion
-        # TODO: Copy over the init input params too
         if is_policy_network:
-            self.target_network = OptionCriticFeatures(env, num_options, is_policy_network=False)
+            self.target_network = OptionCriticFeatures(env, num_options, device,
+                                                       temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
+                                                       termination_reg, entropy_reg,
+                                                       hidden_size, state_size,
+                                                       learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
+                                                       tensorboard_log, verbose, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
@@ -91,10 +104,10 @@ class OptionCriticFeatures(nn.Module):
         
     # Tau = 1.0 --> Hard copy, completely replace target network with policy network
     # Tau = 0.01 --> Soft update, gradually shift target network in the direction of policy network
-    def update_target_network(self, tau=1.0):
+    def update_target_network(self):
         with torch.no_grad():
             for target_param, param in zip(self.target_network.parameters(), self.parameters()):
-                target_param.data.copy_(tau * param.data + (1.0 - tau) * target_param.data)
+                target_param.data.copy_(self.tau * param.data + (1.0 - self.tau) * target_param.data)
                 
     # Calculate whether the current option should terminate
     def get_option_termination(self, obs, option):

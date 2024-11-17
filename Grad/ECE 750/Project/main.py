@@ -4,6 +4,7 @@ from highway_env.envs.intersection_env import IntersectionEnv
 import ale_py
 
 from option_critic import OptionCriticFeatures
+from attention_option_critic import AOCFeatures
 
 # intersection_config = IntersectionEnv.default_config()
 # intersection_config["observation"]["flatten"] = True
@@ -36,16 +37,20 @@ oc = OptionCriticFeatures(env=env,
                           epsilon_min=0.1,
                           epsilon_decay=int(1e5),
                           gamma=0.95,
+                          tau=1.0,
                           termination_reg=0.01,
                           entropy_reg = 0.01,
+                          hidden_size=32,
+                          state_size=64,
                           learning_rate=1e-3,
                           batch_size=64,
                           critic_freq=10,
                           target_update_freq=10,
                           buffer_size=10000,
-                          tensorboard_log="results/lunarlander_oc/")
-oc.learn(total_timesteps=100000)
-oc.save("results/cartpole_oc/model")
+                        #   tensorboard_log="results/lunarlander_oc/"
+                          )
+oc.learn(total_timesteps=1000)
+# oc.save("results/cartpole_oc/model")
 
 # env.unwrapped.config["simulation_frequency"] = 15
 # oc.load("results/lunarlander_oc/model")

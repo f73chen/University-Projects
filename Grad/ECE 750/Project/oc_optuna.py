@@ -17,8 +17,11 @@ def objective(trial):
     epsilon_min = trial.suggest_float("epsilon_min", 0.05, 0.2)
     epsilon_decay = trial.suggest_int("epsilon_decay", int(1e4), int(1e6), log=True)
     gamma = trial.suggest_float("gamma", 0.8, 0.99)
+    tau = trial.suggest_float("tau", 0.8, 1.0)
     termination_reg = trial.suggest_float("termination_reg", 0.001, 0.1, log=True)
     entropy_reg = trial.suggest_float("entropy_reg", 0.001, 0.1, log=True)
+    hidden_size = trial.suggest_int("hidden_size", 16, 128, step=16)
+    state_size = trial.suggest_int("state_size", 16, 128, step=16)
     learning_rate = trial.suggest_float("learning_rate", 1e-4, 1e-2, log=True)
     batch_size = trial.suggest_int("batch_size", 32, 128, step=32)
     critic_freq = trial.suggest_int("critic_freq", 10, 50, step=10)
@@ -36,8 +39,11 @@ def objective(trial):
         epsilon_min=epsilon_min,
         epsilon_decay=epsilon_decay,
         gamma=gamma,
+        tau=tau,
         termination_reg=termination_reg,
         entropy_reg=entropy_reg,
+        hidden_size=hidden_size,
+        state_size=state_size,
         learning_rate=learning_rate,
         batch_size=batch_size,
         critic_freq=critic_freq,
@@ -93,8 +99,11 @@ if __name__ == "__main__":
         epsilon_min=study.best_params["epsilon_min"],
         epsilon_decay=study.best_params["epsilon_decay"],
         gamma=study.best_params["gamma"],
+        tau=study.best_params["tau"],
         termination_reg=study.best_params["termination_reg"],
         entropy_reg=study.best_params["entropy_reg"],
+        hidden_size=study.best_params["hidden_size"],
+        state_size=study.best_params["state_size"],
         learning_rate=study.best_params["learning_rate"],
         batch_size=study.best_params["batch_size"],
         critic_freq=study.best_params["critic_freq"],
