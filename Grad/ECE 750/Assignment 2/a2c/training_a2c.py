@@ -87,17 +87,3 @@ if __name__ == "__main__":
         model.learn(total_timesteps=int(2e5))
         model.save(f"results/{environment_fileName[current_env]}_a2c/model")
         del model
-
-    # Run the algorithm
-    # model = A2C.load(f"results/{environment_fileName[current_env]}_a2c/model", env=env)
-
-    # env = gym.make(environment_name[current_env], render_mode="rgb_array")
-
-    # for episode in range(10):
-    #     done = truncated = False
-    #     obs, info = env.reset(), {}
-    #     while not (done or truncated):
-    #         action, _states = model.predict(obs, deterministic=True)
-    #         obs, reward, done, truncated, info = env.step(action)
-    #         env.render()
-    # env.close()
