@@ -2,7 +2,7 @@ import os
 import numpy as np
 from torch.utils.tensorboard import SummaryWriter
 
-class Logger:
+class OCLogger:
     def __init__(self, logdir, run_name):
         self.log_name = logdir + '/' + run_name
         
@@ -28,8 +28,15 @@ class Logger:
             self.writer.add_scalar(tag=f"option_{option}_avg_length", scalar_value=np.mean(lengths) if lengths else 0, global_step=ep_idx)
             self.writer.add_scalar(tag=f"option_{option}_active_time", scalar_value=sum(lengths)/ep_length, global_step=ep_idx)
         
+class AOCLogger(OCLogger):
+    def log_step(self):
+        pass
+    
+    def log_episode(self):
+        pass
+        
 if __name__ == "__main__":
-    logger = Logger(logdir="results/highway_oc", run_name="Test")
+    logger = OCLogger(logdir="results/highway_oc", run_name="Test")
     
     # logger.log_step(1, 2, 3, 4, 0.5)
     # logger.log_step(2, 3, 5, 8, 0.9)

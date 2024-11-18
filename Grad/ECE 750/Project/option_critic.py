@@ -7,7 +7,7 @@ import time
 
 from replay_buffer import ReplayBuffer
 from utils import actor_loss_oc, critic_loss_oc
-from logger import Logger
+from logger import OCLogger
 
 # Flattens observations
 # Outputs a discrete action index
@@ -131,7 +131,7 @@ class OptionCriticFeatures(nn.Module):
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
         
         if self.tensorboard_log is not None:
-            logger = Logger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
+            logger = OCLogger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         
         for step in range(total_timesteps):
             # Choose an option and action using epsilon-greedy

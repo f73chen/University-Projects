@@ -2,11 +2,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
+from math import exp
+import time
 
 from option_critic import OptionCriticFeatures
 from replay_buffer import ReplayBuffer
 from utils import actor_loss_aoc, critic_loss_oc
-from logger import Logger
+from logger import OCLogger # TODO
 
 class AOCFeatures(OptionCriticFeatures):
     def __init__(self,
@@ -23,9 +25,9 @@ class AOCFeatures(OptionCriticFeatures):
                  
                  termination_reg=0.01,
                  entropy_reg=0.01,
-                 diversity_reg=4.0,  # TODO # AOC only
-                 sparsity_reg=2.0,   # TODO # AOC only
-                 smoothness_reg=1.0, # TODO # AOC only
+                 diversity_reg=1.0,  # AOC only
+                 sparsity_reg=1.0,   # AOC only
+                 smoothness_reg=1.0, # AOC only
                  
                  hidden_size=32,
                  state_size=64,
@@ -37,67 +39,28 @@ class AOCFeatures(OptionCriticFeatures):
                  buffer_size=10000,
                  
                  tensorboard_log=None,
-                 verbose=1,
+                 verbose=0,
                  is_policy_network=True) -> None:
-        super(AOCFeatures, self).__init__()
+        super(AOCFeatures, self).__init__(env, num_options, device,
+                                          temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
+                                          termination_reg, entropy_reg,
+                                          hidden_size, state_size,
+                                          learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
+                                          tensorboard_log, verbose, is_policy_network=False)
         
-        self.env = env
-        obs_shape = env.observation_space.shape
-        flattened_obs = np.prod(obs_shape)
-        self.in_features = flattened_obs
-        self.num_actions = env.action_space.n
-        self.num_options = num_options
-        self.device = device
-
-        self.temperature = temperature
-        self.epsilon_start = epsilon_start
-        self.epsilon_min = epsilon_min
-        self.epsilon_decay = epsilon_decay
-        self.gamma = gamma
-        self.tau = tau
-        
-        self.termination_reg = termination_reg
-        self.entropy_reg = entropy_reg
+        # AOC regularization weights
         self.diversity_reg = diversity_reg
         self.sparsity_reg = sparsity_reg
         self.smoothness_reg = smoothness_reg
         
-        self.learning_rate = learning_rate
-        self.batch_size = batch_size
-        self.critic_freq = critic_freq
-        self.target_update_freq = target_update_freq
-        self.buffer_size = buffer_size
-        
-        self.tensorboard_log = tensorboard_log
-        self.verbose = verbose
-
-        # Learnable attention mask (AOC only)
+        # Learnable attention mask
         self.attention = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(self.in_features, self.in_features),
                 nn.Sigmoid()
             ) for _ in range(num_options)
         ])
-
-        # Shared network
-        self.features = nn.Sequential(
-            nn.Linear(self.in_features, hidden_size),
-            nn.ReLU(),
-            nn.Linear(hidden_size, state_size),
-            nn.ReLU()
-        )
-
-        # Q_Omega head
-        self.Q = nn.Linear(state_size, num_options)
-
-        # Termination head
-        self.terminations = nn.Linear(state_size, num_options)
-
-        # Intra-option policy (pi_w) weights and biases
-        self.options_W = nn.Parameter(torch.empty(num_options, state_size, self.num_actions, device=device))
-        torch.nn.init.xavier_uniform_(self.options_W)
-        self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
-
+        
         # Target network
         if is_policy_network:
             self.target_network = AOCFeatures(env, num_options, device,
@@ -118,20 +81,111 @@ class AOCFeatures(OptionCriticFeatures):
         attention_mask = self.attention[option](obs_tensor)
         return attention_mask * obs_tensor
 
-    # TODO: Overwrite self.learn() if need to log attention metrics to tensorboard
+    # Use the AOC actor loss and log attention metrics
+    def learn(self, total_timesteps) -> None:
+        obs, _ = self.env.reset()
+        episode_idx = 0
+        episode_reward = 0
+        episode_length = 0
+        option_lengths = {opt: [] for opt in range(self.num_options)}
+        option = None
+        curr_option_length = 0
+        option_termination = True
+        replay_buffer = ReplayBuffer(capacity=self.buffer_size)
+        optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
+        
+        if self.tensorboard_log is not None:
+            logger = OCLogger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
+        
+        for step in range(total_timesteps):
+            # Choose an option and action using epsilon-greedy
+            epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
+            option, action, logp, entropy = self.predict(obs, option, option_termination, epsilon)
+            
+            # Take a step in the environment
+            next_obs, reward, done, truncated, _ = self.env.step(action)
+            replay_buffer.add(obs, option, reward, next_obs, done)
+            
+            # Sample whether the current option terminates in the next step
+            option_termination = self.get_option_termination(next_obs, option)
+            
+            # Iterate episodic variables
+            obs = next_obs
+            episode_reward += reward
+            episode_length += 1
+            curr_option_length += 1
+            
+            # Record option lengths
+            if option_termination:
+                option_lengths[option].append(curr_option_length)
+                curr_option_length = 0
+            
+            # Reset environment if done or truncated
+            if done or truncated:
+                if self.verbose == 1:
+                    print(f"Episode {episode_idx} finished with reward: {episode_reward}, epsilon:{epsilon}")
+                
+                # Terminate the option if the episode ends
+                if not option_termination:
+                    option_lengths[option].append(curr_option_length)
+                    curr_option_length = 0
+                
+                # Log and reset episodic variables
+                if self.tensorboard_log is not None:
+                    logger.log_episode(episode_idx, episode_reward, episode_length, option_lengths)
+                obs, _ = self.env.reset()
+                episode_idx += 1
+                episode_reward = 0
+                episode_length = 0
+                option_lengths = {opt: [] for opt in range(self.num_options)}
+                option_termination = True
+                
+            # Sample from buffer and backprop the loss
+            actor_loss_value = None
+            critic_loss_value = None
+            if len(replay_buffer) >= self.batch_size:
+                # Update the actor loss every step
+                actor_loss_value = actor_loss_aoc(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
+                loss = actor_loss_value
+                
+                # Update the critic loss every critic_freq steps
+                if step % self.critic_freq == 0:
+                    batch = replay_buffer.sample(self.batch_size)
+                    critic_loss_value = critic_loss_oc(self, self.target_network, batch)
+                    loss += critic_loss_value
+                
+                # Optimization step
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                
+            # Update the target network every few steps
+            if step % self.target_update_freq == 0:
+                self.update_target_network()
+                
+            if self.tensorboard_log is not None:
+                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)
     
     # Helper: Return the option index with the highest Q-value given attention
     def greedy_option(self, obs):
-        attended_obs = [self.apply_attention(obs, option) for option in range(self.num_options)]
-        states = [self.features(att_obs) for att_obs in attended_obs]
-        Q_Omegas = torch.stack([self.Q(state) for state in states]).squeeze()
-        return Q_Omegas.argmax(dim=-1).item()
+        # Get the attended states for each option
+        Qs = []
+        for option in range(self.num_options):
+            attended_obs = self.apply_attention(obs, option)
+            state = self.features(attended_obs)
+            
+            # If applying the ith option's attention mask, get the ith option's Q value
+            Q_Omega = self.Q(state)[:, option]
+            Qs.append(Q_Omega.item())
+        
+        # Return the option with the highest Q_Omega value
+        return np.array(Qs).argmax()
 
     def predict(self, obs, option, option_termination, epsilon=1.0, deterministic=False):
         # Choose a new option if the previous one terminates
         if option_termination:
             if deterministic or np.random.random() > epsilon:
-                option = self.greedy_option(state)
+                option = self.greedy_option(obs)
             else:
                 option = np.random.randint(0, self.num_options)
 
