@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 ENV = "highway-fast-v0"
 # ENV = "intersection-v0"
 # ENV = "racetrack-v0"
-ENV_TYPE = "highway-fast"
+ENV_TYPE = "highway"
 MODEL_TYPE = "dqn"
 
 def objective(trial):
