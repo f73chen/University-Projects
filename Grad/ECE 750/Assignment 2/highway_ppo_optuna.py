@@ -12,10 +12,10 @@ from stable_baselines3.common.evaluation import evaluate_policy
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
-# ENV = "highway-fast-v0"
-ENV = "intersection-v0"
+ENV = "highway-fast-v0"
+# ENV = "intersection-v0"
 # ENV = "racetrack-v0"
-ENV_TYPE = "intersection"
+ENV_TYPE = "highway"
 MODEL_TYPE = "ppo"
 
 def objective(trial):
@@ -59,7 +59,7 @@ def objective(trial):
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 40
+    TOTAL_TRIALS = 50
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
     # completed_trials = len(study.trials)
     # remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
@@ -86,9 +86,10 @@ if __name__ == "__main__":
         learning_rate=study.best_params["learning_rate"],
         gamma=study.best_params["gamma"],
         verbose=0,
+        tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/"
     )
-    model.learn(total_timesteps=int(1e5))
-    model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
+    # model.learn(total_timesteps=int(5e5))
+    # model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
 
     # Visualize results
     # optuna.visualization.plot_contour(study).show()
