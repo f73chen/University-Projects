@@ -5,6 +5,7 @@ from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.monitor import Monitor
 import optuna
 import highway_env
+import os
 
 from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.evaluation import evaluate_policy
@@ -66,32 +67,54 @@ if __name__ == "__main__":
     # print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
     # study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
 
-    # Display best hyperparameters
-    print("Best hyperparameters:", study.best_params)
+    # # Display best hyperparameters
+    # print("Best hyperparameters:", study.best_params)
 
-    # Save the best model
-    env = make_vec_env(ENV, n_envs=8, vec_env_cls=SubprocVecEnv)
-    model = PPO(
-        "MlpPolicy",
-        env,
-        policy_kwargs=dict(
-            net_arch=dict(
-                    pi=[study.best_params["pi_hidden_units"], study.best_params["pi_hidden_units"]],
-                    vf=[study.best_params["vf_hidden_units"], study.best_params["vf_hidden_units"]],
-            )
-        ),
-        n_steps=study.best_params["n_steps"] // 8,
-        batch_size=64,
-        n_epochs=10,
-        learning_rate=study.best_params["learning_rate"],
-        gamma=study.best_params["gamma"],
-        verbose=0,
-        tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/"
-    )
-    # model.learn(total_timesteps=int(5e5))
-    # model.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/optimized_model")
+    # # Define the evaluation environment
+    # eval_env = make_vec_env(ENV, n_envs=1, vec_env_cls=SubprocVecEnv)
+
+    # # Define the save path for the best model
+    # save_path = f"results/{ENV_TYPE}_{MODEL_TYPE}"
+    # os.makedirs(save_path, exist_ok=True)
+
+    # # Create the evaluation callback
+    # eval_callback = EvalCallback(
+    #     eval_env,
+    #     best_model_save_path=save_path,
+    #     log_path=save_path,
+    #     eval_freq=10000,  # Evaluate every 10,000 steps
+    #     deterministic=True,
+    #     render=False,
+    #     verbose=1
+    # )
+
+    # # Create and train the model
+    # env = make_vec_env(ENV, n_envs=8, vec_env_cls=SubprocVecEnv)
+    # model = PPO(
+    #     "MlpPolicy",
+    #     env,
+    #     policy_kwargs=dict(
+    #         net_arch=dict(
+    #             pi=[study.best_params["pi_hidden_units"], study.best_params["pi_hidden_units"]],
+    #             vf=[study.best_params["vf_hidden_units"], study.best_params["vf_hidden_units"]],
+    #         )
+    #     ),
+    #     n_steps=study.best_params["n_steps"] // 8,
+    #     batch_size=64,
+    #     n_epochs=10,
+    #     learning_rate=study.best_params["learning_rate"],
+    #     gamma=study.best_params["gamma"],
+    #     verbose=1,
+    #     tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/"
+    # )
+
+    # # Train the model and save the best one
+    # model.learn(total_timesteps=int(2e5), callback=eval_callback)
+
+    # Load and display the best model (optional)
+    # best_model = PPO.load(f"{save_path}/best_model")
 
     # Visualize results
-    # optuna.visualization.plot_contour(study).show()
-    # optuna.visualization.plot_slice(study).show()
-    # optuna.visualization.plot_param_importances(study).show()
+    optuna.visualization.plot_contour(study).show()
+    optuna.visualization.plot_slice(study).show()
+    optuna.visualization.plot_param_importances(study).show()
