@@ -8,7 +8,7 @@ import time
 from option_critic import OptionCriticFeatures
 from replay_buffer import ReplayBuffer
 from utils import actor_loss_aoc, critic_loss_oc
-from logger import OCLogger # TODO
+from logger import AOCLogger
 
 class AOCFeatures(OptionCriticFeatures):
     def __init__(self,
@@ -79,7 +79,7 @@ class AOCFeatures(OptionCriticFeatures):
     def apply_attention(self, obs, option):
         obs_tensor = torch.tensor(obs, dtype=torch.float32).to(self.device).reshape(1, -1)
         attention_mask = self.attention[option](obs_tensor)
-        return attention_mask * obs_tensor
+        return attention_mask * obs_tensor, attention_mask
 
     # Use the AOC actor loss and log attention metrics
     def learn(self, total_timesteps) -> None:
@@ -95,7 +95,7 @@ class AOCFeatures(OptionCriticFeatures):
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
         
         if self.tensorboard_log is not None:
-            logger = OCLogger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
+            logger = AOCLogger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         
         for step in range(total_timesteps):
             # Choose an option and action using epsilon-greedy
@@ -142,10 +142,14 @@ class AOCFeatures(OptionCriticFeatures):
                 
             # Sample from buffer and backprop the loss
             actor_loss_value = None
+            diversity_loss = None
+            sparsity_loss = None
+            smoothness_loss = None
             critic_loss_value = None
             if len(replay_buffer) >= self.batch_size:
                 # Update the actor loss every step
-                actor_loss_value = actor_loss_aoc(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
+                # Note: Diversity, sparsity, and smoothness are just for logging. They're already included in the actor loss
+                actor_loss_value, diversity_loss, sparsity_loss, smoothness_loss = actor_loss_aoc(self, self.target_network, obs, option, reward, next_obs, done, logp, entropy)
                 loss = actor_loss_value
                 
                 # Update the critic loss every critic_freq steps
@@ -164,14 +168,14 @@ class AOCFeatures(OptionCriticFeatures):
                 self.update_target_network()
                 
             if self.tensorboard_log is not None:
-                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon)
+                logger.log_step(step, actor_loss_value, critic_loss_value, entropy.item(), epsilon, diversity_loss, sparsity_loss, smoothness_loss)
     
     # Helper: Return the option index with the highest Q-value given attention
     def greedy_option(self, obs):
         # Get the attended states for each option
         Qs = []
         for option in range(self.num_options):
-            attended_obs = self.apply_attention(obs, option)
+            attended_obs, _ = self.apply_attention(obs, option)
             state = self.features(attended_obs)
             
             # If applying the ith option's attention mask, get the ith option's Q value
@@ -190,16 +194,15 @@ class AOCFeatures(OptionCriticFeatures):
                 option = np.random.randint(0, self.num_options)
 
         # Choose an action based on the chosen option
-        attended_obs = self.apply_attention(obs, option)
+        attended_obs, _ = self.apply_attention(obs, option)
         state = self.features(attended_obs)
         action, logp, entropy = self.get_action(state, option)
 
         return option, action, logp, entropy
 
     # Helper: Attentions between different options should be distinct
-    # TODO: Test
     def get_diversity_loss(self):
-        attention_masks = [att.weight for att in self.attention]
+        attention_masks = [att[0].weight for att in self.attention]
         total_similarity = 0
         # Get the total cosine similarity between every pair of option attentions
         for i in range(len(attention_masks)):
@@ -208,14 +211,14 @@ class AOCFeatures(OptionCriticFeatures):
         return self.diversity_reg * total_similarity
 
     # Helper: Attention weights should be as small as possible
-    # TODO: Test
     def get_sparsity_loss(self):
         sparsity_loss = 0
         for att in self.attention:
-            sparsity_loss += att.weight.abs().sum()
+            sparsity_loss += att[0].weight.abs().sum()
         return self.sparsity_reg * sparsity_loss
 
     # Helper: Attentions for the same option should be consistent across a trajectory
-    # TODO: Implement
-    def get_smoothness_loss(self):
-        return self.smoothness_reg * 0
+    def get_smoothness_loss(self, attention_mask, next_attention_mask):
+        similarity = F.cosine_similarity(attention_mask, next_attention_mask).mean()
+        return self.smoothness_reg * (1 - similarity)
+        

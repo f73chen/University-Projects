@@ -57,8 +57,8 @@ def actor_loss_aoc(model, target_model, obs, option, reward, next_obs, done, log
     assert option is not None
     
     # Get state and next_state
-    attended_obs = model.apply_attention(obs, option)
-    attended_next_obs = model.apply_attention(next_obs, option)
+    attended_obs, attention_mask = model.apply_attention(obs, option)
+    attended_next_obs, next_attention_mask = model.apply_attention(next_obs, option)
     state = model.features(attended_obs)
     next_state = model.features(attended_next_obs)
     
@@ -78,7 +78,7 @@ def actor_loss_aoc(model, target_model, obs, option, reward, next_obs, done, log
     # Get regularization losses
     diversity_loss = model.get_diversity_loss()
     sparsity_loss = model.get_sparsity_loss()
-    smoothness_loss = model.get_smoothness_loss()
+    smoothness_loss = model.get_smoothness_loss(attention_mask, next_attention_mask)
 
     # Policy loss
     Q_est_err = gt - Q_Omegas[option]
@@ -86,7 +86,7 @@ def actor_loss_aoc(model, target_model, obs, option, reward, next_obs, done, log
     
     # Total loss
     actor_loss = policy_loss + termination_loss + diversity_loss + sparsity_loss + smoothness_loss
-    return actor_loss
+    return actor_loss, diversity_loss, sparsity_loss, smoothness_loss
 
 def critic_loss_oc(model, target_model, batch):
     # Extract interactions from the batch

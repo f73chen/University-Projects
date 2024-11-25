@@ -30,8 +30,11 @@ obs, info = env.reset()
 
 aoc = AOCFeatures(env=env, 
                   num_options=2, 
+                  epsilon_decay=int(1e5),
+                  learning_rate=1e-5,
+                  batch_size=128,
                   tensorboard_log="results/cartpole_aoc")
-aoc.learn(total_timesteps=10000)
+aoc.learn(total_timesteps=1000000)
 
 # aoc.load("results/lunarlander_oc/model")
 

@@ -29,11 +29,27 @@ class OCLogger:
             self.writer.add_scalar(tag=f"option_{option}_active_time", scalar_value=sum(lengths)/ep_length, global_step=ep_idx)
         
 class AOCLogger(OCLogger):
-    def log_step(self):
-        pass
+    def log_step(self, step, actor_loss, critic_loss, entropy, epsilon, diversity_loss, sparsity_loss, smoothness_loss):
+        if actor_loss:
+            self.writer.add_scalar(tag="actor_loss", scalar_value=actor_loss.item(), global_step=step)
+            self.writer.add_scalar(tag="diversity_loss", scalar_value=diversity_loss.item(), global_step=step)
+            self.writer.add_scalar(tag="sparsity_loss", scalar_value=sparsity_loss.item(), global_step=step)
+            self.writer.add_scalar(tag="smoothness_loss", scalar_value=smoothness_loss.item(), global_step=step)
+        
+        if critic_loss:
+            self.writer.add_scalar(tag="critic_loss", scalar_value=critic_loss.item(), global_step=step)
+        
+        self.writer.add_scalar(tag="entropy", scalar_value=entropy, global_step=step)
+        self.writer.add_scalar(tag="epsilon", scalar_value=epsilon, global_step=step)
     
-    def log_episode(self):
-        pass
+    def log_episode(self, ep_idx, ep_reward, ep_length, option_lengths):
+        self.writer.add_scalar(tag="episodic_rewards", scalar_value=ep_reward, global_step=ep_idx)
+        self.writer.add_scalar(tag="episode_lengths", scalar_value=ep_length, global_step=ep_idx)
+        
+        # TODO: Create better option metrics
+        for option, lengths in option_lengths.items():
+            self.writer.add_scalar(tag=f"option_{option}_avg_length", scalar_value=np.mean(lengths) if lengths else 0, global_step=ep_idx)
+            self.writer.add_scalar(tag=f"option_{option}_active_time", scalar_value=sum(lengths)/ep_length, global_step=ep_idx)
         
 if __name__ == "__main__":
     logger = OCLogger(logdir="results/highway_oc", run_name="Test")
