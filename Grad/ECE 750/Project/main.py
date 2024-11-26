@@ -28,64 +28,66 @@ RENDER_MODE = "human"
 env = gym.make(ENV_NAME)
 obs, info = env.reset()
 
-aoc = AOCFeatures(env=env, 
-                  num_options=2, 
-                  epsilon_decay=int(1e5),
-                  learning_rate=1e-5,
-                  batch_size=128,
-                  tensorboard_log="results/cartpole_aoc")
-aoc.learn(total_timesteps=1000000)
+# aoc = AOCFeatures(env=env, 
+#                   num_options=2, 
+#                   epsilon_decay=int(1e5),
+#                   learning_rate=1e-5,
+#                   batch_size=128,
+#                   tensorboard_log="results/cartpole_aoc")
+# aoc.learn(total_timesteps=200000)
 
-# aoc.load("results/lunarlander_oc/model")
+# # aoc.load("results/lunarlander_oc/model")
 
-env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
-obs, info = env.reset()
-for episode in range(10):
-    done = truncated = False
-    obs, info = env.reset()
-    option = None
-    option_termination = True
-    while not (done or truncated):
-        option, action, logp, entropy = aoc.predict(obs, option, option_termination, deterministic=True)
-        option_termination = aoc.get_option_termination(obs, option)
-        obs, reward, done, truncated, info = env.step(action)
-        env.render()
-env.close()
-
-
-# oc = OptionCriticFeatures(env=env, 
-#                           num_options=2, 
-#                           device="cpu",
-#                           temperature=1.0,
-#                           epsilon_start=1.0,
-#                           epsilon_min=0.1,
-#                           epsilon_decay=int(1e5),
-#                           gamma=0.95,
-#                           tau=1.0,
-#                           termination_reg=0.01,
-#                           entropy_reg = 0.01,
-#                           hidden_size=32,
-#                           state_size=64,
-#                           learning_rate=1e-3,
-#                           batch_size=64,
-#                           critic_freq=10,
-#                           target_update_freq=10,
-#                           buffer_size=10000,
-#                           tensorboard_log="results/lunarlander_oc/"
-#                           )
-# oc.learn(total_timesteps=1000)
-# oc.save("results/cartpole_oc/model")
-
-# env.unwrapped.config["simulation_frequency"] = 15
-# oc.load("results/lunarlander_oc/model")
+# env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
+# obs, info = env.reset()
 # for episode in range(10):
 #     done = truncated = False
 #     obs, info = env.reset()
 #     option = None
 #     option_termination = True
 #     while not (done or truncated):
-#         option, action, logp, entropy = oc.predict(obs, option, option_termination, deterministic=True)
-#         option_termination = oc.get_option_termination(obs, option)
+#         option, action, logp, entropy = aoc.predict(obs, option, option_termination, deterministic=True)
+#         option_termination = aoc.get_option_termination(obs, option)
 #         obs, reward, done, truncated, info = env.step(action)
 #         env.render()
 # env.close()
+
+
+oc = OptionCriticFeatures(env=env, 
+                          num_options=2, 
+                          device="cpu",
+                          temperature=1.0,
+                          epsilon_start=1.0,
+                          epsilon_min=0.1,
+                          epsilon_decay=int(1e5),
+                          epsilon_test=0.05,
+                          gamma=0.95,
+                          tau=1.0,
+                          termination_reg=0.01,
+                          entropy_reg = 0.01,
+                          hidden_size=32,
+                          state_size=64,
+                          learning_rate=0.005,
+                          batch_size=64,
+                          critic_freq=10,
+                          target_update_freq=10,
+                          buffer_size=10000,
+                        #   tensorboard_log="results/lunarlander_oc/",
+                          testing=False
+                          )
+# oc.learn(total_timesteps=100)
+# oc.save("results/cartpole_oc/model")
+
+oc.load("results/cartpole_oc/best_model")
+oc.testing = True
+for episode in range(10):
+    done = truncated = False
+    obs, info = env.reset()
+    option = None
+    option_termination = True
+    while not (done or truncated):
+        option, action, logp, entropy = oc.predict(obs, option, option_termination, deterministic=True)
+        option_termination = oc.get_option_termination(obs, option)
+        obs, reward, done, truncated, info = env.step(action)
+        env.render()
+env.close()

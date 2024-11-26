@@ -20,6 +20,7 @@ class AOCFeatures(OptionCriticFeatures):
                  epsilon_start=1.0,
                  epsilon_min=0.1,
                  epsilon_decay=int(1e6),
+                 epsilon_test=0.05,
                  gamma=0.95,
                  tau=1.0,
                  
@@ -40,13 +41,14 @@ class AOCFeatures(OptionCriticFeatures):
                  
                  tensorboard_log=None,
                  verbose=0,
+                 testing=False,
                  is_policy_network=True) -> None:
         super(AOCFeatures, self).__init__(env, num_options, device,
-                                          temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
+                                          temperature, epsilon_start, epsilon_min, epsilon_decay, epsilon_test, gamma, tau,
                                           termination_reg, entropy_reg,
                                           hidden_size, state_size,
                                           learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
-                                          tensorboard_log, verbose, is_policy_network=False)
+                                          tensorboard_log, verbose, testing, is_policy_network=False)
         
         # AOC regularization weights
         self.diversity_reg = diversity_reg
@@ -64,11 +66,11 @@ class AOCFeatures(OptionCriticFeatures):
         # Target network
         if is_policy_network:
             self.target_network = AOCFeatures(env, num_options, device,
-                                              temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
+                                              temperature, epsilon_start, epsilon_min, epsilon_decay, epsilon_test, gamma, tau,
                                               termination_reg, entropy_reg, diversity_reg, sparsity_reg, smoothness_reg,
                                               hidden_size, state_size,
                                               learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
-                                              tensorboard_log, verbose, is_policy_network=False)
+                                              tensorboard_log, verbose, testing, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
@@ -99,7 +101,10 @@ class AOCFeatures(OptionCriticFeatures):
         
         for step in range(total_timesteps):
             # Choose an option and action using epsilon-greedy
-            epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
+            if self.testing:
+                epsilon = self.epsilon_test
+            else:
+                epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
             option, action, logp, entropy = self.predict(obs, option, option_termination, epsilon)
             
             # Take a step in the environment
