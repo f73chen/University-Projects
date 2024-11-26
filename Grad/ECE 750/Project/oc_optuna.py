@@ -6,8 +6,8 @@ from option_critic import OptionCriticFeatures
 ENV_NAME = "CartPole-v1"
 RENDER_MODE = "human"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
-MODEL_TYPE = "oc"
 ENV_TYPE = "cartpole"
+MODEL_TYPE = "oc"
 
 def objective(trial):
     # Define hyperparameters to optimize
@@ -96,6 +96,10 @@ if __name__ == "__main__":
     # Display best hyperparameters
     print("Best hyperparameters:", study.best_params)
 
+    # # Visualize results
+    # optuna.visualization.plot_slice(study).show()
+    # optuna.visualization.plot_param_importances(study).show()
+
     # Save the best model
     env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
     oc = OptionCriticFeatures(
@@ -118,13 +122,13 @@ if __name__ == "__main__":
         critic_freq=study.best_params["critic_freq"],
         target_update_freq=study.best_params["target_update_freq"],
         buffer_size=study.best_params["buffer_size"],
-        tensorboard_log="results/cartpole_oc/",
+        tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/",
         testing=False
     )
     # oc.learn(total_timesteps=TOTAL_TIMESTEPS)
     # oc.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     
-    oc.load("results/cartpole_oc/best_model")
+    oc.load(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     oc.testing = True
     for episode in range(10):
         done = truncated = False
@@ -137,7 +141,3 @@ if __name__ == "__main__":
             obs, reward, done, truncated, info = env.step(action)
             env.render()
     env.close()
-
-    # # Visualize results
-    # optuna.visualization.plot_slice(study).show()
-    # optuna.visualization.plot_param_importances(study).show()
