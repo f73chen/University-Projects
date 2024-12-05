@@ -1,12 +1,13 @@
 import gymnasium as gym
+import highway_env
 import optuna
 from option_critic import OptionCriticFeatures
 
 # Define environment and training parameters
-ENV_NAME = "CartPole-v1"
-RENDER_MODE = "human"  # "rgb_array", "human"
+ENV_NAME = "highway-fast-v0"    # "CartPole-v1"
+RENDER_MODE = "rgb_array"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
-ENV_TYPE = "cartpole"
+ENV_TYPE = "highway"
 MODEL_TYPE = "oc"
 
 def objective(trial):
@@ -40,7 +41,6 @@ def objective(trial):
         epsilon_start=epsilon_start,
         epsilon_min=epsilon_min,
         epsilon_decay=epsilon_decay,
-        epsilon_test=0.05,
         gamma=gamma,
         tau=tau,
         termination_reg=termination_reg,
@@ -87,19 +87,19 @@ def objective(trial):
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 200
+    TOTAL_TRIALS = 10   # 50
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
-    # completed_trials = len(study.trials)
-    # remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
-    # print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
-    # study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
+    completed_trials = len(study.trials)
+    remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
+    print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
+    study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
 
     # Display best hyperparameters
     print("Best hyperparameters:", study.best_params)
 
-    # # Visualize results
-    # optuna.visualization.plot_slice(study).show()
-    # optuna.visualization.plot_param_importances(study).show()
+    # Visualize results
+    optuna.visualization.plot_slice(study).show()
+    optuna.visualization.plot_param_importances(study).show()
 
     # # Save the best model
     # env = gym.make(ENV_NAME)
@@ -111,7 +111,6 @@ if __name__ == "__main__":
     #     epsilon_start=study.best_params["epsilon_start"],
     #     epsilon_min=study.best_params["epsilon_min"],
     #     epsilon_decay=study.best_params["epsilon_decay"],
-    #     epsilon_test=0.05,
     #     gamma=study.best_params["gamma"],
     #     tau=study.best_params["tau"],
     #     termination_reg=study.best_params["termination_reg"],

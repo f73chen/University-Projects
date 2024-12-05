@@ -3,6 +3,7 @@ import torch.nn as nn
 from torch.distributions import Categorical, Bernoulli
 import numpy as np
 from math import exp
+from tqdm import tqdm
 import time
 
 from replay_buffer import ReplayBuffer
@@ -21,7 +22,6 @@ class OptionCriticFeatures(nn.Module):
                  epsilon_start=1.0,
                  epsilon_min=0.1,
                  epsilon_decay=int(1e6),
-                 epsilon_test=0.05,
                  gamma=0.95,
                  tau=1.0,
                  
@@ -55,7 +55,6 @@ class OptionCriticFeatures(nn.Module):
         self.epsilon_start = epsilon_start
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
-        self.epsilon_test = epsilon_test
         self.gamma = gamma
         self.tau = tau
         
@@ -95,7 +94,7 @@ class OptionCriticFeatures(nn.Module):
         # Only create the target network if self is policy network to avoid infinite recursion
         if is_policy_network:
             self.target_network = OptionCriticFeatures(env, num_options, device,
-                                                       temperature, epsilon_start, epsilon_min, epsilon_decay, epsilon_test, gamma, tau,
+                                                       temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
                                                        termination_reg, entropy_reg,
                                                        hidden_size, state_size,
                                                        learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
@@ -137,12 +136,9 @@ class OptionCriticFeatures(nn.Module):
         if self.tensorboard_log is not None:
             logger = OCLogger(logdir=self.tensorboard_log, run_name=f"OC-{time.time()}")
         
-        for step in range(total_timesteps):
+        for step in tqdm(range(total_timesteps)):
             # Choose an option and action using epsilon-greedy
-            if self.testing:
-                epsilon = self.epsilon_test
-            else:
-                epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
+            epsilon = self.epsilon_min + (self.epsilon_start - self.epsilon_min) * exp(-step / self.epsilon_decay)
             option, action, logp, entropy = self.predict(obs, option, option_termination, epsilon)
             
             # Take a step in the environment
@@ -271,7 +267,6 @@ class OptionCriticConv(OptionCriticFeatures):
                  epsilon_start=1.0,
                  epsilon_min=0.1,
                  epsilon_decay=int(1e6),
-                 epsilon_test=0.05,
                  gamma=0.95,
                  termination_reg=0.01,
                  entropy_reg = 0.01,
@@ -299,7 +294,6 @@ class OptionCriticConv(OptionCriticFeatures):
         self.epsilon_start = epsilon_start
         self.epsilon_min = epsilon_min
         self.epsilon_decay = epsilon_decay
-        self.epsilon_test = epsilon_test
         self.gamma = gamma
         self.termination_reg = termination_reg
         self.entropy_reg = entropy_reg

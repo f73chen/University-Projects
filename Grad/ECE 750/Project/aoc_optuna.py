@@ -46,7 +46,6 @@ def objective(trial):
         epsilon_start=epsilon_start,
         epsilon_min=epsilon_min,
         epsilon_decay=epsilon_decay,
-        epsilon_test=0.05,
         gamma=gamma,
         tau=tau,
         
@@ -124,7 +123,6 @@ if __name__ == "__main__":
         epsilon_start=study.best_params["epsilon_start"],
         epsilon_min=study.best_params["epsilon_min"],
         epsilon_decay=study.best_params["epsilon_decay"],
-        epsilon_test=0.05,
         gamma=study.best_params["gamma"],
         tau=study.best_params["tau"],
         termination_reg=study.best_params["termination_reg"],
