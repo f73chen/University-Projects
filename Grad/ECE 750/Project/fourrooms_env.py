@@ -8,7 +8,7 @@ class Fourrooms(gym.Env):
         'render_fps': 50
     }
 
-    def __init__(self, render_mode=None):
+    def __init__(self, env_epsilon=0.02, render_mode=None):
         layout = ["wwwwwwwwwwwww",
                   "w     w     w",
                   "w     w     w",
@@ -50,6 +50,7 @@ class Fourrooms(gym.Env):
         self.init_states.remove(self.goal)
         self.ep_steps = 0
 
+        self.env_epsilon = env_epsilon  # The chosen action is executed with probability 0.98 and a random action is executed with 0.02 probability
         self.render_mode = render_mode
 
     # Set the random seed
@@ -104,29 +105,34 @@ class Fourrooms(gym.Env):
         return current_grid
 
     # Take a step in the environment
-    def step(self, action, epsilon=0.3):
+    def step(self, action):
         self.ep_steps += 1
 
         next_cell = tuple(self.curr_cell + self.directions[action])
+        print(action, self.directions[action])
         
-        # Take a random step to any available neighbour with epsilon chance
-        if self.rng.uniform() < epsilon:
+        # Take a random step to any available neighbour with epsilon chance (0.02)
+        if self.rng.uniform() < self.env_epsilon:
             empty_cells = self.get_empty_neighbours(self.curr_cell)
             self.curr_cell = empty_cells[self.rng.integers(len(empty_cells))]
-            
-        # Else go to the chosen cell if it's available
+
+        # Else go to the chosen cell if it's available (0.98)
         elif not self.occupancy[next_cell]:
             self.curr_cell = next_cell
         
         state = self.to_state[self.curr_cell]
-        done = state == self.goal
-        reward = float(done)
-
-        if not done and self.ep_steps >= 1000:
+        
+        # The reward is +20 upon reaching the goal, and -1 otherwise
+        reward = -1
+        done = False
+        truncated = False
+        if state == self.goal:
             done = True
-            reward = 0.0
+            reward = 20
+        elif self.ep_steps >= 1000:
+            truncated = True
 
-        return self.get_state(state), reward, done, False, {}
+        return self.get_state(state), reward, done, truncated, {}
 
 if __name__ == "__main__":
     env = Fourrooms()

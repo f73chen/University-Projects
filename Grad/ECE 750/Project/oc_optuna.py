@@ -1,13 +1,17 @@
 import gymnasium as gym
 import highway_env
 import optuna
+import warnings
+
 from option_critic import OptionCriticFeatures
 
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 # Define environment and training parameters
-ENV_NAME = "highway-fast-v0"    # "CartPole-v1"
+ENV_NAME = "intersection-v0"    # "CartPole-v1"
 RENDER_MODE = "rgb_array"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
-ENV_TYPE = "highway"
+ENV_TYPE = "intersection"
 MODEL_TYPE = "oc"
 
 def objective(trial):
@@ -82,12 +86,14 @@ def objective(trial):
     total_rewards.sort()
     mean_reward = sum(total_rewards) / len(total_rewards)
     median_reward = total_rewards[len(total_rewards) // 2]
+    print(f"Mean reward: {mean_reward}")
+    print(f"Median reward: {median_reward}")
     return min(mean_reward, median_reward)
 
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 10   # 50
+    TOTAL_TRIALS = 50
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
 
     # Filter out failed trials by exporting successful trials to a new study
@@ -132,12 +138,13 @@ if __name__ == "__main__":
     #     target_update_freq=study.best_params["target_update_freq"],
     #     buffer_size=study.best_params["buffer_size"],
     #     tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/",
+    #     verbose=0,
     #     testing=False
     # )
-    # # oc.learn(total_timesteps=TOTAL_TIMESTEPS)
-    # # oc.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
-    # oc.load(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
+    # oc.learn(total_timesteps=TOTAL_TIMESTEPS)
+    # oc.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     
+    # oc.load(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     # env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
     # oc.testing = True
     # for episode in range(10):
