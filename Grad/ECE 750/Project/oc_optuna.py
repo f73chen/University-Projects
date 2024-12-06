@@ -89,6 +89,15 @@ if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
     TOTAL_TRIALS = 10   # 50
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
+
+    # Filter out failed trials by exporting successful trials to a new study
+    successful_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]
+    optuna.delete_study(study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
+    study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
+    for trial in successful_trials:
+        study.add_trial(trial)
+
+    # Optimize until the total number of trials is reached
     completed_trials = len(study.trials)
     remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
     print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
