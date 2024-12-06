@@ -1,18 +1,38 @@
 import gymnasium as gym
 import highway_env
+from highway_env.envs.intersection_env import IntersectionEnv
 import optuna
 import warnings
 
 from option_critic import OptionCriticFeatures
-
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+from fourrooms_env import Fourrooms
 
 # Define environment and training parameters
-ENV_NAME = "intersection-v0"    # "CartPole-v1"
+ENV_NAME = "intersection-v1"    # "CartPole-v1"
+ENV_TYPE = "intersection"
 RENDER_MODE = "rgb_array"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
-ENV_TYPE = "intersection"
 MODEL_TYPE = "oc"
+
+def get_env():
+    if ENV_TYPE == "fourrooms":
+        env = Fourrooms()
+        render_env = Fourrooms(render_mode=RENDER_MODE)
+    elif ENV_TYPE == "intersection":
+        intersection_config = IntersectionEnv.default_config()
+        discrete_action = {'type': 'DiscreteAction', 
+                        'longitudinal': False, 
+                        'lateral': True, 
+                        'target_speeds': [0, 5, 10]}
+        intersection_config["observation"]["action"] = discrete_action
+        intersection_config["action"] = discrete_action
+        env = gym.make(ENV_NAME, config=intersection_config)
+        render_env = gym.make(ENV_NAME, config=intersection_config, render_mode=RENDER_MODE)
+    else:
+        env = gym.make(ENV_NAME)
+        render_env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
+        
+    return env, render_env
 
 def objective(trial):
     # Define hyperparameters to optimize
@@ -34,7 +54,7 @@ def objective(trial):
     buffer_size = trial.suggest_int("buffer_size", 1000, 10000, step=1000)
 
     # Create environment
-    env = gym.make(ENV_NAME)
+    env, _ = get_env()
     
     # Define the model
     oc = OptionCriticFeatures(
@@ -64,13 +84,12 @@ def objective(trial):
     oc.learn(total_timesteps=TOTAL_TIMESTEPS)
 
     # Set up evaluation environment
-    eval_env = gym.make(ENV_NAME)
     total_rewards = []
     oc.testing = True
     
     # Average across 20 episodes
     for episode in range(20):
-        obs, _ = eval_env.reset()
+        obs, _ = env.reset()
         done = truncated = False
         option = None
         option_termination = True
@@ -78,10 +97,10 @@ def objective(trial):
         while not (done or truncated):
             option, action, _, _ = oc.predict(obs, option, option_termination, deterministic=True)
             option_termination = oc.get_option_termination(obs, option)
-            obs, reward, done, truncated, _ = eval_env.step(action)
+            obs, reward, done, truncated, _ = env.step(action)
             episode_reward += reward
         total_rewards.append(episode_reward)
-    eval_env.close()
+    env.close()
     
     total_rewards.sort()
     mean_reward = sum(total_rewards) / len(total_rewards)
@@ -117,7 +136,7 @@ if __name__ == "__main__":
     optuna.visualization.plot_param_importances(study).show()
 
     # # Save the best model
-    # env = gym.make(ENV_NAME)
+    # env, render_env = get_env()
     # oc = OptionCriticFeatures(
     #     env=env,
     #     num_options=study.best_params["num_options"],
@@ -145,16 +164,15 @@ if __name__ == "__main__":
     # oc.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     
     # oc.load(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
-    # env = gym.make(ENV_NAME, render_mode=RENDER_MODE)
     # oc.testing = True
     # for episode in range(10):
     #     done = truncated = False
-    #     obs, info = env.reset()
+    #     obs, info = render_env.reset()
     #     option = None
     #     option_termination = True
     #     while not (done or truncated):
     #         option, action, logp, entropy = oc.predict(obs, option, option_termination, deterministic=True)
     #         option_termination = oc.get_option_termination(obs, option)
-    #         obs, reward, done, truncated, info = env.step(action)
-    #         env.render()
-    # env.close()
+    #         obs, reward, done, truncated, info = render_env.step(action)
+    #         render_env.render()
+    # render_env.close()

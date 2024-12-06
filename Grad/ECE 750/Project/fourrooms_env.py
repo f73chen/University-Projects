@@ -1,6 +1,8 @@
+import cv2
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
+import matplotlib.pyplot as plt
 
 class Fourrooms(gym.Env):
     metadata = {
@@ -9,18 +11,31 @@ class Fourrooms(gym.Env):
     }
 
     def __init__(self, env_epsilon=0.02, render_mode=None):
-        layout = ["wwwwwwwwwwwww",
-                  "w     w     w",
+        # layout = ["wwwwwwwwwwwww",    # Original
+        #           "w     w     w",
+        #           "w     w     w",
+        #           "w           w",
+        #           "w     w     w",
+        #           "w     w     w",
+        #           "ww wwww     w",
+        #           "w     www www",
+        #           "w     w     w",
+        #           "w     w     w",
+        #           "w           w",
+        #           "w     w     w",
+        #           "wwwwwwwwwwwww"]
+        layout = ["wwwwwwwwwwwww",  # Remove some walls
                   "w     w     w",
                   "w           w",
-                  "w     w     w",
-                  "w     w     w",
-                  "ww wwww     w",
-                  "w     www www",
-                  "w     w     w",
-                  "w     w     w",
+                  "w           w",
                   "w           w",
                   "w     w     w",
+                  "w   www     w",
+                  "w     ww   ww",
+                  "w     w     w",
+                  "w           w",
+                  "w           w",
+                  "w           w",
                   "wwwwwwwwwwwww"]
         
         # 1 if wall ('w'), else 0
@@ -95,21 +110,44 @@ class Fourrooms(gym.Env):
         return s
 
     # Render the environment
-    def render(self, mode='human', show_goal=True):
-        current_grid = np.array(self.occupancy)
-        current_grid[self.curr_cell[0], self.curr_cell[1]] = -1  # Agent position
+    def render(self, show_goal=True):
+        # current_grid = np.array(self.occupancy)
+        # current_grid[self.curr_cell[0], self.curr_cell[1]] = -1  # Agent position
+        # if show_goal:
+        #     goal_cell = self.to_cell[self.goal]
+        #     current_grid[goal_cell[0], goal_cell[1]] = -1  # Goal position
+        
+        # Prepare the grid
+        grid = np.array(self.occupancy)
+        grid_rgb = np.zeros((*grid.shape, 3), dtype=np.uint8)
+
+        # Fill in colors for walls, agent, and goal
+        grid_rgb[grid == 1] = [0, 0, 0]  # Black for walls
+        grid_rgb[grid == 0] = [255, 255, 255]  # White for empty spaces
+
+        # Set the agent position
+        grid_rgb[self.curr_cell[0], self.curr_cell[1]] = [255, 255, 0]  # Yellow for agent
+
+        # Set the goal position
         if show_goal:
             goal_cell = self.to_cell[self.goal]
-            current_grid[goal_cell[0], goal_cell[1]] = -1  # Goal position
-        print(current_grid)
-        return current_grid
+            grid_rgb[goal_cell[0], goal_cell[1]] = [0, 255, 0]  # Green for goal
+
+        # Scale the image for better visibility
+        scale_factor = 25
+        grid_scaled = cv2.resize(
+            grid_rgb, (grid.shape[1] * scale_factor, grid.shape[0] * scale_factor), interpolation=cv2.INTER_NEAREST
+        )
+
+        # Show the frame in a popup window
+        cv2.imshow("Four Rooms Environment", grid_scaled)
+        cv2.waitKey(1)
 
     # Take a step in the environment
     def step(self, action):
         self.ep_steps += 1
 
         next_cell = tuple(self.curr_cell + self.directions[action])
-        print(action, self.directions[action])
         
         # Take a random step to any available neighbour with epsilon chance (0.02)
         if self.rng.uniform() < self.env_epsilon:
