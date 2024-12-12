@@ -270,17 +270,17 @@ class OptionCriticFeatures(nn.Module):
     
     # Selects an action based on the observations
     def predict(self, obs, option, option_termination, epsilon=1.0, testing=False) -> int:
+        # "We used an ε-greedy policy over options with ε = 0.05 during the test phase"
+        if testing:
+            epsilon = 0.05
+        
         # Flatten the observations to 1D and add a batch dimension
         obs_tensor = torch.tensor(obs, dtype=torch.float32).reshape(1, -1).to(self.device)
         
         # Get the output of the shared network
         state = self.features(obs_tensor)
         
-        # "We used an ε-greedy policy over options with ε = 0.05 during the test phase"
-        if testing:
-            epsilon = 0.05
-        
-        # Only choose a new option if the previous one terminates, else continue with the current option
+        # Choose a new option if the previous one terminates
         if option_termination:
             if np.random.random() > epsilon:
                 option = self.greedy_option(state)

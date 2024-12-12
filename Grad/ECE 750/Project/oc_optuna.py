@@ -2,7 +2,6 @@ import gymnasium as gym
 import highway_env
 from highway_env.envs.intersection_env import IntersectionEnv
 import optuna
-import warnings
 
 from option_critic import OptionCriticFeatures
 from fourrooms_env import Fourrooms
@@ -65,25 +64,30 @@ def objective(trial):
         env=env,
         num_options=num_options,
         device="cpu",
+        
         temperature=temperature,
         epsilon_start=epsilon_start,
         epsilon_min=epsilon_min,
         epsilon_decay=epsilon_decay,
         gamma=gamma,
         tau=tau,
+        
         termination_reg=termination_reg,
         entropy_reg=entropy_reg,
+        
         hidden_size=hidden_size,
         state_size=state_size,
         hidden_size_2=hidden_size_2,
         hidden_size_Q=hidden_size_Q,
         hidden_size_termination=hidden_size_termination,
         hidden_size_policy=hidden_size_policy,
+        
         learning_rate=learning_rate,
         batch_size=batch_size,
         critic_freq=critic_freq,
         target_update_freq=target_update_freq,
         buffer_size=buffer_size,
+        
         verbose=0
     )
     
@@ -157,11 +161,11 @@ if __name__ == "__main__":
     #     termination_reg=study.best_params["termination_reg"],
     #     entropy_reg=study.best_params["entropy_reg"],
     #     hidden_size=study.best_params["hidden_size"],
-    #     # hidden_size_2=study.best_params["hidden_size_2"],
-    #     # hidden_size_Q=study.best_params["hidden_size_Q"],
-    #     # hidden_size_termination=study.best_params["hidden_size_termination"],
-    #     # hidden_size_policy=study.best_params["hidden_size_policy"],
     #     state_size=study.best_params["state_size"],
+    #     hidden_size_2=study.best_params["hidden_size_2"],
+    #     hidden_size_Q=study.best_params["hidden_size_Q"],
+    #     hidden_size_termination=study.best_params["hidden_size_termination"],
+    #     hidden_size_policy=study.best_params["hidden_size_policy"],
     #     learning_rate=study.best_params["learning_rate"],
     #     batch_size=study.best_params["batch_size"],
     #     critic_freq=study.best_params["critic_freq"],
