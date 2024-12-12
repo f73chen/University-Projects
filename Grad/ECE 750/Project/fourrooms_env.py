@@ -4,39 +4,55 @@ import gymnasium as gym
 from gymnasium import spaces
 import matplotlib.pyplot as plt
 
+"""
+TODO
+OC Fourrooms setup:
+
+Initially the goal is located in the east doorway and the initial state is drawn uniformly from all the other cells. 
+After 1000 episodes, the goal moves to a random location in the lower right room. 
+Primitive movements can fail with probability 1/3, in which case the agent transitions randomly to one of the empty adjacent cells. 
+The discount factor was 0.99, and the reward was +1 at the goal and 0 otherwise.
+
+AOC Fourrooms setup:
+
+The chosen action is executed with probability 0.98 and a random action is executed with 0.02 probability. 
+The reward is +20 upon reaching the goal, and -1 otherwise.
+The agent starts in a uniformly random state and the goal is chosen randomly for each run of the algorithm.
+"""
+
 class Fourrooms(gym.Env):
     metadata = {
         'render_modes': ['human', 'rgb_array'],
         'render_fps': 50
     }
 
-    def __init__(self, env_epsilon=0.02, render_mode=None):
-        # layout = ["wwwwwwwwwwwww",    # Original
-        #           "w     w     w",
-        #           "w     w     w",
-        #           "w           w",
-        #           "w     w     w",
-        #           "w     w     w",
-        #           "ww wwww     w",
-        #           "w     www www",
-        #           "w     w     w",
-        #           "w     w     w",
-        #           "w           w",
-        #           "w     w     w",
-        #           "wwwwwwwwwwwww"]
-        layout = ["wwwwwwwwwwwww",  # Remove some walls
+    def __init__(self, render_mode=None):
+        layout = ["wwwwwwwwwwwww",    # Original
+                  "w     w     w",
                   "w     w     w",
                   "w           w",
-                  "w           w",
+                  "w     w     w",
+                  "w     w     w",
+                  "ww wwww     w",
+                  "w     www www",
+                  "w     w     w",
+                  "w     w     w",
                   "w           w",
                   "w     w     w",
-                  "w   www     w",
-                  "w     ww   ww",
-                  "w     w     w",
-                  "w           w",
-                  "w           w",
-                  "w           w",
                   "wwwwwwwwwwwww"]
+        # layout = ["wwwwwwwwwwwww",  # Remove some walls
+        #           "w     w     w",
+        #           "w           w",
+        #           "w           w",
+        #           "w           w",
+        #           "w     w     w",
+        #           "w   www     w",
+        #           "w     ww   ww",
+        #           "w     w     w",
+        #           "w           w",
+        #           "w           w",
+        #           "w           w",
+        #           "wwwwwwwwwwwww"]
         
         # 1 if wall ('w'), else 0
         self.occupancy = np.array([list(map(lambda c: 1 if c == 'w' else 0, line)) for line in layout])
@@ -61,11 +77,12 @@ class Fourrooms(gym.Env):
         self.to_cell = {v: k for k, v in self.to_state.items()}
 
         self.goal = 62  # Goal is the East doorway
+        # self.goal = 26    # Goal for simple env
         self.init_states = list(range(self.observation_space.shape[0])) # List of possible starting states
         self.init_states.remove(self.goal)
         self.ep_steps = 0
 
-        self.env_epsilon = env_epsilon  # The chosen action is executed with probability 0.98 and a random action is executed with 0.02 probability
+        self.env_epsilon = 0.02  # AOC paper: The chosen action is executed with probability 0.98 and a random action is executed with 0.02 probability
         self.render_mode = render_mode
 
     # Set the random seed
@@ -160,14 +177,14 @@ class Fourrooms(gym.Env):
         
         state = self.to_state[self.curr_cell]
         
-        # The reward is +20 upon reaching the goal, and -1 otherwise
+        # AOC paper: The reward is +20 upon reaching the goal, and -1 otherwise
         reward = -1
         done = False
         truncated = False
         if state == self.goal:
             done = True
             reward = 20
-        elif self.ep_steps >= 1000:
+        elif self.ep_steps >= 1000: # Times out after 1000 steps
             truncated = True
 
         return self.get_state(state), reward, done, truncated, {}

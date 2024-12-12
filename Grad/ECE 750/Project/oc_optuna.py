@@ -8,9 +8,9 @@ from option_critic import OptionCriticFeatures
 from fourrooms_env import Fourrooms
 
 # Define environment and training parameters
-ENV_NAME = "intersection-v1"    # "CartPole-v1"
-ENV_TYPE = "intersection"
-RENDER_MODE = "rgb_array"  # "rgb_array", "human"
+ENV_NAME = "fourrooms"    # "CartPole-v1", "intersection-v1"
+ENV_TYPE = "fourrooms"
+RENDER_MODE = "human"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
 MODEL_TYPE = "oc"
 
@@ -37,21 +37,25 @@ def get_env():
 def objective(trial):
     # Define hyperparameters to optimize
     num_options = trial.suggest_int("num_options", 2, 10)
-    temperature = trial.suggest_float("temperature", 0.5, 1.5)
+    temperature = trial.suggest_float("temperature", 0.5, 2.0)
     epsilon_start = trial.suggest_float("epsilon_start", 0.8, 1.0)
     epsilon_min = trial.suggest_float("epsilon_min", 0, 0.2)
-    epsilon_decay = trial.suggest_int("epsilon_decay", int(1e5), int(1e7), log=True)
-    gamma = trial.suggest_float("gamma", 0.8, 0.99)
+    epsilon_decay = trial.suggest_int("epsilon_decay", int(1e4), int(1e8), log=True)
+    gamma = trial.suggest_float("gamma", 0.5, 0.99)
     tau = trial.suggest_float("tau", 0.8, 1.0)
-    termination_reg = trial.suggest_float("termination_reg", 0.001, 0.1, log=True)
-    entropy_reg = trial.suggest_float("entropy_reg", 0.001, 0.2, log=True)
-    hidden_size = trial.suggest_int("hidden_size", 16, 128, step=16)
-    state_size = trial.suggest_int("state_size", 16, 128, step=16)
-    learning_rate = trial.suggest_float("learning_rate", 1e-5, 1e-2, log=True)
-    batch_size = trial.suggest_int("batch_size", 32, 256, step=32)
-    critic_freq = trial.suggest_int("critic_freq", 10, 100, step=10)
-    target_update_freq = trial.suggest_int("target_update_freq", 5, 20, step=5)
-    buffer_size = trial.suggest_int("buffer_size", 1000, 10000, step=1000)
+    termination_reg = trial.suggest_float("termination_reg", 0.0001, 1000, log=True)
+    entropy_reg = trial.suggest_float("entropy_reg", 0.001, 10000, log=True)
+    hidden_size = trial.suggest_int("hidden_size", 8, 256, step=8)
+    state_size = trial.suggest_int("state_size", 8, 256, step=8)
+    hidden_size_2 = trial.suggest_int("hidden_size_2", 0, 256, step=8)
+    hidden_size_Q = trial.suggest_int("hidden_size_Q", 0, 256, step=8)
+    hidden_size_termination = trial.suggest_int("hidden_size_termination", 0, 256, step=8)
+    hidden_size_policy = trial.suggest_int("hidden_size_policy", 0, 256, step=8)
+    learning_rate = trial.suggest_float("learning_rate", 1e-7, 1e-2, log=True)
+    batch_size = trial.suggest_int("batch_size", 32, 512, step=32)
+    critic_freq = trial.suggest_int("critic_freq", 1, 200)
+    target_update_freq = trial.suggest_int("target_update_freq", 1, 50)
+    buffer_size = trial.suggest_int("buffer_size", 1000, 15000, step=1000)
 
     # Create environment
     env, _ = get_env()
@@ -71,13 +75,16 @@ def objective(trial):
         entropy_reg=entropy_reg,
         hidden_size=hidden_size,
         state_size=state_size,
+        hidden_size_2=hidden_size_2,
+        hidden_size_Q=hidden_size_Q,
+        hidden_size_termination=hidden_size_termination,
+        hidden_size_policy=hidden_size_policy,
         learning_rate=learning_rate,
         batch_size=batch_size,
         critic_freq=critic_freq,
         target_update_freq=target_update_freq,
         buffer_size=buffer_size,
-        verbose=0,
-        testing=False
+        verbose=0
     )
     
     # Train the model
@@ -85,7 +92,6 @@ def objective(trial):
 
     # Set up evaluation environment
     total_rewards = []
-    oc.testing = True
     
     # Average across 20 episodes
     for episode in range(20):
@@ -95,7 +101,7 @@ def objective(trial):
         option_termination = True
         episode_reward = 0
         while not (done or truncated):
-            option, action, _, _ = oc.predict(obs, option, option_termination, deterministic=True)
+            option, action, _, _ = oc.predict(obs, option, option_termination, testing=True)
             option_termination = oc.get_option_termination(obs, option)
             obs, reward, done, truncated, _ = env.step(action)
             episode_reward += reward
@@ -107,12 +113,13 @@ def objective(trial):
     median_reward = total_rewards[len(total_rewards) // 2]
     print(f"Mean reward: {mean_reward}")
     print(f"Median reward: {median_reward}")
-    return min(mean_reward, median_reward)
+    # return min(mean_reward, median_reward)
+    return mean_reward
 
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 50
+    TOTAL_TRIALS = 400
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
 
     # Filter out failed trials by exporting successful trials to a new study
@@ -150,6 +157,10 @@ if __name__ == "__main__":
     #     termination_reg=study.best_params["termination_reg"],
     #     entropy_reg=study.best_params["entropy_reg"],
     #     hidden_size=study.best_params["hidden_size"],
+    #     # hidden_size_2=study.best_params["hidden_size_2"],
+    #     # hidden_size_Q=study.best_params["hidden_size_Q"],
+    #     # hidden_size_termination=study.best_params["hidden_size_termination"],
+    #     # hidden_size_policy=study.best_params["hidden_size_policy"],
     #     state_size=study.best_params["state_size"],
     #     learning_rate=study.best_params["learning_rate"],
     #     batch_size=study.best_params["batch_size"],
@@ -157,21 +168,19 @@ if __name__ == "__main__":
     #     target_update_freq=study.best_params["target_update_freq"],
     #     buffer_size=study.best_params["buffer_size"],
     #     tensorboard_log=f"results/{ENV_TYPE}_{MODEL_TYPE}/",
-    #     verbose=0,
-    #     testing=False
+    #     verbose=0
     # )
     # oc.learn(total_timesteps=TOTAL_TIMESTEPS)
     # oc.save(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
     
     # oc.load(f"results/{ENV_TYPE}_{MODEL_TYPE}/best_model")
-    # oc.testing = True
     # for episode in range(10):
     #     done = truncated = False
     #     obs, info = render_env.reset()
     #     option = None
     #     option_termination = True
     #     while not (done or truncated):
-    #         option, action, logp, entropy = oc.predict(obs, option, option_termination, deterministic=True)
+    #         option, action, logp, entropy = oc.predict(obs, option, option_termination, testing=True)
     #         option_termination = oc.get_option_termination(obs, option)
     #         obs, reward, done, truncated, info = render_env.step(action)
     #         render_env.render()

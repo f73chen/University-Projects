@@ -30,6 +30,10 @@ class OptionCriticFeatures(nn.Module):
                  
                  hidden_size=32,
                  state_size=64,
+                 hidden_size_2=None,
+                 hidden_size_Q=None,
+                 hidden_size_termination=None,
+                 hidden_size_policy=None,
                  
                  learning_rate=1e-4,
                  batch_size=64,
@@ -39,7 +43,6 @@ class OptionCriticFeatures(nn.Module):
                  
                  tensorboard_log=None,
                  verbose=1,
-                 testing=False,
                  is_policy_network=True) -> None:
         super(OptionCriticFeatures, self).__init__()
         
@@ -69,26 +72,63 @@ class OptionCriticFeatures(nn.Module):
         
         self.tensorboard_log = tensorboard_log
         self.verbose = verbose
-        self.testing = testing
         
         # Shared network
-        self.features = nn.Sequential(
-            nn.Linear(self.in_features, hidden_size),
-            nn.ReLU(),
-            nn.Linear(hidden_size, state_size),
-            nn.ReLU()
-        )
+        if hidden_size_2 is not None and hidden_size_2 != 0:
+            self.features = nn.Sequential(
+                nn.Linear(self.in_features, hidden_size),
+                nn.ReLU(),
+                nn.Linear(hidden_size, hidden_size_2),
+                nn.ReLU(),
+                nn.Linear(hidden_size_2, state_size),
+                nn.ReLU()
+            )
+        elif hidden_size is not None and hidden_size != 0:
+            self.features = nn.Sequential(
+                nn.Linear(self.in_features, hidden_size),
+                nn.ReLU(),
+                nn.Linear(hidden_size, state_size),
+                nn.ReLU()
+            )
+        else:
+            self.features = nn.Sequential(
+                nn.Linear(self.in_features, state_size),
+                nn.ReLU()
+            )
         
         # Q_Omega head
-        self.Q = nn.Linear(state_size, num_options)
+        if hidden_size_Q is not None and hidden_size_Q != 0:
+            self.Q = nn.Sequential(
+                nn.Linear(state_size, hidden_size_Q),
+                nn.ReLU(),
+                nn.Linear(hidden_size_Q, num_options)
+            )
+        else:
+            self.Q = nn.Linear(state_size, num_options)
         
         # beta_w head
-        self.terminations = nn.Linear(state_size, num_options)
+        if hidden_size_termination is not None and hidden_size_termination != 0:
+            self.terminations = nn.Sequential(
+                nn.Linear(state_size, hidden_size_termination),
+                nn.ReLU(),
+                nn.Linear(hidden_size_termination, num_options)
+            )
+        else:
+            self.terminations = nn.Linear(state_size, num_options)
         
-        # Intra-option policy (pi_w) weights and biases
-        self.options_W = nn.Parameter(torch.empty(num_options, state_size, self.num_actions, device=device))
-        torch.nn.init.xavier_uniform_(self.options_W)   # Weight initialization
-        self.options_b = nn.Parameter(torch.zeros(num_options, self.num_actions, device=device))
+        # Intra-option policy (pi_w) weights and biases        
+        if hidden_size_policy is not None and hidden_size_policy != 0:
+            self.policies = nn.ModuleList([
+                nn.Sequential(
+                    nn.Linear(state_size, hidden_size_policy),
+                    nn.ReLU(),
+                    nn.Linear(hidden_size_policy, self.num_actions)
+                ) for _ in range(num_options)
+            ])
+        else:
+            self.policies = nn.ModuleList([
+                nn.Linear(state_size, self.num_actions) for _ in range(num_options)
+            ])
         
         # Initialize target network and copy over the parameters
         # Only create the target network if self is policy network to avoid infinite recursion
@@ -96,9 +136,9 @@ class OptionCriticFeatures(nn.Module):
             self.target_network = OptionCriticFeatures(env, num_options, device,
                                                        temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
                                                        termination_reg, entropy_reg,
-                                                       hidden_size, state_size,
+                                                       hidden_size, state_size, hidden_size_2, hidden_size_Q, hidden_size_termination, hidden_size_policy,
                                                        learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
-                                                       tensorboard_log, verbose, testing, is_policy_network=False)
+                                                       tensorboard_log, verbose, is_policy_network=False)
             self.update_target_network()
         else:
             self.target_network = None
@@ -213,7 +253,7 @@ class OptionCriticFeatures(nn.Module):
     # Helper: Selects an action based on the state and option
     def get_action(self, state, option):
         # logits = state * weights + biases (unnormalized action scores for that option)
-        logits = state.data @ self.options_W[option] + self.options_b[option]
+        logits = self.policies[option](state)
         
         # Convert logits to softmax probabilities (sums to 1)
         action_dist = (logits / self.temperature).softmax(dim=-1)
@@ -229,16 +269,20 @@ class OptionCriticFeatures(nn.Module):
         return action.item(), logp, entropy
     
     # Selects an action based on the observations
-    def predict(self, obs, option, option_termination, epsilon=1.0, deterministic=False) -> int:
+    def predict(self, obs, option, option_termination, epsilon=1.0, testing=False) -> int:
         # Flatten the observations to 1D and add a batch dimension
         obs_tensor = torch.tensor(obs, dtype=torch.float32).reshape(1, -1).to(self.device)
         
         # Get the output of the shared network
         state = self.features(obs_tensor)
         
+        # "We used an ε-greedy policy over options with ε = 0.05 during the test phase"
+        if testing:
+            epsilon = 0.05
+        
         # Only choose a new option if the previous one terminates, else continue with the current option
         if option_termination:
-            if deterministic or np.random.random() > epsilon:
+            if np.random.random() > epsilon:
                 option = self.greedy_option(state)
             else:
                 option = np.random.randint(0, self.num_options)
@@ -277,7 +321,6 @@ class OptionCriticConv(OptionCriticFeatures):
                  buffer_size=10000,
                  tensorboard_log=None,
                  verbose=1,
-                 testing=False,
                  is_policy_network=True) -> None:
         super(OptionCriticFeatures, self).__init__()
         
@@ -306,7 +349,6 @@ class OptionCriticConv(OptionCriticFeatures):
         
         self.tensorboard_log = tensorboard_log
         self.verbose = verbose
-        self.testing = testing
         
         # Shared network
         self.features = nn.Sequential(
