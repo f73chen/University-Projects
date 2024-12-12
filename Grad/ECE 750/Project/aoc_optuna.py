@@ -42,8 +42,8 @@ def objective(trial):
     epsilon_decay = trial.suggest_int("epsilon_decay", int(1e4), int(1e8), log=True)
     gamma = trial.suggest_float("gamma", 0.5, 0.99)
     tau = trial.suggest_float("tau", 0.8, 1.0)
-    termination_reg = trial.suggest_float("termination_reg", 0.0001, 1000, log=True)
-    entropy_reg = trial.suggest_float("entropy_reg", 0.001, 10000, log=True)
+    termination_reg = trial.suggest_float("termination_reg", 0.0001, int(1e4), log=True)
+    entropy_reg = trial.suggest_float("entropy_reg", 0.001, int(1e6), log=True)
     
     diversity_reg = trial.suggest_float("diversity_reg", 0.001, 10, log=True)
     sparsity_reg = trial.suggest_float("sparsity_reg", 0.001, 0.5, log=True)
@@ -146,7 +146,7 @@ def objective(trial):
 
 if __name__ == "__main__":
     # Optimize hyperparameters using Optuna
-    TOTAL_TRIALS = 30
+    TOTAL_TRIALS = 400
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
 
     # Filter out failed trials by exporting successful trials to a new study
