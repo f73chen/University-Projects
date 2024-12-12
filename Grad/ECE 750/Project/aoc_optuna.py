@@ -51,11 +51,17 @@ def objective(trial):
     
     hidden_size = trial.suggest_int("hidden_size", 8, 256, step=8)
     state_size = trial.suggest_int("state_size", 8, 256, step=8)
-    hidden_size_2 = trial.suggest_int("hidden_size_2", 0, 256, step=8)
-    hidden_size_Q = trial.suggest_int("hidden_size_Q", 0, 256, step=8)
-    hidden_size_termination = trial.suggest_int("hidden_size_termination", 0, 256, step=8)
-    hidden_size_policy = trial.suggest_int("hidden_size_policy", 0, 256, step=8)
-    hidden_size_attention = trial.suggest_int("hidden_size_attention", 0, 256, step=8)
+    hidden_size_2 = trial.suggest_int("hidden_size_2", 8, 256, step=8)
+    hidden_size_Q = trial.suggest_int("hidden_size_Q", 8, 256, step=8)
+    hidden_size_termination = trial.suggest_int("hidden_size_termination", 8, 256, step=8)
+    hidden_size_policy = trial.suggest_int("hidden_size_policy", 8, 256, step=8)
+    hidden_size_attention = trial.suggest_int("hidden_size_attention", 8, 256, step=8)
+    use_hidden_size = trial.suggest_categorical("use_hidden_size", [True, False])
+    use_hidden_size_2 = trial.suggest_categorical("use_hidden_size_2", [True, False])
+    use_hidden_size_Q = trial.suggest_categorical("use_hidden_size_Q", [True, False])
+    use_hidden_size_termination = trial.suggest_categorical("use_hidden_size_termination", [True, False])
+    use_hidden_size_policy = trial.suggest_categorical("use_hidden_size_policy", [True, False])
+    use_hidden_size_attention = trial.suggest_categorical("use_hidden_size_attention", [True, False])
     
     learning_rate = trial.suggest_float("learning_rate", 1e-7, 1e-2, log=True)
     batch_size = trial.suggest_int("batch_size", 32, 512, step=32)
@@ -92,6 +98,12 @@ def objective(trial):
         hidden_size_termination=hidden_size_termination,
         hidden_size_policy=hidden_size_policy,
         hidden_size_attention=hidden_size_attention,
+        use_hidden_size=use_hidden_size,
+        use_hidden_size_2=use_hidden_size_2,
+        use_hidden_size_Q=use_hidden_size_Q,
+        use_hidden_size_termination=use_hidden_size_termination,
+        use_hidden_size_policy=use_hidden_size_policy,
+        use_hidden_size_attention=use_hidden_size_attention,
         
         learning_rate=learning_rate,
         batch_size=batch_size,
@@ -163,17 +175,20 @@ if __name__ == "__main__":
     #     env=env,
     #     num_options=study.best_params["num_options"],
     #     device="cpu",
+    
     #     temperature=study.best_params["temperature"],
     #     epsilon_start=study.best_params["epsilon_start"],
     #     epsilon_min=study.best_params["epsilon_min"],
     #     epsilon_decay=study.best_params["epsilon_decay"],
     #     gamma=study.best_params["gamma"],
     #     tau=study.best_params["tau"],
+    
     #     termination_reg=study.best_params["termination_reg"],
     #     entropy_reg=study.best_params["entropy_reg"],
     #     diversity_reg=study.best_params["diversity_reg"],
     #     sparsity_reg=study.best_params["sparsity_reg"],
     #     smoothness_reg=study.best_params["smoothness_reg"],
+    
     #     hidden_size=study.best_params["hidden_size"],
     #     state_size=study.best_params["state_size"],
     #     hidden_size_2=study.best_params["hidden_size_2"],
@@ -181,6 +196,13 @@ if __name__ == "__main__":
     #     hidden_size_termination=study.best_params["hidden_size_termination"],
     #     hidden_size_policy=study.best_params["hidden_size_policy"],
     #     hidden_size_attention=study.best_params["hidden_size_attention"],
+    #     use_hidden_size=study.best_params["use_hidden_size"],
+    #     use_hidden_size_2=study.best_params["use_hidden_size_2"],
+    #     use_hidden_size_Q=study.best_params["use_hidden_size_Q"],
+    #     use_hidden_size_termination=study.best_params["use_hidden_size_termination"],
+    #     use_hidden_size_policy=study.best_params["use_hidden_size_policy"],
+    #     use_hidden_size_attention=study.best_params["use_hidden_size_attention"],
+    
     #     learning_rate=study.best_params["learning_rate"],
     #     batch_size=study.best_params["batch_size"],
     #     critic_freq=study.best_params["critic_freq"],

@@ -30,10 +30,15 @@ class OptionCriticFeatures(nn.Module):
                  
                  hidden_size=32,
                  state_size=64,
-                 hidden_size_2=None,
-                 hidden_size_Q=None,
-                 hidden_size_termination=None,
-                 hidden_size_policy=None,
+                 hidden_size_2=32,
+                 hidden_size_Q=32,
+                 hidden_size_termination=32,
+                 hidden_size_policy=32,
+                 use_hidden_size=True,
+                 use_hidden_size_2=False,
+                 use_hidden_size_Q=False,
+                 use_hidden_size_termination=False,
+                 use_hidden_size_policy=False,
                  
                  learning_rate=1e-4,
                  batch_size=64,
@@ -74,7 +79,7 @@ class OptionCriticFeatures(nn.Module):
         self.verbose = verbose
         
         # Shared network
-        if hidden_size_2 is not None and hidden_size_2 != 0:
+        if use_hidden_size_2:
             self.features = nn.Sequential(
                 nn.Linear(self.in_features, hidden_size),
                 nn.ReLU(),
@@ -83,7 +88,7 @@ class OptionCriticFeatures(nn.Module):
                 nn.Linear(hidden_size_2, state_size),
                 nn.ReLU()
             )
-        elif hidden_size is not None and hidden_size != 0:
+        elif use_hidden_size:
             self.features = nn.Sequential(
                 nn.Linear(self.in_features, hidden_size),
                 nn.ReLU(),
@@ -97,7 +102,7 @@ class OptionCriticFeatures(nn.Module):
             )
         
         # Q_Omega head
-        if hidden_size_Q is not None and hidden_size_Q != 0:
+        if use_hidden_size_Q:
             self.Q = nn.Sequential(
                 nn.Linear(state_size, hidden_size_Q),
                 nn.ReLU(),
@@ -107,7 +112,7 @@ class OptionCriticFeatures(nn.Module):
             self.Q = nn.Linear(state_size, num_options)
         
         # beta_w head
-        if hidden_size_termination is not None and hidden_size_termination != 0:
+        if use_hidden_size_termination:
             self.terminations = nn.Sequential(
                 nn.Linear(state_size, hidden_size_termination),
                 nn.ReLU(),
@@ -117,7 +122,7 @@ class OptionCriticFeatures(nn.Module):
             self.terminations = nn.Linear(state_size, num_options)
         
         # Intra-option policy (pi_w) weights and biases        
-        if hidden_size_policy is not None and hidden_size_policy != 0:
+        if use_hidden_size_policy:
             self.policies = nn.ModuleList([
                 nn.Sequential(
                     nn.Linear(state_size, hidden_size_policy),

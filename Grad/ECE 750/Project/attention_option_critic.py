@@ -32,11 +32,17 @@ class AOCFeatures(OptionCriticFeatures):
                  
                  hidden_size=32,
                  state_size=64,
-                 hidden_size_2=None,
-                 hidden_size_Q=None,
-                 hidden_size_termination=None,
-                 hidden_size_policy=None,
-                 hidden_size_attention=None,    # AOC only
+                 hidden_size_2=32,
+                 hidden_size_Q=32,
+                 hidden_size_termination=32,
+                 hidden_size_policy=32,
+                 hidden_size_attention=32,        # AOC only
+                 use_hidden_size=True,
+                 use_hidden_size_2=False,
+                 use_hidden_size_Q=False,
+                 use_hidden_size_termination=False,
+                 use_hidden_size_policy=False,
+                 use_hidden_size_attention=False,   # AOC only
                  
                  learning_rate=1e-4,
                  batch_size=64,
@@ -51,6 +57,7 @@ class AOCFeatures(OptionCriticFeatures):
                                           temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
                                           termination_reg, entropy_reg,
                                           hidden_size, state_size, hidden_size_2, hidden_size_Q, hidden_size_termination, hidden_size_policy,
+                                          use_hidden_size, use_hidden_size_2, use_hidden_size_Q, use_hidden_size_termination, use_hidden_size_policy,
                                           learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
                                           tensorboard_log, verbose, is_policy_network=False)
         
@@ -60,7 +67,7 @@ class AOCFeatures(OptionCriticFeatures):
         self.smoothness_reg = smoothness_reg
         
         # Learnable attention mask
-        if hidden_size_attention is not None and hidden_size_attention != 0:
+        if use_hidden_size_attention:
             self.attention = nn.ModuleList([
                 nn.Sequential(
                     nn.Linear(self.in_features, hidden_size_attention),
@@ -83,6 +90,7 @@ class AOCFeatures(OptionCriticFeatures):
                                               temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
                                               termination_reg, entropy_reg, diversity_reg, sparsity_reg, smoothness_reg,
                                               hidden_size, state_size, hidden_size_2, hidden_size_Q, hidden_size_termination, hidden_size_policy, hidden_size_attention,
+                                              use_hidden_size, use_hidden_size_2, use_hidden_size_Q, use_hidden_size_termination, use_hidden_size_policy, use_hidden_size_attention,
                                               learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
                                               tensorboard_log, verbose, is_policy_network=False)
             self.update_target_network()
