@@ -242,15 +242,20 @@ class AOCFeatures(OptionCriticFeatures):
                 total_similarity += F.cosine_similarity(attention_masks[i], attention_masks[j], dim=0)
         return self.diversity_reg * total_similarity
 
-    # Helper: Attention weights should be as small as possible
-    def get_sparsity_loss(self):
-        sparsity_loss = 0
+    # # TODO: Remove
+    # def get_sparsity_loss(self, attention_mask):
+    #     sparsity_loss = 0
         
-        # Iterate through each option's attention network
-        for att in self.attention:
-            for layer in att:
-                if isinstance(layer, nn.Linear):  # Sum the weights of linear layers
-                    sparsity_loss += layer.weight.abs().sum()
+    #     # Iterate through each option's attention network
+    #     for att in self.attention:
+    #         for layer in att:
+    #             if isinstance(layer, nn.Linear):  # Sum the weights of linear layers
+    #                 sparsity_loss += layer.weight.abs().sum()
+    #     return self.sparsity_reg * sparsity_loss
+    
+    # Helper: Attentions should be as small as possible
+    def get_sparsity_loss(self, attention_mask):
+        sparsity_loss = attention_mask.sum()
         return self.sparsity_reg * sparsity_loss
 
     # Helper: Attentions for the same option should be consistent across a trajectory

@@ -142,6 +142,7 @@ class OptionCriticFeatures(nn.Module):
                                                        temperature, epsilon_start, epsilon_min, epsilon_decay, gamma, tau,
                                                        termination_reg, entropy_reg,
                                                        hidden_size, state_size, hidden_size_2, hidden_size_Q, hidden_size_termination, hidden_size_policy,
+                                                       use_hidden_size, use_hidden_size_2, use_hidden_size_Q, use_hidden_size_termination, use_hidden_size_policy,
                                                        learning_rate, batch_size, critic_freq, target_update_freq, buffer_size,
                                                        tensorboard_log, verbose, is_policy_network=False)
             self.update_target_network()

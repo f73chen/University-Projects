@@ -7,8 +7,8 @@ from attention_option_critic import AOCFeatures
 from fourrooms_env import Fourrooms
 
 # Define environment and training parameters
-ENV_NAME = "fourrooms"    # "CartPole-v1"
-ENV_TYPE = "fourrooms"
+ENV_NAME = "highway-fast-v0"    # "CartPole-v1"
+ENV_TYPE = "highway"
 RENDER_MODE = "human"  # "rgb_array", "human"
 TOTAL_TIMESTEPS = int(1e5)
 MODEL_TYPE = "aoc"
@@ -149,25 +149,26 @@ if __name__ == "__main__":
     TOTAL_TRIALS = 400
     study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db", load_if_exists=True)
 
-    # Filter out failed trials by exporting successful trials to a new study
-    successful_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]
-    optuna.delete_study(study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
-    study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
-    for trial in successful_trials:
-        study.add_trial(trial)
+    # # Filter out failed trials by exporting successful trials to a new study
+    # successful_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]
+    # optuna.delete_study(study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
+    # study = optuna.create_study(direction="maximize", study_name=f"{MODEL_TYPE}_optimization", storage=f"sqlite:///results/{ENV_TYPE}_{MODEL_TYPE}/study.db")
+    # for trial in successful_trials:
+    #     study.add_trial(trial)
 
-    # Optimize until the total number of trials is reached
-    completed_trials = len(study.trials)
-    remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
-    print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
-    study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
+    # # Optimize until the total number of trials is reached
+    # completed_trials = len(study.trials)
+    # remaining_trials = max(TOTAL_TRIALS - completed_trials, 0)
+    # print(f"Starting from trial {completed_trials}/{TOTAL_TRIALS}")
+    # study.optimize(objective, n_trials=remaining_trials, show_progress_bar=True)
 
     # Display best hyperparameters
+    print("Best reward value:", study.best_value)
     print("Best hyperparameters:", study.best_params)
 
-    # Visualize results
-    optuna.visualization.plot_slice(study).show()
-    optuna.visualization.plot_param_importances(study).show()
+    # # Visualize results
+    # optuna.visualization.plot_slice(study).show()
+    # optuna.visualization.plot_param_importances(study).show()
     
     # # Save the best model
     # env, render_env = get_env()
